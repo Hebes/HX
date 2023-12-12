@@ -5,8 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FieldEdge
-{
     public class DataItem : IData
     {
         public int itemID;
@@ -29,4 +27,3 @@ namespace FieldEdge
             return itemID;
         }
     }
-}

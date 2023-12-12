@@ -1,6 +1,4 @@
-﻿namespace FieldEdge
-{
-    /// <summary>
+﻿    /// <summary>
     /// Event事件
     /// </summary>
     public enum EConfigEvent
@@ -15,4 +13,3 @@
         /// </summary>
         LoadSceneAfter = 2,
     }
-}

@@ -1,6 +1,4 @@
-﻿namespace FieldEdge
-{
-    /// <summary>
+﻿    /// <summary>
     /// 物品数据结构
     /// </summary>
     public struct InventoryItem
@@ -15,4 +13,3 @@
         /// </summary>
         public int itemQuantity;
     }
-}

@@ -8,8 +8,6 @@ using Cysharp.Threading.Tasks;
 
 -----------------------*/
 
-namespace FieldEdge
-{
     public class ManagerScene : IModelInit
     {
         public static ManagerScene Instance;
@@ -85,4 +83,3 @@ namespace FieldEdge
         //    }
         //}
     }
-}

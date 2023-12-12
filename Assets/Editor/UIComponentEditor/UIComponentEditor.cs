@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ACEditor;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -71,10 +72,16 @@ namespace Core
 
         private void OnDestroy()
         {
+
         }
 
         public override void OnInspectorGUI()
         {
+            EditorGUILayout.LabelField("改前缀", EditorStyles.boldLabel);
+            if (GUILayout.Button($"改前缀"))
+            {
+                UIComponentTool.ShowUIComponentTool();
+            }
             EditorGUILayout.LabelField("按钮", EditorStyles.boldLabel);
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button($"获取{Prefix}物体"))

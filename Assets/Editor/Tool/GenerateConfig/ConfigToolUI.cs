@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Diagnostics;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,9 +9,11 @@ namespace ACEditor
     {
         private bool isOpenPreview = true;
         private static string CommonPath = $"{Application.dataPath}\\";
-        private string CreatPath = $"{Application.dataPath}/Script/ModelConfig";
         private string content;
         private string LoadPath = $"{CommonPath}/Resources/";
+
+        private string _creatPathKey = "保存配置文件路径";
+        private string _creatPath = string.Empty;
 
 
         [MenuItem("Tool/生成配置文件#C #C")]
@@ -21,30 +24,42 @@ namespace ACEditor
             else
                 GetWindow(typeof(ConfigToolUI)).Close();
         }
+        private void Awake()
+        {
+            _creatPath = PlayerPrefs.GetString(_creatPath);
+        }
 
         private void OnGUI()
         {
             Repaint();
 
+
             EditorGUILayout.BeginHorizontal();
-            //if (GUILayout.Button("生成Prefab数据预览"))
-            //{
-            //    content = GenerateConfigTool.ReadDataString(LoadPath, "ConfigPrefab", DataReadType.CommonSuffixation, ".prefab");
-            //}
+            string _savePath = Application.dataPath.Replace("Assets", string.Empty);
+            if (GUILayout.Button("打开文件夹", GUILayout.Width(100f)))
+            {
+                Process.Start(_creatPath);
+            }
+            if (GUILayout.Button("保存C#生成路径", GUILayout.Width(200f)))
+            {
+                PlayerPrefs.SetString(_creatPathKey, $"{_savePath}{_creatPath}");
+                _creatPath = PlayerPrefs.GetString(_creatPathKey);
+                GUIUtility.keyboardControl = 0;
+            }
+            _creatPath = EditorGUILayout.TextField(_creatPath);
+            EditorGUILayout.EndHorizontal();
+
+
+
+            EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("生成Prefab数据预览(全路径)"))
             {
                 content = GenerateConfigTool.ReadDataString(LoadPath, "ConfigPrefab", DataReadType.AllPathNoSuffix, ".prefab");
             }
-            //if (GUILayout.Button("生成Prefab数据文件"))
-            //{
-            //    content = GenerateConfigTool.ReadDataString(LoadPath, "ConfigPrefab", DataReadType.CommonSuffixation, ".prefab");
-            //    string creatFilePath = $"{CreatPath}/ConfigPrefab.cs";
-            //    GenerateConfigTool.WriteData(content, creatFilePath);
-            //}
             if (GUILayout.Button("生成Prefab数据文件(全路径)"))
             {
                 content = GenerateConfigTool.ReadDataString(LoadPath, "ConfigPrefab", DataReadType.AllPathNoSuffix, ".prefab");
-                string creatFilePath = $"{CreatPath}/ConfigPrefab.cs";
+                string creatFilePath = $"{_creatPath}/ConfigPrefab.cs";
                 GenerateConfigTool.WriteData(content, creatFilePath);
             }
             EditorGUILayout.EndHorizontal();
@@ -61,7 +76,7 @@ namespace ACEditor
             {
                 string LoadPath = $"{CommonPath}/Resources/";
                 content = GenerateConfigTool.ReadDataString(LoadPath, "ConfigMaterial", DataReadType.AllPathSuffixation, ".mat");
-                string creatFilePath = $"{CreatPath}/ConfigMaterial.cs"; 
+                string creatFilePath = $"{_creatPath}/ConfigMaterial.cs"; 
                 GenerateConfigTool.WriteData(content, creatFilePath);
             }
             EditorGUILayout.EndHorizontal();
@@ -75,7 +90,7 @@ namespace ACEditor
             if (GUILayout.Button("生成Tag数据文件"))
             {
                 content = GenerateConfigTool.ReadTagData();
-                string creatFilePath = $"{CreatPath}/ConfigTag.cs";
+                string creatFilePath = $"{_creatPath}/ConfigTag.cs";
                 GenerateConfigTool.WriteData(content, creatFilePath);
             }
             EditorGUILayout.EndHorizontal();
@@ -89,7 +104,7 @@ namespace ACEditor
             if (GUILayout.Button("生成Layer数据文件"))
             {
                 content = GenerateConfigTool.ReadLayerData();
-                string creatFilePath = $"{CreatPath}/ConfigLayer.cs";
+                string creatFilePath = $"{_creatPath}/ConfigLayer.cs";
                 GenerateConfigTool.WriteData(content, creatFilePath);
             }
             EditorGUILayout.EndHorizontal();
@@ -103,7 +118,7 @@ namespace ACEditor
             if (GUILayout.Button("生成SortingLayer数据文件"))
             {
                 content = GenerateConfigTool.ReadSortingLayerData();
-                string creatFilePath = $"{CreatPath}/ConfigSortingLayer.cs";
+                string creatFilePath = $"{_creatPath}/ConfigSortingLayer.cs";
                 GenerateConfigTool.WriteData(content, creatFilePath);
             }
             EditorGUILayout.EndHorizontal();
@@ -119,7 +134,7 @@ namespace ACEditor
             {
                 string LoadPath = $"{CommonPath}/";
                 content = GenerateConfigTool.ReadDataString(LoadPath, "ConfigScenes", DataReadType.CommonNoSuffix, ".unity");
-                string creatFilePath = $"{CreatPath}/ConfigScenes.cs";
+                string creatFilePath = $"{_creatPath}/ConfigScenes.cs";
                 GenerateConfigTool.WriteData(content, creatFilePath);
             }
             EditorGUILayout.EndHorizontal();
@@ -135,7 +150,7 @@ namespace ACEditor
             {
                 string LoadPath = $"{CommonPath}/Resources/";
                 content = GenerateConfigTool.ReadDataString(LoadPath, "ConfigAudio", DataReadType.AllPathNoSuffix, ".mp3", ".wav");
-                string creatFilePath = $"{CreatPath}/ConfigAudio.cs";
+                string creatFilePath = $"{_creatPath}/ConfigAudio.cs";
                 GenerateConfigTool.WriteData(content, creatFilePath);
             }
             EditorGUILayout.EndHorizontal();
@@ -151,7 +166,7 @@ namespace ACEditor
             {
                 string LoadPath = $"{CommonPath}/Resources/";
                 content = GenerateConfigTool.ReadDataString(LoadPath, "ConfigData", DataReadType.AllPathNoSuffix, ".bytes");
-                string creatFilePath = $"{CreatPath}/ConfigData.cs";
+                string creatFilePath = $"{_creatPath}/ConfigData.cs";
                 GenerateConfigTool.WriteData(content, creatFilePath);
             }
             EditorGUILayout.EndHorizontal();

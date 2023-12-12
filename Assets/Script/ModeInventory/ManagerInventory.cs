@@ -8,176 +8,173 @@ using System.Collections.Generic;
 
 -----------------------*/
 
-namespace FieldEdge
+/// <summary>
+/// 库存管理
+/// </summary>
+public class ManagerInventory : IModelInit
 {
-    /// <summary>
-    /// 库存管理
-    /// </summary>
-    public class ManagerInventory : IModelInit
+    private static ManagerInventory _instance;
+    private Dictionary<int, List<InventoryItem>> _itemDic;
+
+    public void Init()
     {
-        private static ManagerInventory _instance;
-        private Dictionary<int, List<InventoryItem>> _itemDic;
+        _instance = this;
+        _itemDic = new Dictionary<int, List<InventoryItem>>();
+    }
 
-        public void Init()
+    /// <summary>
+    /// 创建新的背包数据
+    /// </summary>
+    /// <param name="key"></param>
+    public static void CreatData(int key)
+    {
+        if (_instance._itemDic.ContainsKey(key))
         {
-            _instance = this;
-            _itemDic = new Dictionary<int, List<InventoryItem>>();
+            Debug.Error("该背包数据已经存在!");
+            return;
         }
+        _instance._itemDic.Add(key, new List<InventoryItem>());
+    }
 
-        /// <summary>
-        /// 创建新的背包数据
-        /// </summary>
-        /// <param name="key"></param>
-        public static void CreatData(int key)
-        {
-            if (_instance._itemDic.ContainsKey(key))
-            {
-                Debug.Error("该背包数据已经存在!");
-                return;
-            }
-            _instance._itemDic.Add(key, new List<InventoryItem>());
-        }
+    /// <summary>
+    /// 创建物品管理列表
+    /// </summary>
+    public static void CreatData(int key, List<InventoryItem> inventoryItems)
+    {
+        if (_instance._itemDic.ContainsKey(key))
+            Debug.Error("该背包数据已经存在!");
+        _instance._itemDic.Add(key, inventoryItems);
+        _instance.RefreshInventoryItemList(key);
+    }
 
-        /// <summary>
-        /// 创建物品管理列表
-        /// </summary>
-        public static void CreatData(int key, List<InventoryItem> inventoryItems)
+    /// <summary>
+    /// 添加物品数据
+    /// </summary>
+    /// <param name="key"></param>
+    public static void AddItem(int key, InventoryItem value)
+    {
+        if (_instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
         {
-            if (_instance._itemDic.ContainsKey(key))
-                Debug.Error("该背包数据已经存在!");
-            _instance._itemDic.Add(key, inventoryItems);
+            valueList.Add(value);
             _instance.RefreshInventoryItemList(key);
+            return;
         }
+        Debug.Error("背包数据不存在");
+    }
 
-        /// <summary>
-        /// 添加物品数据
-        /// </summary>
-        /// <param name="key"></param>
-        public static  void AddItem(int key, InventoryItem value)
+    /// <summary>
+    /// 删除物品
+    /// </summary>
+    /// <param name="key"></param>
+    public static void RemoveItem(int key, int id, int amount)
+    {
+        if (_instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
         {
-            if (_instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
-            {
-                valueList.Add(value);
-                _instance.RefreshInventoryItemList(key);
-                return;
-            }
-            Debug.Error("背包数据不存在");
-        }
-
-        /// <summary>
-        /// 删除物品
-        /// </summary>
-        /// <param name="key"></param>
-        public static void RemoveItem(int key, int id, int amount)
-        {
-            if (_instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
-            {
-                for (int i = 0; i < valueList.Count; i++)
-                {
-                    if (valueList[i].itemID == id)
-                    {
-                        _instance.ChackItemAmount(valueList[i], amount);
-                        break;
-                    }
-                }
-                _instance.RefreshInventoryItemList(key);
-                return;
-            }
-            Debug.Log($"当前没有{key},请检查");
-        }
-
-        /// <summary>
-        /// 交换物品
-        /// </summary>
-        private void ChangeItem(int oldKey, int oldID, int newKey, int newID)
-        {
-            //老的物品数据
-            int oldIndex = 0;
-            if (_instance._itemDic.TryGetValue(oldKey, out List<InventoryItem> oldValueList))
-            {
-                oldIndex = ChackItem(oldKey, oldID);
-            }
-            //新的物品数据
-            int newIndex = 0;
-            if (_instance._itemDic.TryGetValue(newKey, out List<InventoryItem> newValueList))
-            {
-                newIndex = ChackItem(newKey, newID);
-            }
-            //交换数据
-            InventoryItem inventoryItemTemp = oldValueList[oldIndex];
-            oldValueList[oldIndex] = newValueList[newIndex];
-            newValueList[newIndex] = inventoryItemTemp;
-
-            //合并重复物体
-            MergeDuplicatItem(oldKey);
-            MergeDuplicatItem(newKey);
-
-            //刷新数据
-            RefreshInventoryItemList(oldKey);
-            RefreshInventoryItemList(newKey);
-        }
-
-        /// <summary>
-        /// 检查物品是否存在
-        /// </summary>
-        /// <param name="key">库存的关键词对应的物品数据列表</param>
-        /// <param name="id">物品的id</param>
-        /// <returns>-1表示没有空位置,0表示这个格子是空的,其表示有物品</returns>
-        private int ChackItem(int key, int id = 0)
-        {
-            _instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList);
-            for (int i = 0; i < valueList?.Count; i++)
+            for (int i = 0; i < valueList.Count; i++)
             {
                 if (valueList[i].itemID == id)
-                    return i;
+                {
+                    _instance.ChackItemAmount(valueList[i], amount);
+                    break;
+                }
             }
-            return -1;
+            _instance.RefreshInventoryItemList(key);
+            return;
         }
+        Debug.Log($"当前没有{key},请检查");
+    }
 
-        /// <summary>
-        /// 获取列表
-        /// </summary>
-        public List<InventoryItem> GetInventoryItemList(int key)
+    /// <summary>
+    /// 交换物品
+    /// </summary>
+    private void ChangeItem(int oldKey, int oldID, int newKey, int newID)
+    {
+        //老的物品数据
+        int oldIndex = 0;
+        if (_instance._itemDic.TryGetValue(oldKey, out List<InventoryItem> oldValueList))
         {
-            if (_instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
-                return valueList;
-            Debug.Error("背包数据不存在");
-            return null;
+            oldIndex = ChackItem(oldKey, oldID);
         }
-
-        /// <summary>
-        /// 刷新物品所在的UI数据
-        /// </summary>
-        /// <param name="key">库存的关键词对应的物品数据列表</param>
-        private void RefreshInventoryItemList(int key)
+        //新的物品数据
+        int newIndex = 0;
+        if (_instance._itemDic.TryGetValue(newKey, out List<InventoryItem> newValueList))
         {
-            CoreEvent.EventTrigger(key, _itemDic[key]);//这里的在比如背包页面那边开启的时候监听
+            newIndex = ChackItem(newKey, newID);
         }
+        //交换数据
+        InventoryItem inventoryItemTemp = oldValueList[oldIndex];
+        oldValueList[oldIndex] = newValueList[newIndex];
+        newValueList[newIndex] = inventoryItemTemp;
 
-        /// <summary>
-        /// 减少数量
-        /// </summary>
-        /// <param name="inventoryItem"></param>
-        /// <param name="amount"></param>
-        private void ChackItemAmount(InventoryItem inventoryItem, int amount)
+        //合并重复物体
+        MergeDuplicatItem(oldKey);
+        MergeDuplicatItem(newKey);
+
+        //刷新数据
+        RefreshInventoryItemList(oldKey);
+        RefreshInventoryItemList(newKey);
+    }
+
+    /// <summary>
+    /// 检查物品是否存在
+    /// </summary>
+    /// <param name="key">库存的关键词对应的物品数据列表</param>
+    /// <param name="id">物品的id</param>
+    /// <returns>-1表示没有空位置,0表示这个格子是空的,其表示有物品</returns>
+    private int ChackItem(int key, int id = 0)
+    {
+        _instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList);
+        for (int i = 0; i < valueList?.Count; i++)
         {
-            if (inventoryItem.itemQuantity >= amount)
-            {
-                inventoryItem.itemQuantity -= amount;
-                return;
-            }
-            Debug.Log("当前的物品数量不足，请检查");
+            if (valueList[i].itemID == id)
+                return i;
         }
+        return -1;
+    }
 
-        /// <summary>
-        /// 合并重复物体
-        /// </summary>
-        private void MergeDuplicatItem(int key)
+    /// <summary>
+    /// 获取列表
+    /// </summary>
+    public List<InventoryItem> GetInventoryItemList(int key)
+    {
+        if (_instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
+            return valueList;
+        Debug.Error("背包数据不存在");
+        return null;
+    }
+
+    /// <summary>
+    /// 刷新物品所在的UI数据
+    /// </summary>
+    /// <param name="key">库存的关键词对应的物品数据列表</param>
+    private void RefreshInventoryItemList(int key)
+    {
+        CoreEvent.EventTrigger(key, _itemDic[key]);//这里的在比如背包页面那边开启的时候监听
+    }
+
+    /// <summary>
+    /// 减少数量
+    /// </summary>
+    /// <param name="inventoryItem"></param>
+    /// <param name="amount"></param>
+    private void ChackItemAmount(InventoryItem inventoryItem, int amount)
+    {
+        if (inventoryItem.itemQuantity >= amount)
         {
-            if (_instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
-            {
-                return;
-            }
+            inventoryItem.itemQuantity -= amount;
+            return;
+        }
+        Debug.Log("当前的物品数量不足，请检查");
+    }
+
+    /// <summary>
+    /// 合并重复物体
+    /// </summary>
+    private void MergeDuplicatItem(int key)
+    {
+        if (_instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
+        {
+            return;
         }
     }
 }

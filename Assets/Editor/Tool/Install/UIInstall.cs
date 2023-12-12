@@ -44,7 +44,7 @@ namespace ACEditor
             if (request.IsCompleted)
             {
                 if (request.Status == StatusCode.Success)
-                    Debug.Log($"锟斤拷锟截成癸拷Package name: {request.Result.name}");
+                    Debug.Log($"获取包名成功Package name: {request.Result.name}");
                 else if (request.Status >= StatusCode.Failure)
                     Debug.Log(request.Error.message);
                 EditorApplication.update -= Progress;

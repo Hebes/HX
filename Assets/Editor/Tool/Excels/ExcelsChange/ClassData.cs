@@ -18,7 +18,12 @@ namespace ACEditor
 {
     public class ClassData
     {
-        private static string DATA_CLASS_PATH = $"{Application.dataPath}/Script/ModelExcelData";//Assets/HotUpdate/GameMain/Config
+        public const string CSharpSavePathKey = "C#文件保存路径";
+
+        /// <summary>
+        /// 放置要生成的C#文件的路径
+        /// </summary>
+        public static string CSharpSavePath = string.Empty;
 
         /// <summary>
         /// 通过Excel数据生成脚本文件
@@ -41,8 +46,8 @@ namespace ACEditor
             }
             sb.AppendLine($"    public int GetId()\r\n    {{\r\n\t\treturn {data[0][0]};\r\n    }}");
             sb.AppendLine("}");
-            DATA_CLASS_PATH.GenerateDirectory();
-            string path = $"{DATA_CLASS_PATH}/{className}.cs";
+            CSharpSavePath.GenerateDirectory();
+            string path = $"{CSharpSavePath}/{className}.cs";
             File.Delete(path);
             File.WriteAllText(path, sb.ToString());
             AssetDatabase.Refresh();

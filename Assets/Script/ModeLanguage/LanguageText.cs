@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 -----------------------*/
 
-namespace Farm2D
-{
     public class LanguageText : MonoBehaviour
     {
         public string key = "错误";
@@ -50,4 +48,3 @@ namespace Farm2D
             OnSwitchLanguage();
         }
     }
-}

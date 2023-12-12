@@ -1,8 +1,6 @@
 ﻿using Core;
 using UnityEngine;
 
-namespace FieldEdge
-{
     /// <summary>
     /// 玩家脚本
     /// </summary>
@@ -28,4 +26,3 @@ namespace FieldEdge
 
         
     }
-}

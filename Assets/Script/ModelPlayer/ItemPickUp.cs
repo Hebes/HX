@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace FieldEdge
-{
     /// <summary>
     /// 物品拾取
     /// </summary>
@@ -34,4 +32,3 @@ namespace FieldEdge
             }
         }
     }
-}

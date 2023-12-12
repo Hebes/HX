@@ -20,10 +20,12 @@ namespace ACEditor
 {
     public static class BinaryData
     {
+        public const string binaryDataSavePathKey = "二进制保存文件保存路径";
+
         /// <summary>
         /// 放置要生成的二进制文件的路径
         /// </summary>
-        private static readonly string BYTE_PATH = $"{Application.dataPath}/Resources/AssetsPackage/Binary";
+        public static string binaryDataSavePath = string.Empty;
 
         /// <summary>
         /// 创建二进制文件
@@ -33,8 +35,8 @@ namespace ACEditor
             //创建文件
             Debug.Log($"当前路径是{filePath}");
             string className = new FileInfo(filePath).Name.Split('.')[0];
-            BYTE_PATH.GenerateDirectory();
-            string path = $"{BYTE_PATH}/{className}.bytes";
+            binaryDataSavePath.GenerateDirectory();
+            string path = $"{binaryDataSavePath}/{className}.bytes";
             //写入文件
             using (FileStream fileStream = new FileStream(path, FileMode.Create))
             {

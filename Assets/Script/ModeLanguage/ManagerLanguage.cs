@@ -1,5 +1,4 @@
-﻿using FieldEdge;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Core;
@@ -13,8 +12,6 @@ using UnityEngine;
 
 -----------------------*/
 
-namespace Farm2D
-{
     /// <summary> 语言类型 </summary>
     public enum ELanguageType
     {
@@ -63,4 +60,3 @@ namespace Farm2D
             return key;
         }
     }
-}

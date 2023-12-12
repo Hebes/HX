@@ -70,8 +70,9 @@ namespace ACEditor
             }
             //拼接字符串
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"namespace {namespaceName}\r\n{{");
-            sb.AppendLine($"    public class {ConfigName}\r\n    {{");
+            //sb.AppendLine($"namespace {namespaceName}\r\n{{");
+            //sb.AppendLine($"    public class {ConfigName}\r\n    {{");
+            sb.AppendLine($"public class {ConfigName}\r\n{{");
             foreach (string pathTemp in pathsList)
             {
                 //文件名称
@@ -105,7 +106,8 @@ namespace ACEditor
                 //文件路径
 
             }
-            sb.AppendLine("    }\r\n}");
+            sb.AppendLine("}");
+            //sb.AppendLine("    }\r\n}");
             return sb.ToString();
         }
 
@@ -113,11 +115,13 @@ namespace ACEditor
         {
             string[] tags = InternalEditorUtility.tags;
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("namespace ACFrameworkCore\r\n{");
-            sb.AppendLine("    public class ConfigTag\r\n    {");
+            //sb.AppendLine("namespace ACFrameworkCore\r\n{");
+            //sb.AppendLine("    public class ConfigTag\r\n    {");
+            sb.AppendLine("public class ConfigTag\r\n{");
             foreach (string s in tags)
                 sb.AppendLine($"        public const string Tag{s} = \"{s}\";");
-            sb.AppendLine("    }\r\n}");
+            sb.AppendLine("}");
+            //sb.AppendLine("    }\r\n}");
             return sb.ToString();
         }
 
@@ -126,15 +130,17 @@ namespace ACEditor
             var tags = InternalEditorUtility.layers;
 
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("namespace ACFrameworkCore\r\n{");
-            sb.AppendLine("    public class ConfigLayer\r\n    {");
+            //sb.AppendLine("namespace ACFrameworkCore\r\n{");
+            //sb.AppendLine("    public class ConfigLayer\r\n    {");
+            sb.AppendLine("public class ConfigLayer\r\n{");
 
             foreach (string s in tags)
             {
                 string tempstr = s;
                 sb.AppendLine($"        public const string Layer{tempstr.Replace(" ", "").Trim()} = \"{tempstr}\";");
             }
-            sb.AppendLine("    }\r\n}");
+            sb.AppendLine("}");
+            //sb.AppendLine("    }\r\n}");
             return sb.ToString();
         }
 
@@ -146,15 +152,17 @@ namespace ACEditor
 
 
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("namespace ACFrameworkCore\r\n{");
-            sb.AppendLine("    public class ConfigSortingLayer\r\n    {");
+            //sb.AppendLine("namespace ACFrameworkCore\r\n{");
+            //sb.AppendLine("    public class ConfigSortingLayer\r\n    {");
+            sb.AppendLine("public class ConfigSortingLayer\r\n{");
 
             foreach (string s in sortingLayers)
             {
                 string tempstr = s;
                 sb.AppendLine($"        public const string SortingLayer{tempstr.Replace(" ", "").Trim()} = \"{tempstr}\";");
             }
-            sb.AppendLine("    }\r\n}");
+            sb.AppendLine("}");
+            //sb.AppendLine("    }\r\n}");
             return sb.ToString();
         }
     }

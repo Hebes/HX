@@ -1,6 +1,4 @@
-﻿namespace FieldEdge
-{
-    /// <summary>
+﻿    /// <summary>
     /// 游戏设置
     /// </summary>
     public static class GameSetting
@@ -10,4 +8,3 @@
         public const float fadeOutSeconds = 0.35f;      //淡出时间
         public const float targetAlpha = 0.45f;         //Alpha通道
     }
-}
