@@ -5,6 +5,9 @@
     /// </summary>
     public interface IUpdata : IBehaviour
     {
+        /// <summary>
+        /// Updata接口
+        /// </summary>
         void OnUpdata();
     }
 }

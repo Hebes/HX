@@ -170,6 +170,7 @@ namespace Core
                 }
             }
         }
+
         private double GetUTCMilliseconds()
         {
             TimeSpan ts = DateTime.UtcNow - startDateTime;

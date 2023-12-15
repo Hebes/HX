@@ -26,14 +26,11 @@ namespace ACEditor
         }
         private void Awake()
         {
-            _creatPath = PlayerPrefs.GetString(_creatPath);
+            _creatPath = PlayerPrefs.GetString(_creatPathKey);
         }
 
         private void OnGUI()
         {
-            Repaint();
-
-
             EditorGUILayout.BeginHorizontal();
             string _savePath = Application.dataPath.Replace("Assets", string.Empty);
             if (GUILayout.Button("打开文件夹", GUILayout.Width(100f)))
@@ -49,7 +46,7 @@ namespace ACEditor
             _creatPath = EditorGUILayout.TextField(_creatPath);
             EditorGUILayout.EndHorizontal();
 
-
+            Repaint();
 
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("生成Prefab数据预览(全路径)"))

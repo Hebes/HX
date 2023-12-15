@@ -25,8 +25,14 @@ namespace Farm2D
         /// <summary> XML </summary>
         XML,
     }
-    public class CoreDataSystem : SingletonBase<CoreDataSystem>
+    public class CoreDataSystem : ICore // SingletonBase<CoreDataSystem>
     {
+        public static CoreDataSystem Instance;
+        public void ICoreInit()
+        {
+            Instance = this;
+        }
+
         public void Save(object obj, string fileName, EDataType dataType)
         {
             switch (dataType)
@@ -79,5 +85,7 @@ namespace Farm2D
             T t = new T();
             return t.Load<K>(fileName);
         }
+
+
     }
 }

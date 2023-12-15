@@ -54,7 +54,7 @@ public class MainMenuView : UIBase
 
     private async UniTask LoadScene()
     {
-        await ManagerScene.LoadSceneAsync(ConfigScenes.unityHome);
+        await ManagerScene.LoadSceneAsync(ConfigScenes.unityStart);
         CloseUIForm();
     }
 }

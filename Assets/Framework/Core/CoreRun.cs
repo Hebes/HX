@@ -5,9 +5,11 @@
 
 -----------------------*/
 
+using Farm2D;
+
 namespace Core
 {
-    public class CoreRun 
+    public class CoreRun
     {
         public CoreRun()
         {
@@ -19,6 +21,9 @@ namespace Core
             Init<CoreUI>();
             Init<CoreData>();
             Init<CoreScene>();
+            Init<CoreInput>();
+            Init<CoreDataSystem>();
+            Init<CoreSystemOrder>();
         }
 
         public T Init<T>() where T : ICore, new()

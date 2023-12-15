@@ -15,17 +15,29 @@ namespace Core
         s,
         a,
         d,
+        /// <summary> 指令 </summary>
+        Oder,
     }
 
     public class CoreInput : ICore
     {
+        public static CoreInput Instance { get; private set; }
         private IInput input;           //输入类型
 
         public void ICoreInit()
         {
+            Instance = this;
             input = new InputPC();
             input.Init();
         }
+
+        //public static void AddKeyCode()
+        //{
+        //    if (Instance.input is IInputPCKeyCode)
+        //    {
+        //        Instance.input.add
+        //    }
+        //}
 
         /// <summary>
         /// 切换按键

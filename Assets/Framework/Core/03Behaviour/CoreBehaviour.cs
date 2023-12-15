@@ -70,6 +70,8 @@ namespace Core
                 Instance.CoroutineDic.Add(coroutineKey, BehaviourController.Instance.StartCoroutine(coroutine));
             Debug.Error($"协程已经存在{coroutineKey}");
         }
+
+
         public static void RemoveCoroutine(int coroutineKey)
         {
             if (Instance.CoroutineDic.TryGetValue(coroutineKey, out Coroutine coroutine))
