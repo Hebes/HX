@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 /*--------脚本描述-----------
 
@@ -50,6 +45,42 @@ namespace Core
         }
 
         public static bool ChackOpenSystemOrder() => Instance._openSystemOrder;
+
+        /// <summary>
+        /// 添加指令
+        /// </summary>
+        public static void AddOrder(ISystemOder systemOder)
+        {
+            if (consoleHistory.Contains(systemOder))
+            {
+                Debug.Error("指令已存在");
+                return;
+            }
+            consoleHistory.Add(systemOder);
+            systemOder.OrderInit();
+        }
+
+        /// <summary>
+        /// 指令输入
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static string OrderInput(string input)
+        {
+            //分割字符串获取参数列表
+            List<string> args = new List<string>(input.Split(' '));
+            //指令类型
+            EOrderType orderType = EnumHelper.FromString<EOrderType>(args[0]);
+
+            // 控制与回调
+            string output = null;
+            ISystemOder systemOder = consoleHistory.Find((data) => { return data.OrderType == orderType; });
+            if (systemOder == null)// 错误指令
+                output = "No such command.";
+            else
+                output = systemOder.TriggerOder(args);
+            return output;
+        }
 
 
 

@@ -13,17 +13,17 @@ namespace Core
     {
         public CoreRun()
         {
-            Init<CoreDebug>();
-            Init<CoreEvent>();
-            Init<CoreBehaviour>();
-            Init<CoreResource>();
-            Init<CoreAduio>();
-            Init<CoreUI>();
-            Init<CoreData>();
-            Init<CoreScene>();
-            Init<CoreInput>();
-            Init<CoreDataSystem>();
-            Init<CoreSystemOrder>();
+            Init<CoreDebug>();          //日志
+            Init<CoreEvent>();          //事件
+            Init<CoreBehaviour>();      //生命周期
+            Init<CoreResource>();       //资源加载
+            Init<CoreAduio>();          //音乐
+            Init<CoreUI>();             //UI
+            Init<CoreData>();           //数据
+            Init<CoreScene>();          //场景
+            Init<CoreInput>();          //输入
+            Init<CoreDataSystem>();     //数据
+            Init<CoreSystemOrder>();    //指令
         }
 
         public T Init<T>() where T : ICore, new()

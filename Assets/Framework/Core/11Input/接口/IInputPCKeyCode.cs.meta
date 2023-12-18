@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Framework/Core/11Input/接口/IInputPCKeyCode.cs.meta
 guid: 30f9337ca0392c54eb017174f61d3710
+=======
+guid: 8241a525387a86d4cbbca415ed6b9902
+>>>>>>> 155243024c2e45bcab19d647f4a44ea7c3612813:Assets/Script/ModelBounds/ManagerBounds.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

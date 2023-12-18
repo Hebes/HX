@@ -13,8 +13,8 @@ namespace Core
 
         private void OnGUI()
         {
-            if (CoreSystemOrder.ChackOpenSystemOrder() == false) return;
-            _windowRect = GUI.Window(0, _windowRect, ExpansionGUIWindow, "指令器");
+            //if (CoreSystemOrder.ChackOpenSystemOrder() == false) return;
+            //_windowRect = GUI.Window(0, _windowRect, ExpansionGUIWindow, "指令器");
         }
 
 

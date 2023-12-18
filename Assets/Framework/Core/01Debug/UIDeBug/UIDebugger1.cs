@@ -469,14 +469,10 @@ namespace Core
         private Color _fpsColor = Color.white;
         private int _frameNumber = 0;
         private float _lastShowFPSTime = 0f;
-        private void Awake()
+        private void Start()
         {
             if (AllowDebugging)
                 Application.logMessageReceived += LogHandler;
-        }
-        private void Start()
-        {
-
         }
         private void Update()
         {
@@ -840,12 +836,12 @@ namespace Core
         private void ShrinkGUIWindow(int windowId)
         {
             GUI.DragWindow(new Rect(0, 0, 10000, 20));
-
+            GUI.contentColor = _fpsColor;
             if (GUILayout.Button("FPS:" + _fps, GUILayout.Width(80), GUILayout.Height(30)))
             {
                 _expansion = true;
-                _windowRect.width = Screen.width;
-                _windowRect.height = Screen.height;
+                _windowRect.width = 640;
+                _windowRect.height = 360;
             }
             GUI.contentColor = Color.white;
         }
@@ -854,29 +850,29 @@ namespace Core
 #endregion
 
 
-//namespace Core
-//{
-//    /// <summary> 日志数据 </summary>
-//    public struct LogData
-//    {
-//        /// <summary> 时间 </summary>
-//        public string time;
-//        /// <summary> 类型 </summary>
-//        public string type;
-//        /// <summary> 消息 </summary>
-//        public string message;
-//        /// <summary> 堆栈 </summary>
-//        public string stackTrace;
-//    }
+namespace Core
+{
+    /// <summary> 日志数据 </summary>
+    public struct LogData
+    {
+        /// <summary> 时间 </summary>
+        public string time;
+        /// <summary> 类型 </summary>
+        public string type;
+        /// <summary> 消息 </summary>
+        public string message;
+        /// <summary> 堆栈 </summary>
+        public string stackTrace;
+    }
 
-//    /// <summary> 日志类型 </summary>
-//    public enum DebugType
-//    {
-//        Console,
-//        Memory,
-//        System,
-//        Screen,
-//        Quality,
-//        Environment
-//    }
-//}
+    /// <summary> 日志类型 </summary>
+    public enum DebugType
+    {
+        Console,
+        Memory,
+        System,
+        Screen,
+        Quality,
+        Environment
+    }
+}

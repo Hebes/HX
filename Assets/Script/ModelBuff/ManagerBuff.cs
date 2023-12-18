@@ -4,11 +4,11 @@ using System.Collections.Generic;
 /// <summary>
 /// buff管理器
 /// </summary>
-public class ManagerBuff : IModelInit
+public class ManagerBuff : ICore
 {
     public static ManagerBuff Instance;
     private List<IBuffCarrier> _buffCarrierList;
-    public void Init()
+    public void ICoreInit()
     {
         Instance = this;
         _buffCarrierList = new List<IBuffCarrier>();
@@ -39,11 +39,7 @@ public class ManagerBuff : IModelInit
         if (buffData is IBuffSuperposition superposition)
         {
             if (superposition.DelBuff)
-            {
-                if (buffData is IBuff buff)
-                    buff.OnDestroy(buffCarrier);
                 buffCarrier.BuffList.Remove(buffData);
-            }
             else
                 superposition.RemoveBuff();
         }
@@ -55,6 +51,10 @@ public class ManagerBuff : IModelInit
         }
     }
 
+    /// <summary>
+    /// 添加到管理类
+    /// </summary>
+    /// <param name="buffCarrier"></param>
     private void AddBuffCarrier(IBuffCarrier buffCarrier)
     {
         if (_buffCarrierList.Contains(buffCarrier))

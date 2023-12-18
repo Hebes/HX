@@ -40,6 +40,9 @@ namespace Core
             //SystemExceptionDebug.InitSystemExceptionDebug();
 
             //屏幕显示日志
+            GameObject debugGo = new GameObject("UIDebug");
+            debugGo.AddComponent<UIDebugger1>();
+            GameObject.DontDestroyOnLoad(debugGo);
             //GameObject debugGo = new GameObject("UIDebug");
             //debugGo.AddComponent<UIDebugger>();
             //GameObject.DontDestroyOnLoad(debugGo);

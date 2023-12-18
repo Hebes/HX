@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Framework/Core/13SystemOrder/CoreSystemOrder.cs.meta
 guid: 6b25e25924527314db1c89baf527d3f3
+=======
+guid: 2abfcc39f824ab54fa3a02431d442413
+>>>>>>> 155243024c2e45bcab19d647f4a44ea7c3612813:Assets/Framework/Core/01Debug/UIDeBug/UIDebugger1.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

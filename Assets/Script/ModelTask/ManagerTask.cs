@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 /*--------脚本描述-----------
 
@@ -15,11 +11,11 @@ public class ManagerTask : IModelInit
 {
     public static ManagerTask Instance { get; private set; }
 
-    private Dictionary<int, List<ITask>> _taskDic;
+    private List<ITaskCarrier> _taskCarrierList;
     public void Init()
     {
         Instance = this;
-        _taskDic = new Dictionary<int, List<ITask>>();
+        _taskCarrierList = new List<ITaskCarrier>();
     }
 
     public void RefreshTask()
@@ -30,17 +26,23 @@ public class ManagerTask : IModelInit
     /// <summary>
     /// 添加任务
     /// </summary>
-    public void AddTask(int id, ITask task)
+    public static void AddTask(ITaskCarrier taskCarrier, ITask task)
     {
-        if (Instance._taskDic.TryGetValue(id, out List<ITask> taskList))
-            taskList.Add(task);
-        Instance._taskDic.Add(id, new List<ITask>() { task });
+        taskCarrier.TaskList.Add(task);
+        task.TaskTrigger();
     }
 
 
-    public void RemoveTask(int id, ITask task)
+    public static void RemoveTask(ITaskCarrier taskCarrier, ITask task)
     {
-        if (Instance._taskDic.TryGetValue(id, out List<ITask> taskList))
-            taskList.Remove(task);
+        if (!taskCarrier.TaskList.Contains(task)) return;
+        taskCarrier.TaskList.Remove(task);
+        task.TaskOver();
+    }
+
+    private static void TaskAddCarrier(ITaskCarrier taskCarrier)
+    {
+        if (!Instance._taskCarrierList.Contains(taskCarrier))
+            Instance._taskCarrierList.Add(taskCarrier);
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core
 {
@@ -14,13 +11,22 @@ namespace Core
         /// <summary>
         /// 指令名称
         /// </summary>
-        public string orderName;
+        private string orderName;
 
         /// <summary>
         /// 指令对应的代码
         /// </summary>
-        public Action orderAction;
+        private Action<List<string>> orderAction;
 
-        string ISystemOder.OrderName { get => orderName; set => orderName = value; }
+        public EOrderType OrderType => EOrderType.Item;
+        public string OrderName { get => orderName; set => orderName = value; }
+        public void OrderInit()
+        {
+        }
+        public string TriggerOder(List<string> args)
+        {
+            orderAction?.Invoke(args);
+            return "指令执行成功";
+        }
     }
 }
