@@ -854,29 +854,29 @@ namespace Core
 #endregion
 
 
-namespace Core
-{
-    /// <summary> 日志数据 </summary>
-    public struct LogData
-    {
-        /// <summary> 时间 </summary>
-        public string time;
-        /// <summary> 类型 </summary>
-        public string type;
-        /// <summary> 消息 </summary>
-        public string message;
-        /// <summary> 堆栈 </summary>
-        public string stackTrace;
-    }
+//namespace Core
+//{
+//    /// <summary> 日志数据 </summary>
+//    public struct LogData
+//    {
+//        /// <summary> 时间 </summary>
+//        public string time;
+//        /// <summary> 类型 </summary>
+//        public string type;
+//        /// <summary> 消息 </summary>
+//        public string message;
+//        /// <summary> 堆栈 </summary>
+//        public string stackTrace;
+//    }
 
-    /// <summary> 日志类型 </summary>
-    public enum DebugType
-    {
-        Console,
-        Memory,
-        System,
-        Screen,
-        Quality,
-        Environment
-    }
-}
+//    /// <summary> 日志类型 </summary>
+//    public enum DebugType
+//    {
+//        Console,
+//        Memory,
+//        System,
+//        Screen,
+//        Quality,
+//        Environment
+//    }
+//}
