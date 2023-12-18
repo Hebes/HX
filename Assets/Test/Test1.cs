@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Core;
 using Debug = UnityEngine.Debug;
+using Assets.Test;
 
-public class Test1 : IUpdata
+public class Test1 : IUpdata,IBuffCarrier
 {
+    public int ID => throw new System.NotImplementedException();
+
+    public List<IBuffData> BuffList { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     //public void GetAfter()
     //{
@@ -21,6 +25,8 @@ public class Test1 : IUpdata
 
     public void OnUpdata()
     {
+        BuffData1 buffData1 = new BuffData1();
         UnityEngine.Debug.Log($"Test1   Updata");
+        //IBuffCarrier.Remove(buffData1);
     }
 }
