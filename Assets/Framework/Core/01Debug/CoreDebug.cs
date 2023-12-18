@@ -41,7 +41,7 @@ namespace Core
 
             //屏幕显示日志
             GameObject debugGo = new GameObject("UIDebug");
-            debugGo.AddComponent<UIDebugger>();
+            debugGo.AddComponent<UIDebugger1>();
             GameObject.DontDestroyOnLoad(debugGo);
             Debug.Log("日志模块初始化完毕!");
         }
