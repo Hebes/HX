@@ -2,11 +2,7 @@
 using UnityEngine.EventSystems;
 
 /*--------脚本描述-----------
-				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
+
 描述:
     实现对于任何对象的监听处理。
     https://www.cnblogs.com/LiuGuozhu/p/7125662.html
@@ -55,3 +51,18 @@ namespace Core
         public override void OnUpdateSelected(BaseEventData eventBaseData) => onUpdateSelect?.Invoke(gameObject);
     }
 }
+
+#region MyRegion
+//protected void ButtonOnClickAddListener(string buttonName, EventTriggerListener.VoidDelegate delHandle)
+//{
+//    GameObject goButton = this.panelGameObject.GetChild(buttonName);
+//    if (goButton == null) return;
+//    EventTriggerListener.Get(goButton).onClick = delHandle;
+//}
+//protected void ButtonOnEnterAddListener(string buttonName, EventTriggerListener.VoidDelegate delHandle)
+//{
+//    GameObject goButton = this.panelGameObject.GetChild(buttonName);
+//    if (goButton == null) return;
+//    EventTriggerListener.Get(goButton).onEnter = delHandle;
+//}
+#endregion

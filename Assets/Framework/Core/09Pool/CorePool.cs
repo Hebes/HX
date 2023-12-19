@@ -30,6 +30,7 @@ namespace Core
             Instance = this;
             poolDic = new Dictionary<string, List<IPool>>();
             poolObj = new GameObject("PoolManager");
+            GameObject.DontDestroyOnLoad(poolObj);
         }
 
         /// <summary>
@@ -109,20 +110,27 @@ namespace Core
         /// </summary>
         public static void PushMono<T>(T t) where T : Component, IPool
         {
-            ///设置父物体
-            Transform transform = Instance.poolObj.transform.Find(typeof(T).FullName);
-            if (transform == null)
-            {
-                transform = (new GameObject(typeof(T).FullName)).transform;
-                transform.SetParent(Instance.poolObj.transform, false);
-            }
-            t.transform.SetParent(transform);
             //隐藏
             if (Instance.poolDic.ContainsKey(typeof(T).FullName))
                 Instance.poolDic[typeof(T).FullName].Add(t);
             else
                 Instance.poolDic.Add(typeof(T).FullName, new List<IPool>() { t });
             t.PushBefore();
+        }
+
+        /// <summary>
+        /// 对象池设置父物体
+        /// </summary>
+        public static void SetParentMono<T>(T t) where T : Component, IPool
+        {
+            //设置父物体
+            Transform transform = Instance.poolObj.transform.Find(typeof(T).FullName);
+            if (transform != null)
+            {
+                transform = new GameObject(typeof(T).FullName).transform;
+                transform.SetParent(Instance.poolObj.transform,false);
+            }
+            t.transform.SetParent(transform, false);
         }
     }
 }
