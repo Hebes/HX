@@ -3,10 +3,6 @@ using UnityEngine.UI;
 
 /*--------脚本描述-----------
 
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
 描述:
 	Image拓展
 
@@ -24,6 +20,10 @@ namespace Core
         public static Image GetImage(this Transform transform)
         {
             return transform.GetComponent<Image>();
+        }
+        public static Image GetImageChild(this Transform transform,string path)
+        {
+            return transform.GetChild(path).GetImage();
         }
     }
 }
