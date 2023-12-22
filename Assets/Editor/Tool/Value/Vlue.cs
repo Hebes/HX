@@ -26,17 +26,17 @@ namespace ACEditor
                 Assembly assem = Assembly.Load("Assembly-CSharp");
                 Type type = assem.GetType("Newlifecycle");
                 FieldInfo[] t1 = type.GetFields();
-                foreach (var item in t1)
-                {
-                    if (item.GetValue() is List<int> ttt)
-                    {
-                        foreach (var item1 in ttt)
-                        {
-                            Debug.Log(item1);
-                        }
-                    }
+                //foreach (var item in t1)
+                //{
+                //    if (item.GetValue() is List<int> ttt)
+                //    {
+                //        foreach (var item1 in ttt)
+                //        {
+                //            Debug.Log(item1);
+                //        }
+                //    }
 
-                }
+                //}
             }
         }
     }
