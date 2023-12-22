@@ -11,6 +11,9 @@ using UnityEngine;
 
 namespace Core
 {
+    /// <summary>
+    /// https://blog.csdn.net/jiafuyong/article/details/131519393
+    /// </summary>
     public class CoreUI : ICore
     {
         public static CoreUI Instance;

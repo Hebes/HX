@@ -19,10 +19,7 @@ namespace Core
         public delegate void Event();
         public Event EventAction;
 
-        public int CompareTo(EventCommonData other)
-        {
-            return id.CompareTo(other.id);
-        }
+        public int CompareTo(EventCommonData other) => id.CompareTo(other.id);
     }
 
     public struct EventCommonData<T> : IComparable<EventCommonData<T>>
@@ -31,9 +28,6 @@ namespace Core
         public delegate void Event(T t);
         public Event EventAction;
 
-        public int CompareTo(EventCommonData<T> other)
-        {
-            return id.CompareTo(other.id);
-        }
+        public int CompareTo(EventCommonData<T> other) => id.CompareTo(other.id);
     }
 }
