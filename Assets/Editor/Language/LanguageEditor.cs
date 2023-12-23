@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 namespace ACEditor
 {
-    [CustomEditor(typeof(LanguageText), true)]
+    [CustomEditor(typeof(LanguageComponent), true)]
     public class LanguageEditor : Editor
     {
-        private LanguageText _languageText;
+        private LanguageComponent _languageText;
 
         private void OnEnable()
         {
-            _languageText = (LanguageText)target;
+            _languageText = (LanguageComponent)target;
             Text _text = _languageText.GetComponent<Text>();
             _languageText.key = _text.text;
         }

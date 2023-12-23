@@ -1,5 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using System.Collections;
+﻿using System.Buffers.Text;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,16 +15,15 @@ namespace Core
     {
         public static CoreUI Instance;
 
-        public Transform CanvasTransfrom = null;                        //UI根节点    
-        public Camera UICamera = null;                                  //UI摄像机
-        public Camera MainCamera = null;                                //主摄像机
-
+        public Transform CanvasTransfrom = null;                    //UI根节点    
+        public Camera UICamera = null;                              //UI摄像机
+        public Camera MainCamera = null;                            //主摄像机
         private Dictionary<string, UIBase> _DicALLUIForms;          //缓存所有UI窗体
         private Dictionary<string, UIBase> _DicCurrentShowUIForms;  //当前显示的UI窗体
         private Stack<UIBase> _StaCurrentUIForms;                   //定义“栈”集合,存储显示当前所有[反向切换]的窗体类型
         private Transform Normal = null;                            //全屏幕显示的节点
         private Transform Fixed = null;                             //固定显示的节点
-        public Transform PopUp = null;                             //弹出节点
+        public Transform PopUp = null;                              //弹出节点
         private Transform Mobile = null;                            //独立的窗口可移动的
         private Transform Fade = null;                              //渐变过度窗体
 
@@ -35,15 +33,8 @@ namespace Core
             _DicALLUIForms = new Dictionary<string, UIBase>();
             _DicCurrentShowUIForms = new Dictionary<string, UIBase>();
             _StaCurrentUIForms = new Stack<UIBase>();
-            InitRoot();
-            Debug.Log("UI管理初始化完毕");
-        }
 
-
-        //初始化
-        private void InitRoot()
-        {
-            GameObject gameObjectTemp = CoreResource.Load<GameObject>("AssetsPackage/Prefab/UI/Canvas");
+            GameObject gameObjectTemp = CoreResource.Load<GameObject>(ConfigCore.uiCanvasPath);
             GameObject CanvasGoInstantiate = GameObject.Instantiate(gameObjectTemp);
             //实例化
             CanvasTransfrom = CanvasGoInstantiate.transform;
@@ -56,16 +47,16 @@ namespace Core
             Fade = CanvasTransfrom.GetChildComponent<Transform>(EUIType.Fade.ToString());
             UICamera = CanvasTransfrom.GetChildComponent<Camera>("UICamera");//UI相机要添加到主相机的Stack中
             MainCamera = CanvasTransfrom.GetChildComponent<Camera>("MainCamera");
+            Debug.Log("UI管理初始化完毕");
         }
 
 
-        //界面增删改查方法
-        public static T ShwoUIPanel<T>(string uiFormName) where T : UIBase, new()
+        public static T ShwoUIPanel<T>(string uiFormName) where T : UIBase
         {
             //是否存在UI类
             Instance._DicALLUIForms.TryGetValue(uiFormName, out UIBase uIBase);
-            T t = uIBase == null ? Instance.LoadUIPanel<T>(uiFormName) : uIBase as T;//UI类
-            //CoreBehaviour.AddMonEvent(EMonoType.Updata, t.UIUpdate);
+            T t = uIBase == null ? Instance.LoadUIPanel<T>(uiFormName) : uIBase as T;
+
             //是否清空“栈集合”中得数据
             if (t.IsClearStack)
                 Instance.ClearStackArray();
@@ -111,19 +102,17 @@ namespace Core
 
 
 
-        //显示界面
-        private T LoadUIPanel<T>(string uiFormName) where T : UIBase, new()
+        private T LoadUIPanel<T>(string uiFormName) where T : UIBase
         {
-            T t = new T();
-            //创建的UI克隆体预设
             GameObject uiPanel = CoreResource.Load<GameObject>(uiFormName);
-            if (uiPanel == null) Debug.Error($"加载预制体失败,请检查资源路径{uiFormName}");
-
             GameObject uiPanelInstantiate = GameObject.Instantiate(uiPanel);
-            t.panelGameObject = uiPanelInstantiate;
+            T t = uiPanelInstantiate.GetComponent<T>();
+            if (t == null)
+                t = uiPanelInstantiate.AddComponent<T>();
             t.UIName = uiFormName;
             t.UIAwake();
-
+            if (t is IUpdata updata)
+                CoreBehaviour.Add(updata);
 
             //设置父物体
             switch (t.type)
@@ -147,7 +136,7 @@ namespace Core
 	    private void LoadUIToCurrentCache<T>(string uiFormName) where T : UIBase
         {
             //如果“正在显示”的集合中，存在整个UI窗体，则直接返回
-            if (_DicCurrentShowUIForms.TryGetValue(uiFormName, out UIBase baseUiForm))
+            if (_DicCurrentShowUIForms.ContainsKey(uiFormName))
                 return;
             //把当前窗体，加载到“正在显示”集合中
             if (_DicALLUIForms.TryGetValue(uiFormName, out UIBase baseUIFormFromAllCache))
@@ -164,10 +153,7 @@ namespace Core
         private void PushUIFormToStack(string uiFormName)
         {
             if (_StaCurrentUIForms.Count > 0)//判断“栈”集合中，是否有其他的窗体，有则“冻结”处理。
-            {
-                UIBase topUIForm = _StaCurrentUIForms.Peek();
-                topUIForm.Freeze(); //栈顶元素作冻结处理 冻结状态（即：窗体显示在其他窗体下面）
-            }
+                _StaCurrentUIForms.Peek().Freeze();//栈顶元素作冻结处理 冻结状态（即：窗体显示在其他窗体下面）
 
             if (_DicALLUIForms.TryGetValue(uiFormName, out UIBase baseUIForm))//判断“UI所有窗体”集合是否有指定的UI窗体，有则处理。
             {
@@ -176,7 +162,7 @@ namespace Core
             }
             else
             {
-                Debug.Log("baseUIForm==null,Please Check, 参数 uiFormName=" + uiFormName);
+                Debug.Error($"{uiFormName} 是空的！");
             }
         }
 
@@ -218,6 +204,10 @@ namespace Core
             //"正在显示集合"中如果没有记录，则直接返回。
             if (_DicCurrentShowUIForms.TryGetValue(strUIFormName, out UIBase baseUIForm) == false)
                 return;
+
+            if (baseUIForm is IUpdata updata)
+                CoreBehaviour.Remove(updata);
+            
             //指定窗体，标记为“隐藏状态”，且从"正在显示集合"中移除。
             baseUIForm.UIOnDisable();
             _DicCurrentShowUIForms.Remove(strUIFormName);
@@ -232,13 +222,20 @@ namespace Core
             {
                 UIBase topUIForms = _StaCurrentUIForms.Pop();//出栈处理
                 topUIForms.UIOnDisable();//做隐藏处理
+                if (topUIForms is IUpdata updata)
+                    CoreBehaviour.Remove(updata);
+
                 UIBase nextUIForms = _StaCurrentUIForms.Peek();//出栈后，下一个窗体做“重新显示”处理。
                 nextUIForms.UIOnEnable();
+                if (topUIForms is IUpdata updata1)
+                    CoreBehaviour.Add(updata1);
             }
             else if (_StaCurrentUIForms.Count == 1)
             {
                 UIBase topUIForms = _StaCurrentUIForms.Pop();//出栈处理
                 topUIForms.UIOnDisable(); //做隐藏处理
+                if (topUIForms is IUpdata updata)
+                    CoreBehaviour.Remove(updata);
             }
         }
 
@@ -257,9 +254,18 @@ namespace Core
 
             //把“正在显示集合”与“栈集合”中所有窗体都定义重新显示状态。
             foreach (UIBase baseUI in _DicCurrentShowUIForms.Values)
+            {
                 baseUI.UIOnEnable();
+                if (baseUI is IUpdata updata)
+                    CoreBehaviour.Remove(updata);
+            }
+
             foreach (UIBase staUI in _StaCurrentUIForms)
+            {
                 staUI.UIOnEnable();
+                if (staUI is IUpdata updata)
+                    CoreBehaviour.Remove(updata);
+            }
         }
 
 

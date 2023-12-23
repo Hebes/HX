@@ -14,7 +14,7 @@ public class MainMenuView : UIBase
 
         InitUIBase(EUIType.Fixed, EUIMode.HideOther, EUILucenyType.ImPenetrable);
 
-        UIComponent UIComponent = panelGameObject.GetComponent<UIComponent>();
+        UIComponent UIComponent = gameObject.GetComponent<UIComponent>();
 
         GameObject T_StartGame = UIComponent.Get<GameObject>("T_StartGame");
         GameObject T_Load = UIComponent.Get<GameObject>("T_Load");

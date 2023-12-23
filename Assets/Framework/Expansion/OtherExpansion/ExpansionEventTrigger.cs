@@ -23,7 +23,7 @@ namespace Core
         /// <param name="trigger">EventTrigger组件对象</param>
         /// <param name="eventType">事件类型</param>
         /// <param name="listenedAction">要执行的方法</param>
-        public static void AddEventTriggerListener(this EventTrigger trigger, EventTriggerType eventType, Action<PointerEventData> listenedAction)
+        private static void AddEventTriggerListener(this EventTrigger trigger, EventTriggerType eventType, Action<PointerEventData> listenedAction)
         {
             EventTrigger.Entry entry = new EventTrigger.Entry();
             entry.eventID = eventType;

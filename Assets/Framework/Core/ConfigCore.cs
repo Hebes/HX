@@ -24,4 +24,14 @@ public class ConfigCore
 		public const string YooAseetPackage = "PC";
 #endif
     //public const string YooAseetPackage = "Android";
+
+    /// <summary>
+    /// 遥感加载路径
+    /// </summary>
+    public const string jpyStickPanelPath = "AssetsPackage/Prefab/UI/Joystick/Joystick";
+
+    /// <summary>
+    /// 面板路径
+    /// </summary>
+    public const string uiCanvasPath = "AssetsPackage/Prefab/UI/Canvas";
 }

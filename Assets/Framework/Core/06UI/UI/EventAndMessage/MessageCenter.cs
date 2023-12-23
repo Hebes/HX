@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Core;
+using System.Collections.Generic;
+using UnityEngine;
 
 /*--------脚本描述-----------
-				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
+
 描述:
     消息（传递）中心
     负责UI框架中，所有UI窗体中间的数据传值。
@@ -86,3 +84,22 @@ namespace Core
         }
     }
 }
+
+#region MyRegion
+///// <summary>发送消息</summary>
+///// <param name="msgType">消息的类型</param>
+///// <param name="msgName">消息名称</param>
+///// <param name="msgContent">消息内容</param>
+//protected void SendMessage(string msgType, string msgName, object msgContent)
+//{
+//    KeyValuesUpdate kvs = new KeyValuesUpdate(msgName, msgContent);
+//    MessageCenter.SendMessage(msgType, kvs);
+//}
+///// <summary> 接收消息 </summary> 
+///// <param name="messagType">消息分类</param>
+///// <param name="handler">消息委托</param>
+//public void ReceiveMessage(string messagType, MessageCenter.DelMessageDelivery handler)
+//{
+//    MessageCenter.AddMsgListener(messagType, handler);
+//}
+#endregion
