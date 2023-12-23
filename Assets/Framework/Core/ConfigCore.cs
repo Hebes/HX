@@ -35,3 +35,8 @@ public class ConfigCore
     /// </summary>
     public const string uiCanvasPath = "AssetsPackage/Prefab/UI/Canvas";
 }
+
+public enum ECoreEvent
+{
+    ON_SCREEN_RESOLUTION_CHANGE = 1,
+}
