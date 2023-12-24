@@ -57,6 +57,7 @@ public interface IRole
 public enum ERoleBattlePoint
 {
     Left,
+    Centre,
     Right,
 }
 
