@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 5609866691732690365}
   - component: {fileID: 5745593716334463670}
   m_Layer: 5
-  m_Name: MianMenu
+  m_Name: UIMianMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

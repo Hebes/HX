@@ -16,6 +16,7 @@ namespace ACEditor
         private string _creatPath = string.Empty;
 
 
+        [MenuItem("Assets/生成配置文件#C #C")]
         [MenuItem("Tool/生成配置文件#C #C")]
         public static void ShowConfigToolUI()
         {

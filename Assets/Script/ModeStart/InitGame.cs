@@ -13,6 +13,6 @@ public class InitGame : MonoBehaviour
         //加载子模块
         new ModelRun();
         //显示主界面
-        CoreUI.ShwoUIPanel<MainMenuView>(ConfigPrefab.prefabMianMenu);
+        CoreUI.ShwoUIPanel<MainMenuView>(ConfigPrefab.prefabUIMianMenu); 
     }
 }
