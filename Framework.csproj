@@ -46,8 +46,9 @@
     <Analyzer Include="D:\Unity\UnityEditor\2022.3.7f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Framework\Core\ID\CoreID.cs" />
+    <Compile Include="Assets\Framework\Expansion\ID\CoreID.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionSystem\ExpansionInt.cs" />
+    <Compile Include="Assets\Framework\Expansion\Name\HelperName.cs" />
     <Compile Include="Assets\Framework\Expansion\StringTools.cs" />
     <Compile Include="Assets\Framework\Core\06UI\UI\Other\AutomaticAdaptationCanvasScaler.cs" />
     <Compile Include="Assets\Framework\Expansion\ETHelper\EnumHelper.cs" />
