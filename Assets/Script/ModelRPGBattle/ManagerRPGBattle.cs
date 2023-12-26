@@ -249,18 +249,18 @@ public class OneBattle
     /// </summary>
     public void RemoveBattleRole(IRole role)
     {
-        switch (role.roleBattlePoint)
-        {
-            case ERoleBattlePoint.Left:
-                m_leftRoleList.RemoveContainElement(role);
-                break;
-            case ERoleBattlePoint.Right:
-                m_rightRoleList.RemoveContainElement(role);
-                break;
-            default:
-                Debug.Error("当前位置错误,请添加");
-                break;
-        }
+        //switch (role.roleBattlePoint)
+        //{
+        //    case ERoleBattlePoint.Left:
+        //        m_leftRoleList.RemoveContainElement(role);
+        //        break;
+        //    case ERoleBattlePoint.Right:
+        //        m_rightRoleList.RemoveContainElement(role);
+        //        break;
+        //    default:
+        //        Debug.Error("当前位置错误,请添加");
+        //        break;
+        //}
     }
 
     /// <summary>
