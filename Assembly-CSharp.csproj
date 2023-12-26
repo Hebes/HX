@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{8353FFAC-5EE4-BEB5-8E30-A6F492C6218D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -58,6 +59,7 @@
     <Analyzer Include="D:\Unity\UnityEditor\2022.3.7f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\ModelAI\EnumAI.cs" />
     <Compile Include="Assets\Script\ModelConfig\ConfigScenes.cs" />
     <Compile Include="Assets\Script\ModeInventory\ManagerInventory.cs" />
     <Compile Include="Assets\Script\ModeSkill\ISkillCarrier.cs" />
@@ -101,7 +103,7 @@
     <Compile Include="Assets\Script\ModelCamp\ICamp.cs" />
     <Compile Include="Assets\Script\ModelTask\ITaskCarrier.cs" />
     <Compile Include="Assets\Test\Test1.cs" />
-    <Compile Include="Assets\Script\ModelAI\IAI.cs" />
+    <Compile Include="Assets\Script\ModelAI\InterfaceAI.cs" />
     <Compile Include="Assets\Script\ModelAI\ManagerAI.cs" />
     <Compile Include="Assets\Script\Item\ObscuringItemFader.cs" />
     <Compile Include="Assets\Script\ModelCamp\ManagerCamp.cs" />
