@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public interface IModelInit
+public class ManagerAnimator
 {
-    public void Init();
 }

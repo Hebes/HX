@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public enum EAIType
-{
-    Try = 1,//尝试
-    Action = 2,//执行
-}
-
 /// <summary>
 /// 单独AI拥有
 /// </summary>
@@ -38,7 +32,7 @@ public interface EAIExecuteTry : EAIExecute
     /// <summary>
     /// 尝试委托
     /// </summary>
-    public delegate bool AIExecuteTry();
+    //public delegate bool AIExecuteTry();
 }
 
 public interface EAIExecuteAction : EAIExecute
@@ -46,5 +40,5 @@ public interface EAIExecuteAction : EAIExecute
     /// <summary>
     /// 执行委托
     /// </summary>
-    public delegate void AIExecuteAction();
+    //public delegate void AIExecuteAction();
 }
