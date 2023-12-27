@@ -1,8 +1,10 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// 序列帧动画
+/// 不会实际使用,请调用其他脚本
 /// https://blog.csdn.net/qq_36374904/article/details/103064687
 /// </summary>
 public class FrameAnimatorPlayScript : MonoBehaviour
