@@ -10,20 +10,20 @@
 
 public class ManagerCamp : IModelInit
 {
-    private Dictionary<EnumsCamp, List<ICamp>> _campDic;
+    private Dictionary<ECamp, List<ICamp>> _campDic;
     public static ManagerCamp Instance;
 
     public void Init()
     {
         Instance = this;
-        _campDic = new Dictionary<EnumsCamp, List<ICamp>>();
+        _campDic = new Dictionary<ECamp, List<ICamp>>();
     }
     /// <summary>
     /// 添加到指定阵营
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="id"></param>
-    public static void AddCamp(EnumsCamp ecamp, ICamp camp)
+    public static void AddCamp(ECamp ecamp, ICamp camp)
     {
         if (Instance._campDic.TryGetValue(ecamp, out List<ICamp> campList))
             campList.Add(camp);
@@ -34,13 +34,13 @@ public class ManagerCamp : IModelInit
     /// 移除阵营中指定的
     /// </summary>
     /// <param name="id"></param>
-    public static void RemoveCamp(EnumsCamp ecamp, ICamp camp)
+    public static void RemoveCamp(ECamp ecamp, ICamp camp)
     {
         if (Instance._campDic.TryGetValue(ecamp, out List<ICamp> campList))
             campList.Remove(camp);
     }
 
-    public static ICamp GetCamp(EnumsCamp ecamp, ICamp camp)
+    public static ICamp GetCamp(ECamp ecamp, ICamp camp)
     {
         if (Instance._campDic.TryGetValue(ecamp, out List<ICamp> campList))
         {
@@ -52,7 +52,7 @@ public class ManagerCamp : IModelInit
         }
         return null;
     }
-    public static T GetCamp<T>(EnumsCamp ecamp, ICamp camp) where T : class, ICamp
+    public static T GetCamp<T>(ECamp ecamp, ICamp camp) where T : class, ICamp
     {
         if (Instance._campDic.TryGetValue(ecamp, out List<ICamp> campList))
         {
@@ -73,7 +73,7 @@ public class ManagerCamp : IModelInit
     /// <param name="id"></param>
     /// <param name="oldCamp"></param>
     /// <param name="newCamp"></param>
-    public static void ChangeCamp(EnumsCamp oldECamp, ICamp oldCamp, EnumsCamp newECamp, ICamp newCamp)
+    public static void ChangeCamp(ECamp oldECamp, ICamp oldCamp, ECamp newECamp, ICamp newCamp)
     {
         RemoveCamp(oldECamp, oldCamp);
         AddCamp(newECamp, newCamp);

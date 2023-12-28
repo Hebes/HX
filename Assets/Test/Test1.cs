@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Core;
 using Debug = UnityEngine.Debug;
-using Assets.Test;
 
 public class Test1 : IUpdata,IBuffCarrier
 {

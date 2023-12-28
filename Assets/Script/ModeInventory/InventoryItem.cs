@@ -11,5 +11,5 @@
         /// <summary>
         /// 物品数量
         /// </summary>
-        public int itemQuantity;
+        public int count;
     }
