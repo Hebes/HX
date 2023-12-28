@@ -13,12 +13,12 @@ using System.Collections.Generic;
 /// </summary>
 public class ManagerInventory : IModelInit
 {
-    private static ManagerInventory _instance;
-    private Dictionary<int, List<InventoryItem>> _itemDic;
+    private static ManagerInventory Instance;
+    private Dictionary<int, List<InventoryItem>> _itemDic;      //物品字典
 
     public void Init()
     {
-        _instance = this;
+        Instance = this;
         _itemDic = new Dictionary<int, List<InventoryItem>>();
     }
 
@@ -28,12 +28,12 @@ public class ManagerInventory : IModelInit
     /// <param name="key"></param>
     public static void CreatData(int key)
     {
-        if (_instance._itemDic.ContainsKey(key))
+        if (Instance._itemDic.ContainsKey(key))
         {
             Debug.Error("该背包数据已经存在!");
             return;
         }
-        _instance._itemDic.Add(key, new List<InventoryItem>());
+        Instance._itemDic.Add(key, new List<InventoryItem>());
     }
 
     /// <summary>
@@ -41,10 +41,10 @@ public class ManagerInventory : IModelInit
     /// </summary>
     public static void CreatData(int key, List<InventoryItem> inventoryItems)
     {
-        if (_instance._itemDic.ContainsKey(key))
+        if (Instance._itemDic.ContainsKey(key))
             Debug.Error("该背包数据已经存在!");
-        _instance._itemDic.Add(key, inventoryItems);
-        _instance.RefreshInventoryItemList(key);
+        Instance._itemDic.Add(key, inventoryItems);
+        Instance.RefreshInventoryItemList(key);
     }
 
     /// <summary>
@@ -53,10 +53,10 @@ public class ManagerInventory : IModelInit
     /// <param name="key"></param>
     public static void AddItem(int key, InventoryItem value)
     {
-        if (_instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
+        if (Instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
         {
             valueList.Add(value);
-            _instance.RefreshInventoryItemList(key);
+            Instance.RefreshInventoryItemList(key);
             return;
         }
         Debug.Error("背包数据不存在");
@@ -68,17 +68,17 @@ public class ManagerInventory : IModelInit
     /// <param name="key"></param>
     public static void RemoveItem(int key, int id, int amount)
     {
-        if (_instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
+        if (Instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
         {
             for (int i = 0; i < valueList.Count; i++)
             {
                 if (valueList[i].itemID == id)
                 {
-                    _instance.ChackItemAmount(valueList[i], amount);
+                    Instance.ChackItemAmount(valueList[i], amount);
                     break;
                 }
             }
-            _instance.RefreshInventoryItemList(key);
+            Instance.RefreshInventoryItemList(key);
             return;
         }
         Debug.Log($"当前没有{key},请检查");
@@ -91,13 +91,13 @@ public class ManagerInventory : IModelInit
     {
         //老的物品数据
         int oldIndex = 0;
-        if (_instance._itemDic.TryGetValue(oldKey, out List<InventoryItem> oldValueList))
+        if (Instance._itemDic.TryGetValue(oldKey, out List<InventoryItem> oldValueList))
         {
             oldIndex = ChackItem(oldKey, oldID);
         }
         //新的物品数据
         int newIndex = 0;
-        if (_instance._itemDic.TryGetValue(newKey, out List<InventoryItem> newValueList))
+        if (Instance._itemDic.TryGetValue(newKey, out List<InventoryItem> newValueList))
         {
             newIndex = ChackItem(newKey, newID);
         }
@@ -123,7 +123,7 @@ public class ManagerInventory : IModelInit
     /// <returns>-1表示没有空位置,0表示这个格子是空的,其表示有物品</returns>
     private int ChackItem(int key, int id = 0)
     {
-        _instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList);
+        Instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList);
         for (int i = 0; i < valueList?.Count; i++)
         {
             if (valueList[i].itemID == id)
@@ -137,7 +137,7 @@ public class ManagerInventory : IModelInit
     /// </summary>
     public List<InventoryItem> GetInventoryItemList(int key)
     {
-        if (_instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
+        if (Instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
             return valueList;
         Debug.Error("背包数据不存在");
         return null;
@@ -159,9 +159,9 @@ public class ManagerInventory : IModelInit
     /// <param name="amount"></param>
     private void ChackItemAmount(InventoryItem inventoryItem, int amount)
     {
-        if (inventoryItem.itemQuantity >= amount)
+        if (inventoryItem.count >= amount)
         {
-            inventoryItem.itemQuantity -= amount;
+            inventoryItem.count -= amount;
             return;
         }
         Debug.Log("当前的物品数量不足，请检查");
@@ -172,7 +172,7 @@ public class ManagerInventory : IModelInit
     /// </summary>
     private void MergeDuplicatItem(int key)
     {
-        if (_instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
+        if (Instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
         {
             return;
         }

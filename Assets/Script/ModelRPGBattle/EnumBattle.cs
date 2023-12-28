@@ -33,13 +33,8 @@ public enum EBattlePerformAction
 /// <summary>
 /// 角色
 /// </summary>
-public interface IRole
+public interface IRole : IID
 {
-    /// <summary>
-    /// 编号
-    /// </summary>
-    int ID { get; set; }
-
     /// <summary>
     /// 角色类型
     /// </summary>
@@ -73,7 +68,7 @@ public enum ERoleType
     /// <summary>
     /// 朋友
     /// </summary>
-    Friend,
+    NPC,
     /// <summary>
     /// 敌人
     /// </summary>

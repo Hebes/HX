@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-    public interface ISave
-    {
-        public void Save();
-        public void Load();
-    }
+﻿public interface ISave
+{
+    public void Save();
+    public void Load(SaveData saveData);
+}

@@ -52,13 +52,8 @@ public class ManagerEffect : IModelInit
 /// <summary>
 /// 特效接口
 /// </summary>
-public interface IEffect
+public interface IEffect : IID
 {
-    /// <summary>
-    /// 特效ID
-    /// </summary>
-    int ID { get; set; }
-
     /// <summary>
     /// 特效预制体
     /// </summary>

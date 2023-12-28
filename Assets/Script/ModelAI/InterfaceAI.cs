@@ -4,10 +4,8 @@ using System.Collections.Generic;
 /// <summary>
 /// 单独AI拥有
 /// </summary>
-public interface IAI
+public interface IAI:IID
 {
-    public uint AiID { get; set; }
-
     public Dictionary<EAIType, List<EAIExecute>> AIDic { get; set; }
 }
 

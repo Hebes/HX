@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Test
+public class BuffData1 : IBuffData
 {
-    public class BuffData1 : IBuffData
-    {
-        public int buffID => 1;
+    private uint _id = 1;
 
-        public string buffName => "1";
+    public string buffName => "1";
 
-        public string describe => "1";
-    }
+    public string describe => "1";
+
+    public uint ID { get => _id; set => _id = value; }
 }
+
