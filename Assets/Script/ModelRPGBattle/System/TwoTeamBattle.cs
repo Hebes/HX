@@ -27,7 +27,7 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     /// 1.可能是敌人在左边，进入二打一模式
     /// 2.可能是自己人右边，敌人3队进行二打一模式
     /// </summary>
-    private Dictionary<ERoleBattlePoint, List<IRole>> m_rolePointDic;
+    private Dictionary<ETeamPoint, ITeam> m_rolePointDic;
 
     /// <summary>
     /// 获取战斗状态
@@ -37,19 +37,12 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     public uint ID { get => battleId; set => battleId = value; }
 
 
-    /// <summary>
-    /// 每场战斗的初始化
-    /// </summary>
-    public void Init(uint battleId)
+
+    public void Init()
     {
         m_battleDataList = new List<BattleData>();
-        m_rolePointDic = new Dictionary<ERoleBattlePoint, List<IRole>>();
-        this.battleId = battleId;
+        m_rolePointDic = new Dictionary<ETeamPoint, ITeam>();
     }
-
-    /// <summary>
-    /// 每场战斗的更新
-    /// </summary>
     public void BattleUpdata()
     {
         switch (m_battleState)
@@ -75,10 +68,6 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
                 break;
         }
     }
-
-    /// <summary>
-    /// 移除一场战斗
-    /// </summary>
     public void Remove()
     {
         m_battleDataList = null;
@@ -140,30 +129,30 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     /// </summary>
     public void AddBattleRole(IRole role)
     {
-        switch (role.roleBattlePoint)
-        {
-            case ERoleBattlePoint.Left:
-                if (m_rolePointDic.ContainsKey(ERoleBattlePoint.Left))
-                {
-                    bool isContains = m_rolePointDic[ERoleBattlePoint.Left].Contains(role);
-                    if (isContains)
-                        Debug.Error("角色数据已经存在");
-                    else
-                        m_rolePointDic[ERoleBattlePoint.Left].Add(role);
-                }
-                else
-                {
-                    m_rolePointDic.Add(ERoleBattlePoint.Left, new List<IRole>() { role });
-                }
-                break;
-            case ERoleBattlePoint.Right:
-                //TODO 这里需要完善
-                //m_rightRoleList.AddNotContainElement(role);
-                break;
-            default:
-                Debug.Error("当前位置错误,请添加");
-                break;
-        }
+        //switch (role.roleBattlePoint)
+        //{
+        //    case ERoleBattlePoint.Left:
+        //        if (m_rolePointDic.ContainsKey(ERoleBattlePoint.Left))
+        //        {
+        //            bool isContains = m_rolePointDic[ERoleBattlePoint.Left].Contains(role);
+        //            if (isContains)
+        //                Debug.Error("角色数据已经存在");
+        //            else
+        //                m_rolePointDic[ERoleBattlePoint.Left].Add(role);
+        //        }
+        //        else
+        //        {
+        //            m_rolePointDic.Add(ERoleBattlePoint.Left, new List<IRole>() { role });
+        //        }
+        //        break;
+        //    case ERoleBattlePoint.Right:
+        //        //TODO 这里需要完善
+        //        //m_rightRoleList.AddNotContainElement(role);
+        //        break;
+        //    default:
+        //        Debug.Error("当前位置错误,请添加");
+        //        break;
+        //}
     }
 
     /// <summary>
@@ -173,15 +162,15 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     /// <param name="roleList"></param>
     public void AddBattleRole(ERoleBattlePoint roleBattlePoint, List<IRole> roleList)
     {
-        if (m_rolePointDic.ContainsKey(roleBattlePoint))
-        {
-            m_rolePointDic[roleBattlePoint].Clear();
-            m_rolePointDic[roleBattlePoint] = roleList;
-        }
-        else
-        {
-            m_rolePointDic.Add(roleBattlePoint, new List<IRole>(roleList));
-        }
+        //if (m_rolePointDic.ContainsKey(roleBattlePoint))
+        //{
+        //    m_rolePointDic[roleBattlePoint].Clear();
+        //    m_rolePointDic[roleBattlePoint] = roleList;
+        //}
+        //else
+        //{
+        //    m_rolePointDic.Add(roleBattlePoint, new List<IRole>(roleList));
+        //}
     }
 
     /// <summary>
@@ -203,19 +192,19 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
         //}
     }
 
-    /// <summary>
-    /// 添加一场战斗
-    /// </summary>
-    public void AddBattleData(BattleData battleData)
-    {
-        m_battleDataList.AddNotContainElement(battleData);
-    }
+    ///// <summary>
+    ///// 添加一场战斗
+    ///// </summary>
+    //public void AddBattleData(BattleData battleData)
+    //{
+    //    m_battleDataList.AddNotContainElement(battleData);
+    //}
 
-    /// <summary>
-    /// 移除一场
-    /// </summary>
-    public void RemoveBattleData(BattleData battleData)
-    {
-        m_battleDataList.RemoveContainElement(battleData);
-    }
+    ///// <summary>
+    ///// 移除一场
+    ///// </summary>
+    //public void RemoveBattleData(BattleData battleData)
+    //{
+    //    m_battleDataList.RemoveContainElement(battleData);
+    //}
 }

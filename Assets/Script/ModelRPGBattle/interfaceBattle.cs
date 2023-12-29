@@ -4,7 +4,20 @@
 
 public interface IBattleBehaviour
 {
+    /// <summary>
+    /// 每场战斗的初始化
+    /// </summary>
+    public void Init();
+
+    /// <summary>
+    /// 每场战斗的更新
+    /// </summary>
     public void BattleUpdata();
+
+    /// <summary>
+    /// 移除一场战斗后需要做哪些事
+    /// </summary>
+    public void Remove();
 }
 
 /// <summary>

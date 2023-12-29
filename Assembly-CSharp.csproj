@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{8353FFAC-5EE4-BEB5-8E30-A6F492C6218D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -87,7 +86,6 @@
     <Compile Include="Assets\Script\ModeStart\IName.cs" />
     <Compile Include="Assets\Script\ModeSkill\ISkillData.cs" />
     <Compile Include="Assets\Test\BuffData1.cs" />
-    <Compile Include="Assets\Script\ModelBuff\InterfaceBuff.cs" />
     <Compile Include="Assets\Script\ModelRPGBattle\ManagerRPGBattle.cs" />
     <Compile Include="Assets\Script\ModelScene\ManagerScene.cs" />
     <Compile Include="Assets\Script\ModelConfig\ConfigData.cs" />
@@ -122,6 +120,7 @@
     <Compile Include="Assets\Script\ModelAI\ManagerAI.cs" />
     <Compile Include="Assets\Script\Item\ObscuringItemFader.cs" />
     <Compile Include="Assets\Script\ModelCamp\ManagerCamp.cs" />
+    <Compile Include="Assets\Script\ModelBuff\InterfaceBuff.cs" />
     <Compile Include="Assets\Script\ModelRole\EnumRole.cs" />
     <Compile Include="Assets\Script\ModelBuff\EnumBuff.cs" />
     <Compile Include="Assets\Script\ModelData\ManagerData.cs" />

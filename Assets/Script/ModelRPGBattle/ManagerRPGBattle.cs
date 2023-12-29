@@ -17,8 +17,6 @@ public class ManagerRPGBattle : IModelInit, IUpdata
         _battleDic = new Dictionary<uint, IBattle>();
         CoreBehaviour.Add(this);
     }
-
-
     public void OnUpdata()
     {
         foreach (IBattleBehaviour item in _battleDic.Values)
@@ -26,14 +24,14 @@ public class ManagerRPGBattle : IModelInit, IUpdata
     }
 
 
-
     /// <summary>
     /// 添加一场战斗
     /// </summary>
-    public static void AddOneBattle(uint battleID, IBattle oneBattle)
+    public static void AddOneBattle(IBattle oneBattle)
     {
-        //oneBattle.Init(battleID);
-        if (!Instance._battleDic.TryAdd(battleID, oneBattle))
+        if (oneBattle is IBattleBehaviour battleBehaviour)
+            battleBehaviour.Init();
+        if (!Instance._battleDic.TryAdd(oneBattle.ID, oneBattle))
             Debug.Error("战斗添加失败,已存在");
     }
 
@@ -44,10 +42,12 @@ public class ManagerRPGBattle : IModelInit, IUpdata
     {
         if (Instance._battleDic.TryGetValue(battleID, out IBattle oneBattle))
         {
-            //oneBattle.Remove();
             Instance._battleDic.Remove(battleID);
+            if (oneBattle is IBattleBehaviour battleBehaviour)
+                battleBehaviour.Remove();
             return;
         }
+        Debug.Error($"需要移除的战斗不存在{battleID}");
     }
 
     /// <summary>
