@@ -11,7 +11,7 @@ public class ToolScene //: EditorWindow
     [MenuItem("Assets/切换Init场景", false, 1000)]
     public static void SwitchScene()
     {
-        EditorSceneManager.OpenScene("Assets/Resources/AssetsPackage/Scenes/Init.unity");
+        EditorSceneManager.OpenScene("Assets/Resources/AssetsPackage/Scenes/SceneInit.unity");
         //Instance = new ToolScene();
         //Type type = Instance.GetType();
         ////object obj = Activator.CreateInstance(type);

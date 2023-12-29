@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class BuffData1 : IBuffData
+public class BuffData1 //: IBuffData
 {
     private uint _id = 1;
 

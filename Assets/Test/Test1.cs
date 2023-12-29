@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Core;
 using Debug = UnityEngine.Debug;
 
-public class Test1 : IUpdata,IBuffCarrier
+public class Test1 //: IUpdata,IBuffCarrier
 {
     public int ID => throw new System.NotImplementedException();
 

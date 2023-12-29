@@ -23,18 +23,25 @@ namespace Core
         {
             Instance = this;
 
-            //主动日志
-            Debug.InitSettings(new LogConfig()
-            {
-                enableSave = false,
-                loggerType = LoggerType.Unity,
+            //日志设置
+            LogConfig logConfig = new LogConfig();
+            logConfig.enableLog=true;
+            logConfig.LogPrefix = "#";
+            logConfig.enableTime = false;
+            logConfig.enableMillisecond = true;
+            logConfig.LogSeparate = ">>";
+            logConfig.enableThreadID = true;
+            logConfig.enableTrace = true;
+            logConfig.enableSave = true;
+            logConfig.enableCover = false;
+            logConfig.saveName = "HXLog.txt";
+            logConfig.loggerType = LoggerType.Unity;
+            Debug.InitDebugSettings(logConfig);
 #if !UNITY_EDITOR
-                //savePath = $"{Application.persistentDataPath}/LogOut/ActiveLog/",
-                savePath = $"{Application.dataPath}/LogOut/ActiveLog/",
-#endif
+                //logConfig.savePath = $"{Application.persistentDataPath}/LogOut/ActiveLog/",
+                logConfig.savePath = $"{Application.dataPath}/LogOut/ActiveLog/",
                 savePath = $"{Application.dataPath}/Log",
-                saveName = "Debug主动输出日志.txt",
-            });
+#endif
 
             //被动日志
             //SystemExceptionDebug.InitSystemExceptionDebug();

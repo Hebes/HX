@@ -54,9 +54,9 @@ public class ManagerLanguage : IModelInit
     /// </summary>
     public static string GetText(string key)
     {
-        if (Instance._languageDic.ContainsKey(key))
+        if (Instance._languageDic.ContainsKey(key)) 
             return Instance._languageDic[key];
-        Debug.Error($"多语言未配置：{key}");
+        Debug.Warn($"多语言未配置：{key}");
         return key;
     }
 
