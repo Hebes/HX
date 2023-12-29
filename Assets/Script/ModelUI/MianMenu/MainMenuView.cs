@@ -70,14 +70,17 @@ public class MainMenuView : UIBase
     {
         await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneBattle2Team);
         CloseUIForm();
+
         //创建技能
-
-
+        SkillNormalAttack skillNormalAttack = new SkillNormalAttack();
+        skillNormalAttack.ID = 0;
+        skillNormalAttack.Name = "普通攻击";
+        skillNormalAttack.Des = "普通攻击技能的描述";
         //创建一名角色
-        RolePlayer rolePlayer =new RolePlayer();
+        RolePlayer rolePlayer = new RolePlayer();
         rolePlayer.ID = 1;
         rolePlayer.Name = "玩家1";
-        ISkillCarrier.AddSkill();
+        ISkillCarrier.AddSkill(rolePlayer, skillNormalAttack);
 
         //创建一只队伍
         TeamTypeOne teamTypeOne = new TeamTypeOne();
@@ -85,7 +88,10 @@ public class MainMenuView : UIBase
 
         //添加一场战斗
         TwoTeamBattle twoTeamBattle = new TwoTeamBattle();
-        twoTeamBattle.AddBattleTeam();
-        ManagerRPGBattle.AddBattle();
+        twoTeamBattle.AddBattleTeam(teamTypeOne);
+
+        //添加到战斗管理器
+        ManagerRPGBattle.AddBattle(twoTeamBattle);
+
     }
 }

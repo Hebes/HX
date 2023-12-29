@@ -1,11 +1,7 @@
 ﻿using Core;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UI;
+using Debug = Core.Debug;
 
 public class Newlifecycle : MonoBehaviour
 {
@@ -35,22 +31,25 @@ public class Newlifecycle : MonoBehaviour
         //ints.Add(1);
         //ints.Add(2);
         //ints.Add(3);
-        UnityEngine.Debug.Log("测试");
-        timer = new TickTimer(10,true) 
-        {
-            LogFunc = UnityEngine.Debug.Log,
-            WarnFunc = UnityEngine.Debug.LogWarning,
-            ErrorFunc = UnityEngine.Debug.LogError
-        };
-        timer.AddTask(10, (id) =>
-        {
-            UnityEngine.Debug.Log($"执行了{id}次");
-        },
-        (id) =>
-        {
-            UnityEngine.Debug.Log("取消任务");
-        },
-        10);
+
+        //Debug.Log(1111);
+
+        //UnityEngine.Debug.Log("测试");
+        //timer = new TickTimer(10,true) 
+        //{
+        //    LogFunc = UnityEngine.Debug.Log,
+        //    WarnFunc = UnityEngine.Debug.LogWarning,
+        //    ErrorFunc = UnityEngine.Debug.LogError
+        //};
+        //timer.AddTask(10, (id) =>
+        //{
+        //    UnityEngine.Debug.Log($"执行了{id}次");
+        //},
+        //(id) =>
+        //{
+        //    UnityEngine.Debug.Log("取消任务");
+        //},
+        //10);
     }
 
     //private void Update()

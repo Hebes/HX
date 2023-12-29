@@ -35,7 +35,7 @@ public interface ISkillCarrier : IID, IName
             if (!skillCarrier.SkillDataDic[skill.SkillType].Contains(skill))
                 skillCarrier.SkillDataDic[skill.SkillType].Add(skill);
             else
-                Debug.Error($"{skillCarrier.Name}技能已存在");
+                Debug.Log($"{skillCarrier.Name}技能已存在,跳过添加，暂时没写熟练度机制");
         }
         else
         {

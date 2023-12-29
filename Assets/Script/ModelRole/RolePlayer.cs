@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core;
+using System;
 using System.Collections.Generic;
 
 public class RolePlayer : IRole, ISkillCarrier, IRoleBehaviour, IBuffCarrier
@@ -21,10 +22,13 @@ public class RolePlayer : IRole, ISkillCarrier, IRoleBehaviour, IBuffCarrier
 
     public void Remove()
     {
+        Debug.Log("玩家初移除");
     }
 
     public void RoleInit()
     {
-
+        _skillDataDic = new Dictionary<ESkillType, List<ISkill>>();
+        _buffList = new List<IBuffData>();
+        Debug.Log("玩家初始化");
     }
 }

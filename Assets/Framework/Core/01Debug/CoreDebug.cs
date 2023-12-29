@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 /*--------脚本描述-----------
@@ -36,12 +37,12 @@ namespace Core
             logConfig.enableCover = false;
             logConfig.saveName = "HXLog.txt";
             logConfig.loggerType = LoggerType.Unity;
-            Debug.InitDebugSettings(logConfig);
-#if !UNITY_EDITOR
-                //logConfig.savePath = $"{Application.persistentDataPath}/LogOut/ActiveLog/",
-                logConfig.savePath = $"{Application.dataPath}/LogOut/ActiveLog/",
-                savePath = $"{Application.dataPath}/Log",
+#if UNITY_EDITOR
+            //logConfig.savePath = $"{Application.persistentDataPath}/LogOut/ActiveLog/",
+            logConfig.savePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}/LogOut/";
+                //savePath = $"{Application.dataPath}/Log",
 #endif
+            Debug.InitDebugSettings(logConfig);
 
             //被动日志
             //SystemExceptionDebug.InitSystemExceptionDebug();
