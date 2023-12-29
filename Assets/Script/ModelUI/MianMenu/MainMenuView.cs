@@ -30,11 +30,12 @@ public class MainMenuView : UIBase
         T_Battle.GetButton().onClick.AddListener(Battle);
     }
 
+
+
     private void Battle()
     {
-
+        LoadBattleScene().Forget();
     }
-
     private void Exit()
     {
 #if UNITY_EDITOR
@@ -44,25 +45,30 @@ public class MainMenuView : UIBase
 #endif
         CoreBehaviour.StopAllCoroutines();      //停止所有协程
     }
-
     private void Setting()
     {
 
     }
-
     private void Load()
     {
 
     }
-
     private void StartGame()
     {
         LoadScene().Forget();
     }
 
+
+
     private async UniTask LoadScene()
     {
         await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneStart);
+        CloseUIForm();
+    }
+
+    private async UniTask LoadBattleScene()
+    {
+        await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneBattle2Team);
         CloseUIForm();
     }
 }

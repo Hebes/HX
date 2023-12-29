@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{8353FFAC-5EE4-BEB5-8E30-A6F492C6218D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -86,7 +87,7 @@
     <Compile Include="Assets\Script\ModeStart\IName.cs" />
     <Compile Include="Assets\Script\ModeSkill\ISkillData.cs" />
     <Compile Include="Assets\Test\BuffData1.cs" />
-    <Compile Include="Assets\Script\ModelBuff\IInterfaceBuff.cs" />
+    <Compile Include="Assets\Script\ModelBuff\InterfaceBuff.cs" />
     <Compile Include="Assets\Script\ModelRPGBattle\ManagerRPGBattle.cs" />
     <Compile Include="Assets\Script\ModelScene\ManagerScene.cs" />
     <Compile Include="Assets\Script\ModelConfig\ConfigData.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Assets\Script\MdoelSave\ISave.cs" />
     <Compile Include="Assets\Script\Item\Item.cs" />
     <Compile Include="Assets\Script\ModelConfig\ConfigPrefab.cs" />
+    <Compile Include="Assets\Script\ModelRPGBattle\interfaceBattle.cs" />
     <Compile Include="Assets\Script\ModelRole\Player.cs" />
     <Compile Include="Assets\Script\ModeInventory\InventoryItem.cs" />
     <Compile Include="Assets\Script\ModeLanguage\LanguageComponent.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Assets\Script\ModelConfig\ConfigSortingLayer.cs" />
     <Compile Include="Assets\Script\Enums\Enums.cs" />
     <Compile Include="Assets\Script\ModelBounds\ManagerBounds.cs" />
+    <Compile Include="Assets\Script\ModelRPGBattle\System\TwoTeamBattle.cs" />
     <Compile Include="Assets\Script\ModeStart\IDescribe.cs" />
     <Compile Include="Assets\Script\ModelTask\ManagerTask.cs" />
     <Compile Include="Assets\Script\MdoelTeam\TeamTypeOne.cs" />
