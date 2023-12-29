@@ -1,4 +1,4 @@
-﻿#define COREDUBG
+﻿#define COREDUBUGOPEN
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -6,11 +6,7 @@ using System.Text;
 using System.Threading;
 
 /*--------脚本描述-----------
-				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
+
 描述:
     日志总控
 
@@ -20,13 +16,13 @@ namespace Core
 {
     public class Debug
     {
-        public static LogConfig cfg;//配置文件
+        private static LogConfig cfg;//配置文件
         private static ILogger logger;//输出的日志类型
         private static StreamWriter LogFiLeWriter = null;//输出流
         private const string logLock = "PELogLock";//日志锁
 
         //初始化
-        public static void InitSettings(LogConfig cfg = null)
+        public static void InitDebugSettings(LogConfig cfg = null)
         {
             cfg = Debug.cfg = cfg == null ? new LogConfig() : cfg;
             //日志类型
@@ -35,7 +31,7 @@ namespace Core
                 case LoggerType.Unity: logger = new UnityDebug(); break;
                 case LoggerType.Console: logger = new ConsoleDebug(); break;
             }
-            //是否启用日志
+            //是否启用日志保存
             if (cfg.enableSave == false) return;
             //日志覆盖
             if (cfg.enableCover)//覆盖
@@ -63,7 +59,7 @@ namespace Core
                 string path = $"{cfg.savePath}{prefix}{cfg.saveName}";
                 try
                 {
-                    logger.Log("主动日志的输出路径为：" + path);
+                    logger.Log("日志输出路径：" + path);
                     if (Directory.Exists(cfg.savePath) == false)
                         Directory.CreateDirectory(cfg.savePath);
                     LogFiLeWriter = File.AppendText(path);
@@ -74,7 +70,8 @@ namespace Core
         }
 
         //日志
-        [Conditional("COREDUBG")]
+        //Project->Player->Other Settings->Script Define Symbols
+        [Conditional("COREDUBUGOPEN")]
         public static void Log(string msg, params object[] args)
         {
             if (cfg.enableLog == false) return;
@@ -86,10 +83,10 @@ namespace Core
                     WriteToFile(string.Format($"[L]{msg}"));
             }
         }
-        [Conditional("COREDUBG")]
+        [Conditional("COREDUBUGOPEN")]
         public static void Log(object obj)
         {
-            if (cfg.enableLog == false)                return;
+            if (cfg.enableLog == false) return;
             string msg = DecorateLog(obj.ToString());
             lock (logLock)
             {
@@ -98,7 +95,7 @@ namespace Core
                     WriteToFile(string.Format($"[L]{msg}"));
             }
         }
-        [Conditional("COREDUBG")]
+        [Conditional("COREDUBUGOPEN")]
         public static void Log(LogCoLor logCoLorEnum, string msg, params object[] args)
         {
             if (cfg.enableLog == false)
@@ -111,7 +108,7 @@ namespace Core
                     WriteToFile(string.Format($"[L]{msg}"));
             }
         }
-        [Conditional("COREDUBG")]
+        [Conditional("COREDUBUGOPEN")]
         public static void Log(LogCoLor logCoLorEnum, object obj)
         {
             if (cfg.enableLog == false)
@@ -126,7 +123,6 @@ namespace Core
         }
 
         //打印堆栈
-        [Conditional("COREDUBG")]
         public static void Trace(string msg, params object[] args)
         {
             if (cfg.enableLog == false)
@@ -139,7 +135,6 @@ namespace Core
                     WriteToFile(string.Format($"[T]{msg}"));
             }
         }
-        [Conditional("COREDUBG")]
         public static void Trace(object obj)
         {
             if (cfg.enableLog == false)
@@ -154,7 +149,6 @@ namespace Core
         }
 
         //打印警告日志
-        [Conditional("COREDUBG")]
         public static void Warn(string msg, params object[] args)
         {
             if (cfg.enableLog == false)
@@ -167,7 +161,6 @@ namespace Core
                     WriteToFile(string.Format($"[W]{msg}"));
             }
         }
-        [Conditional("COREDUBG")]
         public static void Warn(object obj)
         {
             if (cfg.enableLog == false)
@@ -182,7 +175,6 @@ namespace Core
         }
 
         //打印错误日志
-        [Conditional("COREDUBG")]
         public static void Error(string msg, params object[] args)
         {
             if (cfg.enableLog == false)
@@ -195,7 +187,6 @@ namespace Core
                     WriteToFile(string.Format($"[E]{msg}"));
             }
         }
-        [Conditional("COREDUBG")]
         public static void Error(object obj)
         {
             if (cfg.enableLog == false)
@@ -216,6 +207,8 @@ namespace Core
             StringBuilder sb = new StringBuilder(cfg.LogPrefix, 100);
             if (cfg.enableTime)//启用时间
                 sb.AppendFormat($"时间:{DateTime.Now.ToString("hh:mm:ss--fff")}");
+            if (cfg.enableMillisecond)
+                sb.AppendFormat($"调用时间(精确到毫秒级){DateTime.Now.TimeOfDay}");
             if (cfg.enableThreadID)//启用线程
                 sb.AppendFormat($"{GetThreadID()}");
             sb.AppendFormat($" {cfg.LogSeparate} {msg}");//日志分离
@@ -232,9 +225,9 @@ namespace Core
             for (int i = 0; i < st.FrameCount; i++)
             {
                 StackFrame sf = st.GetFrame(i);
-                traceInfo += string.Format($"\n\t{sf.GetFileName()}::{sf.GetMethod()}line:{sf.GetFileLineNumber()}");
+                //traceInfo += string.Format($"\n\t{sf.GetFileName()}::{sf.GetMethod()}line:{sf.GetFileLineNumber()}");
                 //traceInfo += string.Format($"\n\t{sf.GetFileName()}::\n\t{sf.GetMethod()}\tline:{sf.GetFileLineNumber()}");
-                //traceInfo += string.Format($"\n\t脚本:{sf.GetFileName()}::方法{sf.GetMethod()}行: {sf.GetFileLineNumber()}");
+                traceInfo += string.Format($"\n\t脚本:{sf.GetFileName()}::方法{sf.GetMethod()}行: {sf.GetFileLineNumber()}");
             }
             return traceInfo;
         }
@@ -242,7 +235,7 @@ namespace Core
         //获取线程Id
         private static object GetThreadID()
         {
-            return string.Format($" ThreadID:{Thread.CurrentThread.ManagedThreadId}");
+            return string.Format($" 线程ID:{Thread.CurrentThread.ManagedThreadId}");//ThreadID
         }
 
         //日志写入文件

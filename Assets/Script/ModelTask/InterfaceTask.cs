@@ -1,25 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-public interface ITask
+public interface ITask : IID, IName, IDescribe
 {
-    /// <summary>
-    /// 任务ID->重复的任务可能会用到
-    /// </summary>
-    public int TaskID { get; set; }
-
     /// <summary>
     /// 任务名称
     /// </summary>
-    public string TaskName { get; set; }
+    //public string TaskName { get; set; }
 
     /// <summary>
     /// 任务说明
     /// </summary>
-    public string TaskDescription { get; set; }
+    //public string TaskDescription { get; set; }
 
     /// <summary>
     /// 任务类型
@@ -40,4 +31,15 @@ public interface ITask
     /// 任务结束
     /// </summary>
     public void TaskOver();
+}
+
+/// <summary>
+/// 每个NPC或者团队必须继承这个才有任务
+/// </summary>
+public interface ITaskCarrier : IID
+{
+    /// <summary>
+    /// 任务列表
+    /// </summary>
+    public List<ITask> TaskList { get; set; }
 }

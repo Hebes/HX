@@ -8,7 +8,7 @@ using UnityEngine;
 //[RequireComponent(typeof(TriggerObscuringItemFader))]   //触发物品模糊
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
-public class Player : MonoBehaviour, IFixedUpdate, IUpdata, IRole
+public class Player : MonoBehaviour//, IFixedUpdate, IUpdata, IRole
 {
     private int m_PlayerID = 1;                                         //前10的请不要用
     private ERoleType m_roleType = ERoleType.Player;
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour, IFixedUpdate, IUpdata, IRole
     
     private void Awake()
     {
-        CoreBehaviour.Add(this);
+       // CoreBehaviour.Add(this);
     }
     public void OnFixedUpdate()
     {

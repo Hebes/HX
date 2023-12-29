@@ -1,5 +1,6 @@
 ﻿using Core;
 using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -20,11 +21,18 @@ public class MainMenuView : UIBase
         GameObject T_Load = UIComponent.Get<GameObject>("T_Load");
         GameObject T_Setting = UIComponent.Get<GameObject>("T_Setting");
         GameObject T_Exit = UIComponent.Get<GameObject>("T_Exit");
+        GameObject T_Battle = UIComponent.Get<GameObject>("T_Battle");
 
         T_StartGame.GetButton().onClick.AddListener(StartGame);
         T_Load.GetButton().onClick.AddListener(Load);
         T_Setting.GetButton().onClick.AddListener(Setting);
         T_Exit.GetButton().onClick.AddListener(Exit);
+        T_Battle.GetButton().onClick.AddListener(Battle);
+    }
+
+    private void Battle()
+    {
+
     }
 
     private void Exit()
@@ -54,7 +62,7 @@ public class MainMenuView : UIBase
 
     private async UniTask LoadScene()
     {
-        await ManagerScene.LoadSceneAsync(ConfigScenes.unityStart);
+        await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneStart);
         CloseUIForm();
     }
 }

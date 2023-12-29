@@ -6,18 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Resources/AssetsPackage/Scenes/CopyScene.unity
+    path: Assets/Resources/AssetsPackage/Scenes/SceneCopy.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Resources/AssetsPackage/Scenes/Init.unity
+    path: Assets/Resources/AssetsPackage/Scenes/SceneInit.unity
     guid: f9178a641021bdc4f92fbe521789d427
   - enabled: 1
     path: Assets/Resources/AssetsPackage/Scenes/PersistentScene.unity
     guid: 5e47c96220873c84e8660551558c40f3
   - enabled: 1
-    path: Assets/Resources/AssetsPackage/Scenes/Start.unity
+    path: Assets/Resources/AssetsPackage/Scenes/SceneStart.unity
     guid: cc569802bc434764ebeb15eb9859c18f
   - enabled: 1
-    path: Assets/Resources/AssetsPackage/Scenes/Home.unity
+    path: Assets/Resources/AssetsPackage/Scenes/SceneHome.unity
     guid: 9279e84f874e60a44a2da6347dd83e6b
   m_configObjects: {}

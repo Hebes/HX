@@ -13,34 +13,6 @@
 
 namespace Core
 {
-    /// <summary> 日志颜色 </summary>
-    public enum LogCoLor
-    {
-        /// <summary> 空 </summary>
-        None,
-        /// <summary> 深红 </summary>
-        DarkRed,
-        /// <summary> 绿色 </summary>
-        Green,
-        /// <summary> 蓝色 </summary>
-        Blue,
-        /// <summary> 青色 </summary>
-        Cyan,
-        /// <summary> 紫色 </summary>
-        Magenta,
-        /// <summary> 深黄 </summary>
-        DarkYellow,
-    }
-
-    /// <summary> 日志平台 </summary>
-    public enum LoggerType
-    {
-        /// <summary> Unity编辑器 </summary>
-        Unity,
-        /// <summary> 服务器 </summary>
-        Console,
-    }
-
     /// <summary> 日志配置 </summary>
     public class LogConfig
     {
@@ -48,8 +20,10 @@ namespace Core
         public bool enableLog = true;
         /// <summary> 日志前缀 </summary>
         public string LogPrefix = "#";
-        /// <summary> 启用时间 </summary>
+        /// <summary> 是否启用时间 </summary>
         public bool enableTime = true;
+        /// <summary> 是否启用毫秒级调用(可以定位代码的调用顺序) </summary>
+        public bool enableMillisecond = true;
         /// <summary> 日志分离 </summary>
         public string LogSeparate = ">>";
         /// <summary> 启用线程ID </summary>
@@ -66,7 +40,7 @@ namespace Core
         public string saveName = "PELog.txt";
         /// <summary> 日志类型 </summary>
         public LoggerType loggerType = LoggerType.Unity;
-        /// <summary> 保存路径 </summary>
+        /// <summary> 日志保存保存路径 </summary>
         public string savePath
         {
             get
@@ -76,10 +50,12 @@ namespace Core
                     switch (loggerType)
                     {
                         case LoggerType.Unity:
+                            //persistentDataPath移动端唯一可读可写的路径
                             Type type = Type.GetType("UnityEngine.Application, UnityEngine");
                             _savePath = type.GetProperty("persistentDataPath").GetValue(null).ToString() + "/PELog/";
                             break;
                         case LoggerType.Console:
+                            //AppDomain.CurrentDomain.BaseDirectory，获取基目录，基目录：指应用程序所在的目录
                             _savePath = string.Format($"{AppDomain.CurrentDomain.BaseDirectory}Logs\\");
                             break;
                     }
@@ -91,5 +67,6 @@ namespace Core
                 _savePath = value;
             }
         }
+        public string SaveName { get => saveName; set => saveName = value; }
     }
 }
