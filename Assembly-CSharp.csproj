@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{8353FFAC-5EE4-BEB5-8E30-A6F492C6218D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -66,6 +67,7 @@
     <Compile Include="Assets\Script\Item\TriggerObscuringItemFader.cs" />
     <Compile Include="Assets\Script\MdoelTeam\EnumTeam.cs" />
     <Compile Include="Assets\Script\ModelRole\ItemPickUp.cs" />
+    <Compile Include="Assets\Script\ModelTask\TaskGather.cs" />
     <Compile Include="Assets\Script\ModeSkill\ManagerSkill.cs" />
     <Compile Include="Assets\Script\ModelConfig\ConfigEvent.cs" />
     <Compile Include="Assets\Script\ModeStart\IModelInit.cs" />

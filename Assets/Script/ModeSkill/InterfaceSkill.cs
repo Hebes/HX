@@ -1,5 +1,6 @@
 ﻿using Core;
 using System.Collections.Generic;
+using System.Data;
 
 public interface ISkillBehaviour
 {
@@ -17,7 +18,7 @@ public interface ISkillBehaviour
 /// <summary>
 /// 技能持有者接口
 /// </summary>
-public interface ISkillCarrier : IID
+public interface ISkillCarrier : IID, IName
 {
     /// <summary>
     /// 持有技能
@@ -27,34 +28,37 @@ public interface ISkillCarrier : IID
     /// <summary>
     /// 添加技能
     /// </summary>
-    public static void AddSkill(IRole role, ISkill skillData)
+    public static void AddSkill(ISkillCarrier skillCarrier, ISkill skill)
     {
-        if (role is ISkillCarrier skillCarrier)
+        if (skillCarrier.SkillDataDic.ContainsKey(skill.SkillType))
         {
-            if (skillCarrier.SkillDataDic.ContainsKey(skillData.SkillType))
-            {
-                if (skillCarrier.SkillDataDic[skillData.SkillType].Contains(skillData))
-                    return;
-                else
-                    skillCarrier.SkillDataDic[skillData.SkillType].Add(skillData);
-            }
+            if (!skillCarrier.SkillDataDic[skill.SkillType].Contains(skill))
+                skillCarrier.SkillDataDic[skill.SkillType].Add(skill);
             else
-            {
-                skillCarrier.SkillDataDic.Add(skillData.SkillType, new List<ISkill>() { skillData });
-            }
+                Debug.Error($"{skillCarrier.Name}技能已存在");
         }
         else
         {
-            Debug.Error($"{role.Name}没有继承ISkillCarrier接口，无法添加技能");
+            skillCarrier.SkillDataDic.Add(skill.SkillType, new List<ISkill>() { skill });
         }
     }
 
     /// <summary>
     /// 检查技能是否存在
     /// </summary>
-    public void ChackHoldSkill(ISkillCarrier skillCarrier, ISkill skill)
+    public bool ChackHoldSkill(ISkillCarrier skillCarrier, ISkill skill)
     {
-
+        if (skillCarrier.SkillDataDic.ContainsKey(skill.SkillType))
+        {
+            if (skillCarrier.SkillDataDic[skill.SkillType].Contains(skill))
+                return true;
+            else
+                return false;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }

@@ -34,7 +34,15 @@ public interface ITask : IID, IName, IDescribe
 }
 
 /// <summary>
-/// 每个NPC或者团队必须继承这个才有任务
+/// 
+/// </summary>
+public interface ITaskBehaviour
+{
+
+}
+
+/// <summary>
+/// 任务的持有者 每个NPC或者团队必须继承这个才有任务
 /// </summary>
 public interface ITaskCarrier : IID
 {

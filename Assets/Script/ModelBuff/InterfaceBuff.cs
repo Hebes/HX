@@ -2,7 +2,7 @@
 using Core;
 
 /// <summary>
-/// Buff数据类，基本都要继承
+/// Buff生命周期，基本都要继承
 /// </summary>
 public interface IBuffBehaviour
 {
@@ -39,6 +39,9 @@ public interface IBuffCarrier : IID, IName
         if (buffCarrier.ChackHoldBuff(buffCarrier, buffData))
             return;
         buffCarrier.BuffList.Add(buffData);
+
+        if (buffData is IBuffBehaviour buffBehaviour)
+            buffBehaviour.Trigger(buffCarrier);
     }
 
     /// <summary>
