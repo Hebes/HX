@@ -10,12 +10,14 @@ public class TeamTypeOne : ITeam, IID
     private List<IRole> _teamList;
     private ETeamPoint _teamPoint;
 
-
-    /// <summary>
-    /// 队伍ID
-    /// </summary>
     public uint ID { get => _teamID; set => _teamID = value; }
     public ETeamPoint TeamPoint { get => _teamPoint; set => _teamPoint = value; }
+
+
+    public TeamTypeOne()
+    {
+        _teamList = new List<IRole>();
+    }
     public TeamTypeOne(uint id, List<IRole> roles)
     {
         _teamID = id;
@@ -25,7 +27,7 @@ public class TeamTypeOne : ITeam, IID
         }
         else
         {
-            if (roles.Count>4)
+            if (roles.Count > 4)
                 Debug.Error("添加的队伍超过4人错误");
             else
                 _teamList = roles;
@@ -40,7 +42,12 @@ public class TeamTypeOne : ITeam, IID
     public void AddRole(IRole role)
     {
         if (_teamList.Count >= 4 || !_teamList.AddNotContainElement(role))
+        {
             Debug.Error($"添加{role.Name}错误，当前只能有4个人");
+            return;
+        }
+        if (role is IRoleBehaviour roleBehaviour)
+            roleBehaviour.RoleInit();
     }
 
     /// <summary>
@@ -50,6 +57,11 @@ public class TeamTypeOne : ITeam, IID
     public void RemoveRole(IRole role)
     {
         if (!_teamList.RemoveContainElement(role))
+        {
             Debug.Error($"移除失败请检查,该队伍没有队员{role.Name}");
+            return;
+        }
+        if (role is IRoleBehaviour roleBehaviour)
+            roleBehaviour.Remove();
     }
 }

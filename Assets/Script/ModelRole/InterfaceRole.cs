@@ -14,3 +14,19 @@ public interface IRole : IID, IName
     ERoleBattlePoint roleBattlePoint { get; set; }
 }
 
+/// <summary>
+/// 角色生命周期
+/// </summary>
+public interface IRoleBehaviour : IID
+{
+    /// <summary>
+    /// 角色初始化
+    /// </summary>
+    public void RoleInit();
+
+    /// <summary>
+    /// 移除角色需要做的事情
+    /// </summary>
+    public void Remove();
+
+}

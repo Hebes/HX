@@ -70,5 +70,22 @@ public class MainMenuView : UIBase
     {
         await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneBattle2Team);
         CloseUIForm();
+        //创建技能
+
+
+        //创建一名角色
+        RolePlayer rolePlayer =new RolePlayer();
+        rolePlayer.ID = 1;
+        rolePlayer.Name = "玩家1";
+        ISkillCarrier.AddSkill();
+
+        //创建一只队伍
+        TeamTypeOne teamTypeOne = new TeamTypeOne();
+        teamTypeOne.AddRole(rolePlayer);
+
+        //添加一场战斗
+        TwoTeamBattle twoTeamBattle = new TwoTeamBattle();
+        twoTeamBattle.AddBattleTeam();
+        ManagerRPGBattle.AddBattle();
     }
 }

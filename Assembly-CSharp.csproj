@@ -63,7 +63,6 @@
     <Compile Include="Assets\Script\ModeInventory\ManagerInventory.cs" />
     <Compile Include="Assets\Script\ModelTask\InterfaceTask.cs" />
     <Compile Include="Assets\Script\ModeAnimator\ManagerAnimator.cs" />
-    <Compile Include="Assets\Script\ModeSkill\ISkillCarrier.cs" />
     <Compile Include="Assets\Script\Item\TriggerObscuringItemFader.cs" />
     <Compile Include="Assets\Script\MdoelTeam\EnumTeam.cs" />
     <Compile Include="Assets\Script\ModelRole\ItemPickUp.cs" />
@@ -84,13 +83,15 @@
     <Compile Include="Assets\Script\ModelRole\InterfaceRole.cs" />
     <Compile Include="Assets\Script\ModelCamp\EnumsCamp.cs" />
     <Compile Include="Assets\Script\ModeStart\IName.cs" />
-    <Compile Include="Assets\Script\ModeSkill\ISkillData.cs" />
     <Compile Include="Assets\Test\BuffData1.cs" />
     <Compile Include="Assets\Script\ModelRPGBattle\ManagerRPGBattle.cs" />
     <Compile Include="Assets\Script\ModelScene\ManagerScene.cs" />
+    <Compile Include="Assets\Script\ModeSkill\SkillNormalAttack.cs" />
     <Compile Include="Assets\Script\ModelConfig\ConfigData.cs" />
     <Compile Include="Assets\Script\ModelRPGBattle\EnumBattle.cs" />
     <Compile Include="Assets\Script\MdoelSave\ManagerSave.cs" />
+    <Compile Include="Assets\Script\ModeSkill\EnumSkill.cs" />
+    <Compile Include="Assets\Script\ModelRole\RolePlayer.cs" />
     <Compile Include="Assets\Script\MdoelSave\ISave.cs" />
     <Compile Include="Assets\Script\Item\Item.cs" />
     <Compile Include="Assets\Script\ModelConfig\ConfigPrefab.cs" />
@@ -110,11 +111,10 @@
     <Compile Include="Assets\Script\ModeAnimator\AnimatorShader.cs" />
     <Compile Include="Assets\Script\ModeStart\InitGame.cs" />
     <Compile Include="Assets\Script\MdoelSave\SaveData.cs" />
-    <Compile Include="Assets\Script\ModeSkill\ISkill.cs" />
+    <Compile Include="Assets\Script\ModeSkill\InterfaceSkill.cs" />
     <Compile Include="Assets\Script\ModelUI\MianMenu\MainMenuView.cs" />
     <Compile Include="Assets\Script\ModelData\DataItem.cs" />
     <Compile Include="Assets\Script\ModeStart\GameSetting.cs" />
-    <Compile Include="Assets\Script\ModeSkill\ISkillBehaviour.cs" />
     <Compile Include="Assets\Script\ModelCamp\ICamp.cs" />
     <Compile Include="Assets\Test\Test1.cs" />
     <Compile Include="Assets\Script\ModelAI\ManagerAI.cs" />

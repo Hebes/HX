@@ -27,7 +27,7 @@ public class ManagerRPGBattle : IModelInit, IUpdata
     /// <summary>
     /// 添加一场战斗
     /// </summary>
-    public static void AddOneBattle(IBattle oneBattle)
+    public static void AddBattle(IBattle oneBattle)
     {
         if (oneBattle is IBattleBehaviour battleBehaviour)
             battleBehaviour.Init();
@@ -38,7 +38,7 @@ public class ManagerRPGBattle : IModelInit, IUpdata
     /// <summary>
     /// 移除一场
     /// </summary>
-    public static void RemoveOneBattle(uint battleID)
+    public static void RemoveBattle(uint battleID)
     {
         if (Instance._battleDic.TryGetValue(battleID, out IBattle oneBattle))
         {

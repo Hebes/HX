@@ -27,7 +27,7 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     /// 1.可能是敌人在左边，进入二打一模式
     /// 2.可能是自己人右边，敌人3队进行二打一模式
     /// </summary>
-    private Dictionary<ETeamPoint, ITeam> m_rolePointDic;
+    private Dictionary<ETeamPoint, ITeam> _rolePointDic;
 
     /// <summary>
     /// 获取战斗状态
@@ -41,7 +41,7 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     public void Init()
     {
         m_battleDataList = new List<BattleData>();
-        m_rolePointDic = new Dictionary<ETeamPoint, ITeam>();
+        _rolePointDic = new Dictionary<ETeamPoint, ITeam>();
     }
     public void BattleUpdata()
     {
@@ -127,32 +127,14 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     /// <summary>
     /// 添加战斗角色
     /// </summary>
-    public void AddBattleRole(IRole role)
+    public void AddBattleTeam(ITeam team )
     {
-        //switch (role.roleBattlePoint)
-        //{
-        //    case ERoleBattlePoint.Left:
-        //        if (m_rolePointDic.ContainsKey(ERoleBattlePoint.Left))
-        //        {
-        //            bool isContains = m_rolePointDic[ERoleBattlePoint.Left].Contains(role);
-        //            if (isContains)
-        //                Debug.Error("角色数据已经存在");
-        //            else
-        //                m_rolePointDic[ERoleBattlePoint.Left].Add(role);
-        //        }
-        //        else
-        //        {
-        //            m_rolePointDic.Add(ERoleBattlePoint.Left, new List<IRole>() { role });
-        //        }
-        //        break;
-        //    case ERoleBattlePoint.Right:
-        //        //TODO 这里需要完善
-        //        //m_rightRoleList.AddNotContainElement(role);
-        //        break;
-        //    default:
-        //        Debug.Error("当前位置错误,请添加");
-        //        break;
-        //}
+        if (_rolePointDic.ContainsKey(team.TeamPoint))
+        {
+            Debug.Error($"当前队伍占位已存在{team.TeamPoint}");
+            return;
+        }
+        _rolePointDic.Add(team.TeamPoint, team);
     }
 
     /// <summary>
@@ -162,6 +144,7 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     /// <param name="roleList"></param>
     public void AddBattleRole(ERoleBattlePoint roleBattlePoint, List<IRole> roleList)
     {
+        Debug.Error("请添加逻辑");
         //if (m_rolePointDic.ContainsKey(roleBattlePoint))
         //{
         //    m_rolePointDic[roleBattlePoint].Clear();
