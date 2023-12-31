@@ -22,7 +22,7 @@ public class Player : MonoBehaviour, IFixedUpdate, IUpdata
     {
 
     }
-    public void OnUpdata()
+    public void CoreBehaviourUpdata()
     {
     }
 }

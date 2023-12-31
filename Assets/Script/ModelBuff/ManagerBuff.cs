@@ -22,19 +22,19 @@ public class ManagerBuff : ICore
     /// <param name="t">buff携带者</param>
     /// <param name="eBuffType">Buff类型</param>
     /// <param name="buffData">buff效果</param>
-    public void AddBuff(IBuffCarrier buffCarrier, IBuffData buffData)
+    public void AddBuff(IBuffCarrier buffCarrier, IBuff buffData)
     {
         if (!buffCarrier.BuffList.Contains(buffData))
             buffCarrier.BuffList.Add(buffData);
         if (buffData is IBuffBehaviour)
-            (buffData as IBuffBehaviour).Trigger(buffCarrier);
+            (buffData as IBuffBehaviour).BuffTrigger(buffCarrier);
         AddBuffCarrier(buffCarrier);
     }
 
     /// <summary>
     /// 移除buff
     /// </summary>
-    public void RemoveBuff(IBuffCarrier buffCarrier, IBuffData buffData)
+    public void RemoveBuff(IBuffCarrier buffCarrier, IBuff buffData)
     {
         if (buffData is IBuffSuperposition superposition)
         {
@@ -46,7 +46,7 @@ public class ManagerBuff : ICore
         else
         {
             if (buffData is IBuffBehaviour buff)
-                buff.OnDestroy(buffCarrier);
+                buff.BuffOver(buffCarrier);
             buffCarrier.BuffList.Remove(buffData);
         }
     }

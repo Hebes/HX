@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 
 /// <summary>
-/// 两只队伍的战斗
+/// 队伍的战斗
 /// </summary>
-public class TwoTeamBattle : IBattle, IBattleBehaviour
+public class TeamBattle : IBattle, IBattleBehaviour, IBattleCarrier, IBattleActionCarrier
 {
     /// <summary>
     /// 战斗编号
@@ -15,12 +15,12 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     /// <summary>
     /// 战斗的状态
     /// </summary>
-    private EBattlePerformAction m_battleState;
+    private EBattlePerformAction _battleState;
 
     /// <summary>
-    /// 战斗执行动作列表
+    /// 所有人的战斗执行动作列表
     /// </summary>
-    private List<BattleData> m_battleDataList;
+    private List<IBattleAction> _battleActionList;
 
     /// <summary>
     /// 战斗的位置
@@ -29,23 +29,27 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     /// </summary>
     private Dictionary<ETeamPoint, ITeam> _rolePointDic;
 
-    /// <summary>
-    /// 获取战斗状态
-    /// </summary>
-    public EBattlePerformAction GetBattleState => m_battleState;
 
+    public EBattlePerformAction GetBattleState => _battleState;
     public uint ID { get => battleId; set => battleId = value; }
+    public Dictionary<ETeamPoint, ITeam> BattleTeamDic { get => _rolePointDic; set => _rolePointDic = value; }
+    public List<IBattleAction> BattleActionList { get => _battleActionList; set => _battleActionList = value; }
+
+    /// <summary>
+    /// 战斗是否暂停
+    /// </summary>
+    public bool isStaaleStop;
 
 
-
-    public void Init()
+    public void BattleInit()
     {
-        m_battleDataList = new List<BattleData>();
+        _battleActionList = new List<IBattleAction>();
         _rolePointDic = new Dictionary<ETeamPoint, ITeam>();
     }
     public void BattleUpdata()
     {
-        switch (m_battleState)
+        if (isStaaleStop) return;
+        switch (_battleState)
         {
             case EBattlePerformAction.WAIT:
                 Wait();
@@ -68,9 +72,9 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
                 break;
         }
     }
-    public void Remove()
+    public void BattleRemove()
     {
-        m_battleDataList = null;
+        _battleActionList = null;
     }
 
 
@@ -124,70 +128,8 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
 
 
 
-    /// <summary>
-    /// 添加战斗角色
-    /// </summary>
-    public void AddBattleTeam(ITeam team )
-    {
-        if (_rolePointDic.ContainsKey(team.TeamPoint))
-        {
-            Debug.Error($"当前队伍占位已存在{team.TeamPoint}");
-            return;
-        }
-        _rolePointDic.Add(team.TeamPoint, team);
-    }
-
-    /// <summary>
-    /// 添加战斗角色
-    /// </summary>
-    /// <param name="roleBattlePoint"></param>
-    /// <param name="roleList"></param>
-    public void AddBattleRole(ERoleBattlePoint roleBattlePoint, List<IRole> roleList)
-    {
-        Debug.Error("请添加逻辑");
-        //if (m_rolePointDic.ContainsKey(roleBattlePoint))
-        //{
-        //    m_rolePointDic[roleBattlePoint].Clear();
-        //    m_rolePointDic[roleBattlePoint] = roleList;
-        //}
-        //else
-        //{
-        //    m_rolePointDic.Add(roleBattlePoint, new List<IRole>(roleList));
-        //}
-    }
-
-    /// <summary>
-    /// 移除战斗角色
-    /// </summary>
-    public void RemoveBattleRole(IRole role)
-    {
-        //switch (role.roleBattlePoint)
-        //{
-        //    case ERoleBattlePoint.Left:
-        //        m_leftRoleList.RemoveContainElement(role);
-        //        break;
-        //    case ERoleBattlePoint.Right:
-        //        m_rightRoleList.RemoveContainElement(role);
-        //        break;
-        //    default:
-        //        Debug.Error("当前位置错误,请添加");
-        //        break;
-        //}
-    }
-
-    ///// <summary>
-    ///// 添加一场战斗
-    ///// </summary>
-    //public void AddBattleData(BattleData battleData)
-    //{
-    //    m_battleDataList.AddNotContainElement(battleData);
-    //}
-
-    ///// <summary>
-    ///// 移除一场
-    ///// </summary>
-    //public void RemoveBattleData(BattleData battleData)
-    //{
-    //    m_battleDataList.RemoveContainElement(battleData);
-    //}
+    public void AddBattleTeam(ITeam team) => IBattleCarrier.AddBattleTeam(this, team);
+    public void RemoveBattleTeam(ITeam team) => IBattleCarrier.RemoveBattleTeam(this, team);
+    public void AddBattleAction(IBattleAction battleAction) => IBattleActionCarrier.AddBattleAction(this, battleAction);
+    public void RemoveBattleAction(IBattleAction battleAction) => IBattleActionCarrier.RemoveBattleAction(this, battleAction);
 }

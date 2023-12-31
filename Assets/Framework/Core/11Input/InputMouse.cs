@@ -53,7 +53,7 @@ namespace Core
             CoreBehaviour.Add(this);
         }
 
-        public void OnUpdata()
+        public void CoreBehaviourUpdata()
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {

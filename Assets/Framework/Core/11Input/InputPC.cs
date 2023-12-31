@@ -51,7 +51,7 @@ namespace Core
         {
         }
 
-        public void OnUpdata()
+        public void CoreBehaviourUpdata()
         {
             //if (Input.GetKeyDown(KeyCodeDic[IInputType.w]))
             //{
