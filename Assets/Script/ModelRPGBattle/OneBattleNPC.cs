@@ -5,12 +5,12 @@ using System.Collections.Generic;
 /// <summary>
 /// 一场战斗
 /// </summary>
-public class OneBattleNPC : IOneBattle
+public class OneBattleNPC : IBattle,IBattleBehaviour
 {
     /// <summary>
     /// 战斗编号
     /// </summary>
-    private uint battleId;
+    //private uint battleId;
 
     /// <summary>
     /// 战斗的状态

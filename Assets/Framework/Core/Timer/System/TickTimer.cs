@@ -62,6 +62,7 @@ namespace Core
                 timerThread.Start();
             }
 
+            //多线程任务
             void StartTick()
             {
                 try
@@ -145,9 +146,7 @@ namespace Core
             {
                 TickTask task = item.Value;
                 if (nowTime < task.destTime)
-                {
                     continue;
-                }
 
                 ++task.loopIndex;
                 if (task.count > 0)
@@ -170,7 +169,20 @@ namespace Core
                 }
             }
         }
-
+        public void HandleTask()
+        {
+            while (packQue != null && packQue.Count > 0)
+            {
+                if (packQue.TryDequeue(out TickTaskPack pack))
+                {
+                    pack.cb.Invoke(pack.tid);
+                }
+                else
+                {
+                    ErrorFunc?.Invoke("packQue Dequeue Data Error.");
+                }
+            }
+        }
         private double GetUTCMilliseconds()
         {
             TimeSpan ts = DateTime.UtcNow - startDateTime;
@@ -192,13 +204,9 @@ namespace Core
         void CallTaskCB(int tid, Action<int> taskCB)
         {
             if (setHandle)
-            {
                 packQue.Enqueue(new TickTaskPack(tid, taskCB));//用于将元素添加到队列的末尾
-            }
             else
-            {
                 taskCB.Invoke(tid);
-            }
         }
     }
 

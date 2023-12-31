@@ -32,6 +32,7 @@ public class LanguageComponent : MonoBehaviour
     {
         if (_text == null) return;
         _text.text = ManagerLanguage.GetText(key);
+        if (ManagerLanguage.Instance._font is null) return;
         _text.font = ManagerLanguage.Instance._font;
     }
 

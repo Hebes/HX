@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-/*--------脚本描述-----------
-
-描述:
-    阵营枚举
-
------------------------*/
-
-public enum EnumsCamp
+﻿/// <summary>
+/// 阵营
+/// </summary>
+public enum ECamp
 {
     None,
     Camp1,

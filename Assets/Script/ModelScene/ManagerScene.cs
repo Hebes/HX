@@ -25,7 +25,7 @@ using Cysharp.Threading.Tasks;
         private async UniTask FirstLoad()
         {
             //首次加载场景
-            await CoreScene.LoadSceneAsync(ConfigScenes.unityPersistentScene, ELoadSceneModel.Single);
+            await CoreScene.LoadSceneAsync(ConfigScenes.unityScenePersistent, ELoadSceneModel.Single);
         }
 
         /// <summary>

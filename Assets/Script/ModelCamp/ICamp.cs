@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 public interface ICamp
 {
-    public EnumsCamp enumsCamp { get; set; }
+    public ECamp enumsCamp { get; set; }
 
     /// <summary>
     /// 获取NPC编号

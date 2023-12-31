@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 /*--------脚本描述-----------
@@ -23,18 +24,25 @@ namespace Core
         {
             Instance = this;
 
-            //主动日志
-            Debug.InitSettings(new LogConfig()
-            {
-                enableSave = false,
-                loggerType = LoggerType.Unity,
-#if !UNITY_EDITOR
-                //savePath = $"{Application.persistentDataPath}/LogOut/ActiveLog/",
-                savePath = $"{Application.dataPath}/LogOut/ActiveLog/",
+            //日志设置
+            LogConfig logConfig = new LogConfig();
+            logConfig.enableLog=true;
+            logConfig.LogPrefix = "#";
+            logConfig.enableTime = false;
+            logConfig.enableMillisecond = true;
+            logConfig.LogSeparate = ">>";
+            logConfig.enableThreadID = true;
+            logConfig.enableTrace = true;
+            logConfig.enableSave = true;
+            logConfig.enableCover = false;
+            logConfig.saveName = "HXLog.txt";
+            logConfig.loggerType = LoggerType.Unity;
+#if UNITY_EDITOR
+            //logConfig.savePath = $"{Application.persistentDataPath}/LogOut/ActiveLog/",
+            logConfig.savePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}/LogOut/";
+                //savePath = $"{Application.dataPath}/Log",
 #endif
-                savePath = $"{Application.dataPath}/Log",
-                saveName = "Debug主动输出日志.txt",
-            });
+            Debug.InitDebugSettings(logConfig);
 
             //被动日志
             //SystemExceptionDebug.InitSystemExceptionDebug();

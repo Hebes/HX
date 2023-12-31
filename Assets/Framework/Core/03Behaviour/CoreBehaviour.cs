@@ -66,9 +66,12 @@ namespace Core
 
         public static void AddCoroutine(int coroutineKey, IEnumerator coroutine)
         {
-            if (!Instance.CoroutineDic.ContainsKey(coroutineKey))
-                Instance.CoroutineDic.Add(coroutineKey, BehaviourController.Instance.StartCoroutine(coroutine));
-            Debug.Error($"协程已经存在{coroutineKey}");
+            if (Instance.CoroutineDic.ContainsKey(coroutineKey))
+            {
+                Debug.Error($"协程已经存在{coroutineKey}");
+                return;
+            }
+            Instance.CoroutineDic.Add(coroutineKey, BehaviourController.Instance.StartCoroutine(coroutine));
         }
 
 
@@ -78,6 +81,7 @@ namespace Core
             {
                 BehaviourController.Instance.StopCoroutine(coroutine);
                 Instance.CoroutineDic.Remove(coroutineKey);
+                return;
             }
             Debug.Error("停止失败请，协程不存在");
         }
