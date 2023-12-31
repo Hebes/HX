@@ -1,8 +1,7 @@
 ﻿using Core;
-using System;
 using System.Collections.Generic;
 
-public class RolePlayer : IRole, ISkillCarrier, IRoleBehaviour, IBuffCarrier
+public class RolePlayer : IRole, IRoleBehaviour, ISkillCarrier, IBuffCarrier
 {
     private ERoleType _roleType = ERoleType.Player;
     private ERoleBattlePoint _roleBattlePoint = ERoleBattlePoint.Right;
@@ -10,17 +9,20 @@ public class RolePlayer : IRole, ISkillCarrier, IRoleBehaviour, IBuffCarrier
     private string _name;
     private Dictionary<ESkillType, List<ISkill>> _skillDataDic;
     private List<IBuffData> _buffList;
+    private float _max_colldown;
+    private ETurnState turnState;
 
-    public ERoleType roleType { get => _roleType; set => _roleType = value; }
-    public ERoleBattlePoint roleBattlePoint { get => _roleBattlePoint; set => _roleBattlePoint = value; }
+    public ERoleType RoleType { get => _roleType; set => _roleType = value; }
+    public ERoleBattlePoint RoleBattlePoint { get => _roleBattlePoint; set => _roleBattlePoint = value; }
     public uint ID { get => _id; set => _id = value; }
     public string Name { get => _name; set => _name = value; }
     public Dictionary<ESkillType, List<ISkill>> SkillDataDic { get => _skillDataDic; set => _skillDataDic = value; }
     public List<IBuffData> BuffList { get => _buffList; set => _buffList = value; }
+    public float Max_colldown { get => _max_colldown; set => _max_colldown = value; }
+    public ETurnState TurnState { get => turnState; set => turnState = value; }
 
 
-
-    public void Remove()
+    public void RoleRemove()
     {
         Debug.Log("玩家初移除");
     }
@@ -29,6 +31,11 @@ public class RolePlayer : IRole, ISkillCarrier, IRoleBehaviour, IBuffCarrier
     {
         _skillDataDic = new Dictionary<ESkillType, List<ISkill>>();
         _buffList = new List<IBuffData>();
+        turnState = ETurnState.PROCESSING;
         Debug.Log("玩家初始化");
+    }
+
+    public void RoleUpdata()
+    {
     }
 }

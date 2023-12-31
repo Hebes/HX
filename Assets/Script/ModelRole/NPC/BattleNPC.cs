@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Script.ModelRole
 {
-    internal class BattleNPC
+    internal class RoleBattleNPC
     {
     }
 }

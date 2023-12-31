@@ -62,6 +62,6 @@ public class TeamTypeOne : ITeam, IID
             return;
         }
         if (role is IRoleBehaviour roleBehaviour)
-            roleBehaviour.Remove();
+            roleBehaviour.RoleRemove();
     }
 }

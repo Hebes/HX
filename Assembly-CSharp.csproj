@@ -111,12 +111,12 @@
     <Compile Include="Assets\Script\ModelConfig\ConfigSortingLayer.cs" />
     <Compile Include="Assets\Script\Enums\Enums.cs" />
     <Compile Include="Assets\Script\ModelBounds\ManagerBounds.cs" />
-    <Compile Include="Assets\Script\ModelRole\Enemy\BattleEnemy.cs" />
     <Compile Include="Assets\Script\MdoelEffect\InterfaceEffect.cs" />
     <Compile Include="Assets\Script\ModelRPGBattle\System\TwoTeamBattle.cs" />
     <Compile Include="Assets\Script\ModeStart\IDescribe.cs" />
     <Compile Include="Assets\Script\ModelTask\ManagerTask.cs" />
     <Compile Include="Assets\Script\MdoelTeam\TeamTypeOne.cs" />
+    <Compile Include="Assets\Script\ModelRole\Player\RoleBattlerPlayer.cs" />
     <Compile Include="Assets\Script\ModeAnimator\AnimatorShader.cs" />
     <Compile Include="Assets\Script\ModeStart\InitGame.cs" />
     <Compile Include="Assets\Script\MdoelSave\SaveData.cs" />
@@ -127,6 +127,7 @@
     <Compile Include="Assets\Script\ModelCamp\ICamp.cs" />
     <Compile Include="Assets\Script\ModelCareer\ManaagerCareer.cs" />
     <Compile Include="Assets\Test\Test1.cs" />
+    <Compile Include="Assets\Script\ModelRole\Enemy\RoleBattleEnemy.cs" />
     <Compile Include="Assets\Script\MdoelAttributes\InterfaceAttributes.cs" />
     <Compile Include="Assets\Script\ModelAI\ManagerAI.cs" />
     <Compile Include="Assets\Script\Item\ObscuringItemFader.cs" />
@@ -135,7 +136,6 @@
     <Compile Include="Assets\Script\ModelRole\EnumRole.cs" />
     <Compile Include="Assets\Script\ModelRPGBattle\OneBattleNPC.cs" />
     <Compile Include="Assets\Script\MdoelEffect\EnumEffect.cs" />
-    <Compile Include="Assets\Script\ModelRole\Player\BattlerPlayer.cs" />
     <Compile Include="Assets\Script\ModelRole\NPC\BattleNPC.cs" />
     <Compile Include="Assets\Script\ModelStory\InterfaceStory.cs" />
     <Compile Include="Assets\Script\ModelBuff\EnumBuff.cs" />

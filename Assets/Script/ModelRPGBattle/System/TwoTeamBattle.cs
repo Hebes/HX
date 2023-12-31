@@ -37,8 +37,7 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     public uint ID { get => battleId; set => battleId = value; }
 
 
-
-    public void Init()
+    public void BattleInit()
     {
         m_battleDataList = new List<BattleData>();
         _rolePointDic = new Dictionary<ETeamPoint, ITeam>();
@@ -68,7 +67,7 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
                 break;
         }
     }
-    public void Remove()
+    public void BattleRemove()
     {
         m_battleDataList = null;
     }
@@ -127,7 +126,7 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     /// <summary>
     /// 添加战斗角色
     /// </summary>
-    public void AddBattleTeam(ITeam team )
+    public void AddBattleTeam(ITeam team)
     {
         if (_rolePointDic.ContainsKey(team.TeamPoint))
         {

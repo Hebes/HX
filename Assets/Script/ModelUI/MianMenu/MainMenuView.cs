@@ -77,7 +77,7 @@ public class MainMenuView : UIBase
         skillNormalAttack.Name = "普通攻击";
         skillNormalAttack.Des = "普通攻击技能的描述";
         //创建一名角色
-        RolePlayer rolePlayer = new RolePlayer();
+        RoleBattlerPlayer rolePlayer = new RoleBattlerPlayer();
         rolePlayer.ID = 1;
         rolePlayer.Name = "玩家1";
         ISkillCarrier.AddSkill(rolePlayer, skillNormalAttack);

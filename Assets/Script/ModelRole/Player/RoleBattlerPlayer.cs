@@ -1,45 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using UnityEngine;
 using Core;
+using System.Collections.Generic;
 
-public class BattlerPlayer : MonoBehaviour, IRole, IUpdata
+public class RoleBattlerPlayer : MonoBehaviour, IRole, IRoleBehaviour, ISkillCarrier
 {
-    private int m_PlayerID;
+    private uint _playerID;
+    private string _name;
     private ERoleBattlePoint m_roleBattlePoint = ERoleBattlePoint.Right;//玩家默认右边，以后会改位置//被偷袭可能会在左边
     private ETurnState m_turnState;
     private ERoleType m_roleType;
+    private float _max_colldown;    //最大的冷却时间
 
 
-    public int ID { get => m_PlayerID; set => m_PlayerID = value; }
+    public uint ID { get => _playerID; set => _playerID = value; }
     public ERoleType RoleType { get => m_roleType; set => m_roleType = value; }
     public ERoleBattlePoint RoleBattlePoint { get => m_roleBattlePoint; set => m_roleBattlePoint = value; }
     public ETurnState TurnState { get => m_turnState; set => m_turnState = value; }
-
+    public float Max_colldown { get => _max_colldown; set => _max_colldown = value; }
+    public string Name { get => _name; set => _name = value; }
+    public Dictionary<ESkillType, List<ISkill>> SkillDataDic { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
 
     /// <summary>
     /// 当前的冷却时间
     /// </summary>
-    private float cur_colldown;
-
-    /// <summary>
-    /// 最大的冷却时间
-    /// </summary>
-    private float max_colldown;
+    private float _cur_colldown;
 
 
-
-    public void Init()
+    public void RoleInit()
     {
-        CoreBehaviour.Add(this);
         m_turnState = ETurnState.PROCESSING;
     }
 
-    public void OnUpdata()
+    public void RoleUpdata()
     {
         switch (m_turnState)
         {
@@ -60,6 +54,12 @@ public class BattlerPlayer : MonoBehaviour, IRole, IUpdata
         }
     }
 
+    public void RoleRemove()
+    {
+    }
+
+
+
     private void ChooseAction()
     {
     }
@@ -67,10 +67,10 @@ public class BattlerPlayer : MonoBehaviour, IRole, IUpdata
     // <summary>
     /// 升级进度条  冷却版
     /// </summary>
-    void UpgradeProgressBar()
+    private void UpgradeProgressBar()
     {
-        cur_colldown = cur_colldown + Time.deltaTime;
-        if (cur_colldown >= max_colldown)//如果冷却时间到了
+        _cur_colldown = _cur_colldown + Time.deltaTime;
+        if (_cur_colldown >= _max_colldown)//如果冷却时间到了
             m_turnState = ETurnState.CHOOSEACTION;
     }
 }

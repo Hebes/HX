@@ -4,7 +4,7 @@ using System.Collections.Generic;
 /// <summary>
 /// 普通攻击
 /// </summary>
-public class SkillNormalAttack : ISkill,ISkillBehaviour, IBuffCarrier
+public class SkillNormalAttack : ISkill, ISkillBehaviour, IBuffCarrier
 {
     private ESkillType _skillType = ESkillType.NormalAttack;
     private uint _id;
