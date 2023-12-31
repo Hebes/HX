@@ -31,37 +31,13 @@ public enum EBattlePerformAction
 }
 
 /// <summary>
-/// 角色
+/// 战斗类型
 /// </summary>
-public interface IRole
+public enum BattleType 
 {
-    /// <summary>
-    /// 编号
-    /// </summary>
-    int ID { get; set; }
-
-    /// <summary>
-    /// 行动冷却时间
-    /// </summary>
-    float Max_colldown { get; set; }
-
-    /// <summary>
-    /// 角色类型
-    /// </summary>
-    ERoleType RoleType { get; set; }
-
-    /// <summary>
-    /// 角色战斗的位置
-    /// </summary>
-    ERoleBattlePoint RoleBattlePoint { get; set; }
-
-    /// <summary>
-    /// 当前状态枚举
-    /// </summary>
-    ETurnState TurnState { get; set; }
-
-    void Init();
-    void Update();
+    PlayerAttackEnemy,
+    NPCAttackEnemy,
+    EnemyAttackEnemy,
+    NPCAttackNPC,
 }
-
 

@@ -26,24 +26,15 @@ public enum ETurnState
 }
 
 /// <summary>
-/// 角色战斗的位置
+/// 角色战斗的位置,先确定好队伍
 /// </summary>
 public enum ERoleBattlePoint
 {
-    /// <summary>
-    /// 左边
-    /// </summary>
-    Left,
-
-    /// <summary>
-    /// 中间
-    /// </summary>
-    Centre,
-
-    /// <summary>
-    /// 右边
-    /// </summary>
-    Right,
+    /// <summary> 角色站位Point1表示第一个点 </summary>
+    Point1 = 1,
+    Point2 = 2,
+    Point3 = 3,
+    Point4 = 4,
 }
 
 /// <summary>
@@ -58,7 +49,7 @@ public enum ERoleType
     /// <summary>
     /// 朋友->NPC
     /// </summary>
-    Friend,
+    NPC,
     /// <summary>
     /// 敌人
     /// </summary>

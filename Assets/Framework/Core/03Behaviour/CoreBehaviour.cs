@@ -53,6 +53,8 @@ namespace Core
                 BehaviourController.Instance.Add(t);
             if (typeof(IFixedUpdate).IsAssignableFrom(typeof(T)))
                 BehaviourController.Instance.Add(t, EMonoType.FixedUpdate);
+            if (typeof(IWaitFrameUpdata).IsAssignableFrom(typeof(T)))
+                BehaviourController.Instance.Add(t, EMonoType.FixedUpdate);
         }
 
         public static void Remove<T>(T t) where T : IBehaviour

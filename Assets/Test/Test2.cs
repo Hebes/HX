@@ -27,7 +27,7 @@ public class Test2 : MonoBehaviour, IUpdata
     //    CoreBehaviour.Remove(this);
     //}
 
-    public void OnUpdata()
+    public void CoreBehaviourUpdata()
     {
         UnityEngine.Debug.Log($"{gameObject.name}   Updata");
     }

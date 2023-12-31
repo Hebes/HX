@@ -10,13 +10,45 @@ using UnityEngine;
 
 namespace Core
 {
-    public class UIBase : MonoBehaviour
+    public class UIBase : MonoBehaviour, IUI
     {
-        public bool IsClearStack;                           //是否清空“栈集合”
-        public EUIType type = EUIType.Normal;               //窗口的位置
-        public EUIMode mode = EUIMode.Normal;               //窗口显示类型
-        public EUILucenyType lucenyType = EUILucenyType.Lucency;   //窗口的透明度
-        public string UIName { get; set; }                        //UI的名称
+        /// <summary>
+        /// 是否清空“栈集合”
+        /// </summary>
+        [SerializeField] private bool IsClearStack;
+
+        /// <summary>
+        /// UI界面
+        /// </summary>
+        [SerializeField] private GameObject go;
+
+        /// <summary>
+        /// UI名称
+        /// </summary>
+        [SerializeField] private string uiName;
+
+        /// <summary>
+        /// 窗口的位置
+        /// </summary>
+        [SerializeField] private EUIType type = EUIType.Normal;
+
+        /// <summary>
+        /// 窗口显示类型
+        /// </summary>
+        [SerializeField] private EUIMode mode = EUIMode.Normal;
+
+        /// <summary>
+        /// 窗口的透明度
+        /// </summary>
+        [SerializeField] private EUILucenyType lucenyType = EUILucenyType.Lucency;
+
+
+        public GameObject GameObject { get => go; set => go = value; }
+        public EUIType UIType { get => type; set => type = value; }
+        public EUIMode UIMode { get => mode; set => mode = value; }
+        public EUILucenyType UILucenyType { get => lucenyType; set => lucenyType = value; }
+        public string UIName { get => uiName; set => uiName = value; }
+
 
         /// <summary>初始化方法</summary>
         /// <param name="type">窗口的位置</param>
@@ -28,36 +60,20 @@ namespace Core
             this.type = type;
             this.mode = mod;
             this.lucenyType = lucenyType;
-            //this.name = gameObject.name.Replace("(Clone)", "");// this.GetType().ToString();
             IsClearStack = isClearStack;
         }
 
-        public virtual void UIAwake() { }
-        public virtual void UIOnEnable()
-        {
-            this.gameObject.SetActive(true);
-            //设置模态窗体调用(必须是弹出窗体)
-            if (type == EUIType.PopUp)
-                UIMaskMgr.Instance.SetMaskWindow(gameObject, lucenyType);
-        }
-        public virtual void UIOnDisable()
-        {
-            gameObject.SetActive(false);
-            //取消模态窗体调用
-            if (type == EUIType.PopUp)
-                UIMaskMgr.Instance.CancelMaskWindow();
-        }
-        public virtual void UIOnDestroy() { }
-        public virtual void Freeze()
-        {
-            //冻结状态（即：窗体显示在其他窗体下面）
-            gameObject.SetActive(true);
-        }
+
+        //public virtual void Freeze()
+        //{
+        //    //冻结状态（即：窗体显示在其他窗体下面）
+        //    gameObject.SetActive(true);
+        //}
 
 
         protected void OpenUIForm<T>(string uiFormName) where T : UIBase => CoreUI.ShwoUIPanel<T>(uiFormName);
         protected T GetUIForm<T>(string uiFormName) where T : UIBase => CoreUI.GetUIPanl<T>(uiFormName);
-        protected void CloseUIForm() => CoreUI.CloseUIForms(UIName);
+        protected void CloseUIForm() => CoreUI.CloseUIForms(uiName);
         protected void CloseOtherUIForm(string uiFormName) => CoreUI.CloseUIForms(uiFormName);
     }
 }

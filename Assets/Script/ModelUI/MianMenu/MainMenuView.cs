@@ -6,13 +6,11 @@ using UnityEngine;
 /// <summary>
 /// 主菜单界面
 /// </summary>
-public class MainMenuView : UIBase
+public class MainMenuView : UIBase, IUIAwake
 {
 
-    public override void UIAwake()
+    public void UIAwake()
     {
-        base.UIAwake();
-
         InitUIBase(EUIType.Fixed, EUIMode.HideOther, EUILucenyType.ImPenetrable);
 
         UIComponent UIComponent = gameObject.GetComponent<UIComponent>();
@@ -68,27 +66,75 @@ public class MainMenuView : UIBase
 
     private async UniTask LoadBattleScene()
     {
-        await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneBattle2Team);
+        await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneBattle);
         CloseUIForm();
 
+        //测试战斗
         //创建技能
-        SkillNormalAttack skillNormalAttack = new SkillNormalAttack();
+        SkillNormalAttack skillNormalAttack = new SkillNormalAttack();//普通攻击
         skillNormalAttack.ID = 0;
         skillNormalAttack.Name = "普通攻击";
         skillNormalAttack.Des = "普通攻击技能的描述";
+        skillNormalAttack.SkillType = ESkillType.NormalAttack;
+        skillNormalAttack.SkillInit();
+
+        //自己人
         //创建一名角色
-        RolePlayer rolePlayer = new RolePlayer();
+        RoleBattlerPlayer rolePlayer = new RoleBattlerPlayer();
         rolePlayer.ID = 1;
         rolePlayer.Name = "玩家1";
+        rolePlayer.RoleType = ERoleType.Player;
+        rolePlayer.Max_colldown = 5;
+        rolePlayer.MaxHP = 100;
+        rolePlayer.CurrentHP = 100;
+        rolePlayer.RoleBattlePoint = ERoleBattlePoint.Point1;
         ISkillCarrier.AddSkill(rolePlayer, skillNormalAttack);
 
+        RoleBattleNPC npc1 = new RoleBattleNPC();//创建一名NPC->队友
+        npc1.ID = 2;
+        npc1.Name = "NPC1";
+        npc1.RoleType = ERoleType.NPC;
+        npc1.Max_colldown = 5;
+        npc1.MaxHP = 100;
+        npc1.CurrentHP = 100;
+        npc1.RoleBattlePoint = ERoleBattlePoint.Point2;
+        ISkillCarrier.AddSkill(npc1, skillNormalAttack);
+
+        //敌人
+        RoleBattleEnemy enemy1 = new RoleBattleEnemy();
+        enemy1.RoleBattleEnemyInit(3, "敌人1", ERoleType.Enemy, ERoleBattlePoint.Point1, 5);
+        enemy1.MaxHP = 100;
+        enemy1.CurrentHP = 100;
+        ISkillCarrier.AddSkill(enemy1, skillNormalAttack);//添加技能
+
+        RoleBattleEnemy enemy2 = new RoleBattleEnemy();
+        enemy2.RoleBattleEnemyInit(4, "敌人2", ERoleType.Enemy, ERoleBattlePoint.Point2, 5);
+        enemy2.MaxHP = 100;
+        enemy2.CurrentHP = 100;
+        enemy2.AddSkill(skillNormalAttack);
+
         //创建一只队伍
-        TeamTypeOne teamTypeOne = new TeamTypeOne();
-        teamTypeOne.AddRole(rolePlayer);
+        //自己队伍
+        TeamTypeOne ownTeam = new TeamTypeOne();
+        ownTeam.TeamPoint = ETeamPoint.Right1;
+        ownTeam.TeamType = ETeamType.Player;
+        ownTeam.AddRole(rolePlayer);
+        ownTeam.AddRole(npc1);
+        //敌人队伍
+        TeamTypeOne enemyTeam = new TeamTypeOne();
+        enemyTeam.TeamPoint = ETeamPoint.Left1;
+        enemyTeam.TeamType = ETeamType.Enemy;
+        enemyTeam.AddRole(enemy1);
+        enemyTeam.AddRole(enemy2);
 
         //添加一场战斗
-        TwoTeamBattle twoTeamBattle = new TwoTeamBattle();
-        twoTeamBattle.AddBattleTeam(teamTypeOne);
+        TeamBattle twoTeamBattle = new TeamBattle();
+        twoTeamBattle.ID = 1;//一场战斗的编号
+        twoTeamBattle.AddBattleTeam(ownTeam);
+        twoTeamBattle.AddBattleTeam(enemyTeam);
+
+
+
 
         //添加到战斗管理器
         ManagerRPGBattle.AddBattle(twoTeamBattle);

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Script.ModelRole
+namespace Core
 {
-    internal class BattleNPC
+    public static class ExpansionInterface
     {
     }
 }
