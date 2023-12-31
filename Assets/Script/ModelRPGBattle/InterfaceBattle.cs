@@ -7,7 +7,7 @@ public interface IBattleBehaviour
     /// <summary>
     /// 每场战斗的初始化
     /// </summary>
-    public void Init();
+    public void BattleInit();
 
     /// <summary>
     /// 每场战斗的更新
@@ -17,7 +17,7 @@ public interface IBattleBehaviour
     /// <summary>
     /// 移除一场战斗后需要做哪些事
     /// </summary>
-    public void Remove();
+    public void BattleRemove();
 }
 
 /// <summary>
