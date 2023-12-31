@@ -41,45 +41,27 @@ public interface IRole
     int ID { get; set; }
 
     /// <summary>
+    /// 行动冷却时间
+    /// </summary>
+    float Max_colldown { get; set; }
+
+    /// <summary>
     /// 角色类型
     /// </summary>
-    ERoleType roleType { get; set; }
+    ERoleType RoleType { get; set; }
 
     /// <summary>
     /// 角色战斗的位置
     /// </summary>
-    ERoleBattlePoint roleBattlePoint { get; set; }
+    ERoleBattlePoint RoleBattlePoint { get; set; }
+
+    /// <summary>
+    /// 当前状态枚举
+    /// </summary>
+    ETurnState TurnState { get; set; }
+
+    void Init();
+    void Update();
 }
 
-/// <summary>
-/// 角色战斗的位置
-/// </summary>
-public enum ERoleBattlePoint
-{
-    Left,
-    Centre,
-    Right,
-}
 
-/// <summary>
-/// 角色类型
-/// </summary>
-public enum ERoleType
-{
-    /// <summary>
-    /// 玩家
-    /// </summary>
-    Player,
-    /// <summary>
-    /// 朋友
-    /// </summary>
-    Friend,
-    /// <summary>
-    /// 敌人
-    /// </summary>
-    Enemy,
-    /// <summary>
-    /// 商人
-    /// </summary>
-    Dealer,
-}
