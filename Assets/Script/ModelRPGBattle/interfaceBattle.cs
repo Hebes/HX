@@ -24,7 +24,7 @@ public interface IBattleBehaviour
 /// 个人战斗数据
 /// </summary>
 //[Serializable]
-public interface BattleData
+public interface IBattleAction
 {
     /// <summary>
     /// 自己的数据
@@ -37,7 +37,7 @@ public interface BattleData
     public IRole TargetData { get; set; }
 
 
-    public void Attack();
+    //public void Attack();
 }
 
 
