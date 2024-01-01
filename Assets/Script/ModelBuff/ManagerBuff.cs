@@ -27,7 +27,7 @@ public class ManagerBuff : ICore
         if (!buffCarrier.BuffList.Contains(buffData))
             buffCarrier.BuffList.Add(buffData);
         if (buffData is IBuffBehaviour)
-            (buffData as IBuffBehaviour).Trigger(buffCarrier);
+            (buffData as IBuffBehaviour).BuffTrigger(buffCarrier);
         AddBuffCarrier(buffCarrier);
     }
 
@@ -46,7 +46,7 @@ public class ManagerBuff : ICore
         else
         {
             if (buffData is IBuffBehaviour buff)
-                buff.OnDestroy(buffCarrier);
+                buff.BuffOver(buffCarrier);
             buffCarrier.BuffList.Remove(buffData);
         }
     }

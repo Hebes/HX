@@ -7,15 +7,20 @@ using Core;
 public interface IBuffBehaviour : IID
 {
     /// <summary>
+    /// 技能初始化，例如加载等
+    /// </summary>
+    public void BuffInit();
+
+    /// <summary>
     /// 触发-》添加表现效果
     /// </summary>
     /// <param name="buffCarrier"></param>
-    public void Trigger(IBuffCarrier buffCarrier);
+    public void BuffTrigger(IBuffCarrier buffCarrier);
 
     /// <summary>
-    /// 销毁-》移除表现效果
+    /// 完毕销毁-》移除表现效果
     /// </summary>
-    public void OnDestroy(IBuffCarrier buffCarrier);
+    public void BuffOver(IBuffCarrier buffCarrier);
 }
 
 /// <summary>
@@ -36,12 +41,20 @@ public interface IBuffCarrier : IID, IName
     /// <param name="buffData">buff数据</param>
     public static void AddBuff(IBuffCarrier buffCarrier, IBuff buffData)
     {
-        if (buffCarrier.ChackHoldBuff(buffCarrier, buffData))
+        if (IBuffCarrier.ChackHoldBuff(buffCarrier, buffData))
             return;
         buffCarrier.BuffList.Add(buffData);
-
         if (buffData is IBuffBehaviour buffBehaviour)
-            buffBehaviour.Trigger(buffCarrier);
+            buffBehaviour.BuffInit();
+    }
+
+    /// <summary>
+    /// 移除Buff
+    /// </summary>
+    public static void RemoveBuff(IBuffCarrier buffCarrier, IBuff buffData)
+    {
+        if (IBuffCarrier.ChackHoldBuff(buffCarrier, buffData))
+            buffCarrier.BuffList.Remove(buffData);
     }
 
     /// <summary>
@@ -50,7 +63,7 @@ public interface IBuffCarrier : IID, IName
     /// <param name="buffCarrier"></param>
     /// <param name="buffData"></param>
     /// <returns>true 已经持有 false 未持有</returns>
-    public bool ChackHoldBuff(IBuffCarrier buffCarrier, IBuff buffData)
+    public static bool ChackHoldBuff(IBuffCarrier buffCarrier, IBuff buffData)
     {
         if (buffCarrier.BuffList.Contains(buffData))
         {

@@ -37,7 +37,7 @@ public interface ISkillCarrier : IID, IName
         if (skillCarrier.SkillDataDic == null)
             skillCarrier.SkillDataDic = new Dictionary<ESkillType, ISkillCarrierList>();
 
-        if (!skillCarrier.SkillDataDic.ContainsKey(skill.SkillType))
+        if (!ChackSkillType(skillCarrier, skill))
             skillCarrier.SkillDataDic.Add(skill.SkillType, null);
         ISkillCarrierList.AddSkill(skillCarrier.SkillDataDic[skill.SkillType], skill);
     }
@@ -47,7 +47,7 @@ public interface ISkillCarrier : IID, IName
     /// </summary>
     public static void RemoveSkill(ISkillCarrier skillCarrier, ISkill skill)
     {
-        if (skillCarrier.SkillDataDic.ContainsKey(skill.SkillType))
+        if (ChackSkillType(skillCarrier, skill))
             ISkillCarrierList.RemoveSkill(skillCarrier.SkillDataDic[skill.SkillType], skill);
         Debug.Log("技能不存在");
     }
@@ -57,10 +57,18 @@ public interface ISkillCarrier : IID, IName
     /// </summary>
     public bool ChackHoldSkill(ISkillCarrier skillCarrier, ISkill skill)
     {
-        if (skillCarrier.SkillDataDic.ContainsKey(skill.SkillType))
+        if (ChackSkillType(skillCarrier,skill))
             return ISkillCarrierList.ChackHoldSkill(skillCarrier.SkillDataDic[skill.SkillType], skill);
         Debug.Error("当前技能不存在");
         return false;
+    }
+
+    /// <summary>
+    /// 检查技能类型是否存在
+    /// </summary>
+    public static bool ChackSkillType(ISkillCarrier skillCarrier, ISkill skill)
+    {
+        return skillCarrier.SkillDataDic.ContainsKey(skill.SkillType);
     }
 }
 
@@ -87,7 +95,7 @@ public interface ISkillCarrierList
         if (skillCarrierList.SkillList == null)
             skillCarrierList.SkillList = new List<ISkill>();
 
-        if (skillCarrierList.SkillList.Contains(skill))
+        if (ChackHoldSkill(skillCarrierList, skill))
         {
             //Debug.Error("技能已存在，不添加（不包括以后会有重复获取技能增加熟练度操作）");
             Debug.Log($"{skill.Name}技能已存在,跳过添加，暂时没写熟练度机制");
