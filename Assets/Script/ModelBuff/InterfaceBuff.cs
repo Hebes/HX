@@ -41,10 +41,13 @@ public interface IBuffCarrier : IID, IName
     /// <param name="buffData">buff数据</param>
     public static void AddBuff(IBuffCarrier buffCarrier, IBuff buffData)
     {
+        if (buffCarrier.BuffList==null)
+            buffCarrier.BuffList = new List<IBuff>();
+
         if (IBuffCarrier.ChackHoldBuff(buffCarrier, buffData))
             return;
         buffCarrier.BuffList.Add(buffData);
-        if (buffData is IBuffBehaviour buffBehaviour)
+        if (buffData is IBuffBehaviour buffBehaviour) 
             buffBehaviour.BuffInit();
     }
 

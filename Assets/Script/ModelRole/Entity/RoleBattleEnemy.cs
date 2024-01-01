@@ -46,7 +46,6 @@ public class RoleBattleEnemy : IRole, IRoleBehaviour, ISkillCarrier, IAttributes
 
     public void RoleInit()
     {
-        _skillDataDic = new Dictionary<ESkillType, List<ISkill>>();
         _turnState = ETurnState.PROCESSING;
     }
 
