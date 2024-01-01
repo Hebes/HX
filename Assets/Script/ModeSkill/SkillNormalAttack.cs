@@ -10,13 +10,13 @@ public class SkillNormalAttack : ISkill, ISkillBehaviour, IBuffCarrier
     private uint _id;
     private string _name;
     private string _description;
-    private List<IBuffData> _buffList;
+    private List<IBuff> _buffList;
 
     public ESkillType SkillType { get => _skillType; set => _skillType = value; }
     public uint ID { get => _id; set => _id = value; }
     public string Name { get => _name; set => _name = value; }
     public string Des { get => _description; set => _description = value; }
-    public List<IBuffData> BuffList { get => _buffList; set => _buffList = value; }
+    public List<IBuff> BuffList { get => _buffList; set => _buffList = value; }
 
     public void Over()
     {
@@ -25,7 +25,7 @@ public class SkillNormalAttack : ISkill, ISkillBehaviour, IBuffCarrier
 
     public void Trigger()
     {
-        BuffList = new List<IBuffData>();
+        BuffList = new List<IBuff>();
         Debug.Log("普攻技能触发");
     }
 }

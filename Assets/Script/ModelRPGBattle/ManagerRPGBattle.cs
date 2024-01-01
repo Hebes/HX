@@ -18,7 +18,7 @@ public class ManagerRPGBattle : IModelInit, IUpdata
         _battleDic = new Dictionary<uint, IBattle>();
         CoreBehaviour.Add(this);
     }
-    public void OnUpdata()
+    public void CoreBehaviourUpdata()
     {
         foreach (IBattle item in _battleDic.Values)
         {

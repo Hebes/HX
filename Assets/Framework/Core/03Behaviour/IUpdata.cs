@@ -8,6 +8,6 @@
         /// <summary>
         /// Updata接口
         /// </summary>
-        void OnUpdata();
+        void CoreBehaviourUpdata();
     }
 }

@@ -72,19 +72,30 @@ public class MainMenuView : UIBase
         CloseUIForm();
 
         //创建技能
-        SkillNormalAttack skillNormalAttack = new SkillNormalAttack();
+        SkillNormalAttack skillNormalAttack = new SkillNormalAttack();//普通攻击
         skillNormalAttack.ID = 0;
         skillNormalAttack.Name = "普通攻击";
         skillNormalAttack.Des = "普通攻击技能的描述";
+
+        //自己人
         //创建一名角色
         RoleBattlerPlayer rolePlayer = new RoleBattlerPlayer();
         rolePlayer.ID = 1;
         rolePlayer.Name = "玩家1";
         ISkillCarrier.AddSkill(rolePlayer, skillNormalAttack);
+        //创建一名NPC->队友
+        RoleBattleNPC npc1 = new RoleBattleNPC();
+        npc1.ID = 2;
+        npc1.Name = "NPC1";
+        ISkillCarrier.AddSkill(npc1, skillNormalAttack);
+
+        //敌人
+
 
         //创建一只队伍
         TeamTypeOne teamTypeOne = new TeamTypeOne();
         teamTypeOne.AddRole(rolePlayer);
+        teamTypeOne.AddRole(npc1);
 
         //添加一场战斗
         TwoTeamBattle twoTeamBattle = new TwoTeamBattle();

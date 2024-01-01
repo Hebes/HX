@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// 角色
+/// 角色接口
 /// </summary>
 public interface IRole : IID, IName
 {
@@ -23,10 +23,22 @@ public interface IRole : IID, IName
     /// </summary>
     ETurnState TurnState { get; set; }
 
+    public static void Role
 }
 
 /// <summary>
-/// 角色生命周期
+/// 攻击次数接口
+/// </summary>
+public interface IRoleAttackCount
+{
+    /// <summary>
+    /// 攻击次数，指的是攻击开始的次数
+    /// </summary>
+    public int AttackCount { get; set; }
+}
+
+/// <summary>
+/// 角色生命周期接口
 /// </summary>
 public interface IRoleBehaviour : IID
 {

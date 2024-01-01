@@ -26,19 +26,19 @@ public enum ETurnState
 }
 
 /// <summary>
-/// 角色战斗的位置
+/// 角色战斗的位置,先确定好队伍
 /// </summary>
 public enum ERoleBattlePoint
 {
-    /// <summary>
-    /// 左边
-    /// </summary>
-    Left,
+    Point1,
+    Point2,
+    Point3,
+    Point4,
 
     /// <summary>
-    /// 中间
+    /// 
     /// </summary>
-    Centre,
+    Left1, Left2, Left3, Left4,
 
     /// <summary>
     /// 右边

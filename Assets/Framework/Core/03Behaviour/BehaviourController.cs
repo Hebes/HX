@@ -29,7 +29,7 @@ namespace Core
         private void Update()
         {
             for (int i = 0; i < updatasList.Count; i++)
-                updatasList[i].OnUpdata();
+                updatasList[i].CoreBehaviourUpdata();
         }
 
         private void FixedUpdate()

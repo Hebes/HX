@@ -482,9 +482,8 @@
 /// <summary>
 /// 属性接口
 /// </summary>
-public interface IAttributes
+public interface IAttributes : IHP
 {
-
 }
 
 /// <summary> 生命值 </summary>
@@ -503,7 +502,7 @@ public interface IHP
     /// <summary>
     /// 初始化生命值
     /// </summary>
-    public static void InitHP(IHP HP, int maxHP, int currentHP)
+    public static void RefreshHP(IHP HP, int maxHP, int currentHP)
     {
         HP.MaxHP = maxHP;
         HP.CurrentHP = currentHP;

@@ -1,9 +1,8 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using Core;
 using System.Collections.Generic;
 
-public class RoleBattlerPlayer : MonoBehaviour, IRole, IRoleBehaviour, ISkillCarrier
+public class RoleBattlerPlayer : MonoBehaviour, IRole, IRoleBehaviour, ISkillCarrier, IAttributes, IRoleAttackCount
 {
     private uint _playerID;
     private string _name;
@@ -11,15 +10,22 @@ public class RoleBattlerPlayer : MonoBehaviour, IRole, IRoleBehaviour, ISkillCar
     private ETurnState m_turnState;
     private ERoleType m_roleType;
     private float _max_colldown;    //最大的冷却时间
+    private Dictionary<ESkillType, List<ISkill>> _skillDataDic;
+    private int _maxHP;
+    private int _currentHP;
+    private int _attackCount;
 
 
     public uint ID { get => _playerID; set => _playerID = value; }
+    public string Name { get => _name; set => _name = value; }
     public ERoleType RoleType { get => m_roleType; set => m_roleType = value; }
     public ERoleBattlePoint RoleBattlePoint { get => m_roleBattlePoint; set => m_roleBattlePoint = value; }
     public ETurnState TurnState { get => m_turnState; set => m_turnState = value; }
+    public Dictionary<ESkillType, List<ISkill>> SkillDataDic { get => _skillDataDic; set => _skillDataDic = value; }
     public float Max_colldown { get => _max_colldown; set => _max_colldown = value; }
-    public string Name { get => _name; set => _name = value; }
-    public Dictionary<ESkillType, List<ISkill>> SkillDataDic { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public int MaxHP { get => _maxHP; set => _maxHP = value; }
+    public int CurrentHP { get => _currentHP; set => _currentHP = value; }
+    public int AttackCount { get => _attackCount; set => _attackCount = value; }
 
 
     /// <summary>

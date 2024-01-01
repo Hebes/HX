@@ -4,15 +4,17 @@ using Core;
 /// <summary>
 /// 一支队伍
 /// </summary>
-public class TeamTypeOne : ITeam, IID
+public class TeamTypeOne : ITeam, IItemCarrier
 {
     private uint _teamID;
     private List<IRole> _teamList;
     private ETeamPoint _teamPoint;
+    private ETeamType _teamType;
 
     public uint ID { get => _teamID; set => _teamID = value; }
     public ETeamPoint TeamPoint { get => _teamPoint; set => _teamPoint = value; }
-
+    public List<IRole> RoleList { get => _teamList; set => _teamList = value; }
+    public ETeamType TeamType { get => _teamType; set => _teamType = value; }
 
     public TeamTypeOne()
     {
@@ -34,6 +36,13 @@ public class TeamTypeOne : ITeam, IID
         }
     }
 
+    /// <summary>
+    /// 确认队伍是否存活
+    /// </summary>
+    public bool ChackTeamSurvival()
+    {
+        return IItemCarrier.ChackTeamSurvival(this);
+    }
 
     /// <summary>
     /// 添加队员

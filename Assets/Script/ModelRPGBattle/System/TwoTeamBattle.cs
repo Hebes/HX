@@ -18,7 +18,7 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     private EBattlePerformAction m_battleState;
 
     /// <summary>
-    /// 战斗执行动作列表
+    /// 所有人的战斗执行动作列表
     /// </summary>
     private List<BattleData> m_battleDataList;
 
