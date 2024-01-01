@@ -23,7 +23,10 @@ public interface IRole : IID, IName
     /// </summary>
     ETurnState TurnState { get; set; }
 
-    public static void Role
+    //public static void RolePointSet(IRole role, ERoleBattlePoint roleBattlePoint)
+    //{
+    //    role.
+    //}
 }
 
 /// <summary>

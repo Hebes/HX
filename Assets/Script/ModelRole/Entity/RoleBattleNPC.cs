@@ -8,7 +8,7 @@ public class RoleBattleNPC : IRole, IRoleBehaviour, ISkillCarrier, IAttributes, 
 {
     private uint _id;
     private string _name;
-    private ERoleBattlePoint _roleBattlePoint = ERoleBattlePoint.Right;//玩家默认右边，以后会改位置//被偷袭可能会在左边
+    private ERoleBattlePoint _roleBattlePoint = ERoleBattlePoint.Point2;//玩家默认右边，以后会改位置//被偷袭可能会在左边
     private ETurnState _turnState;
     private ERoleType _roleType;
     private float _max_colldown;    //最大的冷却时间

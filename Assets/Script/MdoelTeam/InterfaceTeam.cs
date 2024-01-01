@@ -20,7 +20,7 @@ public interface ITeam : IID
 /// <summary>
 ///队伍的持有者
 /// </summary>
-public interface IItemCarrier : IID
+public interface ITeamCarrier : IID
 {
     /// <summary>
     /// 队伍列表
@@ -30,7 +30,7 @@ public interface IItemCarrier : IID
     /// <summary>
     /// 确认队伍是否存活
     /// </summary>
-    public static bool ChackTeamSurvival(IItemCarrier itemCarrier)
+    public static bool ChackTeamSurvival(ITeamCarrier itemCarrier)
     {
 
         foreach (IRole item in itemCarrier.RoleList)

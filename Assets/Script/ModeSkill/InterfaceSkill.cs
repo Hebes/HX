@@ -5,14 +5,19 @@ using System.Data;
 public interface ISkillBehaviour
 {
     /// <summary>
+    /// 技能初始化
+    /// </summary>
+    void SkillInit();
+
+    /// <summary>
     /// 表现效果
     /// </summary>
-    void Trigger();
+    void SkillTrigger();
 
     /// <summary>
     /// 技能结束
     /// </summary>
-    void Over();
+    void SkillOver();
 }
 
 /// <summary>

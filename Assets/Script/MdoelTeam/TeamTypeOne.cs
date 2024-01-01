@@ -4,7 +4,7 @@ using Core;
 /// <summary>
 /// 一支队伍
 /// </summary>
-public class TeamTypeOne : ITeam, IItemCarrier
+public class TeamTypeOne : ITeam, ITeamCarrier
 {
     private uint _teamID;
     private List<IRole> _teamList;
@@ -37,12 +37,23 @@ public class TeamTypeOne : ITeam, IItemCarrier
     }
 
     /// <summary>
-    /// 确认队伍是否存活
+    /// 确认队伍是否有人存活
     /// </summary>
     public bool ChackTeamSurvival()
     {
-        return IItemCarrier.ChackTeamSurvival(this);
+        return ITeamCarrier.ChackTeamSurvival(this);
     }
+
+
+    public void TeamUpdata()
+    {
+        foreach (IRole item in _teamList)
+        {
+            if (item is IRoleBehaviour roleBehaviour)
+                roleBehaviour.RoleUpdata();
+        }
+    }
+
 
     /// <summary>
     /// 添加队员

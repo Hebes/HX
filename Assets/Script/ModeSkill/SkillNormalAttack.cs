@@ -18,14 +18,16 @@ public class SkillNormalAttack : ISkill, ISkillBehaviour, IBuffCarrier
     public string Des { get => _description; set => _description = value; }
     public List<IBuff> BuffList { get => _buffList; set => _buffList = value; }
 
-    public void Over()
+    public void SkillInit()
+    {
+        _buffList = new List<IBuff>();
+    }
+    public void SkillTrigger()
+    {
+        Debug.Log("普攻技能触发");
+    }
+    public void SkillOver()
     {
         Debug.Log("普攻技能结束");
-    }
-
-    public void Trigger()
-    {
-        BuffList = new List<IBuff>();
-        Debug.Log("普攻技能触发");
     }
 }

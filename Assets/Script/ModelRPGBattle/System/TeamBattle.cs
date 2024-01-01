@@ -5,7 +5,7 @@ using System.Collections.Generic;
 /// <summary>
 /// 两只队伍的战斗
 /// </summary>
-public class TwoTeamBattle : IBattle, IBattleBehaviour
+public class TeamBattle : IBattle, IBattleBehaviour
 {
     /// <summary>
     /// 战斗编号
@@ -15,12 +15,12 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     /// <summary>
     /// 战斗的状态
     /// </summary>
-    private EBattlePerformAction m_battleState;
+    private EBattlePerformAction _battleState;
 
     /// <summary>
     /// 所有人的战斗执行动作列表
     /// </summary>
-    private List<BattleData> m_battleDataList;
+    private List<IBattleAction> _battleActionList;
 
     /// <summary>
     /// 战斗的位置
@@ -32,19 +32,25 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     /// <summary>
     /// 获取战斗状态
     /// </summary>
-    public EBattlePerformAction GetBattleState => m_battleState;
+    public EBattlePerformAction GetBattleState => _battleState;
 
     public uint ID { get => battleId; set => battleId = value; }
+
+    /// <summary>
+    /// 战斗是否暂停
+    /// </summary>
+    public bool isStaaleStop;
 
 
     public void BattleInit()
     {
-        m_battleDataList = new List<BattleData>();
+        _battleActionList = new List<IBattleAction>();
         _rolePointDic = new Dictionary<ETeamPoint, ITeam>();
     }
     public void BattleUpdata()
     {
-        switch (m_battleState)
+        if (isStaaleStop) return;
+        switch (_battleState)
         {
             case EBattlePerformAction.WAIT:
                 Wait();
@@ -69,7 +75,7 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     }
     public void BattleRemove()
     {
-        m_battleDataList = null;
+        _battleActionList = null;
     }
 
 
@@ -124,7 +130,7 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
 
 
     /// <summary>
-    /// 添加战斗角色
+    /// 添加战斗队伍
     /// </summary>
     public void AddBattleTeam(ITeam team)
     {
@@ -137,7 +143,7 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     }
 
     /// <summary>
-    /// 添加战斗角色
+    /// 添加战斗队伍
     /// </summary>
     /// <param name="roleBattlePoint"></param>
     /// <param name="roleList"></param>
@@ -156,7 +162,23 @@ public class TwoTeamBattle : IBattle, IBattleBehaviour
     }
 
     /// <summary>
-    /// 移除战斗角色
+    /// 添加战斗行动
+    /// </summary>
+    public void AddBattleAction(IBattleAction battleAction)
+    {
+        _battleActionList.Add(battleAction);
+    }
+
+    /// <summary>
+    /// 移除战斗行动
+    /// </summary>
+    public void RemoveBattleAction(IBattleAction battleAction)
+    {
+        _battleActionList.Remove(battleAction);
+    }
+
+    /// <summary>
+    /// 移除战斗队伍
     /// </summary>
     public void RemoveBattleRole(IRole role)
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class RolePlayer : IRole, IRoleBehaviour, ISkillCarrier, IBuffCarrier
 {
     private ERoleType _roleType = ERoleType.Player;
-    private ERoleBattlePoint _roleBattlePoint = ERoleBattlePoint.Right;
+    private ERoleBattlePoint _roleBattlePoint = ERoleBattlePoint.Point1;
     private uint _id;
     private string _name;
     private Dictionary<ESkillType, List<ISkill>> _skillDataDic;
