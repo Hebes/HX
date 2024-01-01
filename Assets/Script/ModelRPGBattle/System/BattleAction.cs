@@ -1,6 +1,7 @@
 ﻿/// <summary>
 /// 战斗动作
 /// </summary>
+//[Serializable]
 public class BattleAction : IBattleAction
 {
     private IRole _ownRoleData;

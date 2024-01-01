@@ -2,7 +2,7 @@
 using Core;
 using System.Collections.Generic;
 
-public class RoleBattlerPlayer : MonoBehaviour, IRole, IRoleBehaviour, IRoleAttackCount, ISkillCarrier, IAttributes
+public class RoleBattlerPlayer : IRole, IRoleBehaviour, IRoleAttackCount, ISkillCarrier, IAttributes
 {
     private uint _playerID;
     private string _name;
@@ -33,6 +33,10 @@ public class RoleBattlerPlayer : MonoBehaviour, IRole, IRoleBehaviour, IRoleAtta
     /// </summary>
     private float _cur_colldown;
 
+    public RoleBattlerPlayer()
+    {
+        _skillDataDic = new Dictionary<ESkillType, List<ISkill>>();
+    }
 
     public void RoleInit()
     {

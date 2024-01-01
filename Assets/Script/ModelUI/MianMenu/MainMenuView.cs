@@ -78,6 +78,7 @@ public class MainMenuView : UIBase
         skillNormalAttack.Name = "普通攻击";
         skillNormalAttack.Des = "普通攻击技能的描述";
         skillNormalAttack.SkillType = ESkillType.NormalAttack;
+        skillNormalAttack.SkillInit();
 
         //自己人
         //创建一名角色
@@ -98,7 +99,7 @@ public class MainMenuView : UIBase
         npc1.Max_colldown = 5;
         npc1.MaxHP = 100;
         npc1.CurrentHP = 100;
-        rolePlayer.RoleBattlePoint = ERoleBattlePoint.Point2;
+        npc1.RoleBattlePoint = ERoleBattlePoint.Point2;
         ISkillCarrier.AddSkill(npc1, skillNormalAttack);
 
         //敌人
