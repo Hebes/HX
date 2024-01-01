@@ -35,7 +35,6 @@ public class RoleBattlerPlayer : IRole, IRoleBehaviour, IRoleAttackCount, ISkill
 
     public RoleBattlerPlayer()
     {
-        _skillDataDic = new Dictionary<ESkillType, List<ISkill>>();
     }
 
     public void RoleInit()

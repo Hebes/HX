@@ -21,7 +21,6 @@ public class RolePlayer : IRole, IRoleBehaviour, ISkillCarrier, IBuffCarrier
     public float Max_colldown { get => _max_colldown; set => _max_colldown = value; }
     public ETurnState TurnState { get => turnState; set => turnState = value; }
 
-
     public void RoleRemove()
     {
         Debug.Log("玩家初移除");
@@ -29,8 +28,6 @@ public class RolePlayer : IRole, IRoleBehaviour, ISkillCarrier, IBuffCarrier
 
     public void RoleInit()
     {
-        _skillDataDic = new Dictionary<ESkillType, List<ISkill>>();
-        _buffList = new List<IBuff>();
         turnState = ETurnState.PROCESSING;
         Debug.Log("玩家初始化");
     }
