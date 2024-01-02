@@ -28,19 +28,6 @@ public class ManagerRPGBattle : IModelInit, IUpdata
     }
 
 
-    /// <summary>
-    /// 添加一场战斗
-    /// </summary>
-    public static void AddBattle(uint battleID, IBattle oneBattle)
-    {
-        //oneBattle.Init(battleID);
-        //if (!Instance._battleDic.TryAdd(battleID, oneBattle))
-        //    Debug.Error("战斗添加失败,已存在");
-    }
-
-    /// <summary>
-    /// 添加一场战斗
-    /// </summary>
     public static void AddBattle(IBattle battle)
     {
         if (Instance._battleDic.TryAdd(battle.ID, battle))
@@ -51,13 +38,8 @@ public class ManagerRPGBattle : IModelInit, IUpdata
                 return;
             }
         }
-        
         Debug.Error("战斗添加失败,已存在");
     }
-
-    /// <summary>
-    /// 移除一场
-    /// </summary>
     public static void RemoveBattle(uint battleID)
     {
         if (Instance._battleDic.TryGetValue(battleID, out IBattle battle))
@@ -67,10 +49,6 @@ public class ManagerRPGBattle : IModelInit, IUpdata
                 battleBehaviour.BattleRemove();
         }
     }
-
-    /// <summary>
-    /// 获取一场战斗
-    /// </summary>
     public static IBattle GetOnebattle(uint battleID)
     {
         if (Instance._battleDic.TryGetValue(battleID, out IBattle oneBattle))

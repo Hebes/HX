@@ -22,6 +22,9 @@ public class TeamBattle : IBattle, IBattleBehaviour, IBattleCarrier, IBattleActi
     /// </summary>
     private List<IBattleAction> _battleActionList;
 
+    //TODO 后面或许要加一场战斗的类型player对战敌人或者NPC对战敌人
+    private BattleType _battleType;
+
     /// <summary>
     /// 战斗的位置
     /// 1.可能是敌人在左边，进入二打一模式
@@ -34,6 +37,7 @@ public class TeamBattle : IBattle, IBattleBehaviour, IBattleCarrier, IBattleActi
     public uint ID { get => battleId; set => battleId = value; }
     public Dictionary<ETeamPoint, ITeam> BattleTeamDic { get => _rolePointDic; set => _rolePointDic = value; }
     public List<IBattleAction> BattleActionList { get => _battleActionList; set => _battleActionList = value; }
+    public BattleType battleType { get => _battleType; set => _battleType = value; }
 
     /// <summary>
     /// 战斗是否暂停
@@ -43,38 +47,29 @@ public class TeamBattle : IBattle, IBattleBehaviour, IBattleCarrier, IBattleActi
 
     public void BattleInit()
     {
-        _battleActionList = new List<IBattleAction>();
-        _rolePointDic = new Dictionary<ETeamPoint, ITeam>();
+        //显示战斗界面
+        //CoreUI.ShwoUIPanel<UISkill>(ConfigPrefab.prefabUISkill);
+        CoreUI.ShwoUIPanel<UIBattle>(ConfigPrefab.prefabUIBattle);
     }
     public void BattleUpdata()
     {
         if (isStaaleStop) return;
         switch (_battleState)
         {
-            case EBattlePerformAction.WAIT:
-                Wait();
-                break;
-            case EBattlePerformAction.TAKEACTION:
-                Takeaction();
-                break;
-            case EBattlePerformAction.PERFROMACTION:
-                Perfromaction();
-                break;
-            case EBattlePerformAction.CHECKALIVE:
-                Checkalive();
-                break;
-            case EBattlePerformAction.WIN:
-                break;
-            case EBattlePerformAction.LOSE:
-                break;
-            default:
-                Debug.Error("战斗出现未知错误");
-                break;
+            case EBattlePerformAction.WAIT: Wait(); break;
+            case EBattlePerformAction.TAKEACTION: Takeaction(); break;
+            case EBattlePerformAction.PERFROMACTION: Perfromaction(); break;
+            case EBattlePerformAction.CHECKALIVE: Checkalive(); break;
+            case EBattlePerformAction.WIN: Win(); break;
+            case EBattlePerformAction.LOSE: Lose(); break;
+            default: Debug.Error("战斗出现未知错误"); break;
         }
     }
     public void BattleRemove()
     {
         _battleActionList = null;
+        GC.Collect();
+        //TODO 一些其他操作。或者触发事件
     }
 
 
@@ -121,9 +116,24 @@ public class TeamBattle : IBattle, IBattleBehaviour, IBattleCarrier, IBattleActi
     /// </summary>
     private void Wait()
     {
-        //m_battleDataList
-        //if (m_battleDataList.Count <= 0) return;
-        //m_battleState = EBattlePerformAction.TAKEACTION;
+        if (_battleActionList.Count <= 0) return;
+        _battleState = EBattlePerformAction.TAKEACTION;
+    }
+
+    /// <summary>
+    /// 胜利
+    /// </summary>
+    private void Win()
+    {
+
+    }
+
+    /// <summary>
+    /// 输了
+    /// </summary>
+    private void Lose()
+    {
+
     }
 
 
@@ -132,4 +142,5 @@ public class TeamBattle : IBattle, IBattleBehaviour, IBattleCarrier, IBattleActi
     public void RemoveBattleTeam(ITeam team) => IBattleCarrier.RemoveBattleTeam(this, team);
     public void AddBattleAction(IBattleAction battleAction) => IBattleActionCarrier.AddBattleAction(this, battleAction);
     public void RemoveBattleAction(IBattleAction battleAction) => IBattleActionCarrier.RemoveBattleAction(this, battleAction);
+    //public 
 }

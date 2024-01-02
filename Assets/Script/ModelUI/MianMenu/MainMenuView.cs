@@ -135,9 +135,8 @@ public class MainMenuView : UIBase
         twoTeamBattle.AddBattleTeam(ownTeam);
         twoTeamBattle.AddBattleTeam(enemyTeam);
 
-        //显示战斗界面
-
         
+
 
         //添加到战斗管理器
         ManagerRPGBattle.AddBattle(twoTeamBattle);

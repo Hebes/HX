@@ -30,7 +30,7 @@ namespace Core
         }
 
         /// <summary>
-        /// 获取(挂在脚本类型)
+        /// 获取(挂在脚本类型,从资源加载)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -54,6 +54,32 @@ namespace Core
             t.GetAfter();
             return t;
         }
+
+        /// <summary>
+        /// 获取(挂在脚本类型,从已有物体实例化创建)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="gameObject"></param>
+        /// <returns></returns>
+        public static T GetMono<T>(GameObject gameObject) where T : Component, IPool
+        {
+            //如果缓存池中有的话
+            if (Instance.poolDic.TryGetValue(typeof(T).FullName, out List<IPool> data))
+            {
+                if (data.Count > 0)
+                {
+                    IPool poolData = data[0];
+                    poolData.GetAfter();
+                    Instance.poolDic[typeof(T).FullName].Remove(poolData);
+                    return poolData as T;
+                }
+            }
+            GameObject gameObjectTemp = GameObject.Instantiate(gameObject);
+            T t = gameObjectTemp.GetComponent<T>() == null ? gameObjectTemp.AddComponent<T>() : gameObjectTemp.GetComponent<T>();
+            t.GetAfter();
+            return t;
+        }
+
 
         /// <summary>
         /// 获取类型为Calss的(就是class，不包含Mono任何数据)
@@ -124,7 +150,7 @@ namespace Core
             if (transform != null)
             {
                 transform = new GameObject(typeof(T).FullName).transform;
-                transform.SetParent(Instance.poolObj.transform,false);
+                transform.SetParent(Instance.poolObj.transform, false);
             }
             t.transform.SetParent(transform, false);
         }

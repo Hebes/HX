@@ -64,6 +64,8 @@
     <Compile Include="Assets\Script\ModeInventory\ManagerInventory.cs" />
     <Compile Include="Assets\Script\ModelTask\InterfaceTask.cs" />
     <Compile Include="Assets\Script\ModeAnimator\ManagerAnimator.cs" />
+    <Compile Include="Assets\Script\ModelUI\UIBattle\UIBattle.cs" />
+    <Compile Include="Assets\Script\ModelUI\UISkill\UISkill.cs" />
     <Compile Include="Assets\Script\MdoelAttributes\ManagerAttributes.cs" />
     <Compile Include="Assets\Script\MdoelTeam\EnumTeam.cs" />
     <Compile Include="Assets\Script\ModelRole\ItemPickUp.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Assets\Script\ModelConfig\ConfigEvent.cs" />
     <Compile Include="Assets\Script\ModeStart\IModelInit.cs" />
     <Compile Include="Assets\Script\ModeLanguage\ManagerLanguage.cs" />
+    <Compile Include="Assets\Script\ModelRPGBattle\InterfaceBattle.cs" />
     <Compile Include="Assets\Test\Newlifecycle.cs" />
     <Compile Include="Assets\Script\MdoelTeam\ManagerTeam.cs" />
     <Compile Include="Assets\Script\MdoelEffect\ManagerEffect.cs" />
@@ -102,8 +105,8 @@
     <Compile Include="Assets\Script\MdoelSave\ISave.cs" />
     <Compile Include="Assets\Script\ModelRPGBattle\System\BattleAction.cs" />
     <Compile Include="Assets\Script\ModelItem\ObscuringItemFader.cs" />
+    <Compile Include="Assets\Script\ModelUI\UISkill\SkillBtn.cs" />
     <Compile Include="Assets\Script\ModelConfig\ConfigPrefab.cs" />
-    <Compile Include="Assets\Script\ModelRPGBattle\interfaceBattle.cs" />
     <Compile Include="Assets\Script\ModelRole\Player.cs" />
     <Compile Include="Assets\Script\ModeInventory\InventoryItem.cs" />
     <Compile Include="Assets\Script\ModeLanguage\LanguageComponent.cs" />

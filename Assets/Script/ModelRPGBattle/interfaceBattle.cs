@@ -6,6 +6,10 @@ using System.Collections.Generic;
 /// </summary>
 public interface IBattle : IID
 {
+    /// <summary>
+    /// 一场战斗的类型
+    /// </summary>
+    public BattleType battleType { get; set; }
 }
 
 /// <summary>
@@ -46,6 +50,9 @@ public interface IBattleCarrier : IID
     /// </summary>
     public static void AddBattleTeam(IBattleCarrier battleCarrier, ITeam team)
     {
+        if (battleCarrier.BattleTeamDic == null)
+            battleCarrier.BattleTeamDic = new Dictionary<ETeamPoint, ITeam>();
+
         if (battleCarrier.BattleTeamDic.ContainsKey(team.TeamPoint))
         {
             Debug.Error($"当前队伍占位已存在{team.TeamPoint}");
