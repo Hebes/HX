@@ -1,10 +1,9 @@
 ﻿using Core;
 
-public class UIBattle : UIBase
+public class UIBattle : UIBase, IUIAwake
 {
-    public override void UIAwake()
+    public void UIAwake()
     {
-        base.UIAwake();
         InitUIBase(EUIType.Normal, EUIMode.Normal, EUILucenyType.Pentrate);
     }
 }

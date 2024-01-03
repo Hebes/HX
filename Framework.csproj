@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Assets\Framework\Expansion\StringTools.cs" />
     <Compile Include="Assets\Framework\Core\06UI\UI\Other\AutomaticAdaptationCanvasScaler.cs" />
+    <Compile Include="Assets\Framework\Core\03Behaviour\InterfaceBehaviour.cs" />
     <Compile Include="Assets\Framework\Expansion\ETHelper\EnumHelper.cs" />
     <Compile Include="Assets\Framework\Core\01Debug\SystemException\SystemExceptionDebug.cs" />
     <Compile Include="Assets\Framework\Core\01Debug\CoreDebug.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\Framework\Core\04Resource\IResLoad.cs" />
     <Compile Include="Assets\Framework\Core\07Data\Data\Realize\BinaryAnalysis.cs" />
     <Compile Include="Assets\Framework\Core\13SystemOrder\CoreSystemOrder.cs" />
+    <Compile Include="Assets\Framework\Core\06UI\EnumUI.cs" />
     <Compile Include="Assets\Framework\Core\00Singleton\ISingletonInit.cs" />
     <Compile Include="Assets\Framework\Core\CoreRun.cs" />
     <Compile Include="Assets\Framework\Core\04Resource\CoreResource.cs" />
@@ -90,7 +92,6 @@
     <Compile Include="Assets\Framework\Core\11Input\InputPC.cs" />
     <Compile Include="Assets\Framework\Core\11Input\InputNewInputPC.cs" />
     <Compile Include="Assets\Framework\Core\06UI\Realize\PanelPopIn.cs" />
-    <Compile Include="Assets\Framework\Core\03Behaviour\IBehaviour.cs" />
     <Compile Include="Assets\Framework\Expansion\ETHelper\StringHelper.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionImage.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionSystem\ExpansionEnum.cs" />
@@ -137,14 +138,13 @@
     <Compile Include="Assets\Framework\Expansion\YooAsset\AsyncOperationBaseExtensions.cs" />
     <Compile Include="Assets\Framework\Core\13SystemOrder\EnumOrder.cs" />
     <Compile Include="Assets\Framework\Core\11Input\InputTouchscreen.cs" />
-    <Compile Include="Assets\Framework\Core\06UI\Data\UIConfig.cs" />
+    <Compile Include="Assets\Framework\Expansion\ExpansionSystem\ExpansionInterface.cs" />
     <Compile Include="Assets\Framework\Core\02Event\Return\CoreEvent.Return.cs" />
     <Compile Include="Assets\Framework\Core\02Event\Common\EventCommonData.cs" />
     <Compile Include="Assets\Framework\Core\10Scene\CoreScene.cs" />
     <Compile Include="Assets\Framework\Core\11Input\InputData.cs" />
     <Compile Include="Assets\Framework\Core\08FSM\IStateNode.cs" />
     <Compile Include="Assets\Framework\Core\12DataOperation\Json\JsonOperation.cs" />
-    <Compile Include="Assets\Framework\Core\03Behaviour\IUpdata.cs" />
     <Compile Include="Assets\Framework\Core\11Input\Android\JpyStickPanelView.cs" />
     <Compile Include="Assets\Framework\Core\01Debug\Debug\DeBugCommon\EnumDebug.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionGameObject.cs" />
@@ -160,6 +160,7 @@
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionInputField.cs" />
     <Compile Include="Assets\Framework\Expansion\ETHelper\RandomGenerator.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionText.cs" />
+    <Compile Include="Assets\Framework\Core\06UI\InterfaceUI.cs" />
     <Compile Include="Assets\Framework\Core\ICore.cs" />
     <Compile Include="Assets\Framework\Core\11Input\InputIOS.cs" />
     <Compile Include="Assets\Framework\Expansion\YooAsset\Error.cs" />
@@ -169,7 +170,6 @@
     <Compile Include="Assets\Framework\Core\01Debug\UIDeBug\UIDebugger1.cs" />
     <Compile Include="Assets\Framework\Expansion\ETHelper\MD5Helper.cs" />
     <Compile Include="Assets\Framework\Core\06UI\Data\UIBase.cs" />
-    <Compile Include="Assets\Framework\Core\03Behaviour\IFixedUpdate.cs" />
     <Compile Include="Assets\Framework\Expansion\Name\HelperName.cs" />
     <Compile Include="Assets\Framework\Core\02Event\Return\EventInfoReturn.cs" />
     <Compile Include="Assets\Framework\Core\14Assemby\CoreAssemby.cs" />

@@ -118,3 +118,8 @@ public interface ISkill : IID, IName, IDescribe
     public ESkillType SkillType { get; set; }
 }
 
+public static  class InterfaceSkill
+{
+    public static void AddSkill(this ISkillCarrier ISkillCarrier, ISkill skill) => ISkillCarrier.AddSkill(ISkillCarrier, skill);
+}
+

@@ -5,14 +5,13 @@ using UnityEngine;
 /// <summary>
 /// UI技能面板
 /// </summary>
-public class UISkill : UIBase
+public class UISkill : UIBase, IUIAwake
 {
     private GameObject skillBtn;
     private Transform content;
 
-    public override void UIAwake()
+    public void UIAwake()
     {
-        base.UIAwake();
         InitUIBase(EUIType.Fixed, EUIMode.HideOther, EUILucenyType.ImPenetrable);
         UIComponent UIComponent = GetComponent<UIComponent>();
         GameObject T_Content = UIComponent.Get<GameObject>("T_Content");

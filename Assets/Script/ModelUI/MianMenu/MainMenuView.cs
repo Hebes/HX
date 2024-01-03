@@ -6,13 +6,11 @@ using UnityEngine;
 /// <summary>
 /// 主菜单界面
 /// </summary>
-public class MainMenuView : UIBase
+public class MainMenuView : UIBase, IUIAwake
 {
 
-    public override void UIAwake()
+    public void UIAwake()
     {
-        base.UIAwake();
-
         InitUIBase(EUIType.Fixed, EUIMode.HideOther, EUILucenyType.ImPenetrable);
 
         UIComponent UIComponent = gameObject.GetComponent<UIComponent>();
@@ -68,7 +66,7 @@ public class MainMenuView : UIBase
 
     private async UniTask LoadBattleScene()
     {
-        await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneBattle2Team);
+        await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneBattle);
         CloseUIForm();
 
         //测试战斗
@@ -91,7 +89,7 @@ public class MainMenuView : UIBase
         rolePlayer.CurrentHP = 100;
         rolePlayer.RoleBattlePoint = ERoleBattlePoint.Point1;
         ISkillCarrier.AddSkill(rolePlayer, skillNormalAttack);
-        
+
         RoleBattleNPC npc1 = new RoleBattleNPC();//创建一名NPC->队友
         npc1.ID = 2;
         npc1.Name = "NPC1";
@@ -104,7 +102,7 @@ public class MainMenuView : UIBase
 
         //敌人
         RoleBattleEnemy enemy1 = new RoleBattleEnemy();
-        enemy1.RoleBattleEnemyInit(3,"敌人1",ERoleType.Enemy,ERoleBattlePoint.Point1,5);
+        enemy1.RoleBattleEnemyInit(3, "敌人1", ERoleType.Enemy, ERoleBattlePoint.Point1, 5);
         enemy1.MaxHP = 100;
         enemy1.CurrentHP = 100;
         ISkillCarrier.AddSkill(enemy1, skillNormalAttack);//添加技能
@@ -113,7 +111,7 @@ public class MainMenuView : UIBase
         enemy2.RoleBattleEnemyInit(4, "敌人2", ERoleType.Enemy, ERoleBattlePoint.Point2, 5);
         enemy2.MaxHP = 100;
         enemy2.CurrentHP = 100;
-        ISkillCarrier.AddSkill(enemy2, skillNormalAttack);//添加技能
+        enemy2.AddSkill(skillNormalAttack);
 
         //创建一只队伍
         //自己队伍
@@ -135,7 +133,7 @@ public class MainMenuView : UIBase
         twoTeamBattle.AddBattleTeam(ownTeam);
         twoTeamBattle.AddBattleTeam(enemyTeam);
 
-        
+
 
 
         //添加到战斗管理器

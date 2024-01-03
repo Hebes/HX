@@ -86,6 +86,7 @@
     <Compile Include="Assets\Script\ModelAI\EnumAI.cs" />
     <Compile Include="Assets\Script\ModeAnimator\FrameAnimatorPlayScript.cs" />
     <Compile Include="Assets\Script\ModeStart\IID.cs" />
+    <Compile Include="Assets\Script\ModelScene\SceneBattleManager.cs" />
     <Compile Include="Assets\Test\Test2.cs" />
     <Compile Include="Assets\Script\ModelRPGBattle\OneBattlePlayer.cs" />
     <Compile Include="Assets\Script\ModeStart\ModelRun.cs" />
