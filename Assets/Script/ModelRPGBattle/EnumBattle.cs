@@ -30,4 +30,14 @@ public enum EBattlePerformAction
     LOSE
 }
 
+/// <summary>
+/// 战斗类型
+/// </summary>
+public enum BattleType 
+{
+    PlayerAttackEnemy,
+    NPCAttackEnemy,
+    EnemyAttackEnemy,
+    NPCAttackNPC,
+}
 

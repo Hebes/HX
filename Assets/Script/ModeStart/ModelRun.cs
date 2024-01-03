@@ -6,6 +6,7 @@
         ModelInit<ManagerData>();       //数据
         ModelInit<ManagerSave>();       //存档
         ModelInit<ManagerScene>();      //场景
+        ModelInit<ManagerRPGBattle>();      //战斗
     }
 
     /// <summary>
