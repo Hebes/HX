@@ -133,6 +133,7 @@
     <Compile Include="Assets\Script\ModelCareer\ManaagerCareer.cs" />
     <Compile Include="Assets\Test\Test1.cs" />
     <Compile Include="Assets\Script\ModelItem\InterfaceItem.cs" />
+    <Compile Include="Assets\Script\ModelBuff\HelperBuff.cs" />
     <Compile Include="Assets\Script\ModelRole\Entity\RoleBattleEnemy.cs" />
     <Compile Include="Assets\Script\ModelItem\TriggerObscuringItemFader.cs" />
     <Compile Include="Assets\Script\MdoelAttributes\InterfaceAttributes.cs" />
@@ -140,7 +141,6 @@
     <Compile Include="Assets\Script\ModelAI\ManagerAI.cs" />
     <Compile Include="Assets\Script\ModelItem\Item.cs" />
     <Compile Include="Assets\Script\ModelCamp\ManagerCamp.cs" />
-    <Compile Include="Assets\Script\ModelBuff\InterfaceBuff.cs" />
     <Compile Include="Assets\Script\ModelRole\EnumRole.cs" />
     <Compile Include="Assets\Script\ModelRPGBattle\OneBattleNPC.cs" />
     <Compile Include="Assets\Script\MdoelEffect\EnumEffect.cs" />
