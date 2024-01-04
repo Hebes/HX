@@ -1,5 +1,6 @@
 public class ConfigPrefab
 {
+        public const string prefabBattleRole = "AssetsPackage/Prefab/Role/BattleRole";
         public const string prefabRoleTemplate = "AssetsPackage/Prefab/Role/RoleTemplate";
         public const string prefabCanvas = "AssetsPackage/Prefab/UI/Canvas";
         public const string prefabJoystick = "AssetsPackage/Prefab/UI/Joystick/Joystick";

@@ -20,7 +20,7 @@ public class TeamBattle : IBattle, IBattleBehaviour, IBattleCarrier, IBattleActi
     /// <summary>
     /// 所有人的战斗执行动作列表
     /// </summary>
-    private List<IBattleAction> _battleActionList;
+    private List<IBattleAction> _battleActionList = new List<IBattleAction>();
 
     //TODO 后面或许要加一场战斗的类型player对战敌人或者NPC对战敌人
     private BattleType _battleType;

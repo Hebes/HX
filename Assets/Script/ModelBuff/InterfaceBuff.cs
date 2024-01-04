@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core;
+using Unity.VisualScripting;
 
 /// <summary>
 /// Buff生命周期，基本都要继承
@@ -41,13 +42,13 @@ public interface IBuffCarrier : IID, IName
     /// <param name="buffData">buff数据</param>
     public static void AddBuff(IBuffCarrier buffCarrier, IBuff buffData)
     {
-        if (buffCarrier.BuffList==null)
+        if (buffCarrier.BuffList == null)
             buffCarrier.BuffList = new List<IBuff>();
 
         if (IBuffCarrier.ChackHoldBuff(buffCarrier, buffData))
             return;
         buffCarrier.BuffList.Add(buffData);
-        if (buffData is IBuffBehaviour buffBehaviour) 
+        if (buffData is IBuffBehaviour buffBehaviour)
             buffBehaviour.BuffInit();
     }
 
@@ -99,4 +100,11 @@ public interface IBuffSuperposition : IID
     /// 移除一层buff
     /// </summary>
     public void RemoveBuff();
+}
+
+
+public static class InterfaceBuff
+{
+
+    public static void AddBuff(this IBuffCarrier buffCarrier, IBuff buffData) => IBuffCarrier.AddBuff(buffCarrier, buffData);
 }

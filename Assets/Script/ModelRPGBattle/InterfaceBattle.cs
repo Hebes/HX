@@ -109,6 +109,8 @@ public interface IBattleActionCarrier : IID
     /// </summary>
     public static void AddBattleAction(IBattleActionCarrier battleActionCarrier, IBattleAction battleAction)
     {
+        if (battleActionCarrier.BattleActionList == null)
+            battleActionCarrier.BattleActionList = new List<IBattleAction>();
         battleActionCarrier.BattleActionList.Add(battleAction);
     }
 
