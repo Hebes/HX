@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{0D57B617-6D96-AADC-0D9A-5CC158DBC6F6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -66,6 +65,7 @@
     <Compile Include="Assets\Framework\Core\01Debug\SystemException\SystemExceptionDebug.cs" />
     <Compile Include="Assets\Framework\Core\01Debug\CoreDebug.cs" />
     <Compile Include="Assets\Framework\Core\10Scene\Realize\UnityLoadScene.cs" />
+    <Compile Include="Assets\Framework\Core\Core\ConfigCore.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionToggle.cs" />
     <Compile Include="Assets\Framework\Core\03Behaviour\BehaviourController.cs" />
     <Compile Include="Assets\Framework\Core\01Debug\Debug\DeBugCommon\InterfaceDebug.cs" />
@@ -84,7 +84,6 @@
     <Compile Include="Assets\Framework\Core\13SystemOrder\CoreSystemOrder.cs" />
     <Compile Include="Assets\Framework\Core\06UI\EnumUI.cs" />
     <Compile Include="Assets\Framework\Core\00Singleton\ISingletonInit.cs" />
-    <Compile Include="Assets\Framework\Core\Core\CoreRun.cs" />
     <Compile Include="Assets\Framework\Core\04Resource\CoreResource.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionSystem\ExpansionAssembly.cs" />
     <Compile Include="Assets\Framework\Core\06UI\UI\Other\BackgroundAdaptation.cs" />
@@ -99,6 +98,7 @@
     <Compile Include="Assets\Framework\Core\11Input\接口\IInputPCKeyCode.cs" />
     <Compile Include="Assets\Framework\Core\12DataOperation\XML\XMLOperation.cs" />
     <Compile Include="Assets\Framework\Core\02Event\Await\CoreEvent.Await.cs" />
+    <Compile Include="Assets\Framework\Core\Core\ICore.cs" />
     <Compile Include="Assets\Framework\Core\02Event\Common\EventCommon.cs" />
     <Compile Include="Assets\Framework\Expansion\YooAsset\OperationHandleBaseExtensions.cs" />
     <Compile Include="Assets\Framework\Core\02Event\Await\EventInfoAsync.cs" />
@@ -126,7 +126,6 @@
     <Compile Include="Assets\Framework\Expansion\ETHelper\StringHashHelper.cs" />
     <Compile Include="Assets\Framework\Core\09Pool\CorePool.cs" />
     <Compile Include="Assets\Framework\Core\11Input\NewInput\Operation.cs" />
-    <Compile Include="Assets\Framework\Core\Core\ConfigCore.cs" />
     <Compile Include="Assets\Framework\Core\01Debug\Debug\DeBugCommon\Log\UnityDebug.cs" />
     <Compile Include="Assets\Framework\Expansion\UI\ShowUIObj.cs" />
     <Compile Include="Assets\Framework\Core\03Behaviour\CoreBehaviour.cs" />
@@ -162,7 +161,6 @@
     <Compile Include="Assets\Framework\Expansion\ETHelper\RandomGenerator.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionText.cs" />
     <Compile Include="Assets\Framework\Core\06UI\InterfaceUI.cs" />
-    <Compile Include="Assets\Framework\Core\Core\ICore.cs" />
     <Compile Include="Assets\Framework\Core\11Input\InputIOS.cs" />
     <Compile Include="Assets\Framework\Expansion\YooAsset\Error.cs" />
     <Compile Include="Assets\Framework\Core\09Pool\IPool.cs" />
@@ -174,6 +172,7 @@
     <Compile Include="Assets\Framework\Expansion\Name\HelperName.cs" />
     <Compile Include="Assets\Framework\Core\02Event\Return\EventInfoReturn.cs" />
     <Compile Include="Assets\Framework\Core\14Assemby\CoreAssemby.cs" />
+    <Compile Include="Assets\Framework\Core\Core\CoreRun.cs" />
     <Compile Include="Assets\Framework\Expansion\Utility\UniTimer.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionButton.cs" />
     <Compile Include="Assets\Framework\Core\11Input\Android\InputAndroid.cs" />
