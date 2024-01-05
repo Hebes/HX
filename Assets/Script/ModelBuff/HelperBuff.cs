@@ -1,6 +1,13 @@
-﻿using System.Collections.Generic;
-using Core;
-using Unity.VisualScripting;
+﻿using Core;
+using System.Collections.Generic;
+
+/// <summary>
+/// Buff的数据，基本都要继承
+/// </summary>
+public interface IBuff : IID, IName, IDescribe
+{
+
+}
 
 /// <summary>
 /// Buff生命周期，基本都要继承
@@ -33,7 +40,6 @@ public interface IBuffCarrier : IID, IName
     /// 存放Buff的数据结构
     /// </summary>
     public List<IBuff> BuffList { get; set; }
-
 
     /// <summary>
     /// 添加技能
@@ -79,14 +85,6 @@ public interface IBuffCarrier : IID, IName
 }
 
 /// <summary>
-/// Buff的数据，基本都要继承
-/// </summary>
-public interface IBuff : IID, IName, IDescribe
-{
-
-}
-
-/// <summary>
 /// 叠加的Buff请继承这个接口
 /// </summary>
 public interface IBuffSuperposition : IID
@@ -103,8 +101,9 @@ public interface IBuffSuperposition : IID
 }
 
 
-public static class InterfaceBuff
+public static class HelperBuff
 {
-
     public static void AddBuff(this IBuffCarrier buffCarrier, IBuff buffData) => IBuffCarrier.AddBuff(buffCarrier, buffData);
+    public static void RemoveBuff(this IBuffCarrier buffCarrier, IBuff buffData) => IBuffCarrier.RemoveBuff(buffCarrier, buffData);
+    public static void ChackHoldBuff(this IBuffCarrier buffCarrier, IBuff buffData) => IBuffCarrier.ChackHoldBuff(buffCarrier, buffData);
 }

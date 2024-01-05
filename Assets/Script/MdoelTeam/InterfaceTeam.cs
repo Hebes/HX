@@ -35,7 +35,7 @@ public interface ITeamCarrier : IID
     public static void AddRole(ITeamCarrier teamCarrier, IRole role)
     {
         if (teamCarrier.RoleList == null)
-            teamCarrier.RoleList = new List<IRole>();
+            teamCarrier.RoleList = new List<IRole>(4);
 
         if (teamCarrier.RoleList.Count >= 4)
         {
@@ -79,4 +79,11 @@ public interface ITeamCarrier : IID
         }
         return false;
     }
+}
+
+public static class HelperTeam
+{
+    public static void AddRole(this ITeamCarrier teamCarrier, IRole role) => ITeamCarrier.AddRole(teamCarrier, role);
+    public static void RemoveRole(this ITeamCarrier teamCarrier, IRole role) => ITeamCarrier.RemoveRole(teamCarrier, role);
+    public static void ChackTeamSurvival(this ITeamCarrier teamCarrier) => ITeamCarrier.ChackTeamSurvival(teamCarrier);
 }

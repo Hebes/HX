@@ -1,18 +1,25 @@
 ﻿using Core;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Debug = Core.Debug;
+using static UnityEngine.PlayerLoop.EarlyUpdate;
+using Debug = UnityEngine.Debug;
 
 public class Newlifecycle : MonoBehaviour
 {
-    public List<int> ints = new List<int>();
-    private TickTimer timer;
+    //public List<int> ints = new List<int>();
+    //private TickTimer timer;
+
+    //public int id;
+    public long id;
+    //public string id;
 
     private void Awake()
     {
         CoreDebug coreDebug = new CoreDebug();
         coreDebug.ICoreInit();
 
+        
         //CoreBehaviour coreBehaviour = new CoreBehaviour();
         //coreBehaviour.ICoreInit();
 
@@ -50,6 +57,19 @@ public class Newlifecycle : MonoBehaviour
         //    UnityEngine.Debug.Log("取消任务");
         //},
         //10);
+    }
+
+    private void Update()
+    {
+        //id = CoreID.CreateId();
+        DateTime now = DateTime.Now;
+        Int64 ID = HelperID.GetTimestamp(now);
+        HelperID.NewDate(ID);
+        Debug.Log(ID);
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    id = CoreID.CreateTimeId();
+        //}
     }
 
     //private void Update()

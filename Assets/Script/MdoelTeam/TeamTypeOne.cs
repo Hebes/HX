@@ -33,20 +33,7 @@ public class TeamTypeOne : ITeam, ITeamCarrier
     }
 
 
-    /// <summary>
-    /// 添加队员
-    /// </summary>
-    /// <param name="role">角色</param>
     public void AddRole(IRole role) => ITeamCarrier.AddRole(this, role);
-
-    /// <summary>
-    /// 确认队伍是否有人存活
-    /// </summary>
     public bool ChackTeamSurvival() => ITeamCarrier.ChackTeamSurvival(this);
-
-    /// <summary>
-    /// 移除队员
-    /// </summary>
-    /// <param name="role">角色</param>
     public void RemoveRole(IRole role) => ITeamCarrier.RemoveRole(this, role);
 }
