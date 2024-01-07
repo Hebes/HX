@@ -134,10 +134,9 @@ public class MainMenuView : UIBase, IUIAwake
         twoTeamBattle.AddBattleTeam(enemyTeam);
 
 
-
-
         //添加到战斗管理器
         ManagerRPGBattle.AddBattle(twoTeamBattle);
 
+        SceneBattleManager sceneBattleManager = SceneBattleManager.Instance;
     }
 }

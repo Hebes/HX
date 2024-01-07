@@ -82,5 +82,6 @@ namespace Core
         {
             await Instance.sceneLoad.ChangeSceneAsync(oldSceneName, newSceneName, loadSceneModel);
         }
+
     }
 }

@@ -80,7 +80,6 @@ namespace Core
             return t;
         }
 
-
         /// <summary>
         /// 获取类型为Calss的(就是class，不包含Mono任何数据)
         /// </summary>
@@ -147,7 +146,7 @@ namespace Core
         {
             //设置父物体
             Transform transform = Instance.poolObj.transform.Find(typeof(T).FullName);
-            if (transform != null)
+            if (transform == null)
             {
                 transform = new GameObject(typeof(T).FullName).transform;
                 transform.SetParent(Instance.poolObj.transform, false);

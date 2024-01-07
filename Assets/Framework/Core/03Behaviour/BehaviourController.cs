@@ -24,19 +24,23 @@ namespace Core
         private List<IFixedUpdate> fixedUpdatesList;
         private List<IWaitFrameUpdata> waitFrameUpdatasList;
         private Coroutine waitFrameUpdata;
+        private bool ttt = true;
 
         private void Awake()
         {
             updatasList = new List<IUpdata>();
             fixedUpdatesList = new List<IFixedUpdate>();
+            waitFrameUpdatasList = new List<IWaitFrameUpdata>();
+
         }
         private void Update()
         {
             for (int i = 0; i < updatasList.Count; i++)
                 updatasList[i].CoreBehaviourUpdata();
-
-            if (waitFrameUpdata == null)
-                waitFrameUpdata = StartCoroutine(WaitFrameUpdata());
+            if (ttt)
+            {
+                StartCoroutine(WaitFrameUpdata());
+            }
         }
         private void FixedUpdate()
         {
@@ -83,14 +87,14 @@ namespace Core
         }
         IEnumerator WaitFrameUpdata()
         {
+            ttt = false;
             for (int i = 0; i < waitFrameUpdatasList.Count; i++)
             {
-                yield return null;
+                //yield return null;
+                yield return new WaitForSeconds(0.02f);
                 waitFrameUpdatasList[i].WaitFrameUpdata();
             }
-
-            StopCoroutine(waitFrameUpdata);
-            waitFrameUpdata = null;
+            ttt = true;
         }
     }
 }

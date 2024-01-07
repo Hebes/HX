@@ -64,5 +64,9 @@ namespace Core
         public void CoreSceneInit()
         {
         }
+
+        public void ttt()
+        {
+        }
     }
 }
