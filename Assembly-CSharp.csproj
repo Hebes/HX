@@ -105,6 +105,8 @@
     <Compile Include="Assets\Script\MdoelSave\ISave.cs" />
     <Compile Include="Assets\Script\ModelRPGBattle\System\BattleAction.cs" />
     <Compile Include="Assets\Script\ModelItem\ObscuringItemFader.cs" />
+    <Compile Include="Assets\Script\ModelAttack\ManagerAttack.cs" />
+    <Compile Include="Assets\Script\ModelAttack\InterfaceAttack.cs" />
     <Compile Include="Assets\Script\ModelUI\UISkill\SkillBtn.cs" />
     <Compile Include="Assets\Script\ModelConfig\ConfigPrefab.cs" />
     <Compile Include="Assets\Script\ModelRPGBattle\interfaceBattle.cs" />
@@ -141,6 +143,7 @@
     <Compile Include="Assets\Script\ModelAI\ManagerAI.cs" />
     <Compile Include="Assets\Script\ModelItem\Item.cs" />
     <Compile Include="Assets\Script\ModelCamp\ManagerCamp.cs" />
+    <Compile Include="Assets\Script\ModelAttack\AttackWay.cs" />
     <Compile Include="Assets\Script\ModelRole\EnumRole.cs" />
     <Compile Include="Assets\Script\ModelRPGBattle\OneBattleNPC.cs" />
     <Compile Include="Assets\Script\MdoelEffect\EnumEffect.cs" />

@@ -19,7 +19,7 @@ public class Newlifecycle : MonoBehaviour
         CoreDebug coreDebug = new CoreDebug();
         coreDebug.ICoreInit();
 
-        
+
         //CoreBehaviour coreBehaviour = new CoreBehaviour();
         //coreBehaviour.ICoreInit();
 
@@ -79,3 +79,4 @@ public class Newlifecycle : MonoBehaviour
     //}
 
 }
+

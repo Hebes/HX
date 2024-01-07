@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 主菜单界面
@@ -66,8 +67,13 @@ public class MainMenuView : UIBase, IUIAwake
 
     private async UniTask LoadBattleScene()
     {
-        await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneBattle);
         CloseUIForm();
+        await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneBattle);
+        SceneBattleManager sceneBattleManager = SceneBattleManager.Instance;
+
+        TeamBattle teamBattle = new TeamBattle();   //创建一场战斗
+        TeamTypeOne enemyTeam = new TeamTypeOne();  //创建敌人队伍
+        TeamTypeOne ownTeam = new TeamTypeOne();    //创建自己队伍   
 
         //测试战斗
         //创建技能
@@ -77,6 +83,7 @@ public class MainMenuView : UIBase, IUIAwake
         skillNormalAttack.Des = "普通攻击技能的描述";
         skillNormalAttack.SkillType = ESkillType.NormalAttack;
         skillNormalAttack.SkillInit();
+
 
         //自己人
         //创建一名角色
@@ -99,6 +106,7 @@ public class MainMenuView : UIBase, IUIAwake
         npc1.CurrentHP = 100;
         npc1.RoleBattlePoint = ERoleBattlePoint.Point2;
         ISkillCarrier.AddSkill(npc1, skillNormalAttack);
+        
 
         //敌人
         RoleBattleEnemy enemy1 = new RoleBattleEnemy();
@@ -113,30 +121,33 @@ public class MainMenuView : UIBase, IUIAwake
         enemy2.CurrentHP = 100;
         enemy2.AddSkill(skillNormalAttack);
 
-        //创建一只队伍
+
+        //创建队伍
         //自己队伍
-        TeamTypeOne ownTeam = new TeamTypeOne();
-        ownTeam.TeamPoint = ETeamPoint.Right1;
+        ownTeam.TeamPoint = ETeamPoint.Left1;
         ownTeam.TeamType = ETeamType.Player;
         ownTeam.AddRole(rolePlayer);
         ownTeam.AddRole(npc1);
+
         //敌人队伍
-        TeamTypeOne enemyTeam = new TeamTypeOne();
-        enemyTeam.TeamPoint = ETeamPoint.Left1;
+        enemyTeam.TeamPoint = ETeamPoint.Right1;
         enemyTeam.TeamType = ETeamType.Enemy;
         enemyTeam.AddRole(enemy1);
         enemyTeam.AddRole(enemy2);
 
-        //添加一场战斗
-        TeamBattle twoTeamBattle = new TeamBattle();
-        twoTeamBattle.ID = 1;//一场战斗的编号
-        twoTeamBattle.AddBattleTeam(ownTeam);
-        twoTeamBattle.AddBattleTeam(enemyTeam);
 
+        //添加一场战斗
+        teamBattle.ID = 1;//一场战斗的编号
+        teamBattle.AddBattleTeam(ownTeam);
+        teamBattle.AddBattleTeam(enemyTeam);
+
+        rolePlayer.AddData(teamBattle, ownTeam);
+        npc1.AddData(teamBattle, ownTeam);
+        enemy1.AddData(teamBattle, enemyTeam);
+        enemy2.AddData(teamBattle, enemyTeam);
 
         //添加到战斗管理器
-        ManagerRPGBattle.AddBattle(twoTeamBattle);
-
-        SceneBattleManager sceneBattleManager = SceneBattleManager.Instance;
+        sceneBattleManager.SetBattle(teamBattle);
+        ManagerRPGBattle.AddBattle(teamBattle);
     }
 }

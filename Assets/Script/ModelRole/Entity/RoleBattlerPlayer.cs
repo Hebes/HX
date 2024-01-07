@@ -14,7 +14,9 @@ public class RoleBattlerPlayer : IRole, IRoleBehaviour, IRoleAttackCount, ISkill
     private int _maxHP;
     private int _currentHP;
     private int _attackCount;
-
+    private GameObject _go;
+    private IBattle _battle;    //战斗接口
+    private ITeam _team; //队伍
 
     public uint ID { get => _playerID; set => _playerID = value; }
     public string Name { get => _name; set => _name = value; }
@@ -26,6 +28,7 @@ public class RoleBattlerPlayer : IRole, IRoleBehaviour, IRoleAttackCount, ISkill
     public int MaxHP { get => _maxHP; set => _maxHP = value; }
     public int CurrentHP { get => _currentHP; set => _currentHP = value; }
     public int AttackCount { get => _attackCount; set => _attackCount = value; }
+    public GameObject Go { get => _go; set => _go = value; }
 
 
     /// <summary>
@@ -36,6 +39,16 @@ public class RoleBattlerPlayer : IRole, IRoleBehaviour, IRoleAttackCount, ISkill
     public RoleBattlerPlayer()
     {
     }
+
+    /// <summary>
+    /// 添加数据
+    /// </summary>
+    public void AddData(IBattle battle, ITeam team)
+    {
+        this._battle = battle;
+        this._team = team;
+    }
+
 
     public void RoleInit()
     {

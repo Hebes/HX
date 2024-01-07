@@ -49,6 +49,7 @@ public class ManagerScene : IModelInit
     {
         Instance.currentSceneName = sceneName;
         await CoreScene.LoadSceneAsync(sceneName, loadSceneModel);
+        CoreEvent.EventTrigger(EConfigEvent.LoadSceneAfter.ToInt());
     }
 
     /// <summary>

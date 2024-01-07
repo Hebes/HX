@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core;
+using UnityEngine;
 
 /// <summary>
 /// 队伍
@@ -16,7 +17,6 @@ public interface ITeam : IID
     /// </summary>
     public ETeamType TeamType { get; set; }
 }
-
 
 /// <summary>
 ///队伍的持有者
@@ -79,6 +79,17 @@ public interface ITeamCarrier : IID
         }
         return false;
     }
+
+    /// <summary>
+    /// 随机一个人
+    /// </summary>
+    /// <returns></returns>
+    public static IRole RandomRole(ITeamCarrier teamCarrier)
+    {
+        if (teamCarrier.RoleList.Count > 0)
+           return teamCarrier.RoleList[Random.Range(0, teamCarrier.RoleList.Count)];
+        return default;
+    }
 }
 
 public static class HelperTeam
@@ -86,4 +97,5 @@ public static class HelperTeam
     public static void AddRole(this ITeamCarrier teamCarrier, IRole role) => ITeamCarrier.AddRole(teamCarrier, role);
     public static void RemoveRole(this ITeamCarrier teamCarrier, IRole role) => ITeamCarrier.RemoveRole(teamCarrier, role);
     public static void ChackTeamSurvival(this ITeamCarrier teamCarrier) => ITeamCarrier.ChackTeamSurvival(teamCarrier);
+    public static IRole RandomRole(this ITeamCarrier teamCarrier) => ITeamCarrier.RandomRole(teamCarrier);
 }
