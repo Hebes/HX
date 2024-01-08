@@ -1,5 +1,7 @@
 ﻿using Core;
 using System.Collections.Generic;
+using UnityEngine;
+using Debug = Core.Debug;
 
 /// <summary>
 /// 基础战斗接口
@@ -20,7 +22,7 @@ public interface IBattle : IID
 /// <summary>
 /// 战斗生命周期接口
 /// </summary>
-public interface IBattleBehaviour
+public interface IBattleBehaviour : IID
 {
     /// <summary>
     /// 每场战斗的初始化
@@ -48,15 +50,19 @@ public interface IBattleCarrier : IID
     /// 1.可能是敌人在左边，进入二打一模式
     /// 2.可能是自己人右边，敌人3队进行二打一模式
     /// </summary>
-    public Dictionary<ETeamPoint, ITeam> BattleTeamDic { get; set; }
+    public Dictionary<ETeamPoint, ITeamActual> BattleTeamDic { get; set; }
+
+    //public List<ITeamActual> LeftTeamList { get; set; }
+    //public List<ITeamActual> RightTeamList { get; set; }
+
 
     /// <summary>
     /// 添加战斗队伍
     /// </summary>
-    public static void AddBattleTeam(IBattleCarrier battleCarrier, ITeam team)
+    public static void AddBattleTeam(IBattleCarrier battleCarrier, ITeamActual team)
     {
         if (battleCarrier.BattleTeamDic == null)
-            battleCarrier.BattleTeamDic = new Dictionary<ETeamPoint, ITeam>();
+            battleCarrier.BattleTeamDic = new Dictionary<ETeamPoint, ITeamActual>();
 
         if (battleCarrier.BattleTeamDic.ContainsKey(team.TeamPoint))
         {
@@ -71,7 +77,7 @@ public interface IBattleCarrier : IID
     /// </summary>
     /// <param name="battleCarrier"></param>
     /// <param name="team"></param>
-    public static void RemoveBattleTeam(IBattleCarrier battleCarrier, ITeam team)
+    public static void RemoveBattleTeam(IBattleCarrier battleCarrier, ITeamActual team)
     {
         if (battleCarrier.BattleTeamDic.ContainsKey(team.TeamPoint))
             battleCarrier.BattleTeamDic.Remove(team.TeamPoint);
@@ -80,15 +86,111 @@ public interface IBattleCarrier : IID
     /// <summary>
     /// 随机一个敌人(NPC和Player敌人就是Enemy，相反就是...)
     /// </summary>
-    public static void RandomEnemyRole(IBattleCarrier battleCarrier, ETeamType teamType)
+    public static IRoleActual RandomEnemyRole(IBattleCarrier battleCarrier, ETeamType teamType)
     {
-        foreach (ITeam item in battleCarrier.BattleTeamDic.Values)
+        ExpansionProfiler.ProfilerBeginSample("随机一个敌人");
+        List<IRoleActual> role = new List<IRoleActual>();
+        foreach (ITeamActual item in battleCarrier.BattleTeamDic.Values)
         {
-            
+            foreach (IRoleActual item1 in item.RoleList)
+                role.Add(item1);
         }
+
+        int number = 0;
+        //随机一个敌人
+        switch (teamType)
+        {
+            case ETeamType.Player:
+            case ETeamType.NPC:
+                role = role.FindAll((IRoleActual data) =>
+                {
+                    return data.RoleType == ERoleType.Enemy;
+                });
+                number = Random.Range(0, role.Count);
+                ExpansionProfiler.ProfilerEndSample();
+                return role[number];
+            case ETeamType.Enemy:
+                role = role.FindAll((IRoleActual data) =>
+                {
+                    return data.RoleType == ERoleType.Player ||
+                    data.RoleType == ERoleType.NPC;
+                });
+                number = Random.Range(0, role.Count);
+                ExpansionProfiler.ProfilerEndSample();
+                return role[number];
+            default:
+                Debug.Error("ETeamType未知类型错误");
+                ExpansionProfiler.ProfilerEndSample();
+                return null;
+        }
+    }
+
+    /// <summary>
+    /// 随机自己方一个人
+    /// </summary>
+    /// <returns></returns>
+    public static IRoleActual RandomOwnRole(IBattleCarrier battleCarrier, ETeamType teamType)
+    {
+        ExpansionProfiler.ProfilerBeginSample("随机自己方一个人");
+        List<IRoleActual> role = new List<IRoleActual>();
+        foreach (ITeamActual item in battleCarrier.BattleTeamDic.Values)
+        {
+            foreach (IRoleActual item1 in item.RoleList)
+                role.Add(item1);
+        }
+
+        int number = 0;
+        //随机一个己方人物
+        switch (teamType)
+        {
+            case ETeamType.Player:
+            case ETeamType.NPC:
+                role = role.FindAll((IRoleActual data) =>
+                {
+                    return data.RoleType == ERoleType.Player ||
+                    data.RoleType == ERoleType.NPC;
+                });
+                number = Random.Range(0, role.Count);
+                ExpansionProfiler.ProfilerEndSample();
+                return role[number];
+            case ETeamType.Enemy:
+                role = role.FindAll((IRoleActual data) =>
+                {
+                    return data.RoleType == ERoleType.Enemy;
+                });
+                number = Random.Range(0, role.Count);
+                ExpansionProfiler.ProfilerEndSample();
+                return role[number];
+            default:
+                Debug.Error("ETeamType未知类型错误");
+                ExpansionProfiler.ProfilerEndSample();
+                return null;
+        }
+    }
+
+    /// <summary>
+    /// 确认角色是否存活
+    /// </summary>
+    /// <returns></returns>
+    public static bool ChackRoleSurvival(IBattleCarrier battleCarrier, IRoleActual roleActual)
+    {
+        foreach (ITeamActual item in battleCarrier.BattleTeamDic.Values)
+        {
+            if (item.ChackRoleSurvival(roleActual))
+                return true;
+        }
+        return false;
     }
 }
 
+
+/// <summary>
+/// 战斗的实际接口
+/// </summary>
+public interface IBattleActual : IBattle, IBattleBehaviour, IBattleCarrier, IBattleActionCarrier
+{
+
+}
 
 /// <summary>
 /// 个人战斗数据接口
@@ -96,14 +198,14 @@ public interface IBattleCarrier : IID
 public interface IBattleAction
 {
     /// <summary>
-    /// 自己的数据
+    /// 攻击者的数据
     /// </summary>
-    public IRole OwnData { get; set; }
+    public IRoleActual AttackerData { get; set; }
 
     /// <summary>
     /// 目标的数据
     /// </summary>
-    public IRole TargetData { get; set; }
+    public IRoleActual TargetData { get; set; }
 
     /// <summary>
     /// 攻击方式
@@ -147,7 +249,7 @@ public interface IBattleActionCarrier : IID
     {
         foreach (IBattleAction item in battleActionCarrier.BattleActionList)
         {
-            if (item.OwnData == role)
+            if (item.AttackerData == role)
                 return true;
         }
         return false;
@@ -160,17 +262,6 @@ public interface IBattleActionCarrier : IID
     {
         return battleActionCarrier.BattleActionList.Contains(battleAction);
     }
-
-    
-}
-
-
-/// <summary>
-/// 战斗等待接口
-/// </summary>
-public interface IBattleWait
-{
-    public void Wait();
 }
 
 
@@ -180,23 +271,9 @@ public static class HelperBattle
     {
         IBattleActionCarrier.AddBattleAction(battleActionCarrier, battleAction);
     }
-    public static void AddBattle(this IBattle battle, IBattleAction battleAction)
-    {
-        if (battle is IBattleActionCarrier battleActionCarrier)
-            IBattleActionCarrier.AddBattleAction(battleActionCarrier, battleAction);
-        else
-            Debug.Log("战斗battle请继承IBattleActionCarrier");
-    }
-    public static void RemoveBattle(this IBattleActionCarrier battleActionCarrier, IBattleAction battleAction)
+    public static void RemoveBattleAction(this IBattleActionCarrier battleActionCarrier, IBattleAction battleAction)
     {
         IBattleActionCarrier.RemoveBattleAction(battleActionCarrier, battleAction);
-    }
-    public static void RemoveBattle(this IBattle battle, IBattleAction battleAction)
-    {
-        if (battle is IBattleActionCarrier battleActionCarrier)
-            IBattleActionCarrier.RemoveBattleAction(battleActionCarrier, battleAction);
-        else
-            Debug.Log("战斗battle请继承IBattleActionCarrier");
     }
     public static void ChackBattleExist(this IBattleActionCarrier battleActionCarrier, IRole role)
     {
@@ -205,5 +282,38 @@ public static class HelperBattle
     public static void ChackBattleExist(this IBattleActionCarrier battleActionCarrier, IBattleAction battleAction)
     {
         IBattleActionCarrier.ChackBattleExist(battleActionCarrier, battleAction);
+    }
+
+    /// <summary>
+    /// 确认角色是否存活
+    /// </summary>
+    /// <param name="battleCarrier"></param>
+    /// <param name="roleActual"></param>
+    /// <returns></returns>
+    public static bool ChackRoleSurvival(this IBattleCarrier battleCarrier, IRoleActual roleActual)
+    {
+        return IBattleCarrier.ChackRoleSurvival(battleCarrier, roleActual);
+    }
+
+    /// <summary>
+    /// 随机敌方一个角色
+    /// </summary>
+    /// <param name="battleCarrier"></param>
+    /// <param name="teamType"></param>
+    /// <returns></returns>
+    public static IRoleActual RandomEnemyRole(this IBattleCarrier battleCarrier, ETeamType teamType)
+    {
+        return IBattleCarrier.RandomEnemyRole(battleCarrier, teamType);
+    }
+
+    /// <summary>
+    /// 随机自己方一个角色
+    /// </summary>
+    /// <param name="battleCarrier"></param>
+    /// <param name="teamType"></param>
+    /// <returns></returns>
+    public static IRoleActual RandomOwnRole(this IBattleCarrier battleCarrier, ETeamType teamType)
+    {
+        return IBattleCarrier.RandomOwnRole(battleCarrier, teamType);
     }
 }

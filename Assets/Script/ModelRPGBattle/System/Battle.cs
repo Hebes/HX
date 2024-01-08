@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 
 /// <summary>
-/// 队伍的战斗
+/// 战斗
 /// </summary>
-public class TeamBattle : IBattle, IBattleBehaviour, IBattleCarrier, IBattleActionCarrier
+public class Battle : IBattleActual
 {
     /// <summary>
     /// 战斗编号
@@ -30,11 +30,11 @@ public class TeamBattle : IBattle, IBattleBehaviour, IBattleCarrier, IBattleActi
     /// 1.可能是敌人在左边，进入二打一模式
     /// 2.可能是自己人右边，敌人3队进行二打一模式
     /// </summary>
-    private Dictionary<ETeamPoint, ITeam> _rolePointDic;
+    private Dictionary<ETeamPoint, ITeamActual> _rolePointDic;
 
 
     public uint ID { get => battleId; set => battleId = value; }
-    public Dictionary<ETeamPoint, ITeam> BattleTeamDic { get => _rolePointDic; set => _rolePointDic = value; }
+    public Dictionary<ETeamPoint, ITeamActual> BattleTeamDic { get => _rolePointDic; set => _rolePointDic = value; }
     public List<IBattleAction> BattleActionList { get => _battleActionList; set => _battleActionList = value; }
     public BattleType battleType { get => _battleType; set => _battleType = value; }
     public EBattlePerformAction BattleSate { get => _battleState; set => _battleState = value; }
@@ -109,6 +109,29 @@ public class TeamBattle : IBattle, IBattleBehaviour, IBattleCarrier, IBattleActi
     /// <exception cref="NotImplementedException"></exception>
     private void Takeaction()
     {
+        IBattleAction battleAction = _battleActionList[0];//战斗的动作
+        switch (battleAction.AttackerData.RoleType)
+        {
+            case ERoleType.Player:
+                break;
+            case ERoleType.NPC:
+                //检查被攻击者是否还存活
+                if (this.ChackRoleSurvival(battleAction.TargetData))
+                {
+                    battleAction.AttackerData.TurnState = ETurnState.ACTION;
+                }
+                else
+                {
+                    //TODO 等待写
+                }
+                break;
+            case ERoleType.Enemy:
+                break;
+            case ERoleType.Dealer:
+                break;
+            default:
+                break;
+        }
     }
 
     /// <summary>
@@ -138,9 +161,8 @@ public class TeamBattle : IBattle, IBattleBehaviour, IBattleCarrier, IBattleActi
 
 
 
-    public void AddBattleTeam(ITeam team) => IBattleCarrier.AddBattleTeam(this, team);
-    public void RemoveBattleTeam(ITeam team) => IBattleCarrier.RemoveBattleTeam(this, team);
+    public void AddBattleTeam(ITeamActual team) => IBattleCarrier.AddBattleTeam(this, team);
+    public void RemoveBattleTeam(ITeamActual team) => IBattleCarrier.RemoveBattleTeam(this, team);
     public void AddBattleAction(IBattleAction battleAction) => IBattleActionCarrier.AddBattleAction(this, battleAction);
     public void RemoveBattleAction(IBattleAction battleAction) => IBattleActionCarrier.RemoveBattleAction(this, battleAction);
-    //public 
 }

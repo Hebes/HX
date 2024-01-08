@@ -93,23 +93,12 @@ public class SceneBattleManager : MonoBehaviour
     /// 设置一场战斗
     /// </summary>
     /// <param name="battle"></param>
-    public void SetBattle(IBattle battle)
+    public void SetBattle(IBattleActual battle)
     {
         this.battle = battle;
-        if (battle is IBattleCarrier battleCarrier)
-        {
-            foreach (KeyValuePair<ETeamPoint, ITeam> item in battleCarrier.BattleTeamDic)
-            {
-                if (item.Value is ITeamCarrier teamCarrier)
-                    SetRolePoint(item.Key, teamCarrier);
-                else
-                    Debug.Error("战斗的Team必须继承ITeamCarrier接口");
-            }
-        }
-        else
-        {
-            Debug.Error("战斗的battle必须继承IBattleCarrier接口");
-        }
+
+        foreach (KeyValuePair<ETeamPoint, ITeamActual> item in battle.BattleTeamDic)
+            SetRolePoint(item.Key, item.Value);
     }
 
     /// <summary>

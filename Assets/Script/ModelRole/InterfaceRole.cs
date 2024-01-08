@@ -67,3 +67,20 @@ public interface IRoleBehaviour : IID
     public void RoleRemove();
 
 }
+
+
+/// <summary>
+/// 角色的实际继承接口
+/// </summary>
+public interface IRoleActual : IRole, IRoleBehaviour
+{
+    /// <summary>
+    /// 给与伤害
+    /// </summary>
+    //public void DoDamage();
+
+    /// <summary>
+    /// 遭受伤害
+    /// </summary>
+    public void TakeDamage(int getDamageAmount);
+}

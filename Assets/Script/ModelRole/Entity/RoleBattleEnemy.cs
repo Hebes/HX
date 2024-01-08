@@ -7,7 +7,7 @@ using Debug = Core.Debug;
 /// <summary>
 /// 具体战斗敌人实例
 /// </summary>
-public class RoleBattleEnemy : IRole, IRoleBehaviour, ISkillCarrier, IAttributes
+public class RoleBattleEnemy : IRoleActual, ISkillCarrier, IAttributes
 {
     private uint _id;
     private string _name;
@@ -17,6 +17,8 @@ public class RoleBattleEnemy : IRole, IRoleBehaviour, ISkillCarrier, IAttributes
     private Dictionary<ESkillType, List<ISkill>> _skillDataDic;
     private int _maxHP;
     private int _currentHP;
+    private int _maxATK;
+    private int _currentATK;
     private GameObject _go;
     private float _max_colldown;//最大的冷却时间
 
@@ -40,6 +42,8 @@ public class RoleBattleEnemy : IRole, IRoleBehaviour, ISkillCarrier, IAttributes
     public int MaxHP { get => _maxHP; set => _maxHP = value; }
     public int CurrentHP { get => _currentHP; set => _currentHP = value; }
     public UnityEngine.GameObject Go { get => _go; set => _go = value; }
+    public int MaxATK { get => _maxATK; set => _maxATK = value; }
+    public int CurrentATK { get => _currentATK; set => _currentATK = value; }
 
 
 
@@ -51,12 +55,12 @@ public class RoleBattleEnemy : IRole, IRoleBehaviour, ISkillCarrier, IAttributes
     /// <summary>
     /// 一场战斗接口
     /// </summary>
-    private IBattle _battle;
+    private IBattleActual _battle;
 
     /// <summary>
     /// 自己的队伍
     /// </summary>
-    private ITeam _team;
+    private ITeamActual _team;
 
     /// <summary>
     /// 角色的移动速度
@@ -79,11 +83,6 @@ public class RoleBattleEnemy : IRole, IRoleBehaviour, ISkillCarrier, IAttributes
     private bool isAlive = true;
 
     /// <summary>
-    /// 目标敌人
-    /// </summary>
-    private IRole _targetRole;
-
-    /// <summary>
     /// 玩家初始站的位置
     /// </summary>
     private Vector2 _startPosition;
@@ -92,7 +91,7 @@ public class RoleBattleEnemy : IRole, IRoleBehaviour, ISkillCarrier, IAttributes
     /// <summary>
     /// 添加数据
     /// </summary>
-    public void AddData(IBattle battle, ITeam team)
+    public void AddData(IBattleActual battle, ITeamActual team)
     {
         this._battle = battle;
         this._team = team;
@@ -144,18 +143,16 @@ public class RoleBattleEnemy : IRole, IRoleBehaviour, ISkillCarrier, IAttributes
     }
 
     /// <summary>
-    /// 现在是敌人状态 选择英雄行动
+    /// 现在是敌人状态,选择攻击方式和玩家或者NPC
     /// </summary>
     private void ChooseAction()
     {
         BattleAction battleAction = new BattleAction();
+        _battleAction = battleAction;
         //自己的攻击数据
-        battleAction.OwnData = this;
+        battleAction.AttackerData = this;
         //敌人的攻击数据
-        if (_team is ITeamCarrier teamCarrier)
-            _targetRole = battleAction.TargetData = teamCarrier.RoleList[Random.Range(0, teamCarrier.RoleList.Count)];
-        else
-            Debug.Error("队伍请继承ITeamCarrier接口");
+        battleAction.TargetData = _battle.RandomEnemyRole(_team.TeamType);
         //选择攻击方式
         AttackWay attackWay = new AttackWay();
         attackWay.Skill = _skillDataDic[ESkillType.NormalAttack][0];
@@ -176,9 +173,9 @@ public class RoleBattleEnemy : IRole, IRoleBehaviour, ISkillCarrier, IAttributes
         isActionStarted = true;
         //播放敌人接近英雄的攻击动画
         Vector3 heroPostion = new Vector3(
-            _targetRole.Go.transform.position.x - 1.5f,
-            _targetRole.Go.transform.position.y,
-            _targetRole.Go.transform.position.z);
+            _battleAction.TargetData.Go.transform.position.x - 1.5f,
+            _battleAction.TargetData.Go.transform.position.y,
+            _battleAction.TargetData.Go.transform.position.z);
         while (MoveTowrdsEnemy(heroPostion))//循环等待1帧
             yield return null;//这个是等待1帧的意思
         //等待
@@ -189,14 +186,14 @@ public class RoleBattleEnemy : IRole, IRoleBehaviour, ISkillCarrier, IAttributes
         while (MoveTowrdsStart(_startPosition))//循环等待1帧
             yield return null;//这个是等待1帧的意思
         //从行动列表移除
-        _battle.RemoveBattle(_battleAction);
+        _battle.RemoveBattleAction(_battleAction);
         //重置一场战斗变成等待,判断是否还有行动状态
         _battle.BattleSate = EBattlePerformAction.WAIT;
         //结束协程
         isActionStarted = false;
         //重置状态(这个类是NPC用的)
         _cur_colldown = 0f;
-        _turnState = ETurnState.CHOOSEACTION;
+        _turnState = ETurnState.PROCESSING;
     }
 
     /// <summary>
@@ -210,56 +207,31 @@ public class RoleBattleEnemy : IRole, IRoleBehaviour, ISkillCarrier, IAttributes
         //change tag 切换标签
         //this.gameObject.tag = "DeadEnemy";
         //自己死亡了,队伍列表删除自己
-        if (_team is ITeamCarrier teamCarrier)
+        _team.RemoveRole(this);
+        //deactivate the selector 停用选择器 就是黄色的小物体
+        //Selector.SetActive(false);
+        //从行动列表删除自己，如果行动列表存在自己的话
+        if (_team.RoleList.Count > 0)
         {
-            teamCarrier.RemoveRole(this);
-            //deactivate the selector 停用选择器 就是黄色的小物体
-            //Selector.SetActive(false);
-            //从行动列表删除自己，如果行动列表存在自己的话
-            if (teamCarrier.RoleList.Count > 0)//自己队伍还有人存活
+            for (int i = 0; i < _battle.BattleActionList.Count; i++)
             {
-                //行动列表还有自己的行动存在
-                if (_battle is IBattleActionCarrier battleActionCarrier)
-                {
-                    if (battleActionCarrier.BattleActionList.Count > 0)
-                    {
-                        for (int i = 0; i < battleActionCarrier.BattleActionList.Count; i++)
-                        {
-                            if (i == 0) continue;
-                            IBattleAction item = battleActionCarrier.BattleActionList[i];
-                            if (item.TargetData != this) continue;//攻击目标是不是自己的话，跳过
-
-                        }
-                    }
-                }
-            }
-        }
-
-
-        if (BSM.EnemysInBattle.Count > 0)
-        {
-
-            for (int i = 0; i < BSM.PerformList.Count; i++)
-            {
-                if (i != 0)
-                {
-                    //如果被攻击的是这个已经死亡的角色
-                    if (BSM.PerformList[i].AttackersTarget == this.gameObject)
-                        BSM.PerformList[i].AttackersTarget = BSM.EnemysInBattle[Random.Range(0, BSM.EnemysInBattle.Count)];
-                    //从执行列表中删除项目
-                    if (BSM.PerformList[i].AttackersGameObject == this.gameObject)
-                        BSM.PerformList.Remove(BSM.PerformList[i]);
-                }
+                if (i == 0) continue;
+                IBattleAction battleAction = _battle.BattleActionList[i];
+                //行动的被攻击者是我的话,随机自己方一个人
+                if (battleAction.AttackerData == this)
+                    _battle.RemoveBattleAction(battleAction);
+                if (battleAction.TargetData == this)
+                    battleAction.TargetData = _battle.RandomOwnRole(_team.TeamType);
             }
         }
         //change color / play animation 改变颜色/播放动画
-        this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
+        //this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
         //设置为不存活
-        alive = false;
+        isAlive = false;
         //重新生成敌人的按钮
-        BSM.EnemyButtons();
-        //check alive 检查是否存活
-        BSM.battleStates = BattleStateMaschine.PerformAction.CHECKALIVE;
+        //BSM.EnemyButtons();
+        //在一场战斗中检查敌人队伍或者自己人队伍是否还有存活的
+        _battle.BattleSate = EBattlePerformAction.CHECKALIVE;
     }
 
 
@@ -287,21 +259,21 @@ public class RoleBattleEnemy : IRole, IRoleBehaviour, ISkillCarrier, IAttributes
     /// </summary>
     private void DoDamage()
     {
-        //float calc_damage = enemy.curAtk + BSM.PerformList[0].choosenAttack.attackDamage;
-        //HeroToAttAck.GetComponent<HeroStateMaschine>().TakeDamage(calc_damage);
+        int calc_damage = CurrentATK + _battleAction.Attack.Skill.CurrentATK;
+        _battleAction.TargetData.TakeDamage(calc_damage);
     }
+
     /// <summary>
     /// 遭受伤害
     /// </summary>
-    public void TakeDamage(float getDamageAmount)
+    public void TakeDamage(int getDamageAmount)
     {
-        //hero.curHP -= getDamageAmount;
-        //Debug.Log(hero.theName + "受到：" + getDamageAmount + "点伤害,剩余生命值：" + hero.curHP);
-        //if (hero.curHP <= 0)
-        //{
-        //    hero.curHP = 0;
-        //    currentState = TurnState.DEAD;
-        //}
-        //UpdataHeroPanel();
+        CurrentHP -= getDamageAmount;
+        Debug.Log($"{Name}受到：{getDamageAmount}点伤害,剩余生命值：{CurrentHP}");
+        if (CurrentHP <= 0)
+        {
+            CurrentHP = 0;
+            _turnState = ETurnState.DEAD;
+        }
     }
 }

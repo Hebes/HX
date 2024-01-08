@@ -72,7 +72,6 @@
     <Compile Include="Assets\Script\ModelStory\EnumStory.cs" />
     <Compile Include="Assets\Script\ModeSkill\ManagerSkill.cs" />
     <Compile Include="Assets\Script\ModelCareer\EnemCareer.cs" />
-    <Compile Include="Assets\Script\ModelRPGBattle\System\TeamBattle.cs" />
     <Compile Include="Assets\Script\ModelConfig\ConfigEvent.cs" />
     <Compile Include="Assets\Script\ModeStart\IModelInit.cs" />
     <Compile Include="Assets\Script\ModeLanguage\ManagerLanguage.cs" />
@@ -101,6 +100,7 @@
     <Compile Include="Assets\Script\ModelCareer\InterfaceCareer.cs" />
     <Compile Include="Assets\Script\MdoelSave\ManagerSave.cs" />
     <Compile Include="Assets\Script\ModeSkill\EnumSkill.cs" />
+    <Compile Include="Assets\Script\ModelScreen\ManagerScreen.cs" />
     <Compile Include="Assets\Script\ModelRole\RolePlayer.cs" />
     <Compile Include="Assets\Script\MdoelSave\ISave.cs" />
     <Compile Include="Assets\Script\ModelRPGBattle\System\BattleAction.cs" />
@@ -149,6 +149,7 @@
     <Compile Include="Assets\Script\MdoelEffect\EnumEffect.cs" />
     <Compile Include="Assets\Script\ModelStory\InterfaceStory.cs" />
     <Compile Include="Assets\Script\ModelBuff\EnumBuff.cs" />
+    <Compile Include="Assets\Script\ModelRPGBattle\System\Battle.cs" />
     <Compile Include="Assets\Script\ModelData\ManagerData.cs" />
     <Compile Include="Assets\Script\ModelRole\NPC.cs" />
     <Compile Include="Assets\Script\ModelBuff\ManagerBuff.cs" />
