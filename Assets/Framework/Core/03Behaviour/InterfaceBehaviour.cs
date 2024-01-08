@@ -1,4 +1,6 @@
-﻿namespace Core
+﻿using System.Collections;
+
+namespace Core
 {
     public interface IBehaviour
     {
@@ -21,7 +23,7 @@
     /// </summary>
     public interface IWaitFrameUpdata : IBehaviour
     {
-        void WaitFrameUpdata();
+        IEnumerator WaitFrameUpdata();
     }
 
     /// <summary>

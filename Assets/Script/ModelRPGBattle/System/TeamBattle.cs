@@ -33,11 +33,11 @@ public class TeamBattle : IBattle, IBattleBehaviour, IBattleCarrier, IBattleActi
     private Dictionary<ETeamPoint, ITeam> _rolePointDic;
 
 
-    public EBattlePerformAction GetBattleState => _battleState;
     public uint ID { get => battleId; set => battleId = value; }
     public Dictionary<ETeamPoint, ITeam> BattleTeamDic { get => _rolePointDic; set => _rolePointDic = value; }
     public List<IBattleAction> BattleActionList { get => _battleActionList; set => _battleActionList = value; }
     public BattleType battleType { get => _battleType; set => _battleType = value; }
+    public EBattlePerformAction BattleSate { get => _battleState; set => _battleState = value; }
 
     /// <summary>
     /// 战斗是否暂停

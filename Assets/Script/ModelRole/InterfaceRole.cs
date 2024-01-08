@@ -1,8 +1,14 @@
-﻿/// <summary>
+﻿using UnityEngine;
+
+/// <summary>
 /// 角色接口
 /// </summary>
 public interface IRole : IID, IName
 {
+    /// <summary>
+    /// 物体
+    /// </summary>
+    GameObject Go { get; set; }
     /// <summary>
     /// 行动冷却时间
     /// </summary>

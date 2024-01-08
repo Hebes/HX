@@ -10,6 +10,11 @@ public interface IBattle : IID
     /// 一场战斗的类型
     /// </summary>
     public BattleType battleType { get; set; }
+
+    /// <summary>
+    ///一场战斗的状态
+    /// </summary>
+    public EBattlePerformAction BattleSate { get; set; }
 }
 
 /// <summary>
@@ -71,6 +76,17 @@ public interface IBattleCarrier : IID
         if (battleCarrier.BattleTeamDic.ContainsKey(team.TeamPoint))
             battleCarrier.BattleTeamDic.Remove(team.TeamPoint);
     }
+
+    /// <summary>
+    /// 随机一个敌人(NPC和Player敌人就是Enemy，相反就是...)
+    /// </summary>
+    public static void RandomEnemyRole(IBattleCarrier battleCarrier, ETeamType teamType)
+    {
+        foreach (ITeam item in battleCarrier.BattleTeamDic.Values)
+        {
+            
+        }
+    }
 }
 
 
@@ -82,15 +98,17 @@ public interface IBattleAction
     /// <summary>
     /// 自己的数据
     /// </summary>
-    public IRole ownData { get; set; }
+    public IRole OwnData { get; set; }
 
     /// <summary>
     /// 目标的数据
     /// </summary>
     public IRole TargetData { get; set; }
 
-
-    //public void Attack();
+    /// <summary>
+    /// 攻击方式
+    /// </summary>
+    public IAttack Attack { get; set; }
 }
 
 /// <summary>
@@ -121,6 +139,29 @@ public interface IBattleActionCarrier : IID
     {
         battleActionCarrier.BattleActionList.Remove(battleAction);
     }
+
+    /// <summary>
+    /// 切换战斗是否存在
+    /// </summary>
+    public static bool ChackBattleExist(IBattleActionCarrier battleActionCarrier, IRole role)
+    {
+        foreach (IBattleAction item in battleActionCarrier.BattleActionList)
+        {
+            if (item.OwnData == role)
+                return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// 切换战斗是否存在
+    /// </summary>
+    public static bool ChackBattleExist(IBattleActionCarrier battleActionCarrier, IBattleAction battleAction)
+    {
+        return battleActionCarrier.BattleActionList.Contains(battleAction);
+    }
+
+    
 }
 
 
@@ -132,3 +173,37 @@ public interface IBattleWait
     public void Wait();
 }
 
+
+public static class HelperBattle
+{
+    public static void AddBattle(this IBattleActionCarrier battleActionCarrier, IBattleAction battleAction)
+    {
+        IBattleActionCarrier.AddBattleAction(battleActionCarrier, battleAction);
+    }
+    public static void AddBattle(this IBattle battle, IBattleAction battleAction)
+    {
+        if (battle is IBattleActionCarrier battleActionCarrier)
+            IBattleActionCarrier.AddBattleAction(battleActionCarrier, battleAction);
+        else
+            Debug.Log("战斗battle请继承IBattleActionCarrier");
+    }
+    public static void RemoveBattle(this IBattleActionCarrier battleActionCarrier, IBattleAction battleAction)
+    {
+        IBattleActionCarrier.RemoveBattleAction(battleActionCarrier, battleAction);
+    }
+    public static void RemoveBattle(this IBattle battle, IBattleAction battleAction)
+    {
+        if (battle is IBattleActionCarrier battleActionCarrier)
+            IBattleActionCarrier.RemoveBattleAction(battleActionCarrier, battleAction);
+        else
+            Debug.Log("战斗battle请继承IBattleActionCarrier");
+    }
+    public static void ChackBattleExist(this IBattleActionCarrier battleActionCarrier, IRole role)
+    {
+        IBattleActionCarrier.ChackBattleExist(battleActionCarrier, role);
+    }
+    public static void ChackBattleExist(this IBattleActionCarrier battleActionCarrier, IBattleAction battleAction)
+    {
+        IBattleActionCarrier.ChackBattleExist(battleActionCarrier, battleAction);
+    }
+}

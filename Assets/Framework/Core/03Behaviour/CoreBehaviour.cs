@@ -16,8 +16,6 @@ using Time = UnityEngine.Time;
 
 namespace Core
 {
-
-
     public class CoreBehaviour : ICore
     {
         public static CoreBehaviour Instance;
@@ -54,9 +52,8 @@ namespace Core
             if (typeof(IFixedUpdate).IsAssignableFrom(typeof(T)))
                 BehaviourController.Instance.Add(t, EMonoType.FixedUpdate);
             if (typeof(IWaitFrameUpdata).IsAssignableFrom(typeof(T)))
-                BehaviourController.Instance.Add(t, EMonoType.FixedUpdate);
+                BehaviourController.Instance.Add(t, EMonoType.WaitFrameUpdata);
         }
-
         public static void Remove<T>(T t) where T : IBehaviour
         {
             //https://www.cnblogs.com/radray/p/4529482.html
@@ -64,6 +61,8 @@ namespace Core
                 BehaviourController.Instance.Remove(t);
             if (typeof(IFixedUpdate).IsAssignableFrom(typeof(T)))
                 BehaviourController.Instance.Remove(t, EMonoType.FixedUpdate);
+            if (typeof(IWaitFrameUpdata).IsAssignableFrom(typeof(T)))
+                BehaviourController.Instance.Remove(t, EMonoType.WaitFrameUpdata);
         }
 
         public static void AddCoroutine(int coroutineKey, IEnumerator coroutine)
@@ -75,8 +74,10 @@ namespace Core
             }
             Instance.CoroutineDic.Add(coroutineKey, BehaviourController.Instance.StartCoroutine(coroutine));
         }
-
-
+        public static Coroutine AddCoroutine(IEnumerator coroutine)
+        {
+           return BehaviourController.Instance.StartCoroutine(coroutine);
+        }
         public static void RemoveCoroutine(int coroutineKey)
         {
             if (Instance.CoroutineDic.TryGetValue(coroutineKey, out Coroutine coroutine))

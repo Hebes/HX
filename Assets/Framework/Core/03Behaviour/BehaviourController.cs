@@ -6,7 +6,8 @@ using UnityEngine;
 
 描述:
     生命周期控制
-
+    https://blog.csdn.net/beihuanlihe130/article/details/76098844
+    https://blog.csdn.net/qq_40544338/article/details/115414085
 -----------------------*/
 
 namespace Core
@@ -23,20 +24,22 @@ namespace Core
         private List<IUpdata> updatasList;
         private List<IFixedUpdate> fixedUpdatesList;
         private List<IWaitFrameUpdata> waitFrameUpdatasList;
-        private Coroutine waitFrameUpdata;
+        private WaitForSeconds waitForSeconds;
+        private bool waitFrameUpdata = true;
 
         private void Awake()
         {
             updatasList = new List<IUpdata>();
             fixedUpdatesList = new List<IFixedUpdate>();
+            waitFrameUpdatasList = new List<IWaitFrameUpdata>();
+            waitForSeconds = new WaitForSeconds(0.02f);
         }
         private void Update()
         {
             for (int i = 0; i < updatasList.Count; i++)
                 updatasList[i].CoreBehaviourUpdata();
-
-            if (waitFrameUpdata == null)
-                waitFrameUpdata = StartCoroutine(WaitFrameUpdata());
+            if (waitFrameUpdata)
+                 StartCoroutine(WaitFrameUpdata());
         }
         private void FixedUpdate()
         {
@@ -83,14 +86,13 @@ namespace Core
         }
         IEnumerator WaitFrameUpdata()
         {
+            waitFrameUpdata = false;
             for (int i = 0; i < waitFrameUpdatasList.Count; i++)
             {
-                yield return null;
-                waitFrameUpdatasList[i].WaitFrameUpdata();
+                yield return waitForSeconds;
+                yield return waitFrameUpdatasList[i].WaitFrameUpdata();
             }
-
-            StopCoroutine(waitFrameUpdata);
-            waitFrameUpdata = null;
+            waitFrameUpdata = true;
         }
     }
 }
