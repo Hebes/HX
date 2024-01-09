@@ -482,7 +482,7 @@
 /// <summary>
 /// 属性接口
 /// </summary>
-public interface IAttributes : IHP
+public interface IAttributes : IHP, IATK
 {
 }
 
@@ -506,5 +506,30 @@ public interface IHP
     {
         HP.MaxHP = maxHP;
         HP.CurrentHP = currentHP;
+    }
+}
+
+/// <summary>
+/// 攻击力
+/// </summary>
+public interface IATK
+{
+    /// <summary>
+    /// 最大生命值
+    /// </summary>
+    public int MaxATK { get; set; }
+
+    /// <summary>
+    /// 当前生命值
+    /// </summary>
+    public int CurrentATK { get; set; }
+
+    /// <summary>
+    /// 初始化生命值
+    /// </summary>
+    public static void RefreshHP(IATK ATK, int maxATK, int currentATK)
+    {
+        ATK.MaxATK = maxATK;
+        ATK.CurrentATK = currentATK;
     }
 }

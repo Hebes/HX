@@ -113,9 +113,14 @@ public interface ISkillCarrier : IID, IName
 /// <summary>
 /// 技能数据
 /// </summary>
-public interface ISkill : IID, IName, IDescribe
+public interface ISkill : IID, IName, IDescribe,IATK
 {
     public ESkillType SkillType { get; set; }
+}
+
+public interface ISkillActual: ISkill, ISkillBehaviour
+{
+
 }
 
 public static  class InterfaceSkill

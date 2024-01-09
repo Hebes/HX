@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Core;
 using UnityEngine;
+using Debug = Core.Debug;
 
 /// <summary>
 /// 队伍
@@ -19,6 +20,14 @@ public interface ITeam : IID
 }
 
 /// <summary>
+/// 队伍的生命周期接口
+/// </summary>
+public interface ITeamBehaviour : IID
+{
+    public void TeamUpdata();
+}
+
+/// <summary>
 ///队伍的持有者
 /// </summary>
 public interface ITeamCarrier : IID
@@ -26,16 +35,16 @@ public interface ITeamCarrier : IID
     /// <summary>
     /// 队伍列表
     /// </summary>
-    public List<IRole> RoleList { get; set; }
+    public List<IRoleActual> RoleList { get; set; }
 
     /// <summary>
     /// 添加队员
     /// </summary>
     /// <param name="role">角色</param>
-    public static void AddRole(ITeamCarrier teamCarrier, IRole role)
+    public static void AddRole(ITeamCarrier teamCarrier, IRoleActual role)
     {
         if (teamCarrier.RoleList == null)
-            teamCarrier.RoleList = new List<IRole>(4);
+            teamCarrier.RoleList = new List<IRoleActual>(4);
 
         if (teamCarrier.RoleList.Count >= 4)
         {
@@ -55,7 +64,7 @@ public interface ITeamCarrier : IID
     /// 移除队员
     /// </summary>
     /// <param name="role">角色</param>
-    public static void RemoveRole(ITeamCarrier teamCarrier, IRole role)
+    public static void RemoveRole(ITeamCarrier teamCarrier, IRoleActual role)
     {
         if (!teamCarrier.RoleList.RemoveContainElement(role))
         {
@@ -80,6 +89,26 @@ public interface ITeamCarrier : IID
         return false;
     }
 
+    public static bool ChackRoleSurvival(ITeamCarrier itemCarrier, IRoleActual roleActual)
+    {
+        foreach (IRoleActual item in itemCarrier.RoleList)
+        {
+            if (roleActual.ID == item.ID && item.TurnState != ETurnState.DEAD)
+                return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// 检查队伍角色存活数量
+    /// </summary>
+    /// <param name="itemCarrier"></param>
+    /// <returns></returns>
+    public static int ChackTeamSurvivalCount(ITeamCarrier itemCarrier)
+    {
+        return itemCarrier.RoleList.Count;
+    }
+
     /// <summary>
     /// 随机一个人
     /// </summary>
@@ -87,15 +116,61 @@ public interface ITeamCarrier : IID
     public static IRole RandomRole(ITeamCarrier teamCarrier)
     {
         if (teamCarrier.RoleList.Count > 0)
-           return teamCarrier.RoleList[Random.Range(0, teamCarrier.RoleList.Count)];
+            return teamCarrier.RoleList[Random.Range(0, teamCarrier.RoleList.Count)];
         return default;
     }
 }
 
+/// <summary>
+/// 队伍的实际接口
+/// </summary>
+public interface ITeamActual : ITeam, ITeamCarrier, ITeamBehaviour
+{
+
+}
+
+
 public static class HelperTeam
 {
-    public static void AddRole(this ITeamCarrier teamCarrier, IRole role) => ITeamCarrier.AddRole(teamCarrier, role);
-    public static void RemoveRole(this ITeamCarrier teamCarrier, IRole role) => ITeamCarrier.RemoveRole(teamCarrier, role);
-    public static void ChackTeamSurvival(this ITeamCarrier teamCarrier) => ITeamCarrier.ChackTeamSurvival(teamCarrier);
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="teamCarrier"></param>
+    /// <param name="role"></param>
+    public static void AddRole(this ITeamCarrier teamCarrier, IRoleActual role) => ITeamCarrier.AddRole(teamCarrier, role);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="teamCarrier"></param>
+    /// <param name="role"></param>
+    public static void RemoveRole(this ITeamCarrier teamCarrier, IRoleActual role) => ITeamCarrier.RemoveRole(teamCarrier, role);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="teamCarrier"></param>
+    public static bool ChackTeamSurvival(this ITeamCarrier teamCarrier) => ITeamCarrier.ChackTeamSurvival(teamCarrier);
+
+    /// <summary>
+    /// 确认角色是否存活
+    /// </summary>
+    /// <param name="itemCarrier"></param>
+    /// <param name="roleActual"></param>
+    /// <returns></returns>
+    public static bool ChackRoleSurvival(this ITeamCarrier itemCarrier, IRoleActual roleActual) => ITeamCarrier.ChackRoleSurvival(itemCarrier, roleActual);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="teamCarrier"></param>
+    /// <returns></returns>
     public static IRole RandomRole(this ITeamCarrier teamCarrier) => ITeamCarrier.RandomRole(teamCarrier);
+
+    /// <summary>
+    /// 检查队伍角色存活数量
+    /// </summary>
+    /// <param name="teamCarrier"></param>
+    /// <returns></returns>
+    public static int ChackTeamSurvivalCount(this ITeamCarrier teamCarrier) => ITeamCarrier.ChackTeamSurvivalCount(teamCarrier);
 }
