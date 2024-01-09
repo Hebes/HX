@@ -7,6 +7,7 @@ namespace Core
     /// https://blog.csdn.net/weixin_42042886/article/details/102542419
     /// https://blog.csdn.net/qq_29406323/article/details/86182706
     /// https://www.cainiaojc.com/csharp/csharp-datetime.html
+    /// https://www.cnblogs.com/qingheshiguang/p/15806915.html
     /// </summary>
     public class HelperID
     {
