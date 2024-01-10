@@ -48,7 +48,7 @@ namespace Core
             //SystemExceptionDebug.InitSystemExceptionDebug();
 
             //屏幕显示日志
-            GameObject debugGo = new GameObject("UIDebug");
+            GameObject debugGo = new GameObject("日志");
             debugGo.AddComponent<UIDebugger1>();
             GameObject.DontDestroyOnLoad(debugGo);
             //GameObject debugGo = new GameObject("UIDebug");

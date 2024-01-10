@@ -9,49 +9,42 @@ public class ManagerRPGBattle : IModelInit, IUpdata
     /// <summary>
     /// 所有的战斗列表->int 是NPC的ID合并起来
     /// </summary>
-    private Dictionary<uint, IBattle> _battleDic;
+    private Dictionary<uint, IBattleActual> _battleDic;
 
 
     public void Init()
     {
         Instance = this;
-        _battleDic = new Dictionary<uint, IBattle>();
+        _battleDic = new Dictionary<uint, IBattleActual>();
         CoreBehaviour.Add(this);
     }
     public void CoreBehaviourUpdata()
     {
-        foreach (IBattle item in _battleDic.Values)
-        {
-            if (item is IBattleBehaviour battleBehaviour)
-                battleBehaviour.BattleUpdata();
-        }
+        foreach (IBattleActual item in _battleDic.Values)
+            item.BattleUpdata();
     }
 
 
-    public static void AddBattle(IBattle battle)
+    public static void AddBattle(IBattleActual battle)
     {
         if (Instance._battleDic.TryAdd(battle.ID, battle))
         {
-            if (battle is IBattleBehaviour battleBehaviour)
-            {
-                battleBehaviour.BattleInit();
-                return;
-            }
+            battle.BattleInit();
+            return;
         }
         Debug.Error("战斗添加失败,已存在");
     }
     public static void RemoveBattle(uint battleID)
     {
-        if (Instance._battleDic.TryGetValue(battleID, out IBattle battle))
+        if (Instance._battleDic.TryGetValue(battleID, out IBattleActual battle))
         {
+            battle.BattleRemove();
             Instance._battleDic.Remove(battleID);
-            if (battle is IBattleBehaviour battleBehaviour)
-                battleBehaviour.BattleRemove();
         }
     }
-    public static IBattle GetOnebattle(uint battleID)
+    public static IBattleActual GetOnebattle(uint battleID)
     {
-        if (Instance._battleDic.TryGetValue(battleID, out IBattle oneBattle))
+        if (Instance._battleDic.TryGetValue(battleID, out IBattleActual oneBattle))
             return oneBattle;
         Debug.Error("战斗获取失败，战斗不存在");
         return default;

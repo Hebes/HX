@@ -47,13 +47,18 @@ public class Battle : IBattleActual
 
     public void BattleInit()
     {
-        //显示战斗界面
-        //CoreUI.ShwoUIPanel<UISkill>(ConfigPrefab.prefabUISkill);
-        CoreUI.ShwoUIPanel<UIBattle>(ConfigPrefab.prefabUIBattle);
+        //CoreUI.ShwoUIPanel<UISkill>(ConfigPrefab.prefabUISkill);  //技能界面
+        CoreUI.ShwoUIPanel<UIBattle>(ConfigPrefab.prefabUIBattle);  //战斗界面
+        foreach (ITeamActual item in BattleTeamDic.Values)          //设置战斗开启
+            item.EnterBattle = true;
     }
     public void BattleUpdata()
     {
         if (isStaaleStop) return;
+
+        foreach (ITeamActual item in BattleTeamDic.Values)
+            item.TeamUpdata();
+
         switch (_battleState)
         {
             case EBattlePerformAction.WAIT: Wait(); break;

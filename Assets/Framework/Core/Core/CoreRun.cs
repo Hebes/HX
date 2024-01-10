@@ -23,7 +23,7 @@ namespace Core
             Init<CoreScene>();          //场景
             Init<CoreInput>();          //输入
             Init<CoreDataSystem>();     //数据
-            Init<CoreSystemOrder>();    //指令
+            Init<CoreSystemOrder>();    //指令 
         }
 
         public T Init<T>() where T : ICore, new()

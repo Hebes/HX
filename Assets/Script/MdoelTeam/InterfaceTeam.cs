@@ -9,6 +9,11 @@ using Debug = Core.Debug;
 public interface ITeam : IID
 {
     /// <summary>
+    /// 是否进入战斗
+    /// </summary>
+    public bool EnterBattle { get; set; }
+
+    /// <summary>
     /// 队伍位置
     /// </summary>
     public ETeamPoint TeamPoint { get; set; }
@@ -56,8 +61,8 @@ public interface ITeamCarrier : IID
             Debug.Error($"添加{role.Name}错误，已经存在这个角色");
             return;
         }
-        if (role is IRoleBehaviour roleBehaviour)
-            roleBehaviour.RoleInit();
+        //if (role is IRoleBehaviour roleBehaviour)
+        //    roleBehaviour.RoleInit();
     }
 
     /// <summary>
@@ -107,7 +112,7 @@ public interface ITeamCarrier : IID
     public static int ChackTeamSurvivalCount(ITeamCarrier itemCarrier)
     {
         return itemCarrier.RoleList.Count;
-    } 
+    }
 
     /// <summary>
     /// 随机一个人

@@ -45,7 +45,7 @@ namespace Core
             audioClipDic = new Dictionary<string, AudioData>();
             sudioSourceDic = new Dictionary<string, AudioSource>();
 
-            GameObject AudioManagerGo = new GameObject("ModelAudio");
+            GameObject AudioManagerGo = new GameObject("“Ù¿÷");
             GameObject.DontDestroyOnLoad(AudioManagerGo);
 
             sudioSourceDic.Add(EAudioSourceType.BGM.ToString(), AudioManagerGo.AddComponent<AudioSource>());

@@ -99,6 +99,10 @@ public class RoleBattleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttac
     }
     public void RoleUpdata()
     {
+        
+    }
+    public void RoleBattleUpdata()
+    {
         switch (TurnState)
         {
             case ETurnState.PROCESSING:
@@ -127,7 +131,8 @@ public class RoleBattleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttac
     /// <exception cref="NotImplementedException"></exception>
     private void UpgradeProgressBar()
     {
-        _max_colldown += Time.deltaTime;
+        _cur_colldown += Time.deltaTime;
+        Debug.Log($"{Name}进度条上升{_cur_colldown}");
         if (_cur_colldown >= _max_colldown)//如果冷却时间到了
             _turnState = ETurnState.CHOOSEACTION;
     }
@@ -267,5 +272,20 @@ public class RoleBattleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttac
             CurrentHP = 0;
             _turnState = ETurnState.DEAD;
         }
+    }
+
+    public void RoleBattleInit()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void RoleBattleRemove()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    void IDamage.DoDamage()
+    {
+        throw new System.NotImplementedException();
     }
 }
