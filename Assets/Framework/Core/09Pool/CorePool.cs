@@ -70,7 +70,7 @@ namespace Core
                 {
                     IPool poolData = data[0];
                     poolData.GetAfter();
-                    Instance.poolDic[typeof(T).FullName].Remove(poolData);
+                    data.Remove(poolData);
                     return poolData as T;
                 }
             }
@@ -87,7 +87,7 @@ namespace Core
         /// <returns></returns>
         public static T Get<T>() where T : class, IPool, new()
         {
-            T t = null;
+            T t = default;
             if (typeof(T).IsSubclassOf(typeof(MonoBehaviour)))
             {
                 Debug.Error("请调用其他GetMono方法");
@@ -99,7 +99,7 @@ namespace Core
                 if (data.Count > 0)//说明有
                 {
                     t = data[0] as T;
-                    Instance.poolDic[typeof(T).FullName].Remove(t);
+                    data.Remove(t);
                     return t;
                 }
             }
@@ -119,8 +119,8 @@ namespace Core
                 return;
             }
 
-            if (Instance.poolDic.ContainsKey(typeof(T).FullName))
-                Instance.poolDic[typeof(T).FullName].Add(t);
+            if (Instance.poolDic.TryGetValue(typeof(T).FullName,out List<IPool> data))
+                data.Add(t);
             else
                 Instance.poolDic.Add(typeof(T).FullName, new List<IPool>() { t });
             t.PushBefore();

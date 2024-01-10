@@ -1,8 +1,5 @@
 ﻿using Core;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.PlayerLoop.EarlyUpdate;
 using Debug = UnityEngine.Debug;
 
 public class Newlifecycle : MonoBehaviour
@@ -16,8 +13,10 @@ public class Newlifecycle : MonoBehaviour
 
     private void Awake()
     {
-        CoreDebug coreDebug = new CoreDebug();
-        coreDebug.ICoreInit();
+
+        
+        //CoreDebug coreDebug = new CoreDebug();
+        //coreDebug.ICoreInit();
 
 
         //CoreBehaviour coreBehaviour = new CoreBehaviour();
@@ -62,14 +61,21 @@ public class Newlifecycle : MonoBehaviour
     private void Update()
     {
         //id = CoreID.CreateId();
-        DateTime now = DateTime.Now;
-        Int64 ID = HelperID.GetTimestamp(now);
-        HelperID.NewDate(ID);
-        Debug.Log(ID);
+        //DateTime now = DateTime.Now;
+        //Int64 ID = HelperID.GetTimestamp(now);
+        //HelperID.NewDate(ID);
+        //Debug.Log(ID);
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
         //    id = CoreID.CreateTimeId();
         //}
+
+        ExpansionProfiler.ProfilerBeginSample("Loop10000");
+        for (int i = 0; i < 1000000; i++)
+        {
+            int id = Random.Range(0, 100);
+        }
+        ExpansionProfiler.ProfilerEndSample();
     }
 
     //private void Update()

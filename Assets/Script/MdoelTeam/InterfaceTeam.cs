@@ -107,7 +107,7 @@ public interface ITeamCarrier : IID
     public static int ChackTeamSurvivalCount(ITeamCarrier itemCarrier)
     {
         return itemCarrier.RoleList.Count;
-    }
+    } 
 
     /// <summary>
     /// 随机一个人
