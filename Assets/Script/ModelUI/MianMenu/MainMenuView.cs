@@ -97,7 +97,7 @@ public class MainMenuView : UIBase, IUIAwake
         //rolePlayer.RoleBattlePoint = ERoleBattlePoint.Point1;
         //ISkillCarrier.AddSkill(rolePlayer, skillNormalAttack);
 
-        RoleBattleNPC npc1 = new RoleBattleNPC();//创建一名NPC->队友
+        RoleNPC npc1 = new RoleNPC();//创建一名NPC->队友
         npc1.ID = 2;
         npc1.Name = "NPC1";
         npc1.RoleType = ERoleType.NPC;
@@ -107,7 +107,7 @@ public class MainMenuView : UIBase, IUIAwake
         npc1.RoleBattlePoint = ERoleBattlePoint.Point1;
         ISkillCarrier.AddSkill(npc1, skillNormalAttack);
 
-        RoleBattleNPC npc2 = new RoleBattleNPC();//创建一名NPC->队友
+        RoleNPC npc2 = new RoleNPC();//创建一名NPC->队友
         npc2.ID = 3;
         npc2.Name = "NPC2";
         npc2.RoleType = ERoleType.NPC;
@@ -120,13 +120,13 @@ public class MainMenuView : UIBase, IUIAwake
 
 
         //敌人
-        RoleBattleEnemy enemy1 = new RoleBattleEnemy();
+        RoleEnemy enemy1 = new RoleEnemy();
         enemy1.RoleBattleEnemyInit(3, "敌人1", ERoleType.Enemy, ERoleBattlePoint.Point1, 5);
         enemy1.MaxHP = 100;
         enemy1.CurrentHP = 100;
         ISkillCarrier.AddSkill(enemy1, skillNormalAttack);//添加技能
 
-        RoleBattleEnemy enemy2 = new RoleBattleEnemy();
+        RoleEnemy enemy2 = new RoleEnemy();
         enemy2.RoleBattleEnemyInit(4, "敌人2", ERoleType.Enemy, ERoleBattlePoint.Point2, 5);
         enemy2.MaxHP = 100;
         enemy2.CurrentHP = 100;
@@ -159,7 +159,7 @@ public class MainMenuView : UIBase, IUIAwake
         enemy2.AddData(teamBattle, enemyTeam);
 
         //添加到战斗管理器
-        ManagerRPGBattle.AddBattle(teamBattle);
         sceneBattleManager.SetBattle(teamBattle);
+        ManagerRPGBattle.AddBattle(teamBattle);
     }
 }
