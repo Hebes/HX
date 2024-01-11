@@ -19,16 +19,18 @@ namespace Core
         WaitFrameUpdata,
     }
 
-    public class BehaviourController : SingletonNewMono<BehaviourController>
+    public class BehaviourController : MonoBehaviour
     {
         private List<IUpdata> updatasList;
         private List<IFixedUpdate> fixedUpdatesList;
         private List<IWaitFrameUpdata> waitFrameUpdatasList;
         private WaitForSeconds waitForSeconds;
         private bool waitFrameUpdata = true;
+        public static BehaviourController Instance;
 
         private void Awake()
         {
+            Instance = this;
             updatasList = new List<IUpdata>();
             fixedUpdatesList = new List<IFixedUpdate>();
             waitFrameUpdatasList = new List<IWaitFrameUpdata>();

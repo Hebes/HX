@@ -31,7 +31,9 @@ namespace Core
         {
             Instance = this;
             CoroutineDic = new Dictionary<int, Coroutine>();
-            behaviourController = BehaviourController.Instance;
+            GameObject gameObject = new GameObject("生命周期");
+            behaviourController = gameObject.AddComponent<BehaviourController>();//BehaviourController.Instance;
+            GameObject.DontDestroyOnLoad(gameObject);
             Debug.Log("初始化Mono完毕!");
         }
 

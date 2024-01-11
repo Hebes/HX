@@ -9,6 +9,7 @@ using Debug = Core.Debug;
 /// </summary>
 public class RoleBattleEnemy : IRoleActual, ISkillCarrier, IAttributes
 {
+    #region 私有字段
     private uint _id;
     private string _name;
     private ERoleType _roleType = ERoleType.Enemy;
@@ -21,8 +22,9 @@ public class RoleBattleEnemy : IRoleActual, ISkillCarrier, IAttributes
     private int _currentATK;
     private GameObject _go;
     private float _max_colldown;//最大的冷却时间
+    #endregion
 
-
+    #region 初始化API
     public void RoleBattleEnemyInit(uint id, string name, ERoleType roleType, ERoleBattlePoint roleBattlePoint, float max_colldown)
     {
         _id = id;
@@ -32,6 +34,17 @@ public class RoleBattleEnemy : IRoleActual, ISkillCarrier, IAttributes
         this._max_colldown = max_colldown;
     }
 
+    /// <summary>
+    /// 添加数据
+    /// </summary>
+    public void AddData(IBattleActual battle, ITeamActual team)
+    {
+        this._battle = battle;
+        this._team = team;
+    }
+    #endregion
+
+    #region 接口属性
     public ERoleType RoleType { get => _roleType; set => _roleType = value; }
     public ERoleBattlePoint RoleBattlePoint { get => _roleBattlePoint; set => _roleBattlePoint = value; }
     public ETurnState TurnState { get => _turnState; set => _turnState = value; }
@@ -44,9 +57,9 @@ public class RoleBattleEnemy : IRoleActual, ISkillCarrier, IAttributes
     public UnityEngine.GameObject Go { get => _go; set => _go = value; }
     public int MaxATK { get => _maxATK; set => _maxATK = value; }
     public int CurrentATK { get => _currentATK; set => _currentATK = value; }
+    #endregion
 
-
-
+    #region 本类私有字段
     /// <summary>
     /// 当前的冷却时间
     /// </summary>
@@ -86,28 +99,22 @@ public class RoleBattleEnemy : IRoleActual, ISkillCarrier, IAttributes
     /// 玩家初始站的位置
     /// </summary>
     private Vector2 _startPosition;
+    #endregion
 
-
-    /// <summary>
-    /// 添加数据
-    /// </summary>
-    public void AddData(IBattleActual battle, ITeamActual team)
-    {
-        this._battle = battle;
-        this._team = team;
-    }
-
+    #region 接口实现
     public void RoleRemove()
     {
 
     }
-
     public void RoleInit()
     {
         _startPosition = _go.transform.position;
     }
-
     public void RoleUpdata()
+    {
+        
+    }
+    public void RoleBattleUpdata()
     {
         switch (_turnState)
         {
@@ -130,7 +137,30 @@ public class RoleBattleEnemy : IRoleActual, ISkillCarrier, IAttributes
                 break;
         }
     }
+    public void RoleBattleInit()
+    {
+    }
+    public void RoleBattleRemove()
+    {
+    }
+    public void DoDamage()
+    {
+        int calc_damage = CurrentATK + _battleAction.Attack.Skill.CurrentATK;
+        _battleAction.TargetData.TakeDamage(calc_damage);
+    }
+    public void TakeDamage(int getDamageAmount)
+    {
+        CurrentHP -= getDamageAmount;
+        Debug.Log($"{Name}受到：{getDamageAmount}点伤害,剩余生命值：{CurrentHP}");
+        if (CurrentHP <= 0)
+        {
+            CurrentHP = 0;
+            _turnState = ETurnState.DEAD;
+        }
+    }
+    #endregion
 
+    #region 角色状态
     /// <summary>
     /// 进度条上升
     /// </summary>
@@ -138,10 +168,10 @@ public class RoleBattleEnemy : IRoleActual, ISkillCarrier, IAttributes
     private void UpgradeProgressBar()
     {
         _cur_colldown = _cur_colldown + Time.deltaTime;
+        Debug.Log($"{Name}进度条上升{_cur_colldown}");
         if (_cur_colldown >= _max_colldown)//如果冷却时间到了
             _turnState = ETurnState.CHOOSEACTION;
     }
-
     /// <summary>
     /// 现在是敌人状态,选择攻击方式和玩家或者NPC
     /// </summary>
@@ -165,7 +195,6 @@ public class RoleBattleEnemy : IRoleActual, ISkillCarrier, IAttributes
         _battle.AddBattle(battleAction);
         _turnState = ETurnState.WAITING;
     }
-
     private IEnumerator TimeForAction()
     {
         if (isActionStarted)
@@ -195,7 +224,6 @@ public class RoleBattleEnemy : IRoleActual, ISkillCarrier, IAttributes
         _cur_colldown = 0f;
         _turnState = ETurnState.PROCESSING;
     }
-
     /// <summary>
     /// 角色死亡
     /// </summary>
@@ -233,9 +261,9 @@ public class RoleBattleEnemy : IRoleActual, ISkillCarrier, IAttributes
         //在一场战斗中检查敌人队伍或者自己人队伍是否还有存活的
         _battle.BattleSate = EBattlePerformAction.CHECKALIVE;
     }
+    #endregion
 
-
-
+    #region 私有方法
     /// <summary>
     /// 移动敌人 如果敌人没移动到玩家坐标的时候  返回的就是false
     /// </summary>
@@ -254,26 +282,5 @@ public class RoleBattleEnemy : IRoleActual, ISkillCarrier, IAttributes
     {
         return target != (_go.transform.position = Vector3.MoveTowards(_go.transform.position, target, animSpeed * Time.deltaTime));
     }
-    /// <summary>
-    /// 给与伤害
-    /// </summary>
-    private void DoDamage()
-    {
-        int calc_damage = CurrentATK + _battleAction.Attack.Skill.CurrentATK;
-        _battleAction.TargetData.TakeDamage(calc_damage);
-    }
-
-    /// <summary>
-    /// 遭受伤害
-    /// </summary>
-    public void TakeDamage(int getDamageAmount)
-    {
-        CurrentHP -= getDamageAmount;
-        Debug.Log($"{Name}受到：{getDamageAmount}点伤害,剩余生命值：{CurrentHP}");
-        if (CurrentHP <= 0)
-        {
-            CurrentHP = 0;
-            _turnState = ETurnState.DEAD;
-        }
-    }
+    #endregion
 }

@@ -103,6 +103,7 @@ namespace Core
 
             GameObject gameObjectTemp = CoreResource.Load<GameObject>(ConfigCore.uiCanvasPath);
             GameObject CanvasGoInstantiate = GameObject.Instantiate(gameObjectTemp);
+            CanvasGoInstantiate.name = "UI界面";
             //实例化
             CanvasTransfrom = CanvasGoInstantiate.transform;
             GameObject.DontDestroyOnLoad(CanvasTransfrom);

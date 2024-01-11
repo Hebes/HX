@@ -68,11 +68,46 @@ public interface IRoleBehaviour : IID
 
 }
 
+public interface IRoleBattleBehaviour : IID
+{
+    /// <summary>
+    /// 角色战斗初始化接口
+    /// </summary>
+    public void RoleBattleInit();
+
+    /// <summary>
+    /// 角色战斗的循环
+    /// </summary>
+    public void RoleBattleUpdata();
+
+    /// <summary>
+    /// 移除角色战斗需要做的事情
+    /// </summary>
+    public void RoleBattleRemove();
+}
+
+
+/// <summary>
+/// 伤害接口
+/// </summary>
+public interface IDamage
+{
+    /// <summary>
+    /// 给与伤害
+    /// </summary>
+    public void DoDamage();
+
+    /// <summary>
+    /// 遭受伤害
+    /// </summary>
+    public void TakeDamage(int getDamageAmount);
+}
+
 
 /// <summary>
 /// 角色的实际继承接口
 /// </summary>
-public interface IRoleActual : IRole, IRoleBehaviour
+public interface IRoleActual : IRole, IRoleBehaviour, IRoleBattleBehaviour, IDamage
 {
     /// <summary>
     /// 给与伤害

@@ -104,7 +104,7 @@ public class MainMenuView : UIBase, IUIAwake
         npc1.Max_colldown = 5;
         npc1.MaxHP = 100;
         npc1.CurrentHP = 100;
-        npc1.RoleBattlePoint = ERoleBattlePoint.Point2;
+        npc1.RoleBattlePoint = ERoleBattlePoint.Point1;
         ISkillCarrier.AddSkill(npc1, skillNormalAttack);
 
         RoleBattleNPC npc2 = new RoleBattleNPC();//创建一名NPC->队友
@@ -159,7 +159,7 @@ public class MainMenuView : UIBase, IUIAwake
         enemy2.AddData(teamBattle, enemyTeam);
 
         //添加到战斗管理器
-        sceneBattleManager.SetBattle(teamBattle);
         ManagerRPGBattle.AddBattle(teamBattle);
+        sceneBattleManager.SetBattle(teamBattle);
     }
 }

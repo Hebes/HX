@@ -30,7 +30,7 @@ namespace Core
                 "test"  //测试
             };
             GameObject gameObject = new GameObject("指令");
-            gameObject.AddComponent<SystemOderUI>();
+            gameObject.AddComponent<UISystemOrder>();
             GameObject.DontDestroyOnLoad(gameObject);
 
             //CoreInput.add
