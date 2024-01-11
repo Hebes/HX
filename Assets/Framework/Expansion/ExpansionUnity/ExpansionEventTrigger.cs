@@ -1,13 +1,10 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 /*--------脚本描述-----------
-				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
+
 描述:
     EventTrigger拓展
 
@@ -23,12 +20,26 @@ namespace Core
         /// <param name="trigger">EventTrigger组件对象</param>
         /// <param name="eventType">事件类型</param>
         /// <param name="listenedAction">要执行的方法</param>
-        private static void AddEventTriggerListener(this EventTrigger trigger, EventTriggerType eventType, Action<PointerEventData> listenedAction)
+        private static void AddEventTrigger(this EventTrigger trigger, EventTriggerType eventType, Action<PointerEventData> listenedAction)
         {
-            EventTrigger.Entry entry = new EventTrigger.Entry();
+            //EventTrigger.Entry entry = new EventTrigger.Entry();
+            //entry.eventID = eventType;
+            //entry.callback.AddListener(data => listenedAction.Invoke((PointerEventData)data));
+            //trigger.triggers.Add(entry);
+        }
+
+        /// <summary>
+        /// UI物体移除EventTrigger
+        /// </summary>
+        /// <param name="obj">要移除事件的ui物体</param>
+        /// <param name="eventType">事件类型</param>
+        /// <param name="action">调用的方法</param>
+        public static void RemoveEventTrigger(this EventTrigger trigger, EventTriggerType eventType, UnityAction<BaseEventData> action)
+        {
+            var entry = new EventTrigger.Entry();
             entry.eventID = eventType;
-            entry.callback.AddListener(data => listenedAction.Invoke((PointerEventData)data));
-            trigger.triggers.Add(entry);
+            entry.callback.AddListener(action);
+            trigger.triggers.Remove(entry);
         }
 
         /// <summary>
@@ -53,7 +64,7 @@ namespace Core
             //添加或获取组件
             EventTrigger eventTrigger = go.GetComponent<EventTrigger>() == null ? go.AddComponent<EventTrigger>() : go.GetComponent<EventTrigger>();
             //添加事件监听
-            eventTrigger.AddEventTriggerListener(eventType, listenedAction);
+            eventTrigger.AddEventTrigger(eventType, listenedAction);
         }
     }
 }
