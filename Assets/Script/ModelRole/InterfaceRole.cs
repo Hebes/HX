@@ -28,11 +28,6 @@ public interface IRole : IID, IName
     /// 当前状态枚举
     /// </summary>
     ETurnState TurnState { get; set; }
-
-    //public static void RolePointSet(IRole role, ERoleBattlePoint roleBattlePoint)
-    //{
-    //    role.
-    //}
 }
 
 /// <summary>
@@ -110,12 +105,12 @@ public interface IDamage
 public interface IRoleActual : IRole, IRoleBehaviour, IRoleBattleBehaviour, IDamage
 {
     /// <summary>
-    /// 给与伤害
+    /// 自己归属的队伍
     /// </summary>
-    //public void DoDamage();
+    public ITeamActual TeamActual { get; set; }
 
     /// <summary>
-    /// 遭受伤害
+    /// 战斗的实际接口
     /// </summary>
-    public void TakeDamage(int getDamageAmount);
+    public IBattleActual BattleActual { get; set; }
 }

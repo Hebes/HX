@@ -54,8 +54,10 @@ public class Battle : IBattleActual
     }
     public void BattleUpdata()
     {
+        //战斗是否暂停
         if (isStaaleStop) return;
 
+        //战斗队伍循环
         foreach (ITeamActual item in BattleTeamDic.Values)
             item.TeamUpdata();
 
@@ -77,7 +79,48 @@ public class Battle : IBattleActual
         //TODO 一些其他操作。或者触发事件
     }
 
+    /// <summary>
+    /// 等待
+    /// </summary>
+    private void Wait()
+    {
+        if (_battleActionList.Count <= 0) return;
+        _battleState = EBattlePerformAction.TAKEACTION;
+    }
 
+    /// <summary>
+    /// 采取行动
+    /// </summary>
+    /// <exception cref="NotImplementedException"></exception>
+    private void Takeaction()
+    {
+        IBattleAction battleAction = _battleActionList[0];//战斗的动作
+        switch (battleAction.AttackerData.RoleType)
+        {
+            case ERoleType.Player:
+                break;
+            case ERoleType.NPC:
+                //检查被攻击者是否还存活
+                if (this.ChackRoleSurvival(battleAction.TargetData))
+                {
+                    battleAction.AttackerData.TurnState = ETurnState.ACTION;
+                }
+                else
+                {
+                    //TODO 等待写
+                    //随机一个敌人
+                    
+                    battleAction.AttackerData.BattleActual.RandomEnemyRole
+                }
+                break;
+            case ERoleType.Enemy:
+                break;
+            case ERoleType.Dealer:
+                break;
+            default:
+                break;
+        }
+    }
 
     /// <summary>
     /// 检查是否存活
@@ -108,45 +151,9 @@ public class Battle : IBattleActual
     {
     }
 
-    /// <summary>
-    /// 采取行动
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    private void Takeaction()
-    {
-        IBattleAction battleAction = _battleActionList[0];//战斗的动作
-        switch (battleAction.AttackerData.RoleType)
-        {
-            case ERoleType.Player:
-                break;
-            case ERoleType.NPC:
-                //检查被攻击者是否还存活
-                if (this.ChackRoleSurvival(battleAction.TargetData))
-                {
-                    battleAction.AttackerData.TurnState = ETurnState.ACTION;
-                }
-                else
-                {
-                    //TODO 等待写
-                }
-                break;
-            case ERoleType.Enemy:
-                break;
-            case ERoleType.Dealer:
-                break;
-            default:
-                break;
-        }
-    }
+    
 
-    /// <summary>
-    /// 等待
-    /// </summary>
-    private void Wait()
-    {
-        if (_battleActionList.Count <= 0) return;
-        _battleState = EBattlePerformAction.TAKEACTION;
-    }
+    
 
     /// <summary>
     /// 胜利

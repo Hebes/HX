@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// 攻击方式
 /// </summary>
-public class AttackWay : IAttack
+public class AttackWay : IAttackPattern
 {
     private ISkill _skill;
 

@@ -1,5 +1,6 @@
 ﻿using Core;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using Debug = Core.Debug;
 
@@ -108,15 +109,25 @@ public class SceneBattleManager : MonoBehaviour
     {
         for (int i = 0; i < teamCarrier.RoleList.Count; i++)
         {
-            IRole role = teamCarrier.RoleList[i];
-            Transform tr = SetRolePoint(teamPoint, role.RoleBattlePoint);
-            if (tr == null)
-                Debug.Error("父物体设置为空,请检查赋值");
-            role.Go = GameObject.Instantiate(roleTemplate, tr);
-            role.Go.transform.localPosition = Vector2.zero;
-            role.Go.SetActive(true);
-            role.Go.name = role.Name;
+            IRoleActual role = teamCarrier.RoleList[i];
+            InstantiateBattleRole(teamPoint, role);
         }
+    }
+
+
+    /// <summary>
+    /// 实例化角色物体
+    /// </summary>
+    private void InstantiateBattleRole(ETeamPoint teamPoint, IRoleActual role)
+    {
+        Transform tr = SetRolePoint(teamPoint, role.RoleBattlePoint);
+        if (tr == null)
+            Debug.Error("父物体设置为空,请检查赋值");
+        role.Go = GameObject.Instantiate(roleTemplate, tr);
+        role.Go.transform.localPosition = Vector2.zero;
+        role.Go.SetActive(true);
+        role.Go.name = role.Name;
+        role.RoleBattleInit();
     }
 
     /// <summary>

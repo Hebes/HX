@@ -89,6 +89,7 @@ public interface IBattleCarrier : IID
     public static IRoleActual RandomEnemyRole(IBattleCarrier battleCarrier, ETeamType teamType)
     {
         ExpansionProfiler.ProfilerBeginSample("随机一个敌人");
+        //获取所有角色
         List<IRoleActual> role = new List<IRoleActual>();
         foreach (ITeamActual item in battleCarrier.BattleTeamDic.Values)
         {
@@ -96,6 +97,7 @@ public interface IBattleCarrier : IID
                 role.Add(item1);
         }
 
+        //收集敌人
         int number = 0;
         //随机一个敌人
         switch (teamType)
@@ -210,7 +212,7 @@ public interface IBattleAction
     /// <summary>
     /// 攻击方式
     /// </summary>
-    public IAttack Attack { get; set; }
+    public IAttackPattern AttackPattern { get; set; }
 }
 
 /// <summary>

@@ -5,55 +5,71 @@ using UnityEngine;
 using Debug = Core.Debug;
 
 /// <summary>
-/// 战斗的NPC类型
+/// 具体战斗敌人实例
 /// </summary>
-public class RoleBattleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttackCount
+public class RoleEnemy : IRoleActual, ISkillCarrier, IAttributes
 {
+    #region 私有字段
     private uint _id;
     private string _name;
-    private ERoleBattlePoint _roleBattlePoint = ERoleBattlePoint.Point2;//玩家默认右边，以后会改位置//被偷袭可能会在左边
+    private ERoleType _roleType = ERoleType.Enemy;
+    private ERoleBattlePoint _roleBattlePoint = ERoleBattlePoint.Point1;
     private ETurnState _turnState = ETurnState.PROCESSING;
-    private ERoleType _roleType = ERoleType.NPC;
     private Dictionary<ESkillType, List<ISkill>> _skillDataDic;
     private int _maxHP;
     private int _currentHP;
     private int _maxATK;
     private int _currentATK;
-    private int _attackCount;
     private GameObject _go;
     private float _max_colldown;//最大的冷却时间
+    private ITeamActual _team;
+    private IBattleActual _battle;      //一场战斗
+    #endregion
 
+    #region 初始化API
+    public void RoleBattleEnemyInit(uint id, string name, ERoleType roleType, ERoleBattlePoint roleBattlePoint, float max_colldown)
+    {
+        _id = id;
+        _name = name;
+        _roleType = roleType;
+        _roleBattlePoint = roleBattlePoint;
+        this._max_colldown = max_colldown;
+    }
 
+    /// <summary>
+    /// 添加数据
+    /// </summary>
+    public void AddData(IBattleActual battle, ITeamActual team)
+    {
+        this._battle = battle;
+        this._team = team;
+    }
+    #endregion
 
-    public float Max_colldown { get => _max_colldown; set => _max_colldown = value; }
+    #region 接口属性
     public ERoleType RoleType { get => _roleType; set => _roleType = value; }
     public ERoleBattlePoint RoleBattlePoint { get => _roleBattlePoint; set => _roleBattlePoint = value; }
     public ETurnState TurnState { get => _turnState; set => _turnState = value; }
-    public uint ID { get => _id; set => _id = value; }
+    public float Max_colldown { get => _max_colldown; set => _max_colldown = value; }
     public string Name { get => _name; set => _name = value; }
+    public uint ID { get => _id; set => _id = value; }
     public Dictionary<ESkillType, List<ISkill>> SkillDataDic { get => _skillDataDic; set => _skillDataDic = value; }
     public int MaxHP { get => _maxHP; set => _maxHP = value; }
     public int CurrentHP { get => _currentHP; set => _currentHP = value; }
-    public int AttackCount { get => _attackCount; set => _attackCount = value; }
-    public GameObject Go { get => _go; set => _go = value; }
+    public UnityEngine.GameObject Go { get => _go; set => _go = value; }
     public int MaxATK { get => _maxATK; set => _maxATK = value; }
     public int CurrentATK { get => _currentATK; set => _currentATK = value; }
+    public ITeamActual TeamActual { get => _team; set => _team = value; }
+    public IBattleActual BattleActual { get => _battle; set => _battle = value; }
+    #endregion
 
-
+    #region 本类私有字段
     /// <summary>
     /// 当前的冷却时间
     /// </summary>
     private float _cur_colldown;
 
-    /// <summary>
-    /// 一场战斗接口
-    /// </summary>
-    private IBattleActual _battle;
 
-    /// <summary>
-    /// 自己的队伍
-    /// </summary>
-    private ITeamActual _team;
 
     /// <summary>
     /// 角色的移动速度
@@ -79,31 +95,24 @@ public class RoleBattleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttac
     /// 玩家初始站的位置
     /// </summary>
     private Vector2 _startPosition;
+    #endregion
 
-
-    /// <summary>
-    /// 添加数据
-    /// </summary>
-    public void AddData(IBattleActual battle, ITeamActual team)
-    {
-        this._battle = battle;
-        this._team = team;
-    }
-
-    public void RoleInit()
-    {
-        _startPosition = _go.transform.position;
-    }
+    #region 接口实现
     public void RoleRemove()
     {
+
+    }
+    public void RoleInit()
+    {
+
     }
     public void RoleUpdata()
     {
-        
+
     }
     public void RoleBattleUpdata()
     {
-        switch (TurnState)
+        switch (_turnState)
         {
             case ETurnState.PROCESSING:
                 UpgradeProgressBar();
@@ -120,28 +129,51 @@ public class RoleBattleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttac
                 Dead();
                 break;
             default:
-                Debug.Error("角色状态错误");
+                Debug.Error("敌人行动错误");
                 break;
         }
     }
+    public void RoleBattleInit()
+    {
+        _startPosition = _go.transform.position;
+    }
+    public void RoleBattleRemove()
+    {
+    }
+    public void DoDamage()
+    {
+        int calc_damage = CurrentATK + _battleAction.AttackPattern.Skill.CurrentATK;
+        _battleAction.TargetData.TakeDamage(calc_damage);
+    }
+    public void TakeDamage(int getDamageAmount)
+    {
+        CurrentHP -= getDamageAmount;
+        Debug.Log($"{Name}受到：{getDamageAmount}点伤害,剩余生命值：{CurrentHP}");
+        if (CurrentHP <= 0)
+        {
+            CurrentHP = 0;
+            _turnState = ETurnState.DEAD;
+        }
+    }
+    #endregion
 
+    #region 角色状态
     /// <summary>
     /// 进度条上升
     /// </summary>
     /// <exception cref="NotImplementedException"></exception>
     private void UpgradeProgressBar()
     {
-        _cur_colldown += Time.deltaTime;
+        _cur_colldown = _cur_colldown + Time.deltaTime;
         Debug.Log($"{Name}进度条上升{_cur_colldown}");
         if (_cur_colldown >= _max_colldown)//如果冷却时间到了
             _turnState = ETurnState.CHOOSEACTION;
     }
     /// <summary>
-    /// 现在是敌人状态 选择英雄行动
+    /// 现在是敌人状态,选择攻击方式和玩家或者NPC
     /// </summary>
     private void ChooseAction()
     {
-        _battleAction = new BattleAction();
         BattleAction battleAction = new BattleAction();
         _battleAction = battleAction;
         //自己的攻击数据
@@ -151,7 +183,7 @@ public class RoleBattleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttac
         //选择攻击方式
         AttackWay attackWay = new AttackWay();
         attackWay.Skill = _skillDataDic[ESkillType.NormalAttack][0];
-        battleAction.Attack = attackWay;
+        battleAction.AttackPattern = attackWay;
         //int num = Random.Range(0, enemy.attacks.Count);
         //myAttack.choosenAttack = enemy.attacks[num];
         //伤害公式=emeny的enemy.curAtk+选择攻击方式的一种的伤害-对方的防御
@@ -160,10 +192,6 @@ public class RoleBattleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttac
         _battle.AddBattle(battleAction);
         _turnState = ETurnState.WAITING;
     }
-    /// <summary>
-    /// 行动的时间到了
-    /// </summary>
-    /// <returns></returns>
     private IEnumerator TimeForAction()
     {
         if (isActionStarted)
@@ -230,10 +258,9 @@ public class RoleBattleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttac
         //在一场战斗中检查敌人队伍或者自己人队伍是否还有存活的
         _battle.BattleSate = EBattlePerformAction.CHECKALIVE;
     }
+    #endregion
 
-
-
-
+    #region 私有方法
     /// <summary>
     /// 移动敌人 如果敌人没移动到玩家坐标的时候  返回的就是false
     /// </summary>
@@ -252,40 +279,5 @@ public class RoleBattleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttac
     {
         return target != (_go.transform.position = Vector3.MoveTowards(_go.transform.position, target, animSpeed * Time.deltaTime));
     }
-    /// <summary>
-    /// 给与伤害
-    /// </summary>
-    private void DoDamage()
-    {
-        int calc_damage = CurrentATK + _battleAction.Attack.Skill.CurrentATK;
-        _battleAction.TargetData.TakeDamage(calc_damage);
-    }
-    /// <summary>
-    /// 遭受伤害
-    /// </summary>
-    public void TakeDamage(int getDamageAmount)
-    {
-        CurrentHP -= getDamageAmount;
-        Debug.Log($"{Name}受到：{getDamageAmount}点伤害,剩余生命值：{CurrentHP}");
-        if (CurrentHP <= 0)
-        {
-            CurrentHP = 0;
-            _turnState = ETurnState.DEAD;
-        }
-    }
-
-    public void RoleBattleInit()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void RoleBattleRemove()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IDamage.DoDamage()
-    {
-        throw new System.NotImplementedException();
-    }
+    #endregion
 }
