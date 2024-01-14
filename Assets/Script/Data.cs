@@ -4,6 +4,9 @@ using System;
 using System.Reflection.Emit;
 using System.Reflection;
 using Unity.VisualScripting;
+using System.Dynamic;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
+using System.Collections;
 
 /// <summary>
 /// https://blog.csdn.net/thick__fog/article/details/117995699
@@ -94,10 +97,14 @@ public class SerializableDataScript : MonoBehaviour
         Type scriptType = typeBuilder.CreateType();
         //Type scriptInstance = (Type)Activator.CreateInstance(scriptType);
         GameObject gameObject = new GameObject("测试脚本");
-        Component scriptType1= gameObject.AddComponent(scriptType);
+        Component scriptType1 = gameObject.AddComponent(scriptType);
         Debug.Log("测试脚本");
-        FieldInfo listField = scriptType.GetField("myList");
-        listField.SetValue(scriptType1, new List<int>());
+        // 创建脚本实例
+        IEnumerable result = new ExpandoObject();
+        //List<int> intList = example.CreateList<int>();
+
+        //FieldInfo listField = scriptType.GetField("myList");
+        //listField.SetValue(scriptType1, new List<int>());
     }
 }
 

@@ -18,6 +18,7 @@ namespace ACEditor
 
         [MenuItem("Assets/生成配置文件#C #C")]
         [MenuItem("Tool/生成配置文件#C #C")]
+        [MenuItem("GameObject/生成配置文件#C #C")]
         public static void ShowConfigToolUI()
         {
             if (!EditorWindow.HasOpenInstances<ConfigToolUI>())

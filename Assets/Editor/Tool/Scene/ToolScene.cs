@@ -9,6 +9,7 @@ public class ToolScene //: EditorWindow
     /// https://blog.csdn.net/LWKlwk11/article/details/127278265
     /// </summary>
     [MenuItem("Assets/切换Init场景", false, 1000)]
+    [MenuItem("GameObject/切换Init场景", false, 1000)]
     public static void SwitchScene()
     {
         EditorSceneManager.OpenScene("Assets/Resources/AssetsPackage/Scenes/SceneInit.unity");

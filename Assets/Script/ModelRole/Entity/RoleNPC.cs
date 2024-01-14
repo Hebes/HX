@@ -23,6 +23,7 @@ public class RoleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttackCount
     private GameObject _go;
     private float _max_colldown;//最大的冷却时间
     private ITeamActual _team;
+    private IBattleActual _battle;
 
     /// <summary>
     /// 添加数据
@@ -48,6 +49,7 @@ public class RoleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttackCount
     public int MaxATK { get => _maxATK; set => _maxATK = value; }
     public int CurrentATK { get => _currentATK; set => _currentATK = value; }
     public ITeamActual TeamActual { get => _team; set => _team = value; }
+    public IBattleActual BattleActual { get => _battle; set => _battle = value; }
 
 
     /// <summary>
@@ -55,10 +57,7 @@ public class RoleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttackCount
     /// </summary>
     private float _cur_colldown { get; set; }
 
-    /// <summary>
-    /// 一场战斗接口
-    /// </summary>
-    private IBattleActual _battle { get; set; }
+
 
     /// <summary>
     /// 角色的移动速度
@@ -126,8 +125,20 @@ public class RoleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttackCount
     public void RoleBattleRemove()
     {
     }
-    void IDamage.DoDamage()
+    public void DoDamage()
     {
+        int calc_damage = CurrentATK + _battleAction.AttackPattern.Skill.CurrentATK;
+        _battleAction.TargetData.TakeDamage(calc_damage);
+    }
+    public void TakeDamage(int getDamageAmount)
+    {
+        CurrentHP -= getDamageAmount;
+        Debug.Log($"{Name}受到：{getDamageAmount}点伤害,剩余生命值：{CurrentHP}");
+        if (CurrentHP <= 0)
+        {
+            CurrentHP = 0;
+            _turnState = ETurnState.DEAD;
+        }
     }
 
     /// <summary>
@@ -162,7 +173,7 @@ public class RoleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttackCount
         //伤害公式=emeny的enemy.curAtk+选择攻击方式的一种的伤害-对方的防御
         //Debug.Log(this.gameObject.name + "选择了：" + myAttack.choosenAttack.attackName + "攻击方式,对" + myAttack.AttackersTarget.name + "造成" + (myAttack.choosenAttack.attackDamage + enemy.curAtk) + "伤害");
         //添加到战斗列表
-        _battle.AddBattle(battleAction);
+        _battle.AddBattleAction(battleAction);
         _turnState = ETurnState.WAITING;
     }
     /// <summary>
@@ -176,7 +187,7 @@ public class RoleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttackCount
         isActionStarted = true;
         //播放敌人接近英雄的攻击动画
         Vector3 heroPostion = new Vector3(
-            _battleAction.TargetData.Go.transform.position.x - 1.5f,
+            _battleAction.TargetData.Go.transform.position.x + 1.5f,
             _battleAction.TargetData.Go.transform.position.y,
             _battleAction.TargetData.Go.transform.position.z);
         while (MoveTowrdsEnemy(heroPostion))//循环等待1帧
@@ -209,7 +220,7 @@ public class RoleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttackCount
         //change tag 切换标签
         //this.gameObject.tag = "DeadEnemy";
         //自己死亡了,队伍列表删除自己
-        _team.RemoveRole(this);
+        //_team.RemoveRole(this);
         //deactivate the selector 停用选择器 就是黄色的小物体
         //Selector.SetActive(false);
         //从行动列表删除自己，如果行动列表存在自己的话
@@ -238,7 +249,6 @@ public class RoleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttackCount
 
 
 
-
     /// <summary>
     /// 移动敌人 如果敌人没移动到玩家坐标的时候  返回的就是false
     /// </summary>
@@ -257,27 +267,4 @@ public class RoleNPC : IRoleActual, ISkillCarrier, IAttributes, IRoleAttackCount
     {
         return target != (_go.transform.position = Vector3.MoveTowards(_go.transform.position, target, animSpeed * Time.deltaTime));
     }
-    /// <summary>
-    /// 给与伤害
-    /// </summary>
-    private void DoDamage()
-    {
-        int calc_damage = CurrentATK + _battleAction.AttackPattern.Skill.CurrentATK;
-        _battleAction.TargetData.TakeDamage(calc_damage);
-    }
-    /// <summary>
-    /// 遭受伤害
-    /// </summary>
-    public void TakeDamage(int getDamageAmount)
-    {
-        CurrentHP -= getDamageAmount;
-        Debug.Log($"{Name}受到：{getDamageAmount}点伤害,剩余生命值：{CurrentHP}");
-        if (CurrentHP <= 0)
-        {
-            CurrentHP = 0;
-            _turnState = ETurnState.DEAD;
-        }
-    }
-
-
 }

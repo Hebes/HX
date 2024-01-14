@@ -1,6 +1,5 @@
 ﻿using Core;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 using Debug = Core.Debug;
 
@@ -108,10 +107,7 @@ public class SceneBattleManager : MonoBehaviour
     public void SetRolePoint(ETeamPoint teamPoint, ITeamCarrier teamCarrier)
     {
         for (int i = 0; i < teamCarrier.RoleList.Count; i++)
-        {
-            IRoleActual role = teamCarrier.RoleList[i];
-            InstantiateBattleRole(teamPoint, role);
-        }
+            InstantiateBattleRole(teamPoint, teamCarrier.RoleList[i]);
     }
 
 

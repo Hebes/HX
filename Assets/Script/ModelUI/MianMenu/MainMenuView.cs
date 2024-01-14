@@ -63,6 +63,7 @@ public class MainMenuView : UIBase, IUIAwake
     {
         await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneStart);
         CloseUIForm();
+        await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneMain, ELoadSceneModel.Additive);
     }
 
     private async UniTask LoadBattleScene()

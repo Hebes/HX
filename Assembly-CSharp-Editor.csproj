@@ -75,6 +75,7 @@
     <Compile Include="Assets\Editor\UIComponentEditor\UIComponentTool.cs" />
     <Compile Include="Assets\Editor\Tool\Excels\ExcelWriteUI.cs" />
     <Compile Include="Assets\Editor\Tool\Excels\ExcelsChange\ExcelChangeHelper.cs" />
+    <Compile Include="Assets\Resources\AssetsPackage\Tilemap\Custom Brush Scripts\Coordinate Brush\Editor\CoordinateBrush.cs" />
     <Compile Include="Assets\Editor\Tool\Scene\ToolScene.cs" />
     <Compile Include="Assets\Editor\Core\ToolExpansion_AssetDatabase.cs" />
     <Compile Include="Assets\Editor\Core\ToolExpansion_Script.cs" />
