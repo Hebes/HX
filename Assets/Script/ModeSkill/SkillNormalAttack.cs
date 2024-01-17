@@ -4,10 +4,10 @@ using System.Collections.Generic;
 /// <summary>
 /// 普通攻击
 /// </summary>
-public class SkillNormalAttack : ISkillActual, IBuffCarrier
+public class SkillNormalAttack : ISkill, ISkillBehaviour, IBuffCarrier
 {
     private ESkillType _skillType = ESkillType.NormalAttack;
-    private uint _id;
+    private long _id;
     private string _name;
     private string _description;
     private List<IBuff> _buffList;
@@ -15,7 +15,7 @@ public class SkillNormalAttack : ISkillActual, IBuffCarrier
     private int _currentATK;
 
     public ESkillType SkillType { get => _skillType; set => _skillType = value; }
-    public uint ID { get => _id; set => _id = value; }
+    public long ID { get => _id; set => _id = value; }
     public string Name { get => _name; set => _name = value; }
     public string Des { get => _description; set => _description = value; }
     public List<IBuff> BuffList { get => _buffList; set => _buffList = value; }

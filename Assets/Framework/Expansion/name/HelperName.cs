@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    internal class HelperName
+    public static class HelperName
     {
         /// <summary>
         /// 姓

@@ -233,6 +233,7 @@ namespace ACEditor
             }
             if (GUILayout.Button("Excel转换", GUILayout.Width(80f)))
             {
+                ExcelChange.EXCEL_PATH = PlayerPrefs.GetString(_excelFolderPathKey);
                 ExcelChange.GenerateExcelInfo();
                 Message = "转换成功";
             }

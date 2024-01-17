@@ -11,7 +11,7 @@ public class TaskGather : ITask
 {
     public EnumTask taskType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public EnumTaskStatus taskStatus { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public uint ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public long ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string Des { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 

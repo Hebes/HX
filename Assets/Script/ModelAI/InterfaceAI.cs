@@ -22,7 +22,7 @@ public class AiStata
 /// </summary>
 public interface EAIExecute
 {
-    public uint AIExecuteType { get; set; }//AI执行事件的类型,比如买东西
+    public long AIExecuteType { get; set; }//AI执行事件的类型,比如买东西
 }
 
 public interface EAIExecuteTry : EAIExecute

@@ -5,13 +5,13 @@ using Debug = Core.Debug;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Item : MonoBehaviour, IPool, IItem
 {
-    public uint _itemID;
+    public long _itemID;
     public string _name;
     public string _des;
 
     private SpriteRenderer spriteRenderer;
 
-    public uint ID { get => _itemID; set => _itemID = value; }
+    public long ID { get => _itemID; set => _itemID = value; }
     public string Name { get => _name; set => _name = value; }
     public string Des { get => _des; set => _des = value; }
 
@@ -24,7 +24,7 @@ public class Item : MonoBehaviour, IPool, IItem
     /// 刷新物品
     /// </summary>
     /// <param name="itemCodeParam"></param>
-    public void RefreshItem(uint itemCodeParam)
+    public void RefreshItem(long itemCodeParam)
     {
         if (itemCodeParam <= 0)
         {

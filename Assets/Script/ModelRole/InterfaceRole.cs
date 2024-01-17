@@ -1,4 +1,29 @@
 ﻿using UnityEngine;
+using Core;
+using Debug = Core.Debug;
+using Unity.VisualScripting;
+
+/// <summary>
+/// 角色实际接口
+/// </summary>
+public interface IRoleInstance : IRole, ISkillCarrier
+{
+    /// <summary>
+    /// 玩家数据
+    /// </summary>
+    public RoleData Role { get; }
+
+    /// <summary>
+    /// 队伍
+    /// </summary>
+    public ITeamInstance Team { get; set; }
+
+    /// <summary>
+    /// 玩家属性
+    /// </summary>
+    public RoleAttributes RoleAttributes { get; set; }
+}
+
 
 /// <summary>
 /// 角色接口
@@ -8,26 +33,27 @@ public interface IRole : IID, IName
     /// <summary>
     /// 物体
     /// </summary>
-    GameObject Go { get; set; }
-    /// <summary>
-    /// 行动冷却时间
-    /// </summary>
-    float Max_colldown { get; set; }
+    public GameObject gameObject { get; set; }
 
     /// <summary>
     /// 角色类型
     /// </summary>
-    ERoleType RoleType { get; set; }
+    public ERoleOrTeamType RoleType { get; set; }
 
     /// <summary>
     /// 角色战斗的位置
     /// </summary>
-    ERoleBattlePoint RoleBattlePoint { get; set; }
+    public ERoleBattlePoint RoleBattlePoint { get; set; }
 
     /// <summary>
-    /// 当前状态枚举
+    /// 角色状态
     /// </summary>
-    ETurnState TurnState { get; set; }
+    public ERoleSateType RoleSateType { get; set; }
+
+    /// <summary>
+    /// 角色状态
+    /// </summary>
+    public IRoleState RoleState { get; set; }
 }
 
 /// <summary>
@@ -42,10 +68,31 @@ public interface IRoleAttackCount
 }
 
 /// <summary>
-/// 角色生命周期接口
+/// 伤害接口
 /// </summary>
-public interface IRoleBehaviour : IID
+public interface IDamage : IID
 {
+    /// <summary>
+    /// 给与伤害
+    /// </summary>
+    public void DoDamage();
+
+    /// <summary>
+    /// 遭受伤害
+    /// </summary>
+    public void TakeDamage(int getDamageAmount);
+}
+
+/// <summary>
+/// 角色状态
+/// </summary>
+public interface IRoleState
+{
+    /// <summary>
+    /// 角色状态
+    /// </summary>
+    public ERoleSateType RoleSateType { get; set; }
+
     /// <summary>
     /// 角色初始化
     /// </summary>
@@ -60,57 +107,35 @@ public interface IRoleBehaviour : IID
     /// 移除角色需要做的事情
     /// </summary>
     public void RoleRemove();
-
 }
-
-public interface IRoleBattleBehaviour : IID
-{
-    /// <summary>
-    /// 角色战斗初始化接口
-    /// </summary>
-    public void RoleBattleInit();
-
-    /// <summary>
-    /// 角色战斗的循环
-    /// </summary>
-    public void RoleBattleUpdata();
-
-    /// <summary>
-    /// 移除角色战斗需要做的事情
-    /// </summary>
-    public void RoleBattleRemove();
-}
-
 
 /// <summary>
-/// 伤害接口
+/// 角色帮助类
 /// </summary>
-public interface IDamage
+public static class HelperRole
 {
     /// <summary>
-    /// 给与伤害
+    /// 切换角色状态
     /// </summary>
-    public void DoDamage();
+    public static T SwitchRoleState<T>(this IRoleInstance RoleState)where T: IRoleState,new()
+    {
+        RoleState.RoleState = new T();
+        RoleState.RoleSateType = RoleState.RoleState.RoleSateType;
+        RoleState.RoleState.RoleInit();
+        return (T)RoleState.RoleState;
+    }
 
     /// <summary>
-    /// 遭受伤害
+    /// 获取角色状态
     /// </summary>
-    public void TakeDamage(int getDamageAmount);
-}
-
-
-/// <summary>
-/// 角色的实际继承接口
-/// </summary>
-public interface IRoleActual : IRole, IRoleBehaviour, IRoleBattleBehaviour, IDamage
-{
-    /// <summary>
-    /// 自己归属的队伍
-    /// </summary>
-    public ITeamActual TeamActual { get; set; }
-
-    /// <summary>
-    /// 战斗的实际接口
-    /// </summary>
-    public IBattleActual BattleActual { get; set; }
+    /// <typeparam name="T"></typeparam>
+    /// <param name="roleState"></param>
+    /// <returns></returns>
+    public static T GetRoleSate<T>(this IRoleState roleState) where T : IRoleState
+    {
+        if (roleState is T t)
+            return t;
+        Debug.Error($"脚本不继承IRoleState");
+        return default;
+    }
 }

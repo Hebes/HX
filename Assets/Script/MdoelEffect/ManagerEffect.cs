@@ -15,12 +15,12 @@ public class ManagerEffect : IModelInit
 {
     public static ManagerEffect Instance;
 
-    private Dictionary<uint, IEffect> _effectDic;
+    private Dictionary<long, IEffect> _effectDic;
 
     public void Init()
     {
         Instance = this;
-        _effectDic = new Dictionary<uint, IEffect>();
+        _effectDic = new Dictionary<long, IEffect>();
     }
 
     public static void AddEffect(IEffect effect)
@@ -38,7 +38,7 @@ public class ManagerEffect : IModelInit
 
 
 
-    public static IEffect GetEffect(uint id)
+    public static IEffect GetEffect(long id)
     {
         if (Instance._effectDic.ContainsKey(id))
         {

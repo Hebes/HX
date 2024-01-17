@@ -11,7 +11,7 @@ public interface ITeam : IID
     /// <summary>
     /// 是否进入战斗
     /// </summary>
-    public bool EnterBattle { get; set; }
+    public bool IsEnterBattle { get; set; }
 
     /// <summary>
     /// 队伍位置
@@ -21,7 +21,12 @@ public interface ITeam : IID
     /// <summary>
     /// 队伍类型
     /// </summary>
-    public ETeamType TeamType { get; set; }
+    public ERoleOrTeamType TeamType { get; set; }
+
+    /// <summary>
+    /// 队伍列表
+    /// </summary>
+    public List<IRoleInstance> RoleList { get; set; }
 }
 
 /// <summary>
@@ -29,110 +34,12 @@ public interface ITeam : IID
 /// </summary>
 public interface ITeamBehaviour : IID
 {
+    /// <summary>
+    /// 队伍生命周期
+    /// </summary>
     public void TeamUpdata();
 }
 
-/// <summary>
-///队伍的持有者
-/// </summary>
-public interface ITeamCarrier : IID
-{
-    /// <summary>
-    /// 队伍列表
-    /// </summary>
-    public List<IRoleActual> RoleList { get; set; }
-
-    /// <summary>
-    /// 添加队员
-    /// </summary>
-    /// <param name="role">角色</param>
-    public static void AddRole(ITeamCarrier teamCarrier, IRoleActual role)
-    {
-        if (teamCarrier.RoleList == null)
-            teamCarrier.RoleList = new List<IRoleActual>(4);
-
-        if (teamCarrier.RoleList.Count >= 4)
-        {
-            Debug.Error($"添加{role.Name}错误，当前只能有4个人");
-            return;
-        }
-        if (!teamCarrier.RoleList.AddNotContainElement(role))
-        {
-            Debug.Error($"添加{role.Name}错误，已经存在这个角色");
-            return;
-        }
-        //if (role is IRoleBehaviour roleBehaviour)
-        //    roleBehaviour.RoleInit();
-    }
-
-    /// <summary>
-    /// 移除队员
-    /// </summary>
-    /// <param name="role">角色</param>
-    public static void RemoveRole(ITeamCarrier teamCarrier, IRoleActual role)
-    {
-        if (!teamCarrier.RoleList.RemoveContainElement(role))
-        {
-            Debug.Error($"移除失败请检查,该队伍没有队员{role.Name}");
-            return;
-        }
-        if (role is IRoleBehaviour roleBehaviour)
-            roleBehaviour.RoleRemove();
-    }
-
-    /// <summary>
-    /// 确认队伍是否存活
-    /// </summary>
-    public static bool ChackTeamSurvival(ITeamCarrier itemCarrier)
-    {
-
-        foreach (IRole item in itemCarrier.RoleList)
-        {
-            if (item.TurnState != ETurnState.DEAD)
-                return true;
-        }
-        return false;
-    }
-
-    public static bool ChackRoleSurvival(ITeamCarrier itemCarrier, IRoleActual roleActual)
-    {
-        foreach (IRoleActual item in itemCarrier.RoleList)
-        {
-            if (roleActual.ID == item.ID && item.TurnState != ETurnState.DEAD)
-                return true;
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// 检查队伍角色存活数量
-    /// </summary>
-    /// <param name="itemCarrier"></param>
-    /// <returns></returns>
-    public static int ChackTeamSurvivalCount(ITeamCarrier itemCarrier)
-    {
-        return itemCarrier.RoleList.Count;
-    }
-
-    /// <summary>
-    /// 随机一个人
-    /// </summary>
-    /// <returns></returns>
-    public static IRole RandomRole(ITeamCarrier teamCarrier)
-    {
-        if (teamCarrier.RoleList.Count > 0)
-            return teamCarrier.RoleList[Random.Range(0, teamCarrier.RoleList.Count)];
-        return default;
-    }
-}
-
-/// <summary>
-/// 队伍的实际接口
-/// </summary>
-public interface ITeamActual : ITeam, ITeamCarrier, ITeamBehaviour
-{
-
-}
 
 /// <summary>
 /// 队伍帮助类
@@ -141,18 +48,53 @@ public static class HelperTeam
 {
     #region 角色操作
     /// <summary>
+    /// 创建一个角色
+    /// </summary>
+    public static void CreatRole<T>() where T : class, IRoleInstance, new()
+    {
+        //TODO 后面从对象池加入
+        T t = new T(); 
+        //t
+    }
+
+    /// <summary>
     /// 添加队员
     /// </summary>
     /// <param name="teamCarrier"></param>
     /// <param name="role"></param>
-    public static void AddRole(this ITeamCarrier teamCarrier, IRoleActual role) => ITeamCarrier.AddRole(teamCarrier, role);
+    public static bool AddRole(this ITeam teamCarrier, IRoleInstance role)
+    {
+        if (teamCarrier.RoleList == null)
+            teamCarrier.RoleList = new List<IRoleInstance>(4);//限定4人
+
+        if (teamCarrier.RoleList.Count >= 4)
+        {
+            Debug.Error($"添加{role.Name}错误，当前只能有4个人");
+            return false;
+        }
+        if (!teamCarrier.RoleList.AddNotContainElement(role))
+        {
+            Debug.Error($"添加{role.Name}错误，已经存在这个角色");
+            return false;
+        }
+        return true;
+    }
 
     /// <summary>
     /// 移除队员
     /// </summary>
     /// <param name="teamCarrier"></param>
     /// <param name="role"></param>
-    public static void RemoveRole(this ITeamCarrier teamCarrier, IRoleActual role) => ITeamCarrier.RemoveRole(teamCarrier, role);
+    public static bool RemoveRole(this ITeam teamCarrier, IRoleInstance role)
+    {
+        if (!teamCarrier.RoleList.RemoveContainElement(role))
+        {
+            Debug.Error($"移除失败请检查,该队伍没有队员{role.Name}");
+            return false;
+        }
+        role.ChackInherit<IRoleInstance, IRoleState>()?.RoleRemove();
+        return true;
+    }
     #endregion
 
     #region 队伍操作
@@ -160,26 +102,58 @@ public static class HelperTeam
     /// 确认队伍中是否有人存活
     /// </summary>
     /// <param name="teamCarrier"></param>
-    public static bool ChackTeamSurvival(this ITeamCarrier teamCarrier) => ITeamCarrier.ChackTeamSurvival(teamCarrier);
+    public static bool ChackTeamRoleSurvival(this ITeam teamCarrier)
+    {
+        foreach (IRole item in teamCarrier.RoleList)
+        {
+            if (item.RoleSateType != ERoleSateType.Dead)
+                return true;
+        }
+        return false;
+    }
+
     /// <summary>
     /// 确认角色是否存活
     /// </summary>
-    /// <param name="itemCarrier"></param>
-    /// <param name="roleActual"></param>
+    /// <param name="team"></param>
+    /// <param name="role"></param>
     /// <returns></returns>
-    public static bool ChackRoleSurvival(this ITeamCarrier itemCarrier, IRoleActual roleActual) => ITeamCarrier.ChackRoleSurvival(itemCarrier, roleActual);
+    public static bool ChackRoleSurvival(this ITeam team, IRoleInstance role)
+    {
+        foreach (IRoleInstance item in team.RoleList)
+        {
+            if (role.ID == item.ID && item.RoleSateType != ERoleSateType.Dead)
+                return true;
+        }
+        return false;
+    }
+
     /// <summary>
     /// 获取随机角色
     /// </summary>
-    /// <param name="teamCarrier"></param>
+    /// <param name="team"></param>
     /// <returns></returns>
-    public static IRole RandomRole(this ITeamCarrier teamCarrier) => ITeamCarrier.RandomRole(teamCarrier);
+    public static IRoleInstance RandomRole(this ITeam team)
+    {
+        if (ChackTeamRoleCount(team,out int count))
+        {
+            int number = Random.Range(0, team.RoleList.Count);
+            return team.RoleList[number];
+        }
+        return default;
+    }
+
     /// <summary>
-    /// 检查队伍角色存活数量
+    /// 检查队伍角色数量
     /// </summary>
-    /// <param name="teamCarrier"></param>
+    /// <param name="team">队伍</param>
+    /// <param name="count">队伍角色数量</param>
     /// <returns></returns>
-    public static int ChackTeamSurvivalCount(this ITeamCarrier teamCarrier) => ITeamCarrier.ChackTeamSurvivalCount(teamCarrier);
+    public static bool ChackTeamRoleCount(this ITeam team, out int count)
+    {
+        count = team.RoleList.Count;
+        return team.RoleList.Count > 0;
+    }
     #endregion
 
 }

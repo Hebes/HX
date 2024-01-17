@@ -6,19 +6,19 @@
 public class ManagerTeam : IModelInit
 {
     public static ManagerTeam Instance;
-    private Dictionary<uint, ITeam> _teamDic;
-    private uint _teamId;
+    private Dictionary<long, ITeam> _teamDic;
+    private long _teamId;
 
     public void Init()
     {
         Instance = this;
-        _teamDic = new Dictionary<uint, ITeam>();
+        _teamDic = new Dictionary<long, ITeam>();
     }
 
     /// <summary>
     /// 生成队伍ID
     /// </summary>
-    public static uint GenerateTeamID()
+    public static long GenerateTeamID()
     {
         return Instance._teamId++;
     }

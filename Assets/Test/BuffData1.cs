@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 public class BuffData1 //: IBuffData
 {
-    private uint _id = 1;
+    private long _id = 1;
 
     public string buffName => "1";
 
     public string describe => "1";
 
-    public uint ID { get => _id; set => _id = value; }
+    public long ID { get => _id; set => _id = value; }
 }
 

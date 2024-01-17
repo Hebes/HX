@@ -73,8 +73,13 @@ public class MainMenuView : UIBase, IUIAwake
         SceneBattleManager sceneBattleManager = SceneBattleManager.Instance;
 
         Battle teamBattle = new Battle();   //创建一场战斗
-        TeamTypeOne enemyTeam = new TeamTypeOne();  //创建敌人队伍
-        TeamTypeOne ownTeam = new TeamTypeOne();    //创建自己队伍   
+        Team enemyTeam = new Team();  //创建敌人队伍
+        enemyTeam.TeamPoint = ETeamPoint.Right1;
+        enemyTeam.TeamType = ERoleOrTeamType.Enemy;
+
+        Team ownTeam = new Team();    //创建自己队伍   
+        ownTeam.TeamPoint = ETeamPoint.Left1;
+        ownTeam.TeamType = ERoleOrTeamType.NPC;
 
         //测试战斗
         //创建技能
@@ -99,51 +104,52 @@ public class MainMenuView : UIBase, IUIAwake
         //ISkillCarrier.AddSkill(rolePlayer, skillNormalAttack);
 
         RoleNPC npc1 = new RoleNPC();//创建一名NPC->队友
-        npc1.ID = 2;
-        npc1.Name = "NPC1";
-        npc1.RoleType = ERoleType.NPC;
-        npc1.Max_colldown = 5;
-        npc1.MaxHP = 100;
-        npc1.CurrentHP = 100;
-        npc1.RoleBattlePoint = ERoleBattlePoint.Point1;
-        ISkillCarrier.AddSkill(npc1, skillNormalAttack);
+        npc1.SetRole(2, HelperName.GetManName(), ERoleOrTeamType.NPC, ERoleBattlePoint.Point1);
+        RoleAttributes roleAttributes1 = new RoleAttributes();
+        roleAttributes1.MaxHP = 100;
+        roleAttributes1.CurrentHP = 100;
+        npc1.SetRoleAttributes(roleAttributes1);
+        npc1.AddSkill(skillNormalAttack);
+        npc1.SwitchRoleState<RoleStateBattle>().SetBattleData(npc1, teamBattle);
+
 
         RoleNPC npc2 = new RoleNPC();//创建一名NPC->队友
-        npc2.ID = 3;
-        npc2.Name = "NPC2";
-        npc2.RoleType = ERoleType.NPC;
-        npc2.Max_colldown = 5;
-        npc2.MaxHP = 100;
-        npc2.CurrentHP = 100;
-        npc2.RoleBattlePoint = ERoleBattlePoint.Point2;
-        ISkillCarrier.AddSkill(npc2, skillNormalAttack);
-
+        npc2.SetRole(3, HelperName.GetManName(), ERoleOrTeamType.NPC, ERoleBattlePoint.Point2);
+        RoleAttributes roleAttributes2 = new RoleAttributes();
+        roleAttributes2.CurrentHP = roleAttributes2.MaxHP = 100;
+        roleAttributes2.CurColldown = 0; roleAttributes2.MaxColldown = 5;
+        npc2.SetRoleAttributes(roleAttributes2);
+        npc2.AddSkill(skillNormalAttack);
+        npc2.SwitchRoleState<RoleStateBattle>().SetBattleData(npc2, teamBattle);
 
 
         //敌人
         RoleEnemy enemy1 = new RoleEnemy();
-        enemy1.RoleBattleEnemyInit(3, "敌人1", ERoleType.Enemy, ERoleBattlePoint.Point1, 5);
-        enemy1.MaxHP = 100;
-        enemy1.CurrentHP = 100;
-        ISkillCarrier.AddSkill(enemy1, skillNormalAttack);//添加技能
+        enemy1.SetRole(4, HelperName.GetManName(), ERoleOrTeamType.Enemy, ERoleBattlePoint.Point1);
+        RoleAttributes roleAttributes3 = new RoleAttributes();
+        roleAttributes3.CurrentHP = roleAttributes3.MaxHP = 100;
+        roleAttributes3.CurColldown = 0; roleAttributes3.MaxColldown = 5;
+        enemy1.SetRoleAttributes(roleAttributes3);
+        enemy1.AddSkill(skillNormalAttack);
+        enemy1.SwitchRoleState<RoleStateBattle>().SetBattleData(enemy1, teamBattle);
 
         RoleEnemy enemy2 = new RoleEnemy();
-        enemy2.RoleBattleEnemyInit(4, "敌人2", ERoleType.Enemy, ERoleBattlePoint.Point2, 5);
-        enemy2.MaxHP = 100;
-        enemy2.CurrentHP = 100;
+        enemy2.SetRole(5, HelperName.GetManName(), ERoleOrTeamType.Enemy, ERoleBattlePoint.Point2);
+        RoleAttributes roleAttributes4 = new RoleAttributes();
+        roleAttributes4.CurrentHP = roleAttributes4.MaxHP = 100;
+        roleAttributes4.CurColldown = 0; roleAttributes4.MaxColldown = 5;
+        enemy2.SetRoleAttributes(roleAttributes4);
         enemy2.AddSkill(skillNormalAttack);
-
+        enemy2.SwitchRoleState<RoleStateBattle>().SetBattleData(enemy2, teamBattle);
 
         //创建队伍
         //自己队伍
-        ownTeam.TeamPoint = ETeamPoint.Left1;
-        ownTeam.TeamType = ETeamType.Player;
+
         ownTeam.AddRole(npc1);
         ownTeam.AddRole(npc2);
 
         //敌人队伍
-        enemyTeam.TeamPoint = ETeamPoint.Right1;
-        enemyTeam.TeamType = ETeamType.Enemy;
+
         enemyTeam.AddRole(enemy1);
         enemyTeam.AddRole(enemy2);
 
@@ -153,11 +159,7 @@ public class MainMenuView : UIBase, IUIAwake
         teamBattle.AddBattleTeam(ownTeam);
         teamBattle.AddBattleTeam(enemyTeam);
 
-        npc1.AddData(teamBattle, ownTeam);
-        npc2.AddData(teamBattle, ownTeam);
 
-        enemy1.AddData(teamBattle, enemyTeam);
-        enemy2.AddData(teamBattle, enemyTeam);
 
         //添加到战斗管理器
         sceneBattleManager.SetBattle(teamBattle);

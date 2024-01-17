@@ -3,5 +3,5 @@
     /// <summary>
     /// ID
     /// </summary>
-    public uint ID { get; set; }
+    public long ID { get; set; }
 }

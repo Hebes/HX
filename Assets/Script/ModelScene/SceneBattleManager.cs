@@ -93,37 +93,24 @@ public class SceneBattleManager : MonoBehaviour
     /// 设置一场战斗
     /// </summary>
     /// <param name="battle"></param>
-    public void SetBattle(IBattleActual battle)
+    public void SetBattle(IBattle battle)
     {
         this.battle = battle;
-
-        foreach (KeyValuePair<ETeamPoint, ITeamActual> item in battle.BattleTeamDic)
-            SetRolePoint(item.Key, item.Value);
     }
-
-    /// <summary>
-    /// 设置角色站的位置
-    /// </summary>
-    public void SetRolePoint(ETeamPoint teamPoint, ITeamCarrier teamCarrier)
-    {
-        for (int i = 0; i < teamCarrier.RoleList.Count; i++)
-            InstantiateBattleRole(teamPoint, teamCarrier.RoleList[i]);
-    }
-
 
     /// <summary>
     /// 实例化角色物体
     /// </summary>
-    private void InstantiateBattleRole(ETeamPoint teamPoint, IRoleActual role)
+    public GameObject InstantiateBattleRole(ETeamPoint teamPoint, IRole role)
     {
-        Transform tr = SetRolePoint(teamPoint, role.RoleBattlePoint);
+        Transform tr = SetRolePoint(teamPoint, role.RoleBattlePoint); 
         if (tr == null)
             Debug.Error("父物体设置为空,请检查赋值");
-        role.Go = GameObject.Instantiate(roleTemplate, tr);
-        role.Go.transform.localPosition = Vector2.zero;
-        role.Go.SetActive(true);
-        role.Go.name = role.Name;
-        role.RoleBattleInit();
+        GameObject gameObject = GameObject.Instantiate(roleTemplate, tr);
+        gameObject.transform.localPosition = Vector2.zero;
+        gameObject.SetActive(true);
+        gameObject.name = $"{role.Name}{role.ID}";
+        return gameObject;
     }
 
     /// <summary>

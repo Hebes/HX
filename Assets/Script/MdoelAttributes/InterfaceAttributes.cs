@@ -479,13 +479,6 @@
 //法师mage 战士warriop 德鲁依 drvid 撒满shamam 圣骑士 paladin 术士warlock 盗贼rogue 牧师prisst 猎人 hunter
 #endregion
 
-/// <summary>
-/// 属性接口
-/// </summary>
-public interface IAttributes : IHP, IATK
-{
-}
-
 /// <summary> 生命值 </summary>
 public interface IHP
 {
@@ -532,4 +525,20 @@ public interface IATK
         ATK.MaxATK = maxATK;
         ATK.CurrentATK = currentATK;
     }
+}
+
+/// <summary>
+/// 冷却接口
+/// </summary>
+public interface IColldown
+{
+    /// <summary>
+    /// 最大冷却时间
+    /// </summary>
+    public float MaxColldown { get; set; }
+
+    /// <summary>
+    /// 当前冷却时间
+    /// </summary>
+    public float CurColldown { get; set; }
 }

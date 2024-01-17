@@ -7,34 +7,38 @@ using Debug = Core.Debug;
 /// <summary>
 /// 战斗
 /// </summary>
-public class Battle : IBattleActual
+public class Battle : IBattle
 {
     #region 字段
     /// <summary>
     /// 战斗编号
     /// </summary>
-    public uint battleId;
+    public long battleId;
+
     /// <summary>
     /// 战斗的状态
     /// </summary>
     private EBattlePerformAction _battleState;
+
     /// <summary>
     /// 所有人的战斗执行动作列表
     /// </summary>
     private List<IBattleAction> _battleActionList = new List<IBattleAction>();
+
     //TODO 后面或许要加一场战斗的类型player对战敌人或者NPC对战敌人
     private BattleType _battleType;
+
     /// <summary>
     /// 战斗的位置
     /// 1.可能是敌人在左边，进入二打一模式
     /// 2.可能是自己人右边，敌人3队进行二打一模式
     /// </summary>
-    private Dictionary<ETeamPoint, ITeamActual> _rolePointDic;
+    private Dictionary<ETeamPoint, ITeamInstance> _rolePointDic;
     #endregion
 
     #region 接口属性
-    public uint ID { get => battleId; set => battleId = value; }
-    public Dictionary<ETeamPoint, ITeamActual> BattleTeamDic { get => _rolePointDic; set => _rolePointDic = value; }
+    public long ID { get => battleId; set => battleId = value; }
+    public Dictionary<ETeamPoint, ITeamInstance> BattleTeamDic { get => _rolePointDic; set => _rolePointDic = value; }
     public List<IBattleAction> BattleActionList { get => _battleActionList; set => _battleActionList = value; }
     public BattleType battleType { get => _battleType; set => _battleType = value; }
     public EBattlePerformAction BattleSate { get => _battleState; set => _battleState = value; }
@@ -47,13 +51,18 @@ public class Battle : IBattleActual
     public bool isStaaleStop;
     #endregion
 
+    #region 本类属性
+
+
+    #endregion
+
     #region 生命周期
     public void BattleInit()
     {
         //CoreUI.ShwoUIPanel<UISkill>(ConfigPrefab.prefabUISkill);  //技能界面
         CoreUI.ShwoUIPanel<UIBattle>(ConfigPrefab.prefabUIBattle);  //战斗界面
-        foreach (ITeamActual item in BattleTeamDic.Values)          //设置战斗开启
-            item.EnterBattle = true;
+        foreach (ITeamInstance item in BattleTeamDic.Values)          //设置战斗开启
+            item.IsEnterBattle = true;
     }
     public void BattleUpdata()
     {
@@ -61,7 +70,7 @@ public class Battle : IBattleActual
         if (isStaaleStop) return;
 
         //战斗队伍循环
-        foreach (ITeamActual item in BattleTeamDic.Values)
+        foreach (ITeamInstance item in BattleTeamDic.Values)
             item.TeamUpdata();
 
         switch (_battleState)
@@ -101,20 +110,14 @@ public class Battle : IBattleActual
         IBattleAction battleAction = _battleActionList[0];//战斗的动作
         switch (battleAction.AttackerData.RoleType)
         {
-            case ERoleType.Player:
-            case ERoleType.NPC:
-            case ERoleType.Enemy:
+            case ERoleOrTeamType.Player:
+            case ERoleOrTeamType.NPC:
+            case ERoleOrTeamType.Enemy:
+                RoleStateBattle roleStateBattle = battleAction.AttackerData.RoleState.GetRoleSate<RoleStateBattle>();
                 //检查被攻击者是否还存活
                 if (!this.ChackRoleSurvival(battleAction.TargetData))//敌人不存活
-                {
-                    //随机一个敌人
-                    IRoleActual enemyRole = battleAction.AttackerData.BattleActual.RandomEnemyRole(battleAction.AttackerData.TeamActual.TeamType);
-                    battleAction.TargetData = enemyRole;
-                }
-                battleAction.AttackerData.TurnState = ETurnState.ACTION;
-                break;
-            case ERoleType.Dealer:// TODO 这个还需要吗?
-                Debug.Error("商人不会战斗,判断是否需要写逻辑,这个还需要吗?");
+                    battleAction.TargetData = roleStateBattle.battle.RandomEnemyRole(battleAction.AttackerData.Team.TeamType);//随机一个敌人
+                roleStateBattle.TurnState = ERoleTurnState.ACTION;
                 break;
             default:
                 Debug.Error($"角色类型错误{battleAction.AttackerData.RoleType}");

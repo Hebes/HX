@@ -1,14 +1,4 @@
 ﻿/// <summary>
-/// 队伍类型
-/// </summary>
-public enum ETeamType
-{
-    Player,
-    NPC,
-    Enemy,
-}
-
-/// <summary>
 /// 队伍的位置
 /// </summary>
 public enum ETeamPoint

@@ -1,7 +1,7 @@
 ﻿/// <summary>
-/// 玩家和NPC和敌人公用，状态枚举
+/// 玩家和NPC和敌人公用,战斗状态枚举
 /// </summary>
-public enum ETurnState
+public enum ERoleTurnState
 {
     /// <summary>
     /// 进度条上升
@@ -26,7 +26,7 @@ public enum ETurnState
 }
 
 /// <summary>
-/// 角色战斗的位置,先确定好队伍
+/// 角色战斗的位置
 /// </summary>
 public enum ERoleBattlePoint
 {
@@ -40,7 +40,7 @@ public enum ERoleBattlePoint
 /// <summary>
 /// 角色类型
 /// </summary>
-public enum ERoleType
+public enum ERoleOrTeamType
 {
     /// <summary>
     /// 玩家
@@ -54,8 +54,25 @@ public enum ERoleType
     /// 敌人
     /// </summary>
     Enemy,
+}
+
+/// <summary>
+/// 角色状态
+/// </summary>
+public enum ERoleSateType
+{
     /// <summary>
-    /// 商人
+    /// 行走
     /// </summary>
-    Dealer,
+    Run,
+
+    /// <summary>
+    /// 战斗
+    /// </summary>
+    Battle,
+
+    /// <summary>
+    /// 死亡
+    /// </summary>
+    Dead,
 }

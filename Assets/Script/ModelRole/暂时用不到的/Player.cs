@@ -11,7 +11,7 @@ using UnityEngine;
 public class Player : MonoBehaviour, IFixedUpdate, IUpdata
 {
     private int m_PlayerID = 1;                                         //前10的请不要用
-    private ERoleType m_roleType = ERoleType.Player;
+    private ERoleOrTeamType m_roleType = ERoleOrTeamType.Player;
     
 
     private void Awake()
