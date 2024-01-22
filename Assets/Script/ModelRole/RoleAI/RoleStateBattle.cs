@@ -11,65 +11,52 @@ public class RoleStateBattle : IRoleState, IDamage
     #region 继承属性和字段
     private long _id;
     private ERoleSateType _roleSateType = ERoleSateType.Battle;
+    private IRoleInstance _roleInstance;
 
     public long ID { get => _id; set => _id = value; }
-    public ERoleSateType RoleSateType { get => _roleSateType; set => _roleSateType = value; }
+    public ERoleSateType RoleSateType { get => _roleSateType; }
+    public IRoleInstance RoleInstance { get => _roleInstance; set => _roleInstance = value; }
     #endregion
 
 
     #region 本类持有
-    private RoleData roleData;
-    private IBattleAction battleAction;//自己的行动
-    public IBattle battle;
-    /// <summary>
-    /// 是否是行动开始了
-    /// </summary>
-    private bool isActionStarted = false;
-    private Vector3 startPosition;
-    private bool isAlive = true;//是否活着
-    /// <summary>
-    /// 移动速度
-    /// </summary>
-    private float animSpeed = 10f;
-    /// <summary>
-    /// 当前状态枚举
-    /// </summary>
-    public ERoleTurnState turnState = ERoleTurnState.PROCESSING;
-    #endregion
-
-    #region 本类特有字段
+    private IBattleAction battleAction { get; set; }//自己的行动
+    private bool isActionStarted { get; set; } = false;// 是否是行动开始了
+    private Vector3 startPosition { get; set; }
+    private bool isAlive { get; set; } = true;//是否活着
+    private float animSpeed { get; set; } = 10f;// 移动速度
+    private RoleData roleData => _roleInstance.RoleInfo;
     private RoleAttributes RoleAttributes => roleData.RoleAttributes;
     private ITeamInstance team => roleData.Team;
     private GameObject roleGameObject { get; set; }
-    private SceneBattleManager sceneBattleManager { get; set; }
+    public ERoleTurnState turnState { get; set; } = ERoleTurnState.PROCESSING;// 当前状态枚举
+    public IBattle battle { get; set; }
     #endregion
 
-    #region 初始化
+
+    #region 初始化,必须调用
     /// <summary>
     /// 添加数据
     /// </summary>
     /// <param name="roleData">角色数据</param>
-    public void SetBattleData(RoleData roleData, IBattle battleActual)
+    public void SetBattleData(IBattle battleActual)
     {
-        this.roleData = roleData;
         this.battle = battleActual;
-        RoleInit();
     }
     #endregion
 
 
     #region 接口实现
-    public void RoleInit()
+    public void StateEnter()
     {
-        sceneBattleManager = SceneBattleManager.Instance;
-        roleData.gameObject = roleGameObject = sceneBattleManager.InstantiateBattleRole(team.TeamPoint, roleData);
+        roleData.gameObject = roleGameObject = SceneBattleManager.Instance.InstantiateBattleRole(team.TeamPoint, roleData);
         startPosition = roleGameObject.transform.position;
         turnState = ERoleTurnState.PROCESSING;
     }
-    public void RoleRemove()
+    public void StateExit()
     {
     }
-    public void RoleUpdata()
+    public void StateUpdata()
     {
         switch (turnState)
         {
@@ -77,7 +64,18 @@ public class RoleStateBattle : IRoleState, IDamage
                 UpgradeProgressBar();
                 break;
             case ERoleTurnState.CHOOSEACTION:
-                ChooseAction();
+                switch (roleData.RoleType)
+                {
+                    case ERoleOrTeamType.Player:
+                        PlayerChooseAction();
+                        break;
+                    case ERoleOrTeamType.NPC:
+                    case ERoleOrTeamType.Enemy:
+                        NpcOrEnemyChooseAction();
+                        break;
+                    default:
+                        break;
+                }
                 break;
             case ERoleTurnState.WAITING:
                 break;
@@ -93,6 +91,7 @@ public class RoleStateBattle : IRoleState, IDamage
         }
     }
     #endregion
+
 
     public void DoDamage()
     {
@@ -121,11 +120,10 @@ public class RoleStateBattle : IRoleState, IDamage
         if (RoleAttributes.CurColldown < RoleAttributes.MaxColldown) return;//如果冷却时间到了
         turnState = ERoleTurnState.CHOOSEACTION;
     }
-
     /// <summary>
     /// 现在是敌人状态,选择攻击方式和玩家或者NPC
     /// </summary>
-    private void ChooseAction()
+    private void NpcOrEnemyChooseAction()
     {
         BattleAction battleAction = new BattleAction();
         this.battleAction = battleAction;
@@ -141,6 +139,9 @@ public class RoleStateBattle : IRoleState, IDamage
         //添加到战斗列表
         battle.AddBattleAction(battleAction);
         turnState = ERoleTurnState.WAITING;
+    }
+    private void PlayerChooseAction()
+    {
     }
     private IEnumerator TimeForAction()
     {
@@ -216,6 +217,7 @@ public class RoleStateBattle : IRoleState, IDamage
         battle.BattleSate = EBattlePerformAction.CHECKALIVE;
     }
     #endregion
+
 
     #region 私有方法
     /// <summary>

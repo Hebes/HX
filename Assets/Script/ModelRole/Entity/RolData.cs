@@ -57,7 +57,7 @@ public class RoleData : IRoleInstance
 
 
     #region 接口属性
-    public RoleData Role => this;
+    public RoleData RoleInfo => this;
     public ERoleOrTeamType RoleType { get => _roleType; set => _roleType = value; }
     public ERoleBattlePoint RoleBattlePoint { get => _roleBattlePoint; set => _roleBattlePoint = value; }
     public string Name { get => _name; set => _name = value; }

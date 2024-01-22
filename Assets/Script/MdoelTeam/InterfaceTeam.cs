@@ -92,7 +92,7 @@ public static class HelperTeam
             Debug.Error($"移除失败请检查,该队伍没有队员{role.Name}");
             return false;
         }
-        role.ChackInherit<IRoleInstance, IRoleState>()?.RoleRemove();
+        role.ChackInherit<IRoleInstance, IRoleState>()?.StateExit();
         return true;
     }
     #endregion

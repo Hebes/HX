@@ -118,7 +118,7 @@ public class MainMenuView : UIBase, IUIAwake
         roleAttributes1.CurColldown = 0; roleAttributes1.MaxColldown = 5;
         npc1.SetRoleAttributes(roleAttributes1);
         npc1.AddSkill(skillNormalAttack);
-        npc1.SwitchRoleState<RoleStateBattle>().SetBattleData(npc1, teamBattle);
+        npc1.SwitchRoleState<RoleStateBattle>().SetBattleData(teamBattle);
 
 
         RoleNPC npc2 = new RoleNPC();//创建一名NPC->队友
@@ -130,7 +130,7 @@ public class MainMenuView : UIBase, IUIAwake
         roleAttributes2.CurColldown = 0; roleAttributes2.MaxColldown = 5;
         npc2.SetRoleAttributes(roleAttributes2);
         npc2.AddSkill(skillNormalAttack);
-        npc2.SwitchRoleState<RoleStateBattle>().SetBattleData(npc2, teamBattle);
+        npc2.SwitchRoleState<RoleStateBattle>().SetBattleData(teamBattle);
 
 
         //敌人
@@ -143,7 +143,7 @@ public class MainMenuView : UIBase, IUIAwake
         roleAttributes3.CurColldown = 0; roleAttributes3.MaxColldown = 5;
         enemy1.SetRoleAttributes(roleAttributes3);
         enemy1.AddSkill(skillNormalAttack);
-        enemy1.SwitchRoleState<RoleStateBattle>().SetBattleData(enemy1, teamBattle);
+        enemy1.SwitchRoleState<RoleStateBattle>().SetBattleData(teamBattle);
 
         RoleEnemy enemy2 = new RoleEnemy();
         enemyTeam.AddRole(enemy2);
@@ -154,7 +154,7 @@ public class MainMenuView : UIBase, IUIAwake
         roleAttributes4.CurColldown = 0; roleAttributes4.MaxColldown = 5;
         enemy2.SetRoleAttributes(roleAttributes4);
         enemy2.AddSkill(skillNormalAttack);
-        enemy2.SwitchRoleState<RoleStateBattle>().SetBattleData(enemy2, teamBattle);
+        enemy2.SwitchRoleState<RoleStateBattle>().SetBattleData(teamBattle);
 
 
         //添加一场战斗

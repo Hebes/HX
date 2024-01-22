@@ -14,17 +14,18 @@ public class RoleStateRun : IRoleState
 
     public long ID { get => _id; set => _id = value; }
     public ERoleSateType RoleSateType { get => _roleSateType; set => _roleSateType = value; }
+    public IRoleInstance RoleInstance { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
-    public void RoleInit()
+    public void StateEnter()
     {
     }
 
-    public void RoleRemove()
+    public void StateExit()
     {
     }
 
-    public void RoleUpdata()
+    public void StateUpdata()
     {
+
     }
 }
-

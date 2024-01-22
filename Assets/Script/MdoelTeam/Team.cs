@@ -33,7 +33,7 @@ public class Team : ITeamInstance
         foreach (IRoleInstance item in _teamList)
         {
             if (item.RoleState is IRoleState roleBehaviour)
-                roleBehaviour.RoleUpdata();
+                roleBehaviour.StateUpdata();
         }
     }
 }
