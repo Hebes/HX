@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using System.Text;
+
+/// <summary>
 /// 角色属性
 /// </summary>
 public class RoleAttributes : IHP, IATK, IColldown
@@ -18,4 +20,13 @@ public class RoleAttributes : IHP, IATK, IColldown
     public int CurrentATK { get => _CurrentATK; set => _CurrentATK = value; }
     public float MaxColldown { get => _MaxColldown; set => _MaxColldown = value; }
     public float CurColldown { get => _CurColldown; set => _CurColldown = value; }
+
+
+    public override string ToString()
+    {
+        StringBuilder sb=new StringBuilder();
+        sb.AppendLine($"最大生命值{_MaxHP}");
+        sb.AppendLine($"当前生命值{_CurrentHP}");
+        return sb.ToString();
+    }
 }

@@ -51,9 +51,8 @@ public class Battle : IBattle
     public bool isStaaleStop;
     #endregion
 
-    #region 本类属性
-
-
+    #region 本来方法
+   
     #endregion
 
     #region 生命周期
@@ -111,13 +110,14 @@ public class Battle : IBattle
         switch (battleAction.AttackerData.RoleType)
         {
             case ERoleOrTeamType.Player:
+                break;
             case ERoleOrTeamType.NPC:
             case ERoleOrTeamType.Enemy:
                 RoleStateBattle roleStateBattle = battleAction.AttackerData.RoleState.GetRoleSate<RoleStateBattle>();
                 //检查被攻击者是否还存活
                 if (!this.ChackRoleSurvival(battleAction.TargetData))//敌人不存活
                     battleAction.TargetData = roleStateBattle.battle.RandomEnemyRole(battleAction.AttackerData.Team.TeamType);//随机一个敌人
-                roleStateBattle.TurnState = ERoleTurnState.ACTION;
+                roleStateBattle.turnState = ERoleTurnState.ACTION;
                 break;
             default:
                 Debug.Error($"角色类型错误{battleAction.AttackerData.RoleType}");

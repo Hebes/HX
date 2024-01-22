@@ -233,11 +233,11 @@ public static class HelperBattle
         {
             foreach (IRoleInstance item1 in item.RoleList)
             {
-                switch (item1.RoleType)
+                switch (teamType)
                 {
                     case ERoleOrTeamType.Player:
                     case ERoleOrTeamType.NPC:
-                        if (item1.RoleType == teamType)
+                        if (item1.RoleType == ERoleOrTeamType.Enemy)
                             role.Add(item1);
                         break;
                     case ERoleOrTeamType.Enemy:

@@ -121,7 +121,7 @@ public static class HelperRole
     {
         RoleState.RoleState = new T();
         RoleState.RoleSateType = RoleState.RoleState.RoleSateType;
-        RoleState.RoleState.RoleInit();
+        //RoleState.RoleState.RoleInit();
         return (T)RoleState.RoleState;
     }
 

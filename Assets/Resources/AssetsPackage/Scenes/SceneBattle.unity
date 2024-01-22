@@ -402,6 +402,10 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 87
       objectReference: {fileID: 0}
+    - target: {fileID: 3233194174904192812, guid: ab2f8cca2524f0646a34221231ed5311, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207490711517358252, guid: ab2f8cca2524f0646a34221231ed5311, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -429,6 +433,10 @@ PrefabInstance:
     - target: {fileID: 5510555790858688197, guid: ab2f8cca2524f0646a34221231ed5311, type: 3}
       propertyPath: m_VolumeLayerMask.m_Bits
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693459629798896019, guid: ab2f8cca2524f0646a34221231ed5311, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6971700858949314352, guid: ab2f8cca2524f0646a34221231ed5311, type: 3}
       propertyPath: m_Name

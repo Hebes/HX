@@ -13,13 +13,14 @@ public class RoleData : IRoleInstance
     protected ERoleOrTeamType _roleType;
     protected ERoleTurnState _turnState;
     protected ERoleBattlePoint _roleBattlePoint;
-    protected Dictionary<ESkillType, List<ISkill>> _skillDataDic;
     protected ERoleSateType _roleSateType;
+    protected Dictionary<ESkillType, List<ISkill>> _skillDataDic;
     protected GameObject _go;
     protected RoleAttributes roleAttributes;
     protected IRoleState _roleState;
     protected ITeamInstance team;
     #endregion
+
 
 
     #region 初始化API,请按照顺序初始化

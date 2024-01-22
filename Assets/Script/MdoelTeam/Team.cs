@@ -30,13 +30,10 @@ public class Team : ITeamInstance
 
     public void TeamUpdata()
     {
-        if (IsEnterBattle)
+        foreach (IRoleInstance item in _teamList)
         {
-            foreach (IRoleInstance item in _teamList)
-            {
-                if (item.RoleState is IRoleState roleBehaviour)
-                    roleBehaviour.RoleUpdata();
-            }
+            if (item.RoleState is IRoleState roleBehaviour)
+                roleBehaviour.RoleUpdata();
         }
     }
 }
