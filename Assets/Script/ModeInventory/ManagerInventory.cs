@@ -1,4 +1,5 @@
 ﻿using Core;
+using System.Collections;
 using System.Collections.Generic;
 
 /*--------脚本描述-----------
@@ -11,15 +12,21 @@ using System.Collections.Generic;
 /// <summary>
 /// 库存管理
 /// </summary>
-public class ManagerInventory : IModelInit
+public class ManagerInventory : IModel
 {
     private static ManagerInventory Instance;
     private Dictionary<int, List<InventoryItem>> _itemDic;      //物品字典
 
-    public void Init()
+    public IEnumerator Enter()
     {
         Instance = this;
         _itemDic = new Dictionary<int, List<InventoryItem>>();
+        yield return null;
+    }
+
+    public IEnumerator Exit()
+    {
+        yield return null;
     }
 
     /// <summary>

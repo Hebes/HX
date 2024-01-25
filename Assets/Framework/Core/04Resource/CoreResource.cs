@@ -45,7 +45,7 @@ namespace Core
                     Instance.iload = new UnityResLoad();
                     break;
                 case ELoadType.YooAsset:
-                    Instance.iload = new YooAssetResLoad();
+                    //Instance.iload = new YooAssetResLoad();
                     break;
                 default:
                     break;

@@ -4,7 +4,7 @@ using UnityEngine;
 using Debug = Core.Debug;
 
 /// <summary>
-/// 角色普通状态
+/// 角色移动状态
 /// </summary>
 public class RoleStateRun : IRoleState
 {
@@ -14,10 +14,18 @@ public class RoleStateRun : IRoleState
 
     public long ID { get => _id; set => _id = value; }
     public ERoleSateType RoleSateType { get => _roleSateType; set => _roleSateType = value; }
-    public IRoleInstance RoleInstance { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public IRoleInstance RoleInstance { get => _role; set => _role = value; }
+
+    private ERoleOrTeamType roleType => _role.RoleInfo.RoleType;
+    private RoleData roleData=> _role.RoleInfo;
+
+    #region 本类特有
+    
+    #endregion
 
     public void StateEnter()
     {
+        roleData.gameObject = CoreResource.Load<GameObject>(ConfigPrefab.prefabCommonRole);
     }
 
     public void StateExit()
@@ -26,6 +34,16 @@ public class RoleStateRun : IRoleState
 
     public void StateUpdata()
     {
-
+        switch (roleType)
+        {
+            case ERoleOrTeamType.Player:
+                break;
+            case ERoleOrTeamType.NPC:
+                break;
+            case ERoleOrTeamType.Enemy:
+                break;
+            default:
+                break;
+        }
     }
 }

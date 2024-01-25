@@ -1,21 +1,46 @@
-﻿public class ModelRun
+﻿using Cysharp.Threading.Tasks;
+using System.Collections;
+using System.Collections.Generic;
+
+public class ModelRun
 {
+    public static ModelRun Instance { get; set; }
+
+    public List<IModel> modelList;
+
     public ModelRun()
     {
-        ModelInit<ManagerLanguage>();   //数据
-        ModelInit<ManagerData>();       //数据
-        ModelInit<ManagerSave>();       //存档
-        ModelInit<ManagerScene>();      //场景
-        ModelInit<ManagerRPGBattle>();      //战斗
+        Instance = this;
+        modelList = new List<IModel>();
+        Start().Forget();
+    }
+
+    private async UniTask Start()
+    {
+        await ModeEnter<ManagerLanguage>();   //数据
+        await ModeEnter<ManagerData>();       //数据
+        await ModeEnter<ManagerSave>();       //存档
+        await ModeEnter<ManagerScene>();      //场景
+        await ModeEnter<ManagerRPGBattle>();      //战斗
     }
 
     /// <summary>
-    /// 模块初始化
+    /// 模块进入->初始化
     /// </summary>
-    private T ModelInit<T>() where T : IModelInit, new()
+    private async UniTask<T> ModeEnter<T>() where T : IModel, new()
     {
         T t = new T();
-        t.Init();
+        modelList.Add(t);
+        await t.Enter();
         return t;
+    }
+
+    /// <summary>
+    /// 模块退出
+    /// </summary>
+    public static IEnumerator ModelExit()
+    {
+        foreach (IModel item in Instance.modelList)
+            yield return item.Exit();
     }
 }

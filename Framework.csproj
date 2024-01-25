@@ -65,7 +65,6 @@
     <Compile Include="Assets\Framework\Core\01Debug\SystemException\SystemExceptionDebug.cs" />
     <Compile Include="Assets\Framework\Core\01Debug\CoreDebug.cs" />
     <Compile Include="Assets\Framework\Core\10Scene\Realize\UnityLoadScene.cs" />
-    <Compile Include="Assets\Framework\Core\Core\ConfigCore.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionToggle.cs" />
     <Compile Include="Assets\Framework\Core\03Behaviour\BehaviourController.cs" />
     <Compile Include="Assets\Framework\Core\01Debug\Debug\DeBugCommon\InterfaceDebug.cs" />
@@ -93,6 +92,7 @@
     <Compile Include="Assets\Framework\Core\11Input\InputPC.cs" />
     <Compile Include="Assets\Framework\Core\11Input\InputNewInputPC.cs" />
     <Compile Include="Assets\Framework\Core\06UI\Realize\PanelPopIn.cs" />
+    <Compile Include="Assets\Framework\Core\Core\CoreEnum.cs" />
     <Compile Include="Assets\Framework\Expansion\ETHelper\StringHelper.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionImage.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionSystem\ExpansionEnum.cs" />
@@ -103,6 +103,7 @@
     <Compile Include="Assets\Framework\Core\02Event\Common\EventCommon.cs" />
     <Compile Include="Assets\Framework\Expansion\YooAsset\OperationHandleBaseExtensions.cs" />
     <Compile Include="Assets\Framework\Core\02Event\Await\EventInfoAsync.cs" />
+    <Compile Include="Assets\Framework\Core\Core\SettingCore.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionSystem\ExpansionList.cs" />
     <Compile Include="Assets\Framework\Core\01Debug\UIDeBug\UIDebugger.cs" />
     <Compile Include="Assets\Framework\Core\13SystemOrder\SystemOderUI.cs" />
@@ -858,9 +859,6 @@
     </Reference>
     <Reference Include="UniTask">
       <HintPath>Library\ScriptAssemblies\UniTask.dll</HintPath>
-    </Reference>
-    <Reference Include="YooAsset">
-      <HintPath>Library\ScriptAssemblies\YooAsset.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>

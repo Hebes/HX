@@ -1,17 +1,24 @@
 ﻿using Core;
+using System.Collections;
 using System.Collections.Generic;
 
-public class ManagerData : IModelInit
+public class ManagerData : IModel
 {
     private Dictionary<string, List<IData>> dataDic = new Dictionary<string, List<IData>>();
     private static ManagerData Instance;
 
-    public void Init()
+    public IEnumerator Enter()
     {
         Instance = this;
         CoreData.InitData<ExcelDataItem>(ConfigData.bytesDataItem);
         List<IData> dataList = CoreData.GetDataList<ExcelDataItem>();
         ChangerDataList<ExcelDataItem, DataItem>(dataList);
+        yield return null;
+    }
+
+    public IEnumerator Exit()
+    {
+        yield return null;
     }
 
     private List<K> ChangerDataList<T, K>(List<IData> dataList) where T : class, IData where K : IData, new()
@@ -44,4 +51,5 @@ public class ManagerData : IModelInit
         return Instance.dataDic[typeof(T).FullName] as List<T>;
     }
 
+    
 }

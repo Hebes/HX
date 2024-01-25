@@ -1,17 +1,24 @@
 ﻿using Core;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class ManagerSkill : IModelInit
+public class ManagerSkill : IModel
 {
     public static ManagerSkill Instance { get; private set; }
 
-    public void Init()
+    public IEnumerator Enter()
     {
         Instance = this;
+        yield return null;
+    }
+
+    public IEnumerator Exit()
+    {
+        yield return null;
     }
 
     /// <summary>
@@ -37,4 +44,6 @@ public class ManagerSkill : IModelInit
         //    CoreBehaviour.Remove(skillBehaviour);
         //}
     }
+
+    
 }

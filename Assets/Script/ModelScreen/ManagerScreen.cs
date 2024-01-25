@@ -1,14 +1,22 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 /// <summary>
 /// https://cloud.tencent.com/developer/article/1637553
 /// https://blog.csdn.net/qq_33795300/article/details/131700773
 /// </summary>
-public class ManagerScreen : IModelInit
+public class ManagerScreen : IModel
 {
     public static ManagerScreen Instance;
     private Resolution[] resolutions;
-    public void Init()
+    
+    public IEnumerator Exit()
+    {
+       
+        yield return null;
+    }
+
+    public IEnumerator Enter()
     {
         Instance = this;
 #if UNITY_STANDALONE_WIN
@@ -19,5 +27,6 @@ public class ManagerScreen : IModelInit
         Screen.SetResolution(resolutions[resolutions.Length - 1].width, resolutions[resolutions.Length - 1].height, true);
         Screen.fullScreen = true; //设置成全屏,
 #endif
+        yield return null;
     }
 }

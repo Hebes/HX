@@ -1,8 +1,8 @@
 ﻿using Core;
-using System;
+using System.Collections;
 using System.Collections.Generic;
 
-public class ManagerRPGBattle : IModelInit, IUpdata
+public class ManagerRPGBattle : IModel, IUpdata
 {
     public static ManagerRPGBattle Instance;
 
@@ -11,13 +11,19 @@ public class ManagerRPGBattle : IModelInit, IUpdata
     /// </summary>
     private Dictionary<long, IBattle> _battleDic;
 
-
-    public void Init()
+    public IEnumerator Enter()
     {
         Instance = this;
         _battleDic = new Dictionary<long, IBattle>();
         CoreBehaviour.Add(this);
+        yield return null;
     }
+
+    public IEnumerator Exit()
+    {
+        yield return null;
+    }
+
     public void CoreBehaviourUpdata()
     {
         foreach (IBattle item in _battleDic.Values)

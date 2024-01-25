@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 
 
 /*--------脚本描述-----------
@@ -12,10 +8,17 @@ using System.Threading.Tasks;
 
 -----------------------*/
 
-public class ManagerAttributes : IModelInit
+public class ManagerAttributes : IModel
 {
-    public void Init()
+   
+    public IEnumerator Exit()
     {
+        yield return null;
+    }
+
+    public IEnumerator Enter()
+    {
+        yield return null;
     }
 }
 

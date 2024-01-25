@@ -101,7 +101,7 @@ namespace Core
             _DicCurrentShowUIForms = new Dictionary<string, IUI>();
             _StaCurrentUIForms = new Stack<IUI>();
 
-            GameObject gameObjectTemp = CoreResource.Load<GameObject>(ConfigCore.uiCanvasPath);
+            GameObject gameObjectTemp = CoreResource.Load<GameObject>(SettingCore.uiCanvasPath);
             GameObject CanvasGoInstantiate = GameObject.Instantiate(gameObjectTemp);
             CanvasGoInstantiate.name = "UI界面";
             //实例化

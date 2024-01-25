@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Core;
+using System.Collections;
+using System.Collections.Generic;
 
 /*--------脚本描述-----------
 
@@ -7,20 +9,20 @@
 
 -----------------------*/
 
-public class ManagerTask : IModelInit
+public class ManagerTask : IModel
 {
     public static ManagerTask Instance { get; private set; }
 
     private List<ITaskCarrier> _taskCarrierList;
-    public void Init()
+    public IEnumerator Enter()
     {
         Instance = this;
         _taskCarrierList = new List<ITaskCarrier>();
+        yield return null;
     }
-
-    public void RefreshTask()
+    public IEnumerator Exit()
     {
-
+        yield return null;
     }
 
     /// <summary>

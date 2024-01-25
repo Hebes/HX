@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,16 @@ using System.Threading.Tasks;
 
 -----------------------*/
 
-public class ManaagerCareer : IModelInit
+public class ManaagerCareer : IModel
 {
-    public void Init()
+    public IEnumerator Enter()
     {
+       
+        yield return null;
+    }
+
+    public IEnumerator Exit()
+    {
+        yield return null;
     }
 }

@@ -2,6 +2,7 @@
 using UnityEngine;
 using Debug = Core.Debug;
 using Core;
+using System.Collections;
 
 
 /*--------脚本描述-----------
@@ -11,16 +12,21 @@ using Core;
 
 -----------------------*/
 
-public class ManagerEffect : IModelInit
+public class ManagerEffect : IModel
 {
     public static ManagerEffect Instance;
 
     private Dictionary<long, IEffect> _effectDic;
 
-    public void Init()
+    public IEnumerator Enter()
     {
         Instance = this;
         _effectDic = new Dictionary<long, IEffect>();
+        yield return null;
+    }
+    public IEnumerator Exit()
+    {
+        yield return null;
     }
 
     public static void AddEffect(IEffect effect)
@@ -47,6 +53,8 @@ public class ManagerEffect : IModelInit
         Debug.Error($"没有找到该特效{id}");
         return default(IEffect);
     }
+
+   
 }
 
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 
 /*--------脚本描述-----------
@@ -8,16 +9,23 @@
 
 -----------------------*/
 
-public class ManagerCamp : IModelInit
+public class ManagerCamp : IModel
 {
     private Dictionary<ECamp, List<ICamp>> _campDic;
     public static ManagerCamp Instance;
 
-    public void Init()
+    public IEnumerator Enter()
     {
         Instance = this;
         _campDic = new Dictionary<ECamp, List<ICamp>>();
+        yield return null;
     }
+
+    public IEnumerator Exit()
+    {
+        yield return null;
+    }
+
     /// <summary>
     /// 添加到指定阵营
     /// </summary>
@@ -78,6 +86,4 @@ public class ManagerCamp : IModelInit
         RemoveCamp(oldECamp, oldCamp);
         AddCamp(newECamp, newCamp);
     }
-
-
 }

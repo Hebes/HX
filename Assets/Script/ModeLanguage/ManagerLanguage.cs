@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -18,18 +19,24 @@ public enum ELanguageType
     English = 1,
 }
 
-public class ManagerLanguage : IModelInit
+public class ManagerLanguage : IModel
 {
     public static ManagerLanguage Instance;
     public event Action languageChangeEvt;               //回调事件
     private Dictionary<string, string> _languageDic;      //语言字典
     public Font _font;
 
-    public void Init()
+    public IEnumerator Enter()
     {
         Instance = this;
         _languageDic = new Dictionary<string, string>();
         //TODO 加载多语言
+        yield return null;
+    }
+
+    public IEnumerator Exit()
+    {
+        yield return null;
     }
 
     /// <summary>
@@ -66,4 +73,6 @@ public class ManagerLanguage : IModelInit
             transform.AddComponent<LanguageComponent>() : transform.GetComponent<LanguageComponent>();
         languageText.SetKeyAndChange(key);
     }
+
+    
 }

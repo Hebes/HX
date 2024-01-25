@@ -86,7 +86,7 @@ public interface IDamage : IID
 /// <summary>
 /// 角色状态
 /// </summary>
-public interface IRoleState
+public interface IRoleState : IID
 {
     /// <summary>
     /// 角色信息
@@ -122,7 +122,7 @@ public static class HelperRole
     /// <summary>
     /// 切换角色状态
     /// </summary>
-    public static T SwitchRoleState<T>(this IRoleInstance RoleState)where T: IRoleState,new()
+    public static T SwitchRoleState<T>(this IRoleInstance RoleState) where T : IRoleState, new()
     {
         RoleState.RoleState = new T();
         RoleState.RoleSateType = RoleState.RoleState.RoleSateType;

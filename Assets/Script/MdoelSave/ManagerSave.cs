@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Core;
 
 /*--------脚本描述-----------
@@ -8,14 +9,20 @@ using Core;
 
 -----------------------*/
 
-public class ManagerSave : IModelInit
+public class ManagerSave : IModel
 {
     public static ManagerSave Instance { get; private set; }
     private List<ISave> _saveList;
-    public void Init()
+    public IEnumerator Enter()
     {
         Instance = this;
         _saveList = new List<ISave>();
+        yield return null;
+    }
+
+    public IEnumerator Exit()
+    {
+        yield return null;
     }
 
     /// <summary>
@@ -36,7 +43,7 @@ public class ManagerSave : IModelInit
     /// </summary>
     public static void Save()
     {
-        foreach (var save in Instance._saveList)
+        foreach (ISave save in Instance._saveList)
             save.Save();
     }
 
@@ -47,7 +54,9 @@ public class ManagerSave : IModelInit
     {
         //先加载数据，然后把数据传递进去
         SaveData saveData = null;
-        foreach (var save in Instance._saveList)
+        foreach (ISave save in Instance._saveList)
             save.Load(saveData);
     }
+
+   
 }

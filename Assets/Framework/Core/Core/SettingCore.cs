@@ -9,7 +9,7 @@
 
 -----------------------*/
 
-public class ConfigCore
+public class SettingCore
 {
 
 #if UNITY_ANDROID
@@ -36,7 +36,4 @@ public class ConfigCore
     public const string uiCanvasPath = "AssetsPackage/Prefab/UI/Canvas";
 }
 
-public enum ECoreEvent
-{
-    ON_SCREEN_RESOLUTION_CHANGE = 1,
-}
+

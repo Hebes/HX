@@ -1,5 +1,7 @@
 ﻿using Core;
 using Cysharp.Threading.Tasks;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 /*--------脚本描述-----------
 
@@ -8,7 +10,7 @@ using Cysharp.Threading.Tasks;
 
 -----------------------*/
 
-public class ManagerScene : IModelInit
+public class ManagerScene : IModel
 {
     public static ManagerScene Instance;
 
@@ -23,20 +25,17 @@ public class ManagerScene : IModelInit
     /// </summary>
     public static string CurrentSceneName => Instance.currentSceneName;
 
-    public void Init()
+    public IEnumerator Enter()
     {
         Instance = this;
-        FirstLoad().Forget();
+        // 首次加载场景
+        yield return CoreScene.LoadSceneAsync(ConfigScenes.unityScenePersistent, LoadSceneMode.Single);
+        yield return null;
     }
 
-    /// <summary>
-    /// 首次加载场景
-    /// </summary>
-    /// <returns></returns>
-    private async UniTask FirstLoad()
+    public IEnumerator Exit()
     {
-        //首次加载场景
-        await CoreScene.LoadSceneAsync(ConfigScenes.unityScenePersistent, ELoadSceneModel.Single);
+       yield return null;
     }
 
     /// <summary>
@@ -45,11 +44,11 @@ public class ManagerScene : IModelInit
     /// <param name="sceneName"></param>
     /// <param name="loadSceneModel"></param>
     /// <returns></returns>
-    public static async UniTask LoadSceneAsync(string sceneName, ELoadSceneModel loadSceneModel = ELoadSceneModel.Additive)
+    public static async UniTask LoadSceneAsync(string sceneName, LoadSceneMode loadSceneMode = LoadSceneMode.Additive)
     {
         Instance.currentSceneName = sceneName;
-        await CoreScene.LoadSceneAsync(sceneName, loadSceneModel);
-        CoreEvent.EventTrigger(EConfigEvent.LoadSceneAfter.ToInt());
+        await CoreScene.LoadSceneAsync(sceneName, loadSceneMode);
+        CoreEvent.EventTrigger(EConfigEvent.EventLoadSceneAfter.ToInt());
     }
 
     /// <summary>
@@ -58,15 +57,18 @@ public class ManagerScene : IModelInit
     public static async UniTask SwitchScene(string targetScene)
     {
         Instance.currentSceneName = targetScene;
-        CoreEvent.EventTrigger(EConfigEvent.LoadSceneBefore.ToInt());
+        CoreEvent.EventTrigger(EConfigEvent.EventLoadSceneBefore.ToInt());
         //TODO 这里可以触发场景过度
         //卸载原先的场景
         await CoreScene.UnloadSceneAsync(Instance.currentSceneName);
         //加载目标场景
-        await CoreScene.LoadSceneAsync(targetScene, ELoadSceneModel.Additive);
+        await CoreScene.LoadSceneAsync(targetScene, LoadSceneMode.Additive);
         //TODO 这里可以触发场景过度
-        CoreEvent.EventTrigger(EConfigEvent.LoadSceneAfter.ToInt());
+        CoreEvent.EventTrigger(EConfigEvent.EventLoadSceneAfter.ToInt());
     }
+
+
+   
 
     //参考
     //private async UniTask SceneTransition(string targetScene, Vector3 targetPosition)

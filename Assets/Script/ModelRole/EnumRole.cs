@@ -76,3 +76,15 @@ public enum ERoleSateType
     /// </summary>
     Dead,
 }
+
+/// <summary>
+/// 方向
+/// </summary>
+public enum Direction
+{
+    up,
+    down,
+    left,
+    right,
+    none
+}

@@ -74,44 +74,49 @@
     <Compile Include="Assets\Script\MdoelAttributes\ManagerAttributes.cs" />
     <Compile Include="Assets\Script\MdoelTeam\EnumTeam.cs" />
     <Compile Include="Assets\Script\ModelStory\EnumStory.cs" />
+    <Compile Include="Assets\Script\ModelAchievement\ManagerAchievement.cs" />
     <Compile Include="Assets\Script\ModeSkill\ManagerSkill.cs" />
     <Compile Include="Assets\Script\ModelCareer\EnemCareer.cs" />
+    <Compile Include="Assets\Script\ModeStart\InterfaceStart.cs" />
     <Compile Include="Assets\Script\ModelBattle\ManagerRPGBattle.cs" />
+    <Compile Include="Assets\Script\ModelRole\RoleAI\RoleStatePlayerRun.cs" />
     <Compile Include="Assets\Script\ModelConfig\ConfigEvent.cs" />
     <Compile Include="Assets\Script\ModelRole\暂时用不到的\ItemPickUp.cs" />
-    <Compile Include="Assets\Script\ModeStart\IModelInit.cs" />
     <Compile Include="Assets\Script\ModeLanguage\ManagerLanguage.cs" />
     <Compile Include="Assets\Test\Newlifecycle.cs" />
     <Compile Include="Assets\Script\MdoelTeam\ManagerTeam.cs" />
+    <Compile Include="Assets\Script\ModelRole\RoleAI\RoleStateBattle.cs" />
     <Compile Include="Assets\Script\MdoelEffect\ManagerEffect.cs" />
     <Compile Include="Assets\Script\ModelItem\EnumItem.cs" />
     <Compile Include="Assets\Script\MdoelTeam\InterfaceTeam.cs" />
     <Compile Include="Assets\Script\ModelExcelData\ExcelDataItem.cs" />
     <Compile Include="Assets\Script\ModelAI\EnumAI.cs" />
     <Compile Include="Assets\Script\ModeAnimator\FrameAnimatorPlayScript.cs" />
-    <Compile Include="Assets\Script\ModeStart\IID.cs" />
     <Compile Include="Assets\Script\ModelScene\SceneBattleManager.cs" />
     <Compile Include="Assets\Test\Test2.cs" />
     <Compile Include="Assets\Script\ModeStart\ModelRun.cs" />
     <Compile Include="Assets\Script\ModelRole\InterfaceRole.cs" />
     <Compile Include="Assets\Script\ModelCamp\EnumsCamp.cs" />
     <Compile Include="Assets\Script\ModeSkill\HelperSkill.cs" />
-    <Compile Include="Assets\Script\ModeStart\IName.cs" />
     <Compile Include="Assets\Script\ModelRole\Entity\RolePlayer.cs" />
     <Compile Include="Assets\Test\BuffData1.cs" />
     <Compile Include="Assets\Script\ModelScene\ManagerScene.cs" />
     <Compile Include="Assets\Script\ModeSkill\SkillNormalAttack.cs" />
     <Compile Include="Assets\Script\ModelConfig\ConfigData.cs" />
     <Compile Include="Assets\Script\ModelCareer\InterfaceCareer.cs" />
+    <Compile Include="Assets\Script\ModelTime\EnumTime.cs" />
     <Compile Include="Assets\Script\MdoelSave\ManagerSave.cs" />
     <Compile Include="Assets\Script\ModeSkill\EnumSkill.cs" />
     <Compile Include="Assets\Script\ModelScreen\ManagerScreen.cs" />
     <Compile Include="Assets\Script\MdoelSave\ISave.cs" />
     <Compile Include="Assets\Script\ModelRole\Entity\RolData.cs" />
+    <Compile Include="Assets\Script\ModelTime\ManagerTime.cs" />
     <Compile Include="Assets\Script\ModelRole\暂时用不到的\Player.cs" />
+    <Compile Include="Assets\Script\ModelTime\SettingTime.cs" />
     <Compile Include="Assets\Script\ModelBattle\System\Battle.cs" />
     <Compile Include="Assets\Script\ModelItem\ObscuringItemFader.cs" />
     <Compile Include="Assets\Script\ModelAttack\ManagerAttack.cs" />
+    <Compile Include="Assets\Script\ModelRole\RoleAI\RoleStateRun.cs" />
     <Compile Include="Assets\Script\ModelAttack\InterfaceAttack.cs" />
     <Compile Include="Assets\Script\ModelUI\UISkill\SkillBtn.cs" />
     <Compile Include="Assets\Script\ModelConfig\ConfigPrefab.cs" />
@@ -123,7 +128,7 @@
     <Compile Include="Assets\Script\ModelConfig\ConfigSortingLayer.cs" />
     <Compile Include="Assets\Script\ModelBounds\ManagerBounds.cs" />
     <Compile Include="Assets\Script\MdoelEffect\InterfaceEffect.cs" />
-    <Compile Include="Assets\Script\ModeStart\IDescribe.cs" />
+    <Compile Include="Assets\Script\ModelBattle\InterfaceBattle.cs" />
     <Compile Include="Assets\Script\ModelTask\ManagerTask.cs" />
     <Compile Include="Assets\Script\ModeAnimator\AnimatorShader.cs" />
     <Compile Include="Assets\Script\ModelRole\Entity\RoleEnemy.cs" />
@@ -131,7 +136,6 @@
     <Compile Include="Assets\Script\MdoelSave\SaveData.cs" />
     <Compile Include="Assets\Script\ModelUI\MianMenu\MainMenuView.cs" />
     <Compile Include="Assets\Script\ModelData\DataItem.cs" />
-    <Compile Include="Assets\Script\ModelBattle\interfaceBattle.cs" />
     <Compile Include="Assets\Script\ModelCamp\ICamp.cs" />
     <Compile Include="Assets\Script\ModelCareer\ManaagerCareer.cs" />
     <Compile Include="Assets\Test\Test1.cs" />
@@ -144,6 +148,7 @@
     <Compile Include="Assets\Script\ModelItem\Item.cs" />
     <Compile Include="Assets\Script\ModelBattle\EnumBattle.cs" />
     <Compile Include="Assets\Script\ModelCamp\ManagerCamp.cs" />
+    <Compile Include="Assets\Script\MdoelPet\EnumPat.cs" />
     <Compile Include="Assets\Script\ModelBattle\System\BattleAction.cs" />
     <Compile Include="Assets\Script\ModelAttack\AttackWay.cs" />
     <Compile Include="Assets\Script\ModelRole\EnumRole.cs" />
@@ -152,7 +157,6 @@
     <Compile Include="Assets\Script\ModelStory\InterfaceStory.cs" />
     <Compile Include="Assets\Script\ModelBuff\EnumBuff.cs" />
     <Compile Include="Assets\Script\MdoelTeam\Team.cs" />
-    <Compile Include="Assets\Script\ModelRole\RoleStateRun.cs" />
     <Compile Include="Assets\Script\ModelData\ManagerData.cs" />
     <Compile Include="Assets\Script\ModelBuff\ManagerBuff.cs" />
   </ItemGroup>
@@ -812,14 +816,8 @@
     <Reference Include="Unity.Burst.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="YooAsset">
-      <HintPath>Library\ScriptAssemblies\YooAsset.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.2D.Common.Path.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Path.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ScriptableBuildPipeline">
-      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
@@ -923,9 +921,6 @@
     <Reference Include="Unity.2D.Tilemap.Extras">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.CacheServer">
-      <HintPath>Library\ScriptAssemblies\UnityEditor.CacheServer.dll</HintPath>
-    </Reference>
     <Reference Include="UniTask.Linq">
       <HintPath>Library\ScriptAssemblies\UniTask.Linq.dll</HintPath>
     </Reference>
@@ -980,17 +975,11 @@
     <Reference Include="Unity.Searcher.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="YooAsset.Editor">
-      <HintPath>Library\ScriptAssemblies\YooAsset.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UniTask">
       <HintPath>Library\ScriptAssemblies\UniTask.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>

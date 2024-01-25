@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/// <summary> 故事管理器 </summary>
-public class ManagerStory : IModel
+/// <summary>
+/// 成就管理器
+/// </summary>
+public class ManagerAchievement : IModel
 {
-    public static ManagerStory Instance { get; set; }
-    
+
     public IEnumerator Enter()
     {
-        Instance = this;
         yield return null;
     }
 
@@ -21,4 +21,3 @@ public class ManagerStory : IModel
         yield return null;
     }
 }
-

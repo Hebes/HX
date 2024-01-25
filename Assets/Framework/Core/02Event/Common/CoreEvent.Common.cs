@@ -1,12 +1,4 @@
-﻿using Farm2D;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine.UIElements;
-
-/*--------脚本描述-----------
+﻿/*--------脚本描述-----------
 
 描述:
     普通事件

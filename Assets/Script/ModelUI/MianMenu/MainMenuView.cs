@@ -1,8 +1,10 @@
 ﻿using Core;
 using Cysharp.Threading.Tasks;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Debug = Core.Debug;
 
 /// <summary>
 /// 主菜单界面
@@ -25,7 +27,7 @@ public class MainMenuView : UIBase, IUIAwake
         T_StartGame.GetButton().onClick.AddListener(StartGame);
         T_Load.GetButton().onClick.AddListener(Load);
         T_Setting.GetButton().onClick.AddListener(Setting);
-        T_Exit.GetButton().onClick.AddListener(Exit);
+        T_Exit.GetButton().onClick.AddListener(() => { Exit(); });
         T_Battle.GetButton().onClick.AddListener(Battle);
     }
 
@@ -33,16 +35,20 @@ public class MainMenuView : UIBase, IUIAwake
 
     private void Battle()
     {
-        LoadBattleScene().Forget();
+        CoreBehaviour.AddCoroutine(LoadBattleScene());
+        //LoadBattleScene().Forget();
     }
-    private void Exit()
+    private IEnumerator Exit()
     {
+
+        CoreBehaviour.StopAllCoroutines();      //停止所有协程
+        yield return ModelRun.ModelExit();                   //退出所有模块
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-    Application.Quit();
+        Application.Quit();
 #endif
-        CoreBehaviour.StopAllCoroutines();      //停止所有协程
     }
     private void Setting()
     {
@@ -63,15 +69,16 @@ public class MainMenuView : UIBase, IUIAwake
     {
         await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneStart);
         CloseUIForm();
-        await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneMain, ELoadSceneModel.Additive);
+        await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneMain, LoadSceneMode.Additive);
     }
 
-    private async UniTask LoadBattleScene()
+    private IEnumerator LoadBattleScene()
     {
         CloseUIForm();
-        await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneBattle);
-        SceneBattleManager sceneBattleManager = SceneBattleManager.Instance;
-
+        yield return CoreScene.LoadSceneAsync(ConfigScenes.unitySceneBattle, LoadSceneMode.Additive);
+        //await ManagerScene.LoadSceneAsync(ConfigScenes.unitySceneBattle);
+        //SceneBattleManager sceneBattleManager = SceneBattleManager.Instance;
+        Debug.Log("准备开始战斗");
         //创建技能
         SkillNormalAttack skillNormalAttack = new SkillNormalAttack();//普通攻击
         skillNormalAttack.ID = 0;
@@ -164,7 +171,7 @@ public class MainMenuView : UIBase, IUIAwake
 
 
         //添加到战斗管理器
-        sceneBattleManager.SetBattle(teamBattle);
+        SceneBattleManager.Instance.SetBattle(teamBattle);
         ManagerRPGBattle.AddBattle(teamBattle);
     }
 }
