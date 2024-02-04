@@ -1,21 +1,20 @@
 ﻿using Core;
 using Cysharp.Threading.Tasks;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
+using System;
+using System.Collections;
 using UnityEngine;
 using Debug = Core.Debug;
 
 
 /*--------脚本描述-----------
 
-电子邮箱：
-    1607388033@qq.com
-作者:
-    暗沉
 描述:
     Unity加载
 
 -----------------------*/
 
-namespace Farm2D
+namespace Core
 {
     public class UnityResLoad : IResLoad
     {
@@ -32,55 +31,63 @@ namespace Farm2D
             return t;
         }
 
-        public T[] LoadAll<T>(string AssetName) where T : UnityEngine.Object
+        public IEnumerator LoadAsync<T>(string AssetName, Action<T> action) where T : UnityEngine.Object
         {
-            T[] values = Resources.LoadAll<T>(AssetName);
-            if (values == null && values.Length <= 0)
+            ResourceRequest resourceRequest = Resources.LoadAsync<T>(AssetName);
+            while (!resourceRequest.isDone)
+                yield return null;
+            if (resourceRequest.isDone == false)
                 Debug.Error($"资源为空{AssetName}");
-            return values;
+            action.Invoke(resourceRequest.asset as T);
         }
 
-        public UniTask<T[]> LoadAllAsync<T>(string location) where T : UnityEngine.Object
+        public IEnumerator LoadAsync<T>(string AssetName) where T : UnityEngine.Object
         {
-            return default;
+            yield return null;
         }
 
-        public async UniTask<T> LoadAsync<T>(string AssetName) where T : UnityEngine.Object
-        {
-            ResourceRequest t = Resources.LoadAsync<T>(AssetName);
-            await t.ToUniTask();
-            if (t.isDone == false)
-                Debug.Error($"资源为空{AssetName}");
-            return t.asset as T;
-        }
+        //public T[] LoadAll<T>(string AssetName) where T : UnityEngine.Object
+        //{
+        //    T[] values = Resources.LoadAll<T>(AssetName);
+        //    if (values == null && values.Length <= 0)
+        //        Debug.Error($"资源为空{AssetName}");
+        //    return values;
+        //}
 
-        public T LoadSub<T>(string location, string AssetName) where T : UnityEngine.Object
-        {
-            return null;
-        }
+        //public IEnumerator LoadAllAsync<T>(string location) where T : UnityEngine.Object
+        //{
+        //    return default;
+        //}
 
-        public UniTask<T> LoadSubAsync<T>(string location, string AssetName) where T : UnityEngine.Object
-        {
-            return default;
-        }
 
-        public void ReleaseAsset(string AssetName = null)
-        {
-        }
 
-        public void UnloadAssets()
-        {
-            Resources.UnloadUnusedAssets();
-        }
+        //public T LoadSub<T>(string location, string AssetName) where T : UnityEngine.Object
+        //{
+        //    return null;
+        //}
 
-        public byte[] LoadByteData(string location)
-        {
-            return Load<TextAsset>(location).bytes;
-        }
+        //public IEnumerator<T> LoadSubAsync<T>(string location, string AssetName) where T : UnityEngine.Object
+        //{
+        //    return default;
+        //}
 
-        public UniTask<byte[]> LoadByteDataAsync(string location)
-        {
-            throw new System.NotImplementedException();
-        }
+        //public void ReleaseAsset(string AssetName = null)
+        //{
+        //}
+
+        //public void UnloadAssets()
+        //{
+        //    Resources.UnloadUnusedAssets();
+        //}
+
+        //public byte[] LoadByteData(string location)
+        //{
+        //    return Load<TextAsset>(location).bytes;
+        //}
+
+        //public IEnumerator<byte[]> LoadByteDataAsync(string location)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
     }
 }

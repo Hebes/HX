@@ -17,14 +17,14 @@ public class ManagerInventory : IModel
     private static ManagerInventory Instance;
     private Dictionary<int, List<InventoryItem>> _itemDic;      //物品字典
 
-    public IEnumerator Enter()
+    public  IEnumerator Enter()
     {
         Instance = this;
         _itemDic = new Dictionary<int, List<InventoryItem>>();
         yield return null;
     }
 
-    public IEnumerator Exit()
+    public  IEnumerator Exit()
     {
         yield return null;
     }

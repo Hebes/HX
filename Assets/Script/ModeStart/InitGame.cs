@@ -1,4 +1,6 @@
 using Core;
+using Cysharp.Threading.Tasks;
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -8,11 +10,18 @@ public class InitGame : MonoBehaviour
 {
     private void Awake()
     {
+        StartCoroutine(Init());
+    }
+
+    public  IEnumerator Init()
+    {
         //初始化核心
-        new CoreRun();
-        //加载子模块
-        new ModelRun();
+        CoreRun coreRun = new CoreRun();
+        yield return coreRun.CoreInit();
         //显示主界面
-        CoreUI.ShwoUIPanel<MainMenuView>(ConfigPrefab.prefabUIMianMenu); 
+        CoreUI.ShwoUIPanel<MainMenuView>(ConfigPrefab.prefabUIMianMenu);
+        //加载子模块
+        ModelRun modelRun = new ModelRun();
+        yield return modelRun.ModelInit();
     }
 }

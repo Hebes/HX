@@ -1,8 +1,9 @@
-﻿using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
+﻿using Cysharp.Threading.Tasks;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using System.Buffers.Text;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.UI.CanvasScaler;
 
 /*--------脚本描述-----------
 
@@ -92,30 +93,32 @@ namespace Core
                     uiUpdata.UIUpdata();
             }
         }
-
-
-        public void ICoreInit()
+        public IEnumerator ICoreInit()
         {
             Instance = this;
             _DicALLUIForms = new Dictionary<string, IUI>();
             _DicCurrentShowUIForms = new Dictionary<string, IUI>();
             _StaCurrentUIForms = new Stack<IUI>();
+            yield return CoreResource.LoadAsync<GameObject>(SettingCore.uiCanvasPath, LoadOkOver);
 
-            GameObject gameObjectTemp = CoreResource.Load<GameObject>(SettingCore.uiCanvasPath);
-            GameObject CanvasGoInstantiate = GameObject.Instantiate(gameObjectTemp);
-            CanvasGoInstantiate.name = "UI界面";
-            //实例化
-            CanvasTransfrom = CanvasGoInstantiate.transform;
-            GameObject.DontDestroyOnLoad(CanvasTransfrom);
-            //获取子节点
-            Normal = CanvasTransfrom.GetChildComponent<Transform>(EUIType.Normal.ToString());
-            Fixed = CanvasTransfrom.GetChildComponent<Transform>(EUIType.Fixed.ToString());
-            PopUp = CanvasTransfrom.GetChildComponent<Transform>(EUIType.PopUp.ToString());
-            Mobile = CanvasTransfrom.GetChildComponent<Transform>(EUIType.Mobile.ToString());
-            Fade = CanvasTransfrom.GetChildComponent<Transform>(EUIType.Fade.ToString());
-            UICamera = CanvasTransfrom.GetChildComponent<Camera>("UICamera");//UI相机要添加到主相机的Stack中
-            MainCamera = CanvasTransfrom.GetChildComponent<Camera>("MainCamera");
-            Debug.Log("UI管理初始化完毕");
+            void LoadOkOver(GameObject gameObject)
+            {
+                GameObject CanvasGoInstantiate = GameObject.Instantiate(gameObject);
+                CanvasGoInstantiate.name = "UI界面";
+                //实例化
+                CanvasTransfrom = CanvasGoInstantiate.transform;
+                GameObject.DontDestroyOnLoad(CanvasTransfrom);
+                //获取子节点
+                Normal = CanvasTransfrom.GetChildComponent<Transform>(EUIType.Normal.ToString());
+                Fixed = CanvasTransfrom.GetChildComponent<Transform>(EUIType.Fixed.ToString());
+                PopUp = CanvasTransfrom.GetChildComponent<Transform>(EUIType.PopUp.ToString());
+                Mobile = CanvasTransfrom.GetChildComponent<Transform>(EUIType.Mobile.ToString());
+                Fade = CanvasTransfrom.GetChildComponent<Transform>(EUIType.Fade.ToString());
+                UICamera = CanvasTransfrom.GetChildComponent<Camera>("UICamera");//UI相机要添加到主相机的Stack中
+                MainCamera = CanvasTransfrom.GetChildComponent<Camera>("MainCamera");
+                Debug.Log("UI管理初始化完毕");
+            }
+            yield return null;
         }
 
 

@@ -1,4 +1,6 @@
 ﻿using Core;
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using UnityEngine;
 using Debug = Core.Debug;
@@ -8,29 +10,20 @@ using Debug = Core.Debug;
 /// </summary>
 public class RoleStateBattle : IRoleState, IDamage
 {
-    #region 继承属性和字段
-    private long _id;
-    private ERoleSateType _roleSateType = ERoleSateType.Battle;
-    private IRoleInstance _roleInstance;
-
-    public long ID { get => _id; set => _id = value; }
-    public ERoleSateType RoleSateType { get => _roleSateType; }
-    public IRoleInstance RoleInstance { get => _roleInstance; set => _roleInstance = value; }
-    #endregion
-
+    public ERoleSateType RoleSateType => ERoleSateType.Battle;
+    public long ID { get; set; }
+    public RoleData RoleData { get; set; }
 
     #region 本类持有
-    private IBattleAction battleAction { get; set; }//自己的行动
+    private BattleActionData battleAction { get; set; }//自己的行动
     private bool isActionStarted { get; set; } = false;// 是否是行动开始了
     private Vector3 startPosition { get; set; }
-    private bool isAlive { get; set; } = true;//是否活着
     private float animSpeed { get; set; } = 10f;// 移动速度
-    private RoleData roleData => _roleInstance.RoleInfo;
-    private RoleAttributes RoleAttributes => roleData.RoleAttributes;
-    private ITeamInstance team => roleData.Team;
+    private RoleAttributes RoleAttributes => RoleData.RoleAttributes;
+    private TeamData team => RoleData.Team;
     private GameObject roleGameObject { get; set; }
     public ERoleTurnState turnState { get; set; } = ERoleTurnState.PROCESSING;// 当前状态枚举
-    public IBattle battle { get; set; }
+    public BattleData battle { get; set; }
     #endregion
 
 
@@ -39,7 +32,7 @@ public class RoleStateBattle : IRoleState, IDamage
     /// 添加数据
     /// </summary>
     /// <param name="roleData">角色数据</param>
-    public void SetBattleData(IBattle battleActual)
+    public void SetBattleData(BattleData battleActual)
     {
         this.battle = battleActual;
     }
@@ -49,7 +42,7 @@ public class RoleStateBattle : IRoleState, IDamage
     #region 接口实现
     public void StateEnter()
     {
-        roleData.gameObject = roleGameObject = SceneBattleManager.Instance.InstantiateBattleRole(team.TeamPoint, roleData);
+        RoleData.gameObject = roleGameObject = SceneBattleManager.Instance.InstantiateBattleRole(team.TeamPoint, RoleData);
         startPosition = roleGameObject.transform.position;
         turnState = ERoleTurnState.PROCESSING;
     }
@@ -64,7 +57,7 @@ public class RoleStateBattle : IRoleState, IDamage
                 UpgradeProgressBar();
                 break;
             case ERoleTurnState.CHOOSEACTION:
-                switch (roleData.RoleType)
+                switch (RoleData.RoleType)
                 {
                     case ERoleOrTeamType.Player:
                         PlayerChooseAction();
@@ -95,13 +88,13 @@ public class RoleStateBattle : IRoleState, IDamage
 
     public void DoDamage()
     {
-        int calc_damage = RoleAttributes.CurrentATK + battleAction.AttackPattern.Skill.CurrentATK;
+        int calc_damage = battleAction.AttackData.AttributeData.Damage;
         battleAction.TargetData.RoleState.GetRoleSate<RoleStateBattle>().TakeDamage(calc_damage);
     }
     public void TakeDamage(int getDamageAmount)
     {
         RoleAttributes.CurrentHP -= getDamageAmount;
-        Debug.Log($"{roleData.Name}受到：{getDamageAmount}点伤害,剩余生命值：{RoleAttributes.CurrentHP}");
+        Debug.Log($"{RoleData.Name}受到：{getDamageAmount}点伤害,剩余生命值：{RoleAttributes.CurrentHP}");
         if (RoleAttributes.CurrentHP >= 0) return;
         RoleAttributes.CurrentHP = 0;
         turnState = ERoleTurnState.DEAD;
@@ -118,6 +111,7 @@ public class RoleStateBattle : IRoleState, IDamage
         RoleAttributes.CurColldown += Time.deltaTime;
         //Debug.Log($"{roleData.Name}进度条上升{RoleAttributes.CurColldown}");
         if (RoleAttributes.CurColldown < RoleAttributes.MaxColldown) return;//如果冷却时间到了
+        RoleData.IsAlive = true;
         turnState = ERoleTurnState.CHOOSEACTION;
     }
     /// <summary>
@@ -125,16 +119,14 @@ public class RoleStateBattle : IRoleState, IDamage
     /// </summary>
     private void NpcOrEnemyChooseAction()
     {
-        BattleAction battleAction = new BattleAction();
-        this.battleAction = battleAction;
+        battleAction = new BattleActionData();
         //自己的攻击数据
-        battleAction.AttackerData = roleData;
+        battleAction.AttackerData = RoleData;
         //敌人的攻击数据
         battleAction.TargetData = battle.RandomEnemyRole(team.TeamType);
         //选择攻击方式
-        AttackWay attackWay = new AttackWay();
-        attackWay.Skill = roleData.SkillDataDic[ESkillType.NormalAttack][0];
-        battleAction.AttackPattern = attackWay;
+
+        battleAction.AttackData = RoleData.GetSkill(ESkillType.NormalAttack, 1);
         //Debug.Log(this.gameObject.name + "选择了：" + myAttack.choosenAttack.attackName + "攻击方式,对" + myAttack.AttackersTarget.name + "造成" + (myAttack.choosenAttack.attackDamage + enemy.curAtk) + "伤害");
         //添加到战斗列表
         battle.AddBattleAction(battleAction);
@@ -173,6 +165,7 @@ public class RoleStateBattle : IRoleState, IDamage
             yield return null;//这个是等待1帧的意思
         //等待
         yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
         //伤害
         DoDamage();
         //回到起始位置的动画
@@ -194,23 +187,23 @@ public class RoleStateBattle : IRoleState, IDamage
     /// <exception cref="System.NotImplementedException"></exception>
     private void Dead()
     {
-        if (!isAlive)
+        if (!RoleData.IsAlive)
             return;
         //deactivate the selector 停用选择器 就是黄色的小物体
         //Selector.SetActive(false);
         //自己死了从行动列表删除自己，如果行动列表存在自己的话
-        if (battle.ChackBattleActionExist(roleData, out IBattleAction battleAction))
+        if (battle.ChackBattleActionExist(RoleData, out BattleActionData battleAction))
         {
             //if (battle.BattleActionList[0] == battleAction) return;
-            if (battleAction.AttackerData == roleData)
+            if (battleAction.AttackerData == RoleData)
                 battle.RemoveBattleAction(battleAction);
-            if (battleAction.TargetData == roleData)
-                battleAction.TargetData = battle.RandomOwnRole(team.TeamType);
+            if (battleAction.TargetData == RoleData)
+                battleAction.TargetData = battle.RandomEnemyRole(team.TeamType);
         }
         //change color / play animation 改变颜色/播放动画
         //this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
         //设置为不存活
-        isAlive = false;
+        RoleData.IsAlive = false;
         //重新生成敌人的按钮
         //BSM.EnemyButtons();
         //在一场战斗中检查敌人队伍或者自己人队伍是否还有存活的
@@ -227,7 +220,7 @@ public class RoleStateBattle : IRoleState, IDamage
     /// <returns></returns>
     private bool MoveTowrdsEnemy(Vector3 target)
     {
-        return target != (roleData.gameObject.transform.position = Vector3.MoveTowards(roleData.gameObject.transform.position, target, animSpeed * Time.deltaTime));
+        return target != (RoleData.gameObject.transform.position = Vector3.MoveTowards(RoleData.gameObject.transform.position, target, animSpeed * Time.deltaTime));
     }
 
     /// <summary>
@@ -237,7 +230,7 @@ public class RoleStateBattle : IRoleState, IDamage
     /// <returns></returns>
     private bool MoveTowrdsStart(Vector3 target)
     {
-        return target != (roleData.gameObject.transform.position = Vector3.MoveTowards(roleData.gameObject.transform.position, target, animSpeed * Time.deltaTime));
+        return target != (RoleData.gameObject.transform.position = Vector3.MoveTowards(RoleData.gameObject.transform.position, target, animSpeed * Time.deltaTime));
     }
 
     /// <summary>

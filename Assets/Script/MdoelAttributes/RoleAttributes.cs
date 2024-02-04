@@ -3,30 +3,27 @@
 /// <summary>
 /// 角色属性
 /// </summary>
-public class RoleAttributes : IHP, IATK, IColldown
+public class RoleAttributes : AttributesData, IATK, IHP, IColldown
 {
+    public RoleAttributes(int atk, int hp, float colldown)
+    {
+        MaxATK = CurrentATK = atk;
+        MaxHP = CurrentHP = hp;
+        MaxColldown = CurColldown = colldown;
+    }
 
-    private int _MaxHP;
-    private int _CurrentHP;
-    private int _MaxATK;
-    private int _CurrentATK;
-    private float _MaxColldown;
-    private float _CurColldown;
-
-
-    public int MaxHP { get => _MaxHP; set => _MaxHP = value; }
-    public int CurrentHP { get => _CurrentHP; set => _CurrentHP = value; }
-    public int MaxATK { get => _MaxATK; set => _MaxATK = value; }
-    public int CurrentATK { get => _CurrentATK; set => _CurrentATK = value; }
-    public float MaxColldown { get => _MaxColldown; set => _MaxColldown = value; }
-    public float CurColldown { get => _CurColldown; set => _CurColldown = value; }
-
+    public int MaxATK { get; set; }
+    public int CurrentATK { get; set; }
+    public int MaxHP { get; set; }
+    public int CurrentHP { get; set; }
+    public float MaxColldown { get; set; }
+    public float CurColldown { get; set; }
 
     public override string ToString()
     {
-        StringBuilder sb=new StringBuilder();
-        sb.AppendLine($"最大生命值{_MaxHP}");
-        sb.AppendLine($"当前生命值{_CurrentHP}");
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine($"最大生命值{MaxHP}");
+        sb.AppendLine($"当前生命值{CurrentHP}");
         return sb.ToString();
     }
 }

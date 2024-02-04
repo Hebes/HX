@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections;
 
 /// <summary>
 /// 描述
@@ -11,13 +12,7 @@ public interface IDescribe
     string Des { get; set; }
 }
 
-public interface IID
-{
-    /// <summary>
-    /// ID
-    /// </summary>
-    public long ID { get; set; }
-}
+
 
 /// <summary>
 /// 模块

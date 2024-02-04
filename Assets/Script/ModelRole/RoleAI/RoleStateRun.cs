@@ -8,24 +8,20 @@ using Debug = Core.Debug;
 /// </summary>
 public class RoleStateRun : IRoleState
 {
-    private long _id;
-    private ERoleSateType _roleSateType = ERoleSateType.Run;
-    private IRoleInstance _role;
+    public RoleData RoleData { get ; set; }
 
-    public long ID { get => _id; set => _id = value; }
-    public ERoleSateType RoleSateType { get => _roleSateType; set => _roleSateType = value; }
-    public IRoleInstance RoleInstance { get => _role; set => _role = value; }
+    public ERoleSateType RoleSateType => ERoleSateType.Run;
 
-    private ERoleOrTeamType roleType => _role.RoleInfo.RoleType;
-    private RoleData roleData=> _role.RoleInfo;
+    public long ID { get; set; }
+
 
     #region 本类特有
-    
+
     #endregion
 
     public void StateEnter()
     {
-        roleData.gameObject = CoreResource.Load<GameObject>(ConfigPrefab.prefabCommonRole);
+        RoleData.gameObject = CoreResource.Load<GameObject>(ConfigPrefab.prefabCommonRole);
     }
 
     public void StateExit()
@@ -34,16 +30,16 @@ public class RoleStateRun : IRoleState
 
     public void StateUpdata()
     {
-        switch (roleType)
-        {
-            case ERoleOrTeamType.Player:
-                break;
-            case ERoleOrTeamType.NPC:
-                break;
-            case ERoleOrTeamType.Enemy:
-                break;
-            default:
-                break;
-        }
+        //switch (roleType)
+        //{
+        //    case ERoleOrTeamType.Player:
+        //        break;
+        //    case ERoleOrTeamType.NPC:
+        //        break;
+        //    case ERoleOrTeamType.Enemy:
+        //        break;
+        //    default:
+        //        break;
+        //}
     }
 }

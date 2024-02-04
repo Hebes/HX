@@ -36,11 +36,11 @@
 //            return null;
 //        }
 
-//        public async UniTask<T> LoadAsync<T>(string AssetName) where T : UnityEngine.Object
+//        public IEnumerator<T> LoadAsync<T>(string AssetName) where T : UnityEngine.Object
 //        {
 //            AssetHandle handle = package.LoadAssetAsync<T>(AssetName);
 //            assetHashSet.Add(handle);
-//            await handle.ToUniTask();
+//            yield return handle.ToIEnumerator();
 //            if (handle.Status == EOperationStatus.Succeed)
 //                return handle.AssetObject as T;
 //            Debug.Error($"资源加载失败,请检查资源名称:{AssetName}");
@@ -54,10 +54,10 @@
 //        }
 
 
-//        public async UniTask<T[]> LoadAllAsync<T>(string location) where T : UnityEngine.Object
+//        public IEnumerator<T[]> LoadAllAsync<T>(string location) where T : UnityEngine.Object
 //        {
 //            AllAssetsHandle handle = package.LoadAllAssetsAsync<T>(location);
-//            await handle.ToUniTask();
+//            yield return handle.ToIEnumerator();
 //            return handle.AllAssetObjects as T[];
 //        }
 
@@ -67,13 +67,13 @@
 //            return handle.GetSubAssetObject<T>(ResName);
 //        }
 
-//        public async UniTask<T> LoadSubAsync<T>(string location, string AssetName) where T : UnityEngine.Object
+//        public IEnumerator<T> LoadSubAsync<T>(string location, string AssetName) where T : UnityEngine.Object
 //        {
 //            //var package = YooAssets.GetPackage(ConfigCore.YooAseetPackage);
 //            //SubAssetsOperationHandle handle = package.LoadSubAssetsAsync<T>(location);
-//            //await handle.ToUniTask();
+//            //yield return handle.ToIEnumerator();
 //            //var sprite = handle.GetSubAssetObject<T>(ResName);
-//            await UniTask.Yield();
+//            yield return null;
 //            return null;
 //        }
 
@@ -101,10 +101,10 @@
 //            //string filePath = handle.GetRawFilePath();
 //        }
 
-//        public async UniTask<byte[]> LoadByteDataAsync(string location)
+//        public IEnumerator<byte[]> LoadByteDataAsync(string location)
 //        {
 //            RawFileHandle handle = package.LoadRawFileAsync(location);
-//            await handle.ToUniTask();
+//            yield return handle.ToIEnumerator();
 //            if (handle.Status == EOperationStatus.Succeed)
 //                return handle.GetRawFileData();
 //            else

@@ -18,7 +18,7 @@ using UnityEngine;
 
 -----------------------*/
 
-namespace Farm2D
+namespace Core
 {
     public class PlayerPrefsOperation : IDataHandle
     {

@@ -1,13 +1,10 @@
-using Cysharp.Threading.Tasks;
+using Core;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /*--------脚本描述-----------
-				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
+
 描述:
     音频模块
 
@@ -26,7 +23,7 @@ namespace Core
     }
 
     [System.Serializable]
-    public class AudioData
+    public struct AudioData
     {
         public AudioClip audioClip;
         public float volume;
@@ -35,11 +32,10 @@ namespace Core
     public class CoreAduio : ICore
     {
         public static CoreAduio Instance;
-        private Dictionary<string, AudioData> audioClipDic;         //音效列表
-        private Dictionary<string, AudioSource> sudioSourceDic;     //音乐组件列表
+        public Dictionary<string, AudioData> audioClipDic;         //音效列表
+        public Dictionary<string, AudioSource> sudioSourceDic;     //音乐组件列表
 
-
-        public void ICoreInit()
+        public IEnumerator ICoreInit()
         {
             Instance = this;
             audioClipDic = new Dictionary<string, AudioData>();
@@ -51,76 +47,85 @@ namespace Core
             sudioSourceDic.Add(EAudioSourceType.BGM.ToString(), AudioManagerGo.AddComponent<AudioSource>());
             sudioSourceDic.Add(EAudioSourceType.SFX.ToString(), AudioManagerGo.AddComponent<AudioSource>());
             Debug.Log("音频模块初始化成功!");
+            yield return null;
         }
+    }
+}
 
 
-        /// <summary>
-        /// 播放音效
-        /// </summary>
-        /// <param name="audioClipName">音效名称</param>
-        /// <param name="audioSourceType">音效的类型</param>
-        /// <param name="isLoop">是否循环</param>
-        /// <returns></returns>
-        public static async UniTask PlayAudioSource(string audioClipName, EAudioSourceType audioSourceType, bool isLoop = false)
+public static class HelperAduio
+{
+    /// <summary>
+    /// 播放音效
+    /// </summary>
+    /// <param name="audioClip"></param>
+    /// <param name="audioSourceType"></param>
+    /// <param name="isLoop"></param>
+    public static void Play(this AudioData audioClip, EAudioSourceType audioSourceType, bool isLoop = false)
+    {
+        AudioSource audioSource = null;
+        switch (audioSourceType)
         {
-            if (Instance.audioClipDic.TryGetValue(audioClipName, out AudioData audioClip))
-            {
-                Play(audioClip, audioSourceType, isLoop);
-                return;
-            }
-            audioClip.audioClip = await CoreResource.LoadAsync<AudioClip>(audioClipName);
-            Instance.audioClipDic.Add(audioClipName, audioClip);
+            case EAudioSourceType.BGM:
+                if (CoreAduio.Instance.sudioSourceDic.TryGetValue(audioSourceType.ToString(), out audioSource))
+                {
+                    audioSource.clip = audioClip.audioClip;
+                    audioSource.loop = isLoop;
+                    audioSource.volume = audioClip.volume;
+                    audioSource.Play();
+                }
+                break;
+            case EAudioSourceType.SFX:
+                if (CoreAduio.Instance.sudioSourceDic.TryGetValue(audioSourceType.ToString(), out audioSource))
+                {
+                    audioSource.loop = isLoop;
+                    audioSource.PlayOneShot(audioClip.audioClip, audioClip.volume);
+                }
+                break;
+        }
+    }
+
+    /// <summary>
+    /// 播放音效
+    /// </summary>
+    /// <param name="audioClipName">音效名称</param>
+    /// <param name="audioSourceType">音效的类型</param>
+    /// <param name="isLoop">是否循环</param>
+    /// <returns></returns>
+    public static IEnumerator PlayAudioSource(this string audioClipName, EAudioSourceType audioSourceType, bool isLoop = false)
+    {
+        if (CoreAduio.Instance.audioClipDic.TryGetValue(audioClipName, out AudioData audioClip))
             Play(audioClip, audioSourceType, isLoop);
-        }
+        else
+            yield return CoreResource.LoadAsync<AudioClip>(audioClipName, LoadOkOver);
 
-        /// <summary>
-        /// 暂停播放
-        /// </summary>
-        /// <param name="audioSourceType"></param>
-        public static void StopAudioSource(EAudioSourceType audioSourceType)
+        void LoadOkOver(AudioClip audioClip)
         {
-            if (Instance.sudioSourceDic.TryGetValue(audioSourceType.ToString(), out AudioSource audioSource))
-                audioSource.Stop();
+            AudioData audioData = new AudioData();
+            audioData.audioClip = audioClip;
+            audioData.volume = 1;
+            CoreAduio.Instance.audioClipDic.Add(audioClipName, audioData);
+            audioData.Play(audioSourceType, isLoop);
         }
+    }
 
-        /// <summary>
-        /// 改变音量
-        /// </summary>
-        /// <param name="v"></param>
-        public static void ChangeAudioSourceValue(EAudioSourceType audioSourceType, float v)
-        {
-            if (Instance.sudioSourceDic.TryGetValue(audioSourceType.ToString(), out AudioSource audioSource))
-                audioSource.volume = v;
-        }
+    /// <summary>
+    /// 暂停播放
+    /// </summary>
+    /// <param name="audioSourceType"></param>
+    public static void StopAudioSource(EAudioSourceType audioSourceType)
+    {
+        if (CoreAduio.Instance.sudioSourceDic.TryGetValue(audioSourceType.ToString(), out AudioSource audioSource))
+            audioSource.Stop();
+    }
 
-        /// <summary>
-        /// 播放音效
-        /// </summary>
-        /// <param name="audioClip"></param>
-        /// <param name="audioSourceType"></param>
-        /// <param name="isLoop"></param>
-        private static void Play(AudioData audioClip, EAudioSourceType audioSourceType, bool isLoop = false)
-        {
-            AudioSource audioSource = null;
-            switch (audioSourceType)
-            {
-                case EAudioSourceType.BGM:
-                    if (Instance.sudioSourceDic.TryGetValue(audioSourceType.ToString(), out audioSource))
-                    {
-                        audioSource.clip = audioClip.audioClip;
-                        audioSource.loop = isLoop;
-                        audioSource.volume = audioClip.volume;
-                        audioSource.Play();
-                    }
-                    break;
-                case EAudioSourceType.SFX:
-                    if (Instance.sudioSourceDic.TryGetValue(audioSourceType.ToString(), out audioSource))
-                    {
-                        audioSource.loop = isLoop;
-                        audioSource.PlayOneShot(audioClip.audioClip, audioClip.volume);
-                    }
-                    break;
-            }
-        }
+    /// <summary>
+    /// 改变音量
+    /// </summary>
+    /// <param name="v"></param>
+    public static void ChangeAudioSourceValue(EAudioSourceType audioSourceType, float v)
+    {
+        if (CoreAduio.Instance.sudioSourceDic.TryGetValue(audioSourceType.ToString(), out AudioSource audioSource))
+            audioSource.volume = v;
     }
 }

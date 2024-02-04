@@ -21,19 +21,19 @@ public class LanguageComponent : MonoBehaviour
     private void OnEnable()
     {
         OnSwitchLanguage();
-        ManagerLanguage.Instance.languageChangeEvt += OnSwitchLanguage;
+        CoreLanguage.Instance.languageChangeEvt += OnSwitchLanguage;
     }
     private void OnDisable()
     {
-        ManagerLanguage.Instance.languageChangeEvt -= OnSwitchLanguage;
+        CoreLanguage.Instance.languageChangeEvt -= OnSwitchLanguage;
     }
 
     private void OnSwitchLanguage()
     {
         if (_text == null) return;
-        _text.text = ManagerLanguage.GetText(key);
-        if (ManagerLanguage.Instance._font is null) return;
-        _text.font = ManagerLanguage.Instance._font;
+        _text.text = CoreLanguage.GetText(key);
+        if (CoreLanguage.Instance._font is null) return;
+        _text.font = CoreLanguage.Instance._font;
     }
 
     /// <summary>

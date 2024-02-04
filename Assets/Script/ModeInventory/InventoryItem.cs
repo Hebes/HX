@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Core;
+using System.Collections.Generic;
 /// <summary>
 /// 物品数据结构
 /// </summary>

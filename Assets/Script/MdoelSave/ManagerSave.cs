@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Core;
+using Cysharp.Threading.Tasks;
 
 /*--------脚本描述-----------
 
@@ -13,14 +14,14 @@ public class ManagerSave : IModel
 {
     public static ManagerSave Instance { get; private set; }
     private List<ISave> _saveList;
-    public IEnumerator Enter()
+    public  IEnumerator Enter()
     {
         Instance = this;
         _saveList = new List<ISave>();
         yield return null;
     }
 
-    public IEnumerator Exit()
+    public  IEnumerator Exit()
     {
         yield return null;
     }

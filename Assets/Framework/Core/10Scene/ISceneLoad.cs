@@ -13,6 +13,11 @@ namespace Core
     public interface ISceneLoad
     {
         /// <summary>
+        /// 是否加载完毕
+        /// </summary>
+        bool IsLoadOver { get; set; }
+
+        /// <summary>
         /// 初始化
         /// </summary>
         public abstract void CoreSceneInit();

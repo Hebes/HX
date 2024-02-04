@@ -83,7 +83,6 @@
     <Compile Include="Assets\Framework\Core\07Data\Data\Realize\BinaryAnalysis.cs" />
     <Compile Include="Assets\Framework\Core\13SystemOrder\CoreSystemOrder.cs" />
     <Compile Include="Assets\Framework\Core\06UI\EnumUI.cs" />
-    <Compile Include="Assets\Framework\Core\00Singleton\ISingletonInit.cs" />
     <Compile Include="Assets\Framework\Core\04Resource\CoreResource.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionSystem\ExpansionAssembly.cs" />
     <Compile Include="Assets\Framework\Core\06UI\UI\Other\BackgroundAdaptation.cs" />
@@ -92,14 +91,13 @@
     <Compile Include="Assets\Framework\Core\11Input\InputPC.cs" />
     <Compile Include="Assets\Framework\Core\11Input\InputNewInputPC.cs" />
     <Compile Include="Assets\Framework\Core\06UI\Realize\PanelPopIn.cs" />
-    <Compile Include="Assets\Framework\Core\Core\CoreEnum.cs" />
     <Compile Include="Assets\Framework\Expansion\ETHelper\StringHelper.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionImage.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionSystem\ExpansionEnum.cs" />
     <Compile Include="Assets\Framework\Core\11Input\接口\IInputPCKeyCode.cs" />
+    <Compile Include="Assets\Framework\Core\Language\CoreLanguage.cs" />
     <Compile Include="Assets\Framework\Core\12DataOperation\XML\XMLOperation.cs" />
     <Compile Include="Assets\Framework\Core\02Event\Await\CoreEvent.Await.cs" />
-    <Compile Include="Assets\Framework\Core\Core\ICore.cs" />
     <Compile Include="Assets\Framework\Core\02Event\Common\EventCommon.cs" />
     <Compile Include="Assets\Framework\Expansion\YooAsset\OperationHandleBaseExtensions.cs" />
     <Compile Include="Assets\Framework\Core\02Event\Await\EventInfoAsync.cs" />
@@ -174,6 +172,7 @@
     <Compile Include="Assets\Framework\Expansion\Name\HelperName.cs" />
     <Compile Include="Assets\Framework\Core\02Event\Return\EventInfoReturn.cs" />
     <Compile Include="Assets\Framework\Core\14Assemby\CoreAssemby.cs" />
+    <Compile Include="Assets\Framework\Core\Language\LanguageComponent.cs" />
     <Compile Include="Assets\Framework\Core\Core\CoreRun.cs" />
     <Compile Include="Assets\Framework\Expansion\Utility\UniTimer.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionButton.cs" />
@@ -856,9 +855,6 @@
     </Reference>
     <Reference Include="System.Xml.Serialization">
       <HintPath>D:\Unity\2022.3.7f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="UniTask">
-      <HintPath>Library\ScriptAssemblies\UniTask.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>

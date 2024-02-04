@@ -1,29 +1,20 @@
-﻿using Cysharp.Threading.Tasks;
-using System;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 /*--------脚本描述-----------
-				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
+
 描述:
     日志模块
 
 -----------------------*/
 
-
 namespace Core
 {
     public class CoreDebug : ICore
     {
-        public static CoreDebug Instance;
-
-        public void ICoreInit()
+        public IEnumerator ICoreInit()
         {
-            Instance = this;
-
             //日志设置
             LogConfig logConfig = new LogConfig();
             logConfig.enableLog=true;
@@ -55,6 +46,8 @@ namespace Core
             //debugGo.AddComponent<UIDebugger>();
             //GameObject.DontDestroyOnLoad(debugGo);
             Debug.Log("日志模块初始化完毕!");
+
+            yield return null;
         }
     }
 }

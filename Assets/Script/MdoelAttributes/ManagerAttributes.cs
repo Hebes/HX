@@ -1,24 +1,24 @@
-﻿using System.Collections;
+﻿//using Cysharp.Threading.Tasks;
 
 
-/*--------脚本描述-----------
+///*--------脚本描述-----------
 
-描述:
-	属性管理器
+//描述:
+//	属性管理器
 
------------------------*/
+//-----------------------*/
 
-public class ManagerAttributes : IModel
-{
+//public class ManagerAttributes : IModel
+//{
    
-    public IEnumerator Exit()
-    {
-        yield return null;
-    }
+//    public IEnumerator Exit()
+//    {
+//        yield return null;
+//    }
 
-    public IEnumerator Enter()
-    {
-        yield return null;
-    }
-}
+//    public IEnumerator Enter()
+//    {
+//        yield return null;
+//    }
+//}
 

@@ -27,7 +27,7 @@
 
 //        }
 
-//        public async UniTask LoadSceneAsync(string sceneName, ELoadSceneModel loadSceneModel)
+//        public IEnumerator LoadSceneAsync(string sceneName, ELoadSceneModel loadSceneModel)
 //        {
 //            LoadSceneMode loadSceneModelTemp = LoadSceneMode.Single;
 //            switch (loadSceneModel)
@@ -43,7 +43,7 @@
 //            bool suspendLoad = false;   //场景加载到90%自动挂起
 //            uint priority = 100;         //优先级
 //            SceneHandle sceneHandle = package.LoadSceneAsync(sceneName, loadSceneModelTemp, suspendLoad, priority);
-//            await sceneHandle.ToUniTask();
+//            yield return sceneHandle.ToIEnumerator();
 //            if (sceneHandle.Status == EOperationStatus.Succeed)
 //                Debug.Log($"{sceneName}场景加载成功");
 
@@ -53,16 +53,16 @@
 //                sceneHandleDic.Add(sceneName, sceneHandle);
 //        }
 
-//        public async UniTask ChangeSceneAsync(string oldSceneName, string newSceneName, ELoadSceneModel loadSceneModel)
+//        public IEnumerator ChangeSceneAsync(string oldSceneName, string newSceneName, ELoadSceneModel loadSceneModel)
 //        {
-//            await UnloadSceneAsync(oldSceneName);
-//            await LoadSceneAsync(newSceneName, loadSceneModel);
+//            yield return UnloadSceneAsync(oldSceneName);
+//            yield return LoadSceneAsync(newSceneName, loadSceneModel);
 //        }
 
-//        public async UniTask UnloadSceneAsync(string sceneName)
+//        public IEnumerator UnloadSceneAsync(string sceneName)
 //        {
 //            if (sceneHandleDic.TryGetValue(sceneName, out SceneHandle sceneHandle))
-//                await sceneHandle.UnloadAsync();
+//                yield return sceneHandle.UnloadAsync();
 //        }
 //    }
 //}

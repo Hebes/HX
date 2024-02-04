@@ -1,15 +1,12 @@
-﻿/*--------脚本描述-----------
+﻿using System;
+using System.Collections;
+
+/*--------脚本描述-----------
 				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
 描述:
     资源加载接口
 
 -----------------------*/
-
-using Cysharp.Threading.Tasks;
 
 namespace Core
 {
@@ -29,14 +26,16 @@ namespace Core
         /// <returns></returns>
         public T Load<T>(string AssetName) where T : UnityEngine.Object;
 
+
         /// <summary>
         /// 异步加载资源对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="AssetName"></param>
         /// <returns></returns>
-        public UniTask<T> LoadAsync<T>(string AssetName) where T : UnityEngine.Object;
+        public IEnumerator LoadAsync<T>(string AssetName) where T : UnityEngine.Object;
 
+        public IEnumerator LoadAsync<T>(string AssetName, Action<T> action) where T : UnityEngine.Object;
 
         /// <summary>
         /// 同步加载子资源对象
@@ -45,7 +44,7 @@ namespace Core
         /// <typeparam name="T"></typeparam>
         /// <param name="path"></param>
         /// <param name="callback"></param>
-        public T LoadSub<T>(string location, string AssetName) where T : UnityEngine.Object;
+        //public T LoadSub<T>(string location, string AssetName) where T : UnityEngine.Object;
 
         /// <summary>
         /// 异步加载子资源对象
@@ -55,7 +54,7 @@ namespace Core
         /// <param name="location">加载资源的地址</param>
         /// <param name="AssetName">资源的名称</param>
         /// <param name="callback"></param>
-        public UniTask<T> LoadSubAsync<T>(string location, string AssetName) where T : UnityEngine.Object;
+        //public IEnumerator LoadSubAsync<T>(string location, string AssetName) where T : UnityEngine.Object;
 
         /// <summary>
         /// 同步加载资源包内所有资源对象
@@ -63,7 +62,7 @@ namespace Core
         /// <typeparam name="T"></typeparam>
         /// <param name="path"></param>
         /// <param name="callback"></param>
-        public T[] LoadAll<T>(string AssetName) where T : UnityEngine.Object;
+        //public T[] LoadAll<T>(string AssetName) where T : UnityEngine.Object;
 
         /// <summary>
         /// 异步加载资源包内所有资源对象
@@ -71,7 +70,7 @@ namespace Core
         /// <typeparam name="T"></typeparam>
         /// <param name="path"></param>
         /// <param name="callback"></param>
-        public UniTask<T[]> LoadAllAsync<T>(string location) where T : UnityEngine.Object;
+        //public IEnumerator<T[]> LoadAllAsync<T>(string location) where T : UnityEngine.Object;
 
 
         /// <summary>
@@ -79,21 +78,21 @@ namespace Core
         /// </summary>
         /// <param name="location"></param>
         /// <returns></returns>
-        public byte[] LoadByteData(string location);
+        //public byte[] LoadByteData(string location);
 
         /// <summary>
         /// 异步加载原生数据
         /// </summary>
         /// <param name="location"></param>
         /// <returns></returns>
-        public UniTask<byte[]> LoadByteDataAsync(string location);
+        //public IEnumerator<byte[]> LoadByteDataAsync(string location);
 
         /// <summary>
         /// 资源卸载
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="AssetName">资源的名称</param>
-        public void ReleaseAsset(string AssetName = null);
+        //public void ReleaseAsset(string AssetName = null);
 
         /// <summary>
         /// 资源释放
@@ -103,6 +102,6 @@ namespace Core
         /// <typeparam name="T"></typeparam>
         /// <param name="ResName"></param>
         /// <param name="callback"></param>
-        public void UnloadAssets();
+        //public void UnloadAssets();
     }
 }

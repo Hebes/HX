@@ -8,37 +8,31 @@ public class ModelRun
 
     public List<IModel> modelList;
 
-    public ModelRun()
+    public  IEnumerator ModelInit()
     {
         Instance = this;
         modelList = new List<IModel>();
-        Start().Forget();
-    }
 
-    private async UniTask Start()
-    {
-        await ModeEnter<ManagerLanguage>();   //数据
-        await ModeEnter<ManagerData>();       //数据
-        await ModeEnter<ManagerSave>();       //存档
-        await ModeEnter<ManagerScene>();      //场景
-        await ModeEnter<ManagerRPGBattle>();      //战斗
+        //await ModeEnter<ManagerData>();       //数据
+        yield return ModeEnter<ManagerSave>();       //存档
+        yield return ModeEnter<ManagerScene>();      //场景
+        yield return ModeEnter<ManagerRPGBattle>();      //战斗
     }
 
     /// <summary>
     /// 模块进入->初始化
     /// </summary>
-    private async UniTask<T> ModeEnter<T>() where T : IModel, new()
+    private  IEnumerator ModeEnter<T>() where T : IModel, new()
     {
         T t = new T();
         modelList.Add(t);
-        await t.Enter();
-        return t;
+        yield return t.Enter();
     }
 
     /// <summary>
     /// 模块退出
     /// </summary>
-    public static IEnumerator ModelExit()
+    public static  IEnumerator ModelExit()
     {
         foreach (IModel item in Instance.modelList)
             yield return item.Exit();

@@ -1,6 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using Farm2D;
-
+﻿
 /*--------脚本描述-----------
 				
 电子邮箱：
@@ -11,6 +9,9 @@ using Farm2D;
     资源加载
 
 -----------------------*/
+
+using System;
+using System.Collections;
 
 namespace Core
 {
@@ -28,11 +29,14 @@ namespace Core
         public static CoreResource Instance;
         private IResLoad iload;
 
-        public void ICoreInit()
+
+        public IEnumerator ICoreInit()
         {
             Instance = this;
             SwitchModel();
+            yield return null;
         }
+
 
         /// <summary>
         /// 切换模式
@@ -46,8 +50,6 @@ namespace Core
                     break;
                 case ELoadType.YooAsset:
                     //Instance.iload = new YooAssetResLoad();
-                    break;
-                default:
                     break;
             }
         }
@@ -69,9 +71,9 @@ namespace Core
         /// <typeparam name="T"></typeparam>
         /// <param name="assetName"></param>
         /// <returns></returns>
-        public static UniTask<T> LoadAsync<T>(string assetName) where T : UnityEngine.Object
+        public static IEnumerator LoadAsync<T>(string assetName, Action<T> action) where T : UnityEngine.Object
         {
-            return Instance.iload.LoadAsync<T>(assetName);
+            yield return Instance.iload.LoadAsync<T>(assetName, action);
         }
 
         /// <summary>
@@ -81,10 +83,10 @@ namespace Core
         /// <param name="location"></param>
         /// <param name="ResName"></param>
         /// <returns></returns>
-        public static T LoadSub<T>(string location, string ResName) where T : UnityEngine.Object
-        {
-            return Instance.iload.LoadSub<T>(location, ResName);
-        }
+        //public static T LoadSub<T>(string location, string ResName) where T : UnityEngine.Object
+        //{
+        //    return Instance.iload.LoadSub<T>(location, ResName);
+        //}
 
         /// <summary>
         /// 同步加载资源包内所有资源对象
@@ -92,27 +94,27 @@ namespace Core
         /// <typeparam name="T"></typeparam>
         /// <param name="ResName"></param>
         /// <returns></returns>
-        public static T[] LoadAll<T>(string ResName) where T : UnityEngine.Object
-        {
-            return Instance.iload.LoadAll<T>(ResName);
-        }
+        //public static T[] LoadAll<T>(string ResName) where T : UnityEngine.Object
+        //{
+        //    return Instance.iload.LoadAll<T>(ResName);
+        //}
 
         /// <summary>
         /// 加载原生数据
         /// </summary>
         /// <param name="location"></param>
         /// <returns></returns>
-        public static byte[] LoadByteData(string location)
-        {
-            return Instance.iload.LoadByteData(location);
-        }
+        //public static byte[] LoadByteData(string location)
+        //{
+        //    return Instance.iload.LoadByteData(location);
+        //}
 
         /// <summary>
         /// 资源释放
         /// </summary>
-        public static void UnloadAssets()
-        {
-            Instance.iload.UnloadAssets();
-        }
+        //public static void UnloadAssets()
+        //{
+        //    Instance.iload.UnloadAssets();
+        //}
     }
 }

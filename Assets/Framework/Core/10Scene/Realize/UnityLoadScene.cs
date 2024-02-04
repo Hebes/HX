@@ -1,7 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 
@@ -19,6 +18,9 @@ namespace Core
     public class UnityLoadScene : ISceneLoad
     {
         public const int key = 1;
+
+        public bool IsLoadOver { get; set; }
+
         public void CoreSceneInit()
         {
         }
@@ -30,6 +32,7 @@ namespace Core
         public IEnumerator LoadSceneAsync(string sceneName, LoadSceneMode loadSceneMode = LoadSceneMode.Additive)
         {
             //用Slider 展示的数值
+            IsLoadOver = false;
             int disableProgress = 0;
             int toProgress = 0;
             //异步场景切换
@@ -64,16 +67,18 @@ namespace Core
                 yield return null;
             }
             op.allowSceneActivation = true;
-            yield return null;
             //if (op.isDone == false)
             //    Debug.Log($"{sceneName}场景加载失败");
+            IsLoadOver = true;
         }
 
         public IEnumerator UnloadSceneAsync(string sceneName)
         {
             AsyncOperation asyncOperation = SceneManager.UnloadSceneAsync(sceneName);
-            while (asyncOperation.isDone)
-                yield return null;
+            yield return asyncOperation;
+            //yield return asyncOperation.ToIEnumerator();
+            //while (asyncOperation.isDone)
+            //    yield return null;
         }
     }
 }

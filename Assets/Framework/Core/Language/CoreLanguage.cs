@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Core;
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -19,14 +21,14 @@ public enum ELanguageType
     English = 1,
 }
 
-public class ManagerLanguage : IModel
+public class CoreLanguage : ICore
 {
-    public static ManagerLanguage Instance;
+    public static CoreLanguage Instance;
     public event Action languageChangeEvt;               //回调事件
     private Dictionary<string, string> _languageDic;      //语言字典
     public Font _font;
 
-    public IEnumerator Enter()
+    public IEnumerator ICoreInit()
     {
         Instance = this;
         _languageDic = new Dictionary<string, string>();
@@ -34,10 +36,6 @@ public class ManagerLanguage : IModel
         yield return null;
     }
 
-    public IEnumerator Exit()
-    {
-        yield return null;
-    }
 
     /// <summary>
     /// 切换语言
@@ -70,7 +68,7 @@ public class ManagerLanguage : IModel
     public static void ChangeTextLanguage(Transform transform,string key)
     {
         LanguageComponent languageText = transform.GetComponent<LanguageComponent>() == null ?
-            transform.AddComponent<LanguageComponent>() : transform.GetComponent<LanguageComponent>();
+            transform.gameObject.AddComponent<LanguageComponent>() : transform.GetComponent<LanguageComponent>();
         languageText.SetKeyAndChange(key);
     }
 

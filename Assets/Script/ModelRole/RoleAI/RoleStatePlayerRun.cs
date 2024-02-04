@@ -13,18 +13,13 @@ using UnityEngine;
 public class RoleStatePlayerRun : IRoleState
 {
     #region 接口字段和属性
-    private long _id;
-    private ERoleSateType _roleSateType = ERoleSateType.Run;
-    private IRoleInstance _role;
-    public long ID { get => _id; set => _id = value; }
-    public ERoleSateType RoleSateType { get => _roleSateType; set => _roleSateType = value; }
-    public IRoleInstance RoleInstance { get => _role; set => _role = value; }
+    public long ID { get ; set ; }
+    public ERoleSateType RoleSateType => ERoleSateType.Run;
+    public RoleData RoleData { get; set; }
     #endregion
 
 
     #region 本类特有
-    private ERoleOrTeamType roleType => _role.RoleInfo.RoleType;
-    private RoleData roleData => _role.RoleInfo;
     /// <summary>
     /// 玩家输入是否禁用
     /// </summary>
@@ -72,7 +67,7 @@ public class RoleStatePlayerRun : IRoleState
     #region 接口方法
     public void StateEnter()
     {
-        roleData.gameObject = CoreResource.Load<GameObject>(ConfigPrefab.prefabCommonRole);
+        RoleData.gameObject = CoreResource.Load<GameObject>(ConfigPrefab.prefabCommonRole);
     }
     public void StateExit()
     {

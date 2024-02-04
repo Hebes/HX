@@ -1,17 +1,21 @@
 
 /*--------脚本描述-----------
 
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
 描述:
 	事件接口
 
 -----------------------*/
 
+using System.Collections.Generic;
+
 namespace Core
 {
-	public interface IEvent { }
+    public interface IEvent : IID
+    {
+        /// <summary>
+        /// 方法名称
+        /// </summary>
+        public string MethodName { get; set; }
+    }
 }
 

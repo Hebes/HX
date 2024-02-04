@@ -6,12 +6,12 @@
 //{
 //    public static class AsyncOperationBaseExtensions
 //    {
-//        public static UniTask.Awaiter GetAwaiter(this AsyncOperationBase handle)
+//        public static IEnumerator.Awaiter GetAwaiter(this AsyncOperationBase handle)
 //        {
-//            return ToUniTask(handle).GetAwaiter();
+//            return ToIEnumerator(handle).GetAwaiter();
 //        }
 
-//        public static UniTask ToUniTask(this AsyncOperationBase handle,
+//        public static IEnumerator ToIEnumerator(this AsyncOperationBase handle,
 //                                        IProgress<float>        progress = null,
 //                                        PlayerLoopTiming        timing   = PlayerLoopTiming.Update)
 //        {
@@ -19,10 +19,10 @@
 
 //            if (handle.IsDone)
 //            {
-//                return UniTask.CompletedTask;
+//                return IEnumerator.CompletedTask;
 //            }
 
-//            return new UniTask(
+//            return new IEnumerator(
 //                AsyncOperationBaserConfiguredSource.Create(
 //                    handle,
 //                    timing,
@@ -33,7 +33,7 @@
 //            );
 //        }
 
-//        sealed class AsyncOperationBaserConfiguredSource : IUniTaskSource,
+//        sealed class AsyncOperationBaserConfiguredSource : IIEnumeratorSource,
 //                                                           IPlayerLoopItem,
 //                                                           ITaskPoolNode<AsyncOperationBaserConfiguredSource>
 //        {
@@ -52,11 +52,11 @@
 //            private          AsyncOperationBase                     handle;
 //            private          IProgress<float>                       progress;
 //            private          bool                                   completed;
-//            private          UniTaskCompletionSourceCore<AsyncUnit> core;
+//            private          IEnumeratorCompletionSourceCore<AsyncUnit> core;
 
 //            AsyncOperationBaserConfiguredSource() { continuationAction = Continuation; }
 
-//            public static IUniTaskSource Create(AsyncOperationBase handle,
+//            public static IIEnumeratorSource Create(AsyncOperationBase handle,
 //                                                PlayerLoopTiming   timing,
 //                                                IProgress<float>   progress,
 //                                                out short          token)
@@ -114,7 +114,7 @@
 //                return pool.TryPush(this);
 //            }
 
-//            public UniTaskStatus GetStatus(short token) => core.GetStatus(token);
+//            public IEnumeratorStatus GetStatus(short token) => core.GetStatus(token);
 
 //            public void OnCompleted(Action<object> continuation, object state, short token)
 //            {
@@ -123,7 +123,7 @@
 
 //            public void GetResult(short token) { core.GetResult(token); }
 
-//            public UniTaskStatus UnsafeGetStatus() => core.UnsafeGetStatus();
+//            public IEnumeratorStatus UnsafeGetStatus() => core.UnsafeGetStatus();
 
 //            public bool MoveNext()
 //            {
