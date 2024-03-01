@@ -1,4 +1,6 @@
 ﻿
+using Core;
+
 /// <summary>
 /// 物品接口
 /// </summary>

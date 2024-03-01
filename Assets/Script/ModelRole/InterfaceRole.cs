@@ -1,60 +1,6 @@
-﻿using UnityEngine;
-using Core;
+﻿using Core;
+using UnityEngine;
 using Debug = Core.Debug;
-using Unity.VisualScripting;
-
-/// <summary>
-/// 角色实际接口
-/// </summary>
-public interface IRoleInstance : IRole, ISkillCarrier
-{
-    /// <summary>
-    /// 玩家数据
-    /// </summary>
-    public RoleData RoleInfo { get; }
-
-    /// <summary>
-    /// 队伍
-    /// </summary>
-    public ITeamInstance Team { get; set; }
-
-    /// <summary>
-    /// 玩家属性
-    /// </summary>
-    public RoleAttributes RoleAttributes { get; set; }
-}
-
-
-/// <summary>
-/// 角色接口
-/// </summary>
-public interface IRole : IID, IName
-{
-    /// <summary>
-    /// 物体
-    /// </summary>
-    public GameObject gameObject { get; set; }
-
-    /// <summary>
-    /// 角色类型
-    /// </summary>
-    public ERoleOrTeamType RoleType { get; set; }
-
-    /// <summary>
-    /// 角色战斗的位置
-    /// </summary>
-    public ERoleBattlePoint RoleBattlePoint { get; set; }
-
-    /// <summary>
-    /// 角色状态
-    /// </summary>
-    public ERoleSateType RoleSateType { get; set; }
-
-    /// <summary>
-    /// 角色状态
-    /// </summary>
-    public IRoleState RoleState { get; set; }
-}
 
 /// <summary>
 /// 攻击次数接口
@@ -86,13 +32,9 @@ public interface IDamage : IID
 /// <summary>
 /// 角色状态
 /// </summary>
-public interface IRoleState
+public interface IRoleState : IID
 {
-    /// <summary>
-    /// 角色信息
-    /// </summary>
-    public IRoleInstance RoleInstance { get; set; }
-
+    public RoleData RoleData { get; set; }
     /// <summary>
     /// 角色状态
     /// </summary>
@@ -122,13 +64,12 @@ public static class HelperRole
     /// <summary>
     /// 切换角色状态
     /// </summary>
-    public static T SwitchRoleState<T>(this IRoleInstance RoleState)where T: IRoleState,new()
+    public static T SwitchRoleState<T>(this RoleData roleData) where T : IRoleState, new()
     {
-        RoleState.RoleState = new T();
-        RoleState.RoleSateType = RoleState.RoleState.RoleSateType;
-        RoleState.RoleState.RoleInstance = RoleState;
-        RoleState.RoleState.StateEnter();
-        return (T)RoleState.RoleState;
+        roleData.RoleState = new T();
+        roleData.RoleState.RoleData = roleData;
+        roleData.RoleState.StateEnter();
+        return (T)roleData.RoleState;
     }
 
     /// <summary>

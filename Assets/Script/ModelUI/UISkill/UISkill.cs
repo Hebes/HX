@@ -23,13 +23,13 @@ public class UISkill : UIBase, IUIAwake
     /// <summary>
     /// 设置技能
     /// </summary>
-    public void SetSkills(List<ISkill> skillList)
-    {
-        foreach (ISkill item in skillList)
-        {
-            SkillBtn skillBtnTemp = CorePool.GetMono<SkillBtn>(skillBtn);
-            skillBtnTemp.transform.SetParent(content, false);
-            skillBtnTemp.SetSkillBtnData(item.Name);
-        }
-    }
+    //public void SetSkills(List<ISkill> skillList)
+    //{
+    //    foreach (ISkill item in skillList)
+    //    {
+    //        SkillBtn skillBtnTemp = CorePool.GetMono<SkillBtn>(skillBtn);
+    //        skillBtnTemp.transform.SetParent(content, false);
+    //        skillBtnTemp.SetSkillBtnData(item.Name);
+    //    }
+    //}
 }

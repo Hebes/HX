@@ -38,8 +38,10 @@ public interface ITimeBirthday
 
     DateTime DateTime { get; set; }
 
-    //public void ttt()
-    //{
-    //    DateTime.Now.Millisecond
-    //}
+    public void SetData(DateTime dateTime)
+    {
+        this.DateTime = dateTime;
+        this.Year= dateTime.Year;
+        //TODO 等待完善
+    }
 }

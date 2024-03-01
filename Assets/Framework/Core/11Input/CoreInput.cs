@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Core
 {
@@ -20,11 +22,14 @@ namespace Core
         public static CoreInput Instance { get; private set; }
         private List<IInput> _inputList;        //组合输入
 
-        public void ICoreInit()
+
+        public IEnumerator ICoreInit()
         {
             Instance = this;
             _inputList = new List<IInput>();
+            yield return null;
         }
+
 
         public static void AddInputType(IInput input)
         {

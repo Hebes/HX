@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /*--------脚本描述-----------
@@ -21,12 +22,13 @@ namespace Core
         public Dictionary<string, List<IPool>> poolDic;
         private GameObject poolObj;
 
-        public void ICoreInit()
+        public IEnumerator ICoreInit()
         {
             Instance = this;
             poolDic = new Dictionary<string, List<IPool>>();
             poolObj = new GameObject("PoolManager");
             GameObject.DontDestroyOnLoad(poolObj);
+            yield return null;
         }
 
         /// <summary>

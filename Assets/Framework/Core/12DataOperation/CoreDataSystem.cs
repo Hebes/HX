@@ -1,17 +1,13 @@
-﻿using Core;
+﻿using System.Collections;
 
 /*--------脚本描述-----------
 				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
 描述:
     数据管理系统
 
 -----------------------*/
 
-namespace Farm2D
+namespace Core
 {
     /// <summary> 数据操作类型 </summary>
     public enum EDataType
@@ -28,9 +24,11 @@ namespace Farm2D
     public class CoreDataSystem : ICore // SingletonBase<CoreDataSystem>
     {
         public static CoreDataSystem Instance;
-        public void ICoreInit()
+
+        public IEnumerator ICoreInit()
         {
             Instance = this;
+            yield return null;
         }
 
         public void Save(object obj, string fileName, EDataType dataType)

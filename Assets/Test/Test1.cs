@@ -7,7 +7,7 @@ public class Test1 //: IUpdata,IBuffCarrier
 {
     public int ID => throw new System.NotImplementedException();
 
-    public List<IBuff> BuffList { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public List<BuffData> BuffList { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     //public void GetAfter()
     //{

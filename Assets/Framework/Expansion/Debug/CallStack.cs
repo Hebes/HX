@@ -35,6 +35,7 @@ namespace Core
                 call.Add($"类:{stackFrame.GetMethod().DeclaringType.Name}, 方法:{stackFrame.GetMethod().Name}");
             }
 
+
             CallTime = DateTime.Now.TimeOfDay;
             callTime = CallTime.ToString();
         }

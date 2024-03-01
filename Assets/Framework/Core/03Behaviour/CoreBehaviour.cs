@@ -27,7 +27,8 @@ namespace Core
 
         public BehaviourController behaviourController { get; private set; }
 
-        public void ICoreInit()
+
+        public IEnumerator ICoreInit()
         {
             Instance = this;
             CoroutineDic = new Dictionary<int, Coroutine>();
@@ -35,6 +36,7 @@ namespace Core
             behaviourController = gameObject.AddComponent<BehaviourController>();//BehaviourController.Instance;
             GameObject.DontDestroyOnLoad(gameObject);
             Debug.Log("初始化Mono完毕!");
+            yield return null;
         }
 
         /// <summary>

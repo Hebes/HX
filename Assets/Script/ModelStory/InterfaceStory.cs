@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using Core;
+
+/// <summary>
 /// 故事的接口（PS:就是剧情）
 /// </summary>
 public interface IStory : IID

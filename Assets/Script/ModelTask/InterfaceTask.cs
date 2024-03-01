@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Core;
+using System.Collections.Generic;
 
 public interface ITask : IID, IName, IDescribe
 {

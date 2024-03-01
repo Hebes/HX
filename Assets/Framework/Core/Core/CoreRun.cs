@@ -1,36 +1,37 @@
-﻿/*--------脚本描述-----------
+﻿using System.Collections;
+
+/*--------脚本描述-----------
 
 描述:
     核心初始化
 
 -----------------------*/
 
-using Farm2D;
 
 namespace Core
 {
     public class CoreRun
     {
-        public CoreRun()
+        public IEnumerator CoreInit()
         {
-            Init<CoreDebug>();          //日志
-            Init<CoreEvent>();          //事件
-            Init<CoreBehaviour>();      //生命周期
-            Init<CoreResource>();       //资源加载
-            Init<CoreAduio>();          //音乐
-            Init<CoreUI>();             //UI
-            Init<CoreData>();           //数据
-            Init<CoreScene>();          //场景
-            Init<CoreInput>();          //输入
-            Init<CoreDataSystem>();     //数据
-            Init<CoreSystemOrder>();    //指令 
+            //可以首先加载的
+            yield return Init<CoreDebug>();          //日志
+            yield return Init<CoreLanguage>();       //多语言
+            yield return Init<CoreEvent>();          //事件
+            yield return Init<CoreBehaviour>();      //生命周期
+            yield return Init<CoreResource>();       //资源加载
+            yield return Init<CoreAduio>();          //音乐
+            yield return Init<CoreUI>();             //UI
+            //yield return Init<CoreData>();           //数据
+            yield return Init<CoreScene>();          //场景
+            yield return Init<CoreInput>();          //输入
+            yield return Init<CoreDataSystem>();     //数据
+            //yield return Init<CoreSystemOrder>();    //指令
         }
 
-        public T Init<T>() where T : ICore, new()
+        public IEnumerator Init<T>() where T : ICore, new()
         {
-            T t = new T();
-            t.ICoreInit();
-            return t;
+            yield return new T().ICoreInit();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 
 /*--------脚本描述-----------
@@ -18,12 +17,13 @@ namespace Core
     public partial class CoreEvent : ICore
     {
         public static CoreEvent Instance;
-        private Dictionary<int, IEvent> eventDic;
+        private Dictionary<int, List<IEvent>> eventDic;
 
-        public void ICoreInit()
+        public IEnumerator ICoreInit()
         {
             Instance = this;
-            eventDic = new Dictionary<int, IEvent>();
+            eventDic = new Dictionary<int, List<IEvent>>();
+            yield return null;
         }
 
         //清理

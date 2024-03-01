@@ -125,3 +125,7 @@ namespace Core
         }
     }
 }
+public interface ISingletonInit
+{
+    public void SingletonInit();
+}

@@ -10,7 +10,6 @@ public class SceneBattleManager : MonoBehaviour
 {
     public static SceneBattleManager Instance;
     private UIComponent component;
-    private IBattle battle;
 
     //玩家队伍的位置
     private GameObject roleTemplate;//role模板
@@ -90,18 +89,9 @@ public class SceneBattleManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 设置一场战斗
-    /// </summary>
-    /// <param name="battle"></param>
-    public void SetBattle(IBattle battle)
-    {
-        this.battle = battle;
-    }
-
-    /// <summary>
     /// 实例化角色物体
     /// </summary>
-    public GameObject InstantiateBattleRole(ETeamPoint teamPoint, IRole role)
+    public GameObject InstantiateBattleRole(ETeamPoint teamPoint, RoleData role)
     {
         Transform tr = SetRolePoint(teamPoint, role.RoleBattlePoint); 
         if (tr == null)

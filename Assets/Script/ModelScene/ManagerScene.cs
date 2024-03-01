@@ -1,5 +1,7 @@
 ﻿using Core;
 using Cysharp.Threading.Tasks;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 /*--------脚本描述-----------
 
@@ -8,7 +10,7 @@ using Cysharp.Threading.Tasks;
 
 -----------------------*/
 
-public class ManagerScene : IModelInit
+public class ManagerScene : IModel
 {
     public static ManagerScene Instance;
 
@@ -23,20 +25,17 @@ public class ManagerScene : IModelInit
     /// </summary>
     public static string CurrentSceneName => Instance.currentSceneName;
 
-    public void Init()
+    public  IEnumerator Enter()
     {
         Instance = this;
-        FirstLoad().Forget();
+        // 首次加载场景
+        yield return CoreScene.LoadSceneAsync(ConfigScenes.unityScenePersistent, LoadSceneMode.Single);
+        yield return null;
     }
 
-    /// <summary>
-    /// 首次加载场景
-    /// </summary>
-    /// <returns></returns>
-    private async UniTask FirstLoad()
+    public  IEnumerator Exit()
     {
-        //首次加载场景
-        await CoreScene.LoadSceneAsync(ConfigScenes.unityScenePersistent, ELoadSceneModel.Single);
+        yield return null;
     }
 
     /// <summary>
@@ -45,52 +44,55 @@ public class ManagerScene : IModelInit
     /// <param name="sceneName"></param>
     /// <param name="loadSceneModel"></param>
     /// <returns></returns>
-    public static async UniTask LoadSceneAsync(string sceneName, ELoadSceneModel loadSceneModel = ELoadSceneModel.Additive)
+    public static  IEnumerator LoadScene(string sceneName, LoadSceneMode loadSceneMode = LoadSceneMode.Additive)
     {
         Instance.currentSceneName = sceneName;
-        await CoreScene.LoadSceneAsync(sceneName, loadSceneModel);
-        CoreEvent.EventTrigger(EConfigEvent.LoadSceneAfter.ToInt());
+        yield return CoreScene.LoadSceneAsync(sceneName, loadSceneMode);
+        CoreEvent.EventTrigger(EConfigEvent.EventLoadSceneAfter.ToInt());
     }
 
     /// <summary>
     /// 切换场景
     /// </summary>
-    public static async UniTask SwitchScene(string targetScene)
+    public static  IEnumerator SwitchScene(string targetScene)
     {
         Instance.currentSceneName = targetScene;
-        CoreEvent.EventTrigger(EConfigEvent.LoadSceneBefore.ToInt());
+        CoreEvent.EventTrigger(EConfigEvent.EventLoadSceneBefore.ToInt());
         //TODO 这里可以触发场景过度
         //卸载原先的场景
-        await CoreScene.UnloadSceneAsync(Instance.currentSceneName);
+        yield return CoreScene.UnloadSceneAsync(Instance.currentSceneName);
         //加载目标场景
-        await CoreScene.LoadSceneAsync(targetScene, ELoadSceneModel.Additive);
+        yield return CoreScene.LoadSceneAsync(targetScene, LoadSceneMode.Additive);
         //TODO 这里可以触发场景过度
-        CoreEvent.EventTrigger(EConfigEvent.LoadSceneAfter.ToInt());
+        CoreEvent.EventTrigger(EConfigEvent.EventLoadSceneAfter.ToInt());
     }
 
+
+   
+
     //参考
-    //private async UniTask SceneTransition(string targetScene, Vector3 targetPosition)
+    //private  IEnumerator SceneTransition(string targetScene, Vector3 targetPosition)
     //{
     //    if (!isFade)//如果是切换场景的情况下
     //    {
     //        isFade = true;
     //        ConfigEvent.BeforeSceneUnloadEvent.EventTrigger();
-    //        await ConfigEvent.UIFade.EventTriggerAsync((float)1);
+    //        await ConfigEvent.UIFade.EventTrigger((float)1);
     //        if (!string.IsNullOrEmpty(currentceneName))
-    //            currentceneName.UnloadAsync();                                  //卸载原来的场景
-    //        SceneOperationHandle sceneOperationHandle = await targetScene.LoadSceneAsyncUnitask(LoadSceneMode.Additive);//加载新的场景
+    //            currentceneName.Unload();                                  //卸载原来的场景
+    //        SceneOperationHandle sceneOperationHandle = await targetScene.LoadSceneIEnumerator(LoadSceneMode.Additive);//加载新的场景
     //        sceneOperationHandle.ActivateScene();                           //设置场景激活
     //        currentceneName = targetScene;                                  //变换当前场景的名称
     //        ConfigEvent.PlayerMoveToPosition.EventTrigger(targetPosition);  //移动人物坐标
     //        ConfigEvent.UIDisplayHighlighting.EventTrigger(string.Empty, -1);//清空所有高亮
-    //        await UniTask.DelayFrame(40);
+    //        await IEnumerator.DelayFrame(40);
     //        //创建每个场景必要的物体
     //        cropParent = new GameObject(ConfigTag.TagCropParent).transform;
     //        itemParent = new GameObject(ConfigTag.TagItemParent).transform;
 
     //        ConfigEvent.SwichConfinerShape.EventTrigger();                  //切换场景边界
     //        ConfigEvent.AfterSceneLoadedEvent.EventTrigger();                    //加载场景之后需要做的事情
-    //        await ConfigEvent.UIFade.EventTriggerAsync((float)0);
+    //        await ConfigEvent.UIFade.EventTrigger((float)0);
     //        isFade = false;
     //    }
     //}

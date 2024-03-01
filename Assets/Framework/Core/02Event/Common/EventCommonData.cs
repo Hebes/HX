@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 /*--------脚本描述-----------
 
@@ -13,21 +14,26 @@
 
 namespace Core
 {
-    public struct EventCommonData : IComparable<EventCommonData>
+    public struct EventCommonData : IComparable<EventCommonData>, IEvent
     {
-        public int id;                  //计数和排序
         public delegate void Event();
-        public Event EventAction;
 
-        public int CompareTo(EventCommonData other) => id.CompareTo(other.id);
+        public long ID { get; set; }//用于排序
+        public string MethodName { get; set; }// 方法名称
+        public Event EventAction { get; set; }
+
+
+        public int CompareTo(EventCommonData other) => ID.CompareTo(other.ID);
     }
 
-    public struct EventCommonData<T> : IComparable<EventCommonData<T>>
+    public struct EventCommonData<T> : IComparable<EventCommonData<T>>, IEvent
     {
-        public int id;
         public delegate void Event(T t);
-        public Event EventAction;
 
-        public int CompareTo(EventCommonData<T> other) => id.CompareTo(other.id);
+        public long ID { get; set; }
+        public Event EventAction;
+        public string MethodName { get; set; }
+
+        public int CompareTo(EventCommonData<T> other) => ID.CompareTo(other.ID);
     }
 }
