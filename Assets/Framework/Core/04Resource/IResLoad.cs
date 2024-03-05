@@ -13,12 +13,6 @@ namespace Core
     public interface IResLoad
     {
         /// <summary>
-        /// 用于初始化
-        /// </summary>
-        public abstract void ResLoadInit();
-
-
-        /// <summary>
         /// 同步加载资源对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -26,15 +20,12 @@ namespace Core
         /// <returns></returns>
         public T Load<T>(string AssetName) where T : UnityEngine.Object;
 
-
         /// <summary>
         /// 异步加载资源对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="AssetName"></param>
         /// <returns></returns>
-        public IEnumerator LoadAsync<T>(string AssetName) where T : UnityEngine.Object;
-
         public IEnumerator LoadAsync<T>(string AssetName, Action<T> action) where T : UnityEngine.Object;
 
         /// <summary>

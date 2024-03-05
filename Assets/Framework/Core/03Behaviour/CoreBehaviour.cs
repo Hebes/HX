@@ -1,9 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
-using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using Time = UnityEngine.Time;
 
 
@@ -28,7 +25,7 @@ namespace Core
         public BehaviourController behaviourController { get; private set; }
 
 
-        public IEnumerator ICoreInit()
+        public void ICoreInit()
         {
             Instance = this;
             CoroutineDic = new Dictionary<int, Coroutine>();
@@ -36,7 +33,6 @@ namespace Core
             behaviourController = gameObject.AddComponent<BehaviourController>();//BehaviourController.Instance;
             GameObject.DontDestroyOnLoad(gameObject);
             Debug.Log("初始化Mono完毕!");
-            yield return null;
         }
 
         /// <summary>

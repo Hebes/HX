@@ -1,18 +1,20 @@
-﻿/*--------脚本描述-----------
+﻿using System.Collections.Generic;
+using System;
+
+/*--------脚本描述-----------
 
 描述:
     普通事件
 
 -----------------------*/
 
-using System.Collections.Generic;
 
 namespace Core
 {
     public partial class CoreEvent
     {
 
-        public static void EventAdd(int id, EventCommonData.Event eventCommonData, int listid = int.MaxValue)
+        public static void EventAdd(int id, Action action, int listid = int.MaxValue)
         {
             if (Instance.eventDic.ContainsKey(id))
                 Instance.eventDic.Add(id, new List<IEvent>());
@@ -21,8 +23,8 @@ namespace Core
             {
                 foreach (IEvent item in eventInfo)
                 {
-                    if (item.MethodName != eventCommonData.Method.Name) continue;
-                    Debug.Error($"{eventCommonData.Method.Name}方法已经添加");
+                    if (item.MethodName != action.Method.Name) continue;
+                    Instance.DebugError($"{action.Method.Name}方法已经添加");
                     return;
                 }
             }
@@ -30,8 +32,8 @@ namespace Core
             eventInfo.Add(new EventCommonData()
             {
                 ID = listid,
-                EventAction = eventCommonData,
-                MethodName = eventCommonData.Method.Name,
+                EventAction = action,
+                MethodName = action.Method.Name,
             });
         }
         public static void EventRemove(int id, EventCommonData.Event eventCommonData)
@@ -76,7 +78,7 @@ namespace Core
                 foreach (IEvent item in eventInfo)
                 {
                     if (item.MethodName != eventCommonData.Method.Name) continue;
-                    Debug.Error($"{eventCommonData.Method.Name}方法已经添加");
+                    Instance.DebugError($"{eventCommonData.Method.Name}方法已经添加");
                     return;
                 }
             }
