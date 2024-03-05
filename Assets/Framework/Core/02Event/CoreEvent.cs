@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using Debug= UnityEngine.Debug;
 
 /*--------脚本描述-----------
 				
@@ -20,21 +20,24 @@ namespace Core
         public static CoreEvent Instance;
         private Dictionary<int, List<IEvent>> eventDic;
 
-        public Action<string> Log { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Action<string> Warn { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Action<string> Error { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        
 
-        public IEnumerator ICoreInit()
+        public void ICoreInit()
         {
             Instance = this;
             eventDic = new Dictionary<int, List<IEvent>>();
-            yield return null;
+            AddDebuggerAction();
         }
 
-        //清理
-        public static void Clear()
+        #region IDebug
+        public Action<string> Log { get; set; }
+        public Action<string> Warn { get; set; }
+        public Action<string> Error { get; set; }
+
+        private void AddDebuggerAction()
         {
-            Instance.eventDic.Clear();
+            this.AddDebuggerAction(UnityEngine.Debug.Log, UnityEngine.Debug.LogWarning, UnityEngine.Debug.LogError);
         }
+        #endregion
     }
 }

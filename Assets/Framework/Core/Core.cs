@@ -48,7 +48,7 @@ namespace Core
         /// ºËÐÄ³õÊ¼»¯
         /// </summary>
         /// <returns></returns>
-        public IEnumerator ICoreInit();
+        public void ICoreInit();
     }
 
     public interface IID

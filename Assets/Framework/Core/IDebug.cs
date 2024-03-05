@@ -12,7 +12,7 @@ namespace Core
 
     public static class Debugger
     {
-        public static void AddAction(this IDebug debug, Action<string> Log, Action<string> Warn, Action<string> Error)
+        public static void AddDebuggerAction(this IDebug debug, Action<string> Log, Action<string> Warn, Action<string> Error)
         {
             debug.Log = Log;
             debug.Warn = Warn;
@@ -22,10 +22,8 @@ namespace Core
         [Conditional("CORE_DUBUG_OPEN")]
         public static void Log(this IDebug debug, string content) => debug.Log.Invoke(content);
 
-        [Conditional("CORE_DUBUG_OPEN")]
         public static void Warn(this IDebug debug, string content) => debug.Warn.Invoke(content);
 
-        [Conditional("CORE_DUBUG_OPEN")]
         public static void Error(this IDebug debug, string content) => debug.Error.Invoke(content);
     }
 }
