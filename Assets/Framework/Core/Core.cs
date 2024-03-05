@@ -1,10 +1,3 @@
-/*--------脚本描述-----------
-
-描述:
-    核心配置文件
-
------------------------*/
-
 using System.Collections;
 
 namespace Core
@@ -60,9 +53,6 @@ namespace Core
 
     public interface IID
     {
-        /// <summary>
-        /// ID
-        /// </summary>
         public long ID { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 /*--------脚本描述-----------
@@ -14,10 +15,14 @@ using System.Collections.Generic;
 
 namespace Core
 {
-    public partial class CoreEvent : ICore
+    public partial class CoreEvent : ICore, IDebug
     {
         public static CoreEvent Instance;
         private Dictionary<int, List<IEvent>> eventDic;
+
+        public Action<string> Log { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Action<string> Warn { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Action<string> Error { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public IEnumerator ICoreInit()
         {
