@@ -2,6 +2,8 @@
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEditor;
+using UnityEngine;
 
 /*--------脚本描述-----------
 
@@ -30,6 +32,15 @@ public class ManagerScene : IModel
         Instance = this;
         // 首次加载场景
         yield return CoreScene.LoadSceneAsync(ConfigScenes.unityScenePersistent, LoadSceneMode.Single);
+        yield return CoreResource.LoadAsync<GameObject>(ConfigPrefab.prefabCommonRole, LoadOver);
+        void LoadOver(GameObject gameObject)
+        {
+            RolePlayer rolePlayer = new RolePlayer();
+            GameObject gameObject1 = GameObject.Instantiate(gameObject);
+            rolePlayer.gameObject = gameObject1;
+            rolePlayer.SetRole(id: 1,"测试玩家",ERoleOrTeamType.Player,ERoleBattlePoint.Point1);
+            rolePlayer.SwitchRoleState<RoleStatePlayerRun>();
+        }
         yield return null;
     }
 

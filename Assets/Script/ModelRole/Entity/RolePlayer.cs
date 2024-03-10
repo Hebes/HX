@@ -8,7 +8,6 @@ using Cysharp.Threading.Tasks;
 /// </summary>
 public class RolePlayer : RoleData
 {
-
 }
 
 
