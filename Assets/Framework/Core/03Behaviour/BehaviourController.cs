@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /*--------脚本描述-----------
@@ -16,32 +15,24 @@ namespace Core
     {
         Updata,
         FixedUpdate,
-        WaitFrameUpdata,
     }
 
     public class BehaviourController : MonoBehaviour
     {
+        public static BehaviourController Instance;
         private List<IUpdata> updatasList;
         private List<IFixedUpdate> fixedUpdatesList;
-        private List<IWaitFrameUpdata> waitFrameUpdatasList;
-        private WaitForSeconds waitForSeconds;
-        private bool waitFrameUpdata = true;
-        public static BehaviourController Instance;
 
         private void Awake()
         {
             Instance = this;
             updatasList = new List<IUpdata>();
             fixedUpdatesList = new List<IFixedUpdate>();
-            waitFrameUpdatasList = new List<IWaitFrameUpdata>();
-            waitForSeconds = new WaitForSeconds(0.02f);
         }
         private void Update()
         {
             for (int i = 0; i < updatasList.Count; i++)
                 updatasList[i].CoreBehaviourUpdata();
-            if (waitFrameUpdata)
-                 StartCoroutine(WaitFrameUpdata());
         }
         private void FixedUpdate()
         {
@@ -60,9 +51,6 @@ namespace Core
                 case EMonoType.FixedUpdate:
                     fixedUpdatesList.Remove(t as IFixedUpdate);
                     break;
-                case EMonoType.WaitFrameUpdata:
-                    waitFrameUpdatasList.Remove(t as IWaitFrameUpdata);
-                    break;
                 default:
                     break;
             }
@@ -77,24 +65,11 @@ namespace Core
                 case EMonoType.FixedUpdate:
                     fixedUpdatesList.Add(t as IFixedUpdate);
                     break;
-                case EMonoType.WaitFrameUpdata:
-                    waitFrameUpdatasList.Add(t as IWaitFrameUpdata);
-                    break;
                 default:
                     break;
             }
 
 
-        }
-        IEnumerator WaitFrameUpdata()
-        {
-            waitFrameUpdata = false;
-            for (int i = 0; i < waitFrameUpdatasList.Count; i++)
-            {
-                yield return waitForSeconds;
-                yield return waitFrameUpdatasList[i].WaitFrameUpdata();
-            }
-            waitFrameUpdata = true;
         }
     }
 }

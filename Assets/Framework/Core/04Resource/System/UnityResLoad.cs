@@ -4,7 +4,6 @@ using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using System;
 using System.Collections;
 using UnityEngine;
-using Debug = Core.Debug;
 
 
 /*--------脚本描述-----------
@@ -18,11 +17,7 @@ namespace Core
 {
     public class UnityResLoad : IResLoad
     {
-        public void ResLoadInit()
-        {
-
-        }
-
+        
         public T Load<T>(string AssetName) where T : UnityEngine.Object
         {
             T t = Resources.Load<T>(AssetName);
@@ -39,11 +34,6 @@ namespace Core
             if (resourceRequest.isDone == false)
                 Debug.Error($"资源为空{AssetName}");
             action.Invoke(resourceRequest.asset as T);
-        }
-
-        public IEnumerator LoadAsync<T>(string AssetName) where T : UnityEngine.Object
-        {
-            yield return null;
         }
 
         //public T[] LoadAll<T>(string AssetName) where T : UnityEngine.Object

@@ -1,10 +1,3 @@
-/*--------脚本描述-----------
-
-描述:
-    核心配置文件
-
------------------------*/
-
 using System.Collections;
 
 namespace Core
@@ -55,14 +48,11 @@ namespace Core
         /// 核心初始化
         /// </summary>
         /// <returns></returns>
-        public IEnumerator ICoreInit();
+        public void ICoreInit();
     }
 
     public interface IID
     {
-        /// <summary>
-        /// ID
-        /// </summary>
         public long ID { get; set; }
     }
 }
