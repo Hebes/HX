@@ -32,7 +32,7 @@ namespace Core
             GameObject gameObject = new GameObject("生命周期");
             behaviourController = gameObject.AddComponent<BehaviourController>();//BehaviourController.Instance;
             GameObject.DontDestroyOnLoad(gameObject);
-            Debug.Log("初始化Mono完毕!");
+            UnityEngine.Debug.Log("初始化Mono完毕!");
         }
 
         /// <summary>
@@ -51,8 +51,6 @@ namespace Core
                 BehaviourController.Instance.Add(t);
             if (typeof(IFixedUpdate).IsAssignableFrom(typeof(T)))
                 BehaviourController.Instance.Add(t, EMonoType.FixedUpdate);
-            if (typeof(IWaitFrameUpdata).IsAssignableFrom(typeof(T)))
-                BehaviourController.Instance.Add(t, EMonoType.WaitFrameUpdata);
         }
         public static void Remove<T>(T t) where T : IBehaviour
         {
@@ -61,15 +59,13 @@ namespace Core
                 BehaviourController.Instance.Remove(t);
             if (typeof(IFixedUpdate).IsAssignableFrom(typeof(T)))
                 BehaviourController.Instance.Remove(t, EMonoType.FixedUpdate);
-            if (typeof(IWaitFrameUpdata).IsAssignableFrom(typeof(T)))
-                BehaviourController.Instance.Remove(t, EMonoType.WaitFrameUpdata);
         }
 
         public static void AddCoroutine(int coroutineKey, IEnumerator coroutine)
         {
             if (Instance.CoroutineDic.ContainsKey(coroutineKey))
             {
-                Debug.Error($"协程已经存在{coroutineKey}");
+                UnityEngine.Debug.Error($"协程已经存在{coroutineKey}");
                 return;
             }
             Instance.CoroutineDic.Add(coroutineKey, BehaviourController.Instance.StartCoroutine(coroutine));
@@ -86,7 +82,7 @@ namespace Core
                 Instance.CoroutineDic.Remove(coroutineKey);
                 return;
             }
-            Debug.Error("停止失败请，协程不存在");
+            UnityEngine.Debug.Error("停止失败请，协程不存在");
         }
         public static void StopAllCoroutines()
         {

@@ -9,6 +9,7 @@ using System.Threading;
 
 描述:
     日志总控
+    Project->Player->Other Settings->Script Define Symbols
 
 -----------------------*/
 

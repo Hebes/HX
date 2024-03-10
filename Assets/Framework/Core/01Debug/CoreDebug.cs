@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 /*--------脚本描述-----------
@@ -13,11 +12,11 @@ namespace Core
 {
     public class CoreDebug : ICore
     {
-        public IEnumerator ICoreInit()
+        public void ICoreInit()
         {
             //日志设置
             LogConfig logConfig = new LogConfig();
-            logConfig.enableLog=true;
+            logConfig.enableLog = true;
             logConfig.LogPrefix = "#";
             logConfig.enableTime = false;
             logConfig.enableMillisecond = true;
@@ -31,7 +30,7 @@ namespace Core
 #if UNITY_EDITOR
             //logConfig.savePath = $"{Application.persistentDataPath}/LogOut/ActiveLog/",
             logConfig.savePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}/LogOut/";
-                //savePath = $"{Application.dataPath}/Log",
+            //savePath = $"{Application.dataPath}/Log",
 #endif
             Debug.InitDebugSettings(logConfig);
 
@@ -45,9 +44,7 @@ namespace Core
             //GameObject debugGo = new GameObject("UIDebug");
             //debugGo.AddComponent<UIDebugger>();
             //GameObject.DontDestroyOnLoad(debugGo);
-            Debug.Log("日志模块初始化完毕!");
-
-            yield return null;
+            UnityEngine.Debug.Log("日志模块初始化完毕!");
         }
     }
 }

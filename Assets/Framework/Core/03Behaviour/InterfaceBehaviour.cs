@@ -19,14 +19,6 @@ namespace Core
     }
 
     /// <summary>
-    /// 等待帧更新
-    /// </summary>
-    public interface IWaitFrameUpdata : IBehaviour
-    {
-        IEnumerator WaitFrameUpdata();
-    }
-
-    /// <summary>
     /// 固定帧更新
     /// </summary>
     public interface IFixedUpdate : IBehaviour

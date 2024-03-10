@@ -116,7 +116,7 @@ namespace Core
                 Fade = CanvasTransfrom.GetChildComponent<Transform>(EUIType.Fade.ToString());
                 UICamera = CanvasTransfrom.GetChildComponent<Camera>("UICamera");//UI相机要添加到主相机的Stack中
                 MainCamera = CanvasTransfrom.GetChildComponent<Camera>("MainCamera");
-                Debug.Log("UI管理初始化完毕");
+                UnityEngine.Debug.Log("UI管理初始化完毕");
             }
             yield return null;
         }
@@ -260,7 +260,7 @@ namespace Core
                 _StaCurrentUIForms.Push(ui);//把指定的UI窗体，入栈操作。
                 return;
             }
-            Debug.Error($"{uiFormName} 是空的！");
+            UnityEngine.Debug.Error($"{uiFormName} 是空的！");
         }
 
         /// <summary>

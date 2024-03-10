@@ -36,22 +36,22 @@ namespace Core
             //是不是int
             if (fieldType == typeof(int))
             {
-                Debug.Log("存储int" + keyName);
+                UnityEngine.Debug.Log("存储int" + keyName);
                 PlayerPrefs.SetInt(keyName, (int)value);
             }
             else if (fieldType == typeof(float))
             {
-                Debug.Log("存储float" + keyName);
+                UnityEngine.Debug.Log("存储float" + keyName);
                 PlayerPrefs.SetFloat(keyName, (float)value);
             }
             else if (fieldType == typeof(string))
             {
-                Debug.Log("存储string" + keyName);
+                UnityEngine.Debug.Log("存储string" + keyName);
                 PlayerPrefs.SetString(keyName, value.ToString());
             }
             else if (fieldType == typeof(bool))
             {
-                Debug.Log("存储bool" + keyName);
+                UnityEngine.Debug.Log("存储bool" + keyName);
                 //自己顶一个存储bool的规则
                 PlayerPrefs.SetInt(keyName, (bool)value ? 1 : 0);
             }
@@ -60,7 +60,7 @@ namespace Core
             //这相当于是判断 字段是不是IList的子类
             else if (typeof(IList).IsAssignableFrom(fieldType))
             {
-                Debug.Log("存储List" + keyName);
+                UnityEngine.Debug.Log("存储List" + keyName);
                 //父类装子类
                 IList list = value as IList;
                 //先存储 数量 
@@ -130,7 +130,7 @@ namespace Core
             //是不是int
             if (fieldType == typeof(int))
             {
-                Debug.Log("存储int" + keyName);
+                UnityEngine.Debug.Log("存储int" + keyName);
                 //为int数据加密
                 int rValue = (int)value;
                 rValue += 10;
@@ -138,17 +138,17 @@ namespace Core
             }
             else if (fieldType == typeof(float))
             {
-                Debug.Log("存储float" + keyName);
+                UnityEngine.Debug.Log("存储float" + keyName);
                 PlayerPrefs.SetFloat(keyName, (float)value);
             }
             else if (fieldType == typeof(string))
             {
-                Debug.Log("存储string" + keyName);
+                UnityEngine.Debug.Log("存储string" + keyName);
                 PlayerPrefs.SetString(keyName, value.ToString());
             }
             else if (fieldType == typeof(bool))
             {
-                Debug.Log("存储bool" + keyName);
+                UnityEngine.Debug.Log("存储bool" + keyName);
                 //自己顶一个存储bool的规则
                 PlayerPrefs.SetInt(keyName, (bool)value ? 1 : 0);
             }
@@ -157,7 +157,7 @@ namespace Core
             //这相当于是判断 字段是不是IList的子类
             else if (typeof(IList).IsAssignableFrom(fieldType))
             {
-                Debug.Log("存储List" + keyName);
+                UnityEngine.Debug.Log("存储List" + keyName);
                 //父类装子类
                 IList list = value as IList;
                 //先存储 数量 
@@ -173,7 +173,7 @@ namespace Core
             //判断是不是Dictionary类型 通过Dictionary的父类来判断
             else if (typeof(IDictionary).IsAssignableFrom(fieldType))
             {
-                Debug.Log("存储Dictionary" + keyName);
+                UnityEngine.Debug.Log("存储Dictionary" + keyName);
                 //父类装自来
                 IDictionary dic = value as IDictionary;
                 //先存字典长度

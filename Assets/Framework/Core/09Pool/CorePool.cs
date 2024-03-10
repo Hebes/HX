@@ -92,7 +92,7 @@ namespace Core
             T t = default;
             if (typeof(T).IsSubclassOf(typeof(MonoBehaviour)))
             {
-                Debug.Error("请调用其他GetMono方法");
+                UnityEngine.Debug.Error("请调用其他GetMono方法");
                 return t;
             }
 
@@ -117,7 +117,7 @@ namespace Core
         {
             if (typeof(T).IsSubclassOf(typeof(MonoBehaviour)))
             {
-                Debug.Error("请调用其他PushMono方法");
+                UnityEngine.Debug.Error("请调用其他PushMono方法");
                 return;
             }
 

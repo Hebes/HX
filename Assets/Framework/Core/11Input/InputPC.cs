@@ -31,7 +31,7 @@ namespace Core
         {
             if (_keyCodeDic.ContainsKey(inputType))
             {
-                Debug.Error("按键已存在");
+                UnityEngine.Debug.Error("按键已存在");
                 return;
             }
             _keyCodeDic.Add(inputType, keyCode);

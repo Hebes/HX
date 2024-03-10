@@ -53,7 +53,7 @@ namespace Core
             }
             else
             {
-                Debug.Log(GetType() + "/Start()/UI_Camera is Null!,Please Check! ");
+                UnityEngine.Debug.Log(GetType() + "/Start()/UI_Camera is Null!,Please Check! ");
             }
         }
 

@@ -68,8 +68,6 @@ namespace Core
                 default:
                     break;
             }
-
-
         }
     }
 }

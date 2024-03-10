@@ -76,7 +76,7 @@ namespace Core
         /// <exception cref="NotImplementedException"></exception>
         private void Drag(BaseEventData data)
         {
-            Debug.Log("Drag");
+            UnityEngine.Debug.Log("Drag");
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 imgBk.rectTransform,//你想要改变位置的对象的父对象
                 (data as PointerEventData).position,//得到当前屏幕鼠标位置
@@ -114,7 +114,7 @@ namespace Core
         /// <exception cref="NotImplementedException"></exception>
         private void PointerUp(BaseEventData data)
         {
-            Debug.Log("Up");
+            UnityEngine.Debug.Log("Up");
             imgControl.transform.localPosition = Vector2.zero;
             //分发我的摇杆方向
             //EventCenter.GetInstance().EventTrigger<Vector2>("Joystick", Vector2.zero);
@@ -135,7 +135,7 @@ namespace Core
         /// <param name="arg0"></param>
         private void PointerDown(BaseEventData data)
         {
-            Debug.Log("Down");
+            UnityEngine.Debug.Log("Down");
             //可变位置摇杆 - 按下显示
             imgBk.gameObject.SetActive(true);
 

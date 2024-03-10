@@ -46,7 +46,7 @@ namespace Core
 
             sudioSourceDic.Add(EAudioSourceType.BGM.ToString(), AudioManagerGo.AddComponent<AudioSource>());
             sudioSourceDic.Add(EAudioSourceType.SFX.ToString(), AudioManagerGo.AddComponent<AudioSource>());
-            Debug.Log("音频模块初始化成功!");
+            UnityEngine.Debug.Log("音频模块初始化成功!");
             yield return null;
         }
     }

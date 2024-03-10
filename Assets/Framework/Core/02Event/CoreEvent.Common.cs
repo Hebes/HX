@@ -13,20 +13,32 @@ namespace Core
 {
     public partial class CoreEvent
     {
+        /// <summary>
+        /// 检查
+        /// </summary>
+        /// <param name="id"></param>
+        private bool CheckEventList(List<IEvent> eventInfoList, string methodName)
+        {
+            foreach (IEvent item in eventInfoList)
+            {
+                if (item.MethodName != methodName) continue;
+                Instance.DebugError($"{methodName}方法已经添加");
+                return true;
+            }
+            return false;
+        }
+
 
         public static void EventAdd(int id, Action action, int listid = int.MaxValue)
         {
-            if (Instance.eventDic.ContainsKey(id))
-                Instance.eventDic.Add(id, new List<IEvent>());
-
             if (Instance.eventDic.TryGetValue(id, out List<IEvent> eventInfo))
             {
-                foreach (IEvent item in eventInfo)
-                {
-                    if (item.MethodName != action.Method.Name) continue;
-                    Instance.DebugError($"{action.Method.Name}方法已经添加");
+                if (Instance.CheckEventList(eventInfo, action.Method.Name))
                     return;
-                }
+            }
+            else
+            {
+                Instance.eventDic.Add(id, new List<IEvent>());
             }
 
             eventInfo.Add(new EventCommonData()
@@ -36,13 +48,13 @@ namespace Core
                 MethodName = action.Method.Name,
             });
         }
-        public static void EventRemove(int id, EventCommonData.Event eventCommonData)
+        public static void EventRemove(int id, Action action)
         {
             if (Instance.eventDic.TryGetValue(id, out List<IEvent> eventInfo))
             {
                 foreach (IEvent temp in eventInfo)
                 {
-                    if (temp.MethodName != eventCommonData.Method.Name) continue;
+                    if (temp.MethodName != action.Method.Name) continue;
                     eventInfo.Remove(temp);
                     break;
                 }
@@ -68,35 +80,32 @@ namespace Core
 
 
 
-        public static void EventAdd<T>(int id, EventCommonData<T>.Event eventCommonData, int listid = int.MaxValue)
+        public static void EventAdd<T>(int id, Action<T> action, int listid = int.MaxValue)
         {
-            if (Instance.eventDic.ContainsKey(id))
-                Instance.eventDic.Add(id, new List<IEvent>());
-
             if (Instance.eventDic.TryGetValue(id, out List<IEvent> eventInfo))
             {
-                foreach (IEvent item in eventInfo)
-                {
-                    if (item.MethodName != eventCommonData.Method.Name) continue;
-                    Instance.DebugError($"{eventCommonData.Method.Name}方法已经添加");
+                if (Instance.CheckEventList(eventInfo, action.Method.Name))
                     return;
-                }
+            }
+            else
+            {
+                Instance.eventDic.Add(id, new List<IEvent>());
             }
 
             eventInfo.Add(new EventCommonData<T>()
             {
                 ID = listid,
-                EventAction = eventCommonData,
-                MethodName = eventCommonData.Method.Name,
+                EventAction = action,
+                MethodName = action.Method.Name,
             });
         }
-        public static void EventRemove<T>(int id, EventCommonData<T>.Event eventCommonData)
+        public static void EventRemove<T>(int id, Action<T> action)
         {
             if (Instance.eventDic.TryGetValue(id, out List<IEvent> eventInfo))
             {
                 foreach (IEvent temp in eventInfo)
                 {
-                    if (temp.MethodName != eventCommonData.Method.Name) continue;
+                    if (temp.MethodName != action.Method.Name) continue;
                     eventInfo.Remove(temp);
                     break;
                 }
