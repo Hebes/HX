@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 /*--------脚本描述-----------
@@ -12,7 +13,12 @@ namespace Core
 {
     public class CoreDebug : ICore
     {
-        public void ICoreInit()
+        public IEnumerator AsyncInit()
+        {
+            yield break;
+        }
+
+        public void Init()
         {
             //日志设置
             LogConfig logConfig = new LogConfig();

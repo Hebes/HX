@@ -35,7 +35,12 @@ namespace Core
         public Dictionary<string, AudioData> audioClipDic;         //音效列表
         public Dictionary<string, AudioSource> sudioSourceDic;     //音乐组件列表
 
-        public IEnumerator ICoreInit()
+        public IEnumerator AsyncInit()
+        {
+            yield break;
+        }
+
+        public void Init()
         {
             Instance = this;
             audioClipDic = new Dictionary<string, AudioData>();
@@ -47,8 +52,8 @@ namespace Core
             sudioSourceDic.Add(EAudioSourceType.BGM.ToString(), AudioManagerGo.AddComponent<AudioSource>());
             sudioSourceDic.Add(EAudioSourceType.SFX.ToString(), AudioManagerGo.AddComponent<AudioSource>());
             UnityEngine.Debug.Log("音频模块初始化成功!");
-            yield return null;
         }
+
     }
 }
 

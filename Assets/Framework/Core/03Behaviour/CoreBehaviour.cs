@@ -25,7 +25,7 @@ namespace Core
         public BehaviourController behaviourController { get; private set; }
 
 
-        public void ICoreInit()
+        public void Init()
         {
             Instance = this;
             CoroutineDic = new Dictionary<int, Coroutine>();
@@ -33,6 +33,11 @@ namespace Core
             behaviourController = gameObject.AddComponent<BehaviourController>();//BehaviourController.Instance;
             GameObject.DontDestroyOnLoad(gameObject);
             UnityEngine.Debug.Log("初始化Mono完毕!");
+        }
+
+        public IEnumerator AsyncInit()
+        {
+            yield break;
         }
 
         /// <summary>
@@ -65,7 +70,7 @@ namespace Core
         {
             if (Instance.CoroutineDic.ContainsKey(coroutineKey))
             {
-                UnityEngine.Debug.Error($"协程已经存在{coroutineKey}");
+                Debug.Error($"协程已经存在{coroutineKey}");
                 return;
             }
             Instance.CoroutineDic.Add(coroutineKey, BehaviourController.Instance.StartCoroutine(coroutine));
@@ -82,7 +87,7 @@ namespace Core
                 Instance.CoroutineDic.Remove(coroutineKey);
                 return;
             }
-            UnityEngine.Debug.Error("停止失败请，协程不存在");
+            Debug.Error("停止失败请，协程不存在");
         }
         public static void StopAllCoroutines()
         {

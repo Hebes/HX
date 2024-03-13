@@ -51,8 +51,7 @@ namespace Core
                 case EMonoType.FixedUpdate:
                     fixedUpdatesList.Remove(t as IFixedUpdate);
                     break;
-                default:
-                    break;
+                default: break;
             }
         }
         internal void Add<T>(T t, EMonoType monoType = EMonoType.Updata) where T : IBehaviour

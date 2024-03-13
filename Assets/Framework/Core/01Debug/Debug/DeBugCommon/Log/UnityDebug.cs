@@ -7,7 +7,7 @@
 -----------------------*/
 
 namespace Core
-{
+{x
     public class UnityDebug: ILogger
     {
         private Type type = Type.GetType("UnityEngine.Debug, UnityEngine"); //反射获取Unity的日志输出系统

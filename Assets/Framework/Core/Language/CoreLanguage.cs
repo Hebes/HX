@@ -71,6 +71,4 @@ public class CoreLanguage : ICore
             transform.gameObject.AddComponent<LanguageComponent>() : transform.GetComponent<LanguageComponent>();
         languageText.SetKeyAndChange(key);
     }
-
-    
 }

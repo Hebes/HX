@@ -13,11 +13,10 @@ public class InitGame : MonoBehaviour
         StartCoroutine(Init());
     }
 
-    public  IEnumerator Init()
+    public IEnumerator Init()
     {
         //初始化核心
-        CoreRun coreRun = new CoreRun();
-        yield return coreRun.CoreInit();
+        yield return new CoreRun().CoreInit();
         //显示主界面
         CoreUI.ShwoUIPanel<MainMenuView>(ConfigPrefab.prefabUIMianMenu);
         //加载子模块

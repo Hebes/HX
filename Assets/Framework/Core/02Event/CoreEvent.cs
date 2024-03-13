@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 /*--------脚本描述-----------
@@ -15,11 +16,15 @@ namespace Core
         public static CoreEvent Instance;
         private Dictionary<int, List<IEvent>> eventDic;
 
-        public void ICoreInit()
+        public void Init()
         {
             Instance = this;
             eventDic = new Dictionary<int, List<IEvent>>();
             //AddDebuggerAction();
+        }
+        public IEnumerator AsyncInit()
+        {
+           yield return null;
         }
 
         #region IDebug

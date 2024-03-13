@@ -26,10 +26,15 @@ namespace Core
         private IResLoad iload;
 
 
-        public void ICoreInit()
+        public void Init()
         {
             Instance = this;
             SwitchModel();
+        }
+
+        public IEnumerator AsyncInit()
+        {
+            yield break;
         }
 
 
@@ -124,6 +129,8 @@ namespace Core
         private void DebugLog(string content) => Log.Invoke(content);
         private void DebugWarn(string content) => Warn.Invoke(content);
         private void DebugError(string content) => Error.Invoke(content);
+
+        
         #endregion
     }
 }

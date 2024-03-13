@@ -31,7 +31,9 @@ namespace Core
 
         public IEnumerator Init<T>() where T : ICore, new()
         {
-            yield return new T().ICoreInit();
+            T t = new();
+            t.Init();
+            yield return t.AsyncInit();
         }
     }
 }
