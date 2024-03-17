@@ -15,11 +15,11 @@ namespace Core
         /// <summary>
         /// 从对象池出来之后需要做的事
         /// </summary>
-        public void GetAfter();
+        public void Get();
 
         /// <summary>
         /// 进对象池之前需要做的事
         /// </summary>
-        public void PushBefore();
+        public void Push();
     }
 }

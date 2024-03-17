@@ -1,7 +1,4 @@
-﻿using Core;
-using Cysharp.Threading.Tasks;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 
@@ -22,7 +19,7 @@ namespace Core
         {
             T t = Resources.Load<T>(AssetName);
             if (t == null)
-                Debug.Error($"资源为空{AssetName}");
+                ExtensionDebug.Error($"资源为空{AssetName}");
             return t;
         }
 
@@ -32,7 +29,7 @@ namespace Core
             while (!resourceRequest.isDone)
                 yield return null;
             if (resourceRequest.isDone == false)
-                Debug.Error($"资源为空{AssetName}");
+                ExtensionDebug.Error($"资源为空{AssetName}");
             action.Invoke(resourceRequest.asset as T);
         }
 

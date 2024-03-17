@@ -1,6 +1,6 @@
 ﻿using Core;
 using UnityEngine;
-using Debug = Core.Debug;
+using ExtensionDebug = Core.ExtensionDebug;
 
 /// <summary>
 /// 攻击次数接口
@@ -82,7 +82,7 @@ public static class HelperRole
     {
         if (roleState is T t)
             return t;
-        Debug.Error($"脚本不继承IRoleState,或者角色未转换到这个状态,当前状态{roleState.RoleSateType}");
+        ExtensionDebug.Error($"脚本不继承IRoleState,或者角色未转换到这个状态,当前状态{roleState.RoleSateType}");
         return default;
     }
 }

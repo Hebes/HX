@@ -31,14 +31,14 @@ namespace Core
             logConfig.enableTrace = true;
             logConfig.enableSave = true;
             logConfig.enableCover = false;
-            logConfig.saveName = "HXLog.txt";
+            logConfig.saveName = "Log.txt";
             logConfig.loggerType = LoggerType.Unity;
 #if UNITY_EDITOR
             //logConfig.savePath = $"{Application.persistentDataPath}/LogOut/ActiveLog/",
             logConfig.savePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}/LogOut/";
             //savePath = $"{Application.dataPath}/Log",
 #endif
-            Debug.InitDebugSettings(logConfig);
+            new CDebug().Init(logConfig, Debug.Log, Debug.LogWarning, Debug.LogError);
 
             //被动日志
             //SystemExceptionDebug.InitSystemExceptionDebug();

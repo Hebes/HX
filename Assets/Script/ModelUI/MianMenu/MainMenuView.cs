@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Debug = Core.Debug;
+using Debug = Core.ExtensionDebug;
 
 /// <summary>
 /// 主菜单界面

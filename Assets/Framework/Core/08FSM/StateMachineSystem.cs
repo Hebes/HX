@@ -102,7 +102,7 @@ namespace Core
 			}
 			else
 			{
-                Debug.Error($"State node already existed : {nodeName}");
+                ExtensionDebug.Error($"State node already existed : {nodeName}");
 			}
 		}
 
@@ -128,11 +128,11 @@ namespace Core
 			IStateNode node = TryGetNode(nodeName);
 			if (node == null)
 			{
-                Debug.Error($"Can not found state node : {nodeName}");
+                ExtensionDebug.Error($"Can not found state node : {nodeName}");
 				return;
 			}
 
-			Debug.Log($"{_curNode.GetType().FullName} --> {node.GetType().FullName}");
+            ExtensionDebug.Log($"{_curNode.GetType().FullName} --> {node.GetType().FullName}");
 			_preNode = _curNode;
 			_curNode.OnExit();
 			_curNode = node;

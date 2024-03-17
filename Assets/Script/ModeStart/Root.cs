@@ -1,12 +1,11 @@
 using Core;
-using Cysharp.Threading.Tasks;
 using System.Collections;
 using UnityEngine;
 
 /// <summary>
 /// 入口脚本
 /// </summary>
-public class InitGame : MonoBehaviour
+public class Root : MonoBehaviour
 {
     private void Awake()
     {
@@ -20,7 +19,6 @@ public class InitGame : MonoBehaviour
         //显示主界面
         CoreUI.ShwoUIPanel<MainMenuView>(ConfigPrefab.prefabUIMianMenu);
         //加载子模块
-        ModelRun modelRun = new ModelRun();
-        yield return modelRun.ModelInit();
+        yield return new ModelRun().ModelInit();
     }
 }

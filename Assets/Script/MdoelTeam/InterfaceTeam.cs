@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Core;
 using UnityEngine;
-using Debug = Core.Debug;
+using ExtensionDebug = Core.ExtensionDebug;
 
 
 /// <summary>
@@ -32,12 +32,12 @@ public static class HelperTeam
 
         if (team.RoleList.Count >= 4)
         {
-            Debug.Error($"添加{role.Name}错误，当前只能有4个人");
+            ExtensionDebug.Error($"添加{role.Name}错误，当前只能有4个人");
             return false;
         }
         if (!team.RoleList.AddNotContainElement(role))
         {
-            Debug.Error($"添加{role.Name}错误，已经存在这个角色");
+            ExtensionDebug.Error($"添加{role.Name}错误，已经存在这个角色");
             return false;
         }
         return true;

@@ -70,7 +70,7 @@ namespace Core
         {
             if (Instance.CoroutineDic.ContainsKey(coroutineKey))
             {
-                Debug.Error($"协程已经存在{coroutineKey}");
+                ExtensionDebug.Error($"协程已经存在{coroutineKey}");
                 return;
             }
             Instance.CoroutineDic.Add(coroutineKey, BehaviourController.Instance.StartCoroutine(coroutine));
@@ -87,7 +87,7 @@ namespace Core
                 Instance.CoroutineDic.Remove(coroutineKey);
                 return;
             }
-            Debug.Error("停止失败请，协程不存在");
+            ExtensionDebug.Error("停止失败请，协程不存在");
         }
         public static void StopAllCoroutines()
         {

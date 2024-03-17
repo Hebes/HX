@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*--------脚本描述-----------
-				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
+
 描述:
     对象池模块
 
@@ -22,12 +18,17 @@ namespace Core
         public Dictionary<string, List<IPool>> poolDic;
         private GameObject poolObj;
 
-        public IEnumerator ICoreInit()
+
+        public void Init()
         {
             Instance = this;
             poolDic = new Dictionary<string, List<IPool>>();
             poolObj = new GameObject("PoolManager");
             GameObject.DontDestroyOnLoad(poolObj);
+        }
+
+        public IEnumerator AsyncInit()
+        {
             yield return null;
         }
 
@@ -44,7 +45,7 @@ namespace Core
                 if (data.Count > 0)
                 {
                     IPool poolData = data[0];
-                    poolData.GetAfter();
+                    poolData.Get();
                     Instance.poolDic[typeof(T).FullName].Remove(poolData);
                     return poolData as T;
                 }
@@ -53,7 +54,7 @@ namespace Core
             GameObject gameObject = CoreResource.Load<GameObject>(loadPath);
             GameObject gameObjectTemp = GameObject.Instantiate(gameObject);
             T t = gameObjectTemp.GetComponent<T>() == null ? gameObjectTemp.AddComponent<T>() : gameObjectTemp.GetComponent<T>();
-            t.GetAfter();
+            t.Get();
             return t;
         }
 
@@ -71,14 +72,14 @@ namespace Core
                 if (data.Count > 0)
                 {
                     IPool poolData = data[0];
-                    poolData.GetAfter();
+                    poolData.Get();
                     data.Remove(poolData);
                     return poolData as T;
                 }
             }
             GameObject gameObjectTemp = GameObject.Instantiate(gameObject);
             T t = gameObjectTemp.GetComponent<T>() == null ? gameObjectTemp.AddComponent<T>() : gameObjectTemp.GetComponent<T>();
-            t.GetAfter();
+            t.Get();
             return t;
         }
 
@@ -92,7 +93,7 @@ namespace Core
             T t = default;
             if (typeof(T).IsSubclassOf(typeof(MonoBehaviour)))
             {
-                UnityEngine.Debug.Error("请调用其他GetMono方法");
+                ExtensionDebug.Error("请调用其他GetMono方法");
                 return t;
             }
 
@@ -106,7 +107,7 @@ namespace Core
                 }
             }
             t = new T();
-            t.GetAfter();
+            t.Get();
             return t;
         }
 
@@ -117,7 +118,7 @@ namespace Core
         {
             if (typeof(T).IsSubclassOf(typeof(MonoBehaviour)))
             {
-                UnityEngine.Debug.Error("请调用其他PushMono方法");
+                ExtensionDebug.Error("请调用其他PushMono方法");
                 return;
             }
 
@@ -125,7 +126,7 @@ namespace Core
                 data.Add(t);
             else
                 Instance.poolDic.Add(typeof(T).FullName, new List<IPool>() { t });
-            t.PushBefore();
+            t.Push();
         }
 
         /// <summary>
@@ -138,7 +139,7 @@ namespace Core
                 Instance.poolDic[typeof(T).FullName].Add(t);
             else
                 Instance.poolDic.Add(typeof(T).FullName, new List<IPool>() { t });
-            t.PushBefore();
+            t.Push();
         }
 
         /// <summary>

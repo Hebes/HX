@@ -1,7 +1,7 @@
 ﻿using Core;
 using System.Collections;
 using UnityEngine;
-using Debug = Core.Debug;
+using Debug = Core.ExtensionDebug;
 
 /// <summary>
 /// 角色移动状态

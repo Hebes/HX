@@ -22,7 +22,7 @@ namespace Core
             foreach (IEvent item in eventInfoList)
             {
                 if (item.MethodName != methodName) continue;
-                Instance.DebugError($"{methodName}方法已经添加");
+                ExtensionDebug.Error($"{methodName}方法已经添加");
                 return true;
             }
             return false;

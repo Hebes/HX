@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Debug = Core.Debug;
+using ExtensionDebug = Core.ExtensionDebug;
 
 /// <summary>
 /// 战斗
@@ -67,7 +67,7 @@ public class BattleData : IID
             case EBattlePerformAction.CHECKALIVE: Checkalive(); break;
             case EBattlePerformAction.WIN: Win(); break;
             case EBattlePerformAction.LOSE: Lose(); break;
-            default: Debug.Error("战斗出现未知错误"); break;
+            default: ExtensionDebug.Error("战斗出现未知错误"); break;
         }
     }
     public void BattleRemove()
@@ -107,7 +107,7 @@ public class BattleData : IID
                 roleStateBattle.turnState = ERoleTurnState.ACTION;
                 break;
             default:
-                Debug.Error($"角色类型错误{battleAction.AttackerData.RoleType}");
+                ExtensionDebug.Error($"角色类型错误{battleAction.AttackerData.RoleType}");
                 break;
         }
         BattleSate = EBattlePerformAction.PERFROMACTION;

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace Core
 {
-    public partial class CoreEvent : ICore, IDebug
+    public partial class CoreEvent : ICore
     {
         public static CoreEvent Instance;
         private Dictionary<int, List<IEvent>> eventDic;
@@ -20,26 +20,19 @@ namespace Core
         {
             Instance = this;
             eventDic = new Dictionary<int, List<IEvent>>();
-            //AddDebuggerAction();
         }
         public IEnumerator AsyncInit()
         {
            yield return null;
         }
+    }
+}
 
-        #region IDebug
-        public Action<string> Log { get; set; }
-        public Action<string> Warn { get; set; }
-        public Action<string> Error { get; set; }
-
-        private void AddDebuggerAction()
-        {
-            this.AddDebuggerAction(UnityEngine.Debug.Log, UnityEngine.Debug.LogWarning, UnityEngine.Debug.LogError);
-        }
-        private void DebugLog(string content) => Log.Invoke(content);
-        private void DebugWarn(string content) => Warn.Invoke(content);
-        private void DebugError(string content) => Error.Invoke(content);
-        #endregion
+namespace Core
+{
+    public static class ExtensionEvent 
+    {
+        
     }
 }
 

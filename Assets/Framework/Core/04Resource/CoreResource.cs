@@ -20,7 +20,7 @@ namespace Core
         YooAsset,
     }
 
-    public class CoreResource : ICore, IDebug
+    public class CoreResource : ICore
     {
         public static CoreResource Instance;
         private IResLoad iload;
@@ -116,21 +116,5 @@ namespace Core
         //{
         //    Instance.iload.UnloadAssets();
         //}
-
-        #region IDebug
-        public Action<string> Log { get; set; }
-        public Action<string> Warn { get; set; }
-        public Action<string> Error { get; set; }
-
-        private void AddDebuggerAction()
-        {
-            this.AddDebuggerAction(UnityEngine.Debug.Log, UnityEngine.Debug.LogWarning, UnityEngine.Debug.LogError);
-        }
-        private void DebugLog(string content) => Log.Invoke(content);
-        private void DebugWarn(string content) => Warn.Invoke(content);
-        private void DebugError(string content) => Error.Invoke(content);
-
-        
-        #endregion
     }
 }

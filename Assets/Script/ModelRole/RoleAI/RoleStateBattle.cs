@@ -1,9 +1,7 @@
 ﻿using Core;
-using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using UnityEngine;
-using Debug = Core.Debug;
 
 /// <summary>
 /// 角色战斗状态
@@ -79,7 +77,7 @@ public class RoleStateBattle : IRoleState, IDamage
                 Dead();
                 break;
             default:
-                Debug.Error("行动错误");
+                ExtensionDebug.Error("行动错误");
                 break;
         }
     }
@@ -94,7 +92,7 @@ public class RoleStateBattle : IRoleState, IDamage
     public void TakeDamage(int getDamageAmount)
     {
         RoleAttributes.CurrentHP -= getDamageAmount;
-        Debug.Log($"{RoleData.Name}受到：{getDamageAmount}点伤害,剩余生命值：{RoleAttributes.CurrentHP}");
+        ExtensionDebug.Log($"{RoleData.Name}受到：{getDamageAmount}点伤害,剩余生命值：{RoleAttributes.CurrentHP}");
         if (RoleAttributes.CurrentHP >= 0) return;
         RoleAttributes.CurrentHP = 0;
         turnState = ERoleTurnState.DEAD;

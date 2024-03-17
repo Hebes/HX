@@ -1,7 +1,7 @@
 ﻿using Core;
 using System.Collections.Generic;
 using UnityEngine;
-using Debug = Core.Debug;
+using ExtensionDebug = Core.ExtensionDebug;
 
 /// <summary>
 /// 战斗管理器
@@ -95,7 +95,7 @@ public class SceneBattleManager : MonoBehaviour
     {
         Transform tr = SetRolePoint(teamPoint, role.RoleBattlePoint); 
         if (tr == null)
-            Debug.Error("父物体设置为空,请检查赋值");
+            ExtensionDebug.Error("父物体设置为空,请检查赋值");
         GameObject gameObject = GameObject.Instantiate(roleTemplate, tr);
         gameObject.transform.localPosition = Vector2.zero;
         gameObject.SetActive(true);

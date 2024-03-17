@@ -8,21 +8,21 @@ public class ModelRun
 
     public List<IModel> modelList;
 
-    public  IEnumerator ModelInit()
+    public IEnumerator ModelInit()
     {
         Instance = this;
         modelList = new List<IModel>();
 
-        //await ModeEnter<ManagerData>();       //数据
-        yield return ModeEnter<ManagerSave>();       //存档
-        yield return ModeEnter<ManagerScene>();      //场景
-        yield return ModeEnter<ManagerRPGBattle>();      //战斗
+        //await ModeEnter<ManagerData>();           //数据
+        yield return ModeEnter<ManagerSave>();      //存档
+        yield return ModeEnter<ManagerScene>();     //场景
+        yield return ModeEnter<ManagerRPGBattle>(); //战斗
     }
 
     /// <summary>
     /// 模块进入->初始化
     /// </summary>
-    private  IEnumerator ModeEnter<T>() where T : IModel, new()
+    private IEnumerator ModeEnter<T>() where T : IModel, new()
     {
         T t = new T();
         modelList.Add(t);
@@ -32,7 +32,7 @@ public class ModelRun
     /// <summary>
     /// 模块退出
     /// </summary>
-    public static  IEnumerator ModelExit()
+    public static IEnumerator ModelExit()
     {
         foreach (IModel item in Instance.modelList)
             yield return item.Exit();

@@ -37,7 +37,7 @@ public class ManagerInventory : IModel
     {
         if (Instance._itemDic.ContainsKey(key))
         {
-            Debug.Error("该背包数据已经存在!");
+            ExtensionDebug.Error("该背包数据已经存在!");
             return;
         }
         Instance._itemDic.Add(key, new List<InventoryItem>());
@@ -49,7 +49,7 @@ public class ManagerInventory : IModel
     public static void CreatData(int key, List<InventoryItem> inventoryItems)
     {
         if (Instance._itemDic.ContainsKey(key))
-            Debug.Error("该背包数据已经存在!");
+            ExtensionDebug.Error("该背包数据已经存在!");
         Instance._itemDic.Add(key, inventoryItems);
         Instance.RefreshInventoryItemList(key);
     }
@@ -66,7 +66,7 @@ public class ManagerInventory : IModel
             Instance.RefreshInventoryItemList(key);
             return;
         }
-        Debug.Error("背包数据不存在");
+        ExtensionDebug.Error("背包数据不存在");
     }
 
     /// <summary>
@@ -88,7 +88,7 @@ public class ManagerInventory : IModel
             Instance.RefreshInventoryItemList(key);
             return;
         }
-        Debug.Log($"当前没有{key},请检查");
+        ExtensionDebug.Log($"当前没有{key},请检查");
     }
 
     /// <summary>
@@ -146,7 +146,7 @@ public class ManagerInventory : IModel
     {
         if (Instance._itemDic.TryGetValue(key, out List<InventoryItem> valueList))
             return valueList;
-        Debug.Error("背包数据不存在");
+        ExtensionDebug.Error("背包数据不存在");
         return null;
     }
 
@@ -171,7 +171,7 @@ public class ManagerInventory : IModel
             inventoryItem.count -= amount;
             return;
         }
-        Debug.Log("当前的物品数量不足，请检查");
+        ExtensionDebug.Log("当前的物品数量不足，请检查");
     }
 
     /// <summary>

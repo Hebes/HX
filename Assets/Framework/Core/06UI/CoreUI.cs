@@ -251,7 +251,7 @@ namespace Core
                 _StaCurrentUIForms.Push(ui);//把指定的UI窗体，入栈操作。
                 return;
             }
-            Debug.Error($"{uiFormName} 是空的！");
+            ExtensionDebug.Error($"{uiFormName} 是空的！");
         }
 
         /// <summary>

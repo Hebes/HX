@@ -1,5 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine.SceneManagement;
 
 
@@ -21,12 +20,15 @@ namespace Core
         public static CoreScene Instance;
         private ISceneLoad sceneLoad;
 
-
-        public IEnumerator ICoreInit()
+        public void Init()
         {
             Instance = this;
             SwitchModel();
             sceneLoad.CoreSceneInit();
+        }
+
+        public IEnumerator AsyncInit()
+        {
             yield return null;
         }
 
