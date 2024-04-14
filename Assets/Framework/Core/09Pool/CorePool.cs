@@ -32,6 +32,7 @@ namespace Core
             yield return null;
         }
 
+        #region mono专用
         /// <summary>
         /// 获取(挂在脚本类型,从资源加载)
         /// </summary>
@@ -84,6 +85,54 @@ namespace Core
         }
 
         /// <summary>
+        /// 对象池获取
+        /// </summary>
+        /// <typeparam name="T">返回的类型</typeparam>
+        /// <typeparam name="V">加载资源的类型</typeparam>
+        /// <param name="v">已经加载的资源,只需要实例化</param>
+        /// <returns></returns>
+        public static T GetMono<T, V>(V v) where T : Object, IPool where V : Object, IPool
+        {
+            //如果缓存池中有的话
+            if (Instance.poolDic.TryGetValue(typeof(T).FullName, out List<IPool> data))
+            {
+                if (data.Count > 0)
+                {
+                    IPool poolData = data[0];
+                    poolData.Get();
+                    data.Remove(poolData);
+                    return poolData as T;
+                }
+            }
+
+            V Temp = Object.Instantiate<V>(v);
+            if (Temp is T dataTemp)
+            {
+                dataTemp.Get();
+                return dataTemp;
+            }
+            Debug.LogError($"{typeof(T).FullName}不是{typeof(V).FullName},两个必须相同脚本");
+            return null;
+        }
+
+        /// <summary>
+        /// 推入
+        /// </summary>
+        public static void PushMono<T>(T t) where T : Component, IPool
+        {
+            //隐藏
+            if (Instance.poolDic.ContainsKey(typeof(T).FullName))
+                Instance.poolDic[typeof(T).FullName].Add(t);
+            else
+                Instance.poolDic.Add(typeof(T).FullName, new List<IPool>() { t });
+            t.Push();
+        }
+
+        #endregion
+
+
+        #region Class专用
+        /// <summary>
         /// 获取类型为Calss的(就是class，不包含Mono任何数据)
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -122,26 +171,16 @@ namespace Core
                 return;
             }
 
-            if (Instance.poolDic.TryGetValue(typeof(T).FullName,out List<IPool> data))
+            if (Instance.poolDic.TryGetValue(typeof(T).FullName, out List<IPool> data))
                 data.Add(t);
             else
                 Instance.poolDic.Add(typeof(T).FullName, new List<IPool>() { t });
             t.Push();
         }
+        #endregion
 
-        /// <summary>
-        /// 推入
-        /// </summary>
-        public static void PushMono<T>(T t) where T : Component, IPool
-        {
-            //隐藏
-            if (Instance.poolDic.ContainsKey(typeof(T).FullName))
-                Instance.poolDic[typeof(T).FullName].Add(t);
-            else
-                Instance.poolDic.Add(typeof(T).FullName, new List<IPool>() { t });
-            t.Push();
-        }
 
+        #region 其他
         /// <summary>
         /// 对象池设置父物体
         /// </summary>
@@ -156,5 +195,22 @@ namespace Core
             }
             t.transform.SetParent(transform, false);
         }
+        #endregion
+    }
+
+    /// <summary>
+    /// 对象池接口
+    /// </summary>
+    public interface IPool
+    {
+        /// <summary>
+        /// 从对象池出来之后需要做的事
+        /// </summary>
+        public void Get();
+
+        /// <summary>
+        /// 进对象池之前需要做的事
+        /// </summary>
+        public void Push();
     }
 }

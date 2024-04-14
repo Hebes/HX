@@ -1,11 +1,9 @@
 ﻿#define COREDUBUGOPEN
-using OfficeOpenXml.FormulaParsing.Excel.Functions.RefAndLookup;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
-using UnityEngine;
 
 /*--------脚本描述-----------
 
@@ -24,6 +22,7 @@ namespace Core
         private StreamWriter LogFiLeWriter = null;   //输出流,整个日志文件
         private const string logLock = "LogLock";           //日志锁
         private ILogger logger = null;                      //日志接口
+        private StringBuilder sb;
 
         #region 开启案例
         //        public void Init()
@@ -52,6 +51,7 @@ namespace Core
 
         public void Init(LogConfig cfg, Action<string> Log, Action<string> Warn, Action<string> Error)
         {
+            sb = new StringBuilder();
             Instance = this;
             //日志类型
             switch (cfg.loggerType)
@@ -184,10 +184,14 @@ namespace Core
 
 
         #region Tool
+
         //日志打印
         private string DecorateLog(string msg, bool isTrace = false)
         {
-            StringBuilder sb = new StringBuilder(cfg.LogPrefix, 100);
+            sb.Clear();
+            sb.Capacity = 100;
+            sb.Append(cfg.LogPrefix);
+            //StringBuilder sb = new StringBuilder(cfg.LogPrefix, 100);
             if (cfg.enableTime)//启用时间
                 sb.AppendFormat($"时间:{DateTime.Now.ToString("hh:mm:ss--fff")}");
             if (cfg.enableMillisecond)
@@ -480,5 +484,6 @@ namespace Core
         public static void Log(this object obj) => CDebug.Instance.Log(obj);
         public static void Warn(this string msg, params object[] args) => CDebug.Instance.Warn(msg, args);
         public static void Error(this string msg, params object[] args) => CDebug.Instance.Error(msg, args);
+        public static void Error(this object obj, string msg, params object[] args) => Error(msg, args);
     }
 }
