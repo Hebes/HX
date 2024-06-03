@@ -1,6 +1,6 @@
 ﻿using Core;
 using UnityEngine;
-using Debug = Core.Debug;
+using ExtensionDebug = Core.ExtensionDebug;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class Item : MonoBehaviour, IPool, IItem
@@ -28,7 +28,7 @@ public class Item : MonoBehaviour, IPool, IItem
     {
         if (itemCodeParam <= 0)
         {
-            Debug.Error($"物品ID不对{itemCodeParam}");
+            ExtensionDebug.Error($"物品ID不对{itemCodeParam}");
             return;
         }
         _itemID = itemCodeParam;
@@ -38,13 +38,13 @@ public class Item : MonoBehaviour, IPool, IItem
         //    gameObject.AddComponent<ItemNudge>();
     }
 
-    public void GetAfter()
+    public void Get()
     {
         gameObject.SetActive(true);
         RefreshItem(_itemID);
     }
 
-    public void PushBefore()
+    public void Push()
     {
         gameObject.SetActive(false);
     }

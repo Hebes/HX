@@ -96,7 +96,7 @@ namespace Core
             singleText = GUILayout.TextField(singleText);
             if (GUILayout.Button("发送指令", GUILayout.Height(30)))
             {
-                Debug.Log(singleText);
+                UnityEngine.Debug.Log(singleText);
             }
         }
         private void ShrinkGUIWindow(int windowId)

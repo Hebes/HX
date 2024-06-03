@@ -14,14 +14,15 @@ public class ManagerSave : IModel
 {
     public static ManagerSave Instance { get; private set; }
     private List<ISave> _saveList;
-    public  IEnumerator Enter()
+
+    public IEnumerator Enter()
     {
         Instance = this;
         _saveList = new List<ISave>();
         yield return null;
     }
 
-    public  IEnumerator Exit()
+    public IEnumerator Exit()
     {
         yield return null;
     }
@@ -33,7 +34,7 @@ public class ManagerSave : IModel
     {
         if (Instance._saveList.Contains(save))
         {
-            Debug.Log($"保存的已经存在{save.GetType().FullName}");
+            ExtensionDebug.Log($"保存的已经存在{save.GetType().FullName}");
             return;
         }
         Instance._saveList.Add(save);
@@ -59,5 +60,5 @@ public class ManagerSave : IModel
             save.Load(saveData);
     }
 
-   
+
 }

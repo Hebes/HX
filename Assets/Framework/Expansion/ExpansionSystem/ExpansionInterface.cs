@@ -13,7 +13,7 @@
         {
             if (t is K k)
                 return k;
-            Debug.Error($"{t.GetType().FullName}请继承{typeof(K).FullName}");
+            ExtensionDebug.Error($"{t.GetType().FullName}请继承{typeof(K).FullName}");
             return default;
         }
 
@@ -21,7 +21,7 @@
         {
             if (t is K k)
                 return true;
-            Debug.Error($"{t.GetType().FullName}请继承{typeof(K).FullName}");
+            ExtensionDebug.Error($"{t.GetType().FullName}请继承{typeof(K).FullName}");
             return false;
         }
     }

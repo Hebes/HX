@@ -47,7 +47,7 @@ namespace Core
                 while (disableProgress < toProgress)
                 {
                     ++disableProgress;
-                    Debug.Log($"{sceneName}加载进度是:{disableProgress}");
+                    UnityEngine.Debug.Log($"{sceneName}加载进度是:{disableProgress}");
                     CoreEvent.EventTrigger(ECoreEvent.LoadSceneEvent.ToInt(), disableProgress);
                     //_progress.value = disableProgress / 100.0f;//0.01开始
                     //yield return new WaitForEndOfFrame();
@@ -60,7 +60,7 @@ namespace Core
             while (disableProgress < toProgress)
             {
                 ++disableProgress;
-                Debug.Log($"{sceneName}加载进度是:{disableProgress}");
+                UnityEngine.Debug.Log($"{sceneName}加载进度是:{disableProgress}");
                 CoreEvent.EventTrigger(ECoreEvent.LoadSceneEvent.ToInt(), disableProgress);
                 //_progress.value = disableProgress / 100.0f;
                 //yield return new WaitForEndOfFrame();

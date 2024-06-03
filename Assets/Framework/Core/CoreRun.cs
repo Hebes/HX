@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine;
 
 /*--------脚本描述-----------
 
@@ -14,6 +15,9 @@ namespace Core
     {
         public IEnumerator CoreInit()
         {
+            //限制帧数
+            Application.targetFrameRate = 60;
+
             //可以首先加载的
             yield return Init<CoreDebug>();          //日志
             yield return Init<CoreLanguage>();       //多语言
@@ -31,7 +35,9 @@ namespace Core
 
         public IEnumerator Init<T>() where T : ICore, new()
         {
-            yield return new T().ICoreInit();
+            T t = new();
+            t.Init();
+            yield return t.AsyncInit();
         }
     }
 }

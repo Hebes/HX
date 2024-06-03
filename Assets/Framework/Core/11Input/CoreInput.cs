@@ -23,10 +23,14 @@ namespace Core
         private List<IInput> _inputList;        //组合输入
 
 
-        public IEnumerator ICoreInit()
+        public void Init()
         {
             Instance = this;
             _inputList = new List<IInput>();
+        }
+
+        public IEnumerator AsyncInit()
+        {
             yield return null;
         }
 
@@ -41,5 +45,7 @@ namespace Core
         {
             return Instance._inputList.GetContainElement<IInput, T>();
         }
+
+        
     }
 }

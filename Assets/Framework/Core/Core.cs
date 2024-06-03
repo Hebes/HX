@@ -39,18 +39,27 @@ namespace Core
         /// <summary>
         /// 加载场景事件
         /// </summary>
-        LoadSceneEvent,
+        LoadSceneEvent = 2,
     }
 
     public interface ICore
     {
         /// <summary>
-        /// 核心初始化
+        /// 初始化
         /// </summary>
         /// <returns></returns>
-        public void ICoreInit();
+        public void Init();
+
+        /// <summary>
+        /// 协程初始化
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator AsyncInit();
     }
 
+    /// <summary>
+    /// 初始接口
+    /// </summary>
     public interface IID
     {
         public long ID { get; set; }

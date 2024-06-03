@@ -13,11 +13,16 @@ namespace Core
 {
     public class CoreDebug : ICore
     {
-        public IEnumerator ICoreInit()
+        public IEnumerator AsyncInit()
+        {
+            yield break;
+        }
+
+        public void Init()
         {
             //日志设置
             LogConfig logConfig = new LogConfig();
-            logConfig.enableLog=true;
+            logConfig.enableLog = true;
             logConfig.LogPrefix = "#";
             logConfig.enableTime = false;
             logConfig.enableMillisecond = true;
@@ -26,14 +31,14 @@ namespace Core
             logConfig.enableTrace = true;
             logConfig.enableSave = true;
             logConfig.enableCover = false;
-            logConfig.saveName = "HXLog.txt";
+            logConfig.saveName = "Log.txt";
             logConfig.loggerType = LoggerType.Unity;
 #if UNITY_EDITOR
             //logConfig.savePath = $"{Application.persistentDataPath}/LogOut/ActiveLog/",
             logConfig.savePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}/LogOut/";
-                //savePath = $"{Application.dataPath}/Log",
+            //savePath = $"{Application.dataPath}/Log",
 #endif
-            Debug.InitDebugSettings(logConfig);
+            new CDebug().Init(logConfig, Debug.Log, Debug.LogWarning, Debug.LogError);
 
             //被动日志
             //SystemExceptionDebug.InitSystemExceptionDebug();
@@ -45,9 +50,7 @@ namespace Core
             //GameObject debugGo = new GameObject("UIDebug");
             //debugGo.AddComponent<UIDebugger>();
             //GameObject.DontDestroyOnLoad(debugGo);
-            Debug.Log("日志模块初始化完毕!");
-
-            yield return null;
+            UnityEngine.Debug.Log("日志模块初始化完毕!");
         }
     }
 }

@@ -16,12 +16,12 @@ public class SkillNormalAttack : SkillData
     public override void SkillTrigger()
     {
         base.SkillTrigger();
-        Debug.Log("普攻技能触发");
+        ExtensionDebug.Log("普攻技能触发");
     }
     public override void SkillOver()
     {
         base.SkillOver();
-        Debug.Log("普攻技能结束");
+        ExtensionDebug.Log("普攻技能结束");
     }
 }
 

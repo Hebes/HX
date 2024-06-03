@@ -1,7 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
-using System.Buffers.Text;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,27 +22,22 @@ namespace Core
         /// UI根节点
         /// </summary>
         public Transform CanvasTransfrom = null;
-
         /// <summary>
         /// UI摄像机
         /// </summary>
         public Camera UICamera = null;
-
         /// <summary>
         /// 主摄像机
         /// </summary>
         public Camera MainCamera = null;
-
         /// <summary>
         /// 缓存所有UI窗体
         /// </summary>
         private Dictionary<string, IUI> _DicALLUIForms;
-
         /// <summary>
         /// 当前显示的UI窗体
         /// </summary>
         private Dictionary<string, IUI> _DicCurrentShowUIForms;
-
         /// <summary>
         /// 定义“栈”集合,存储显示当前所有[反向切换]的窗体类型
         /// </summary>
@@ -55,22 +47,18 @@ namespace Core
         /// 全屏幕显示的节点
         /// </summary>
         private Transform Normal = null;
-
         /// <summary>
         /// 固定显示的节点
         /// </summary>
         private Transform Fixed = null;
-
         /// <summary>
         /// 弹出节点
         /// </summary>
         public Transform PopUp = null;
-
         /// <summary>
         /// 独立的窗口可移动的
         /// </summary>
         private Transform Mobile = null;
-
         /// <summary>
         /// 渐变过度窗体
         /// </summary>
@@ -93,12 +81,15 @@ namespace Core
                     uiUpdata.UIUpdata();
             }
         }
-        public IEnumerator ICoreInit()
+        public void Init()
         {
             Instance = this;
             _DicALLUIForms = new Dictionary<string, IUI>();
             _DicCurrentShowUIForms = new Dictionary<string, IUI>();
             _StaCurrentUIForms = new Stack<IUI>();
+        }
+        public IEnumerator AsyncInit()
+        {
             yield return CoreResource.LoadAsync<GameObject>(SettingCore.uiCanvasPath, LoadOkOver);
 
             void LoadOkOver(GameObject gameObject)
@@ -116,9 +107,9 @@ namespace Core
                 Fade = CanvasTransfrom.GetChildComponent<Transform>(EUIType.Fade.ToString());
                 UICamera = CanvasTransfrom.GetChildComponent<Camera>("UICamera");//UI相机要添加到主相机的Stack中
                 MainCamera = CanvasTransfrom.GetChildComponent<Camera>("MainCamera");
-                Debug.Log("UI管理初始化完毕");
+                UnityEngine.Debug.Log("UI管理初始化完毕");
             }
-            yield return null;
+            yield break;
         }
 
 
@@ -260,7 +251,7 @@ namespace Core
                 _StaCurrentUIForms.Push(ui);//把指定的UI窗体，入栈操作。
                 return;
             }
-            Debug.Error($"{uiFormName} 是空的！");
+            ExtensionDebug.Error($"{uiFormName} 是空的！");
         }
 
         /// <summary>

@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Debug = Core.Debug;
+using ExtensionDebug = Core.ExtensionDebug;
 
 public class ManagerRPGBattle : IModel, IUpdata
 {
@@ -184,7 +184,7 @@ public static class HelperBattle
             battle.BattleTeamDic = new Dictionary<ETeamPoint, TeamData>();
 
         if (battle.BattleTeamDic.ContainsKey(team.TeamPoint))
-            Debug.Error($"当前队伍占位已存在{team.TeamPoint}");
+            ExtensionDebug.Error($"当前队伍占位已存在{team.TeamPoint}");
         else
             battle.BattleTeamDic.Add(team.TeamPoint, team);
     }

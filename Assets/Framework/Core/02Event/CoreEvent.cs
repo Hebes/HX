@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 /*--------脚本描述-----------
@@ -10,31 +11,28 @@ using System.Collections.Generic;
 
 namespace Core
 {
-    public partial class CoreEvent : ICore, IDebug
+    public partial class CoreEvent : ICore
     {
         public static CoreEvent Instance;
         private Dictionary<int, List<IEvent>> eventDic;
 
-        public void ICoreInit()
+        public void Init()
         {
             Instance = this;
             eventDic = new Dictionary<int, List<IEvent>>();
-            AddDebuggerAction();
         }
-
-        #region IDebug
-        public Action<string> Log { get; set; }
-        public Action<string> Warn { get; set; }
-        public Action<string> Error { get; set; }
-
-        private void AddDebuggerAction()
+        public IEnumerator AsyncInit()
         {
-            this.AddDebuggerAction(UnityEngine.Debug.Log, UnityEngine.Debug.LogWarning, UnityEngine.Debug.LogError);
+           yield return null;
         }
-        private void DebugLog(string content) => Log.Invoke(content);
-        private void DebugWarn(string content) => Warn.Invoke(content);
-        private void DebugError(string content) => Error.Invoke(content);
-        #endregion
+    }
+}
+
+namespace Core
+{
+    public static class ExtensionEvent 
+    {
+        
     }
 }
 
@@ -54,5 +52,6 @@ namespace Core
         /// 方法名称
         /// </summary>
         public string MethodName { get; set; }
+
     }
 }

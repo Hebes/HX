@@ -75,7 +75,7 @@ namespace Core
 
             //print(Mouse.current.delta.ReadValue());
 
-            Debug.Log(Mouse.current.scroll.ReadValue());
+            ExtensionDebug.Log(Mouse.current.scroll.ReadValue());
         }
     }
 }

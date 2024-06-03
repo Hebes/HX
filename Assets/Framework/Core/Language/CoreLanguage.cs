@@ -1,11 +1,8 @@
 ﻿using Core;
-using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using Debug = Core.Debug;
 
 /*--------脚本描述-----------
 
@@ -28,11 +25,15 @@ public class CoreLanguage : ICore
     private Dictionary<string, string> _languageDic;      //语言字典
     public Font _font;
 
-    public IEnumerator ICoreInit()
+    public void Init()
     {
         Instance = this;
         _languageDic = new Dictionary<string, string>();
         //TODO 加载多语言
+    }
+
+    public IEnumerator AsyncInit()
+    {
         yield return null;
     }
 
@@ -61,7 +62,7 @@ public class CoreLanguage : ICore
     {
         if (Instance._languageDic.ContainsKey(key)) 
             return Instance._languageDic[key];
-        Debug.Warn($"多语言未配置：{key}");
+        ExtensionDebug.Warn($"多语言未配置：{key}");
         return key;
     }
 
@@ -71,6 +72,4 @@ public class CoreLanguage : ICore
             transform.gameObject.AddComponent<LanguageComponent>() : transform.GetComponent<LanguageComponent>();
         languageText.SetKeyAndChange(key);
     }
-
-    
 }

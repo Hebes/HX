@@ -42,13 +42,13 @@ public class SkillBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         select.gameObject.SetActive(false);
     }
 
-    public void GetAfter()
+    public void Get()
     {
         gameObject.SetActive(true);
         select.gameObject.SetActive(false);
     }
 
-    public void PushBefore()
+    public void Push()
     {
         gameObject.SetActive(false);
         select.gameObject.SetActive(false);

@@ -1,10 +1,6 @@
 ﻿
 /*--------脚本描述-----------
-				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
+
 描述:
     资源加载
 
@@ -24,16 +20,21 @@ namespace Core
         YooAsset,
     }
 
-    public class CoreResource : ICore, IDebug
+    public class CoreResource : ICore
     {
         public static CoreResource Instance;
         private IResLoad iload;
 
 
-        public void ICoreInit()
+        public void Init()
         {
             Instance = this;
             SwitchModel();
+        }
+
+        public IEnumerator AsyncInit()
+        {
+            yield break;
         }
 
 
@@ -115,19 +116,5 @@ namespace Core
         //{
         //    Instance.iload.UnloadAssets();
         //}
-
-        #region IDebug
-        public Action<string> Log { get; set; }
-        public Action<string> Warn { get; set; }
-        public Action<string> Error { get; set; }
-
-        private void AddDebuggerAction()
-        {
-            this.AddDebuggerAction(UnityEngine.Debug.Log, UnityEngine.Debug.LogWarning, UnityEngine.Debug.LogError);
-        }
-        private void DebugLog(string content) => Log.Invoke(content);
-        private void DebugWarn(string content) => Warn.Invoke(content);
-        private void DebugError(string content) => Error.Invoke(content);
-        #endregion
     }
 }

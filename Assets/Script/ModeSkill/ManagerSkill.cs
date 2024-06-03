@@ -54,7 +54,7 @@ public static class HelperSkill
 
         if (skillList.Contains(skill))
         {
-            Debug.Log($"{skill.Name}技能已存在,跳过添加，暂时没写熟练度机制");
+            ExtensionDebug.Log($"{skill.Name}技能已存在,跳过添加，暂时没写熟练度机制");
             return false;
         }
         skillList.Add(skill);

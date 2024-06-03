@@ -25,9 +25,13 @@ namespace Core
     {
         public static CoreDataSystem Instance;
 
-        public IEnumerator ICoreInit()
+        public void Init()
         {
             Instance = this;
+        }
+
+        public IEnumerator AsyncInit()
+        {
             yield return null;
         }
 
@@ -84,6 +88,6 @@ namespace Core
             return t.Load<K>(fileName);
         }
 
-
+        
     }
 }

@@ -58,7 +58,7 @@ namespace Core
             File.AppendAllText(logPath, $"[类型]:{type}\r\n");
             File.AppendAllText(logPath, $"[报错信息]:{logString}\r\n");
             File.AppendAllText(logPath, $"[堆栈跟踪]:{stackTrace}\r\n");
-            Debug.Log($"被动日志生成路径:{logPath}");
+            UnityEngine.Debug.Log($"被动日志生成路径:{logPath}");
         }
     }
 }
