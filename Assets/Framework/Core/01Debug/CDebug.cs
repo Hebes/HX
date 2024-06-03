@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
+using UnityEngine;
 
 /*--------脚本描述-----------
 
@@ -367,32 +368,14 @@ namespace Core
         public Action<string> WarnAct { get; set; }
         public Action<string> ErrorAct { get; set; }
 
-        /// <summary>
-        /// 消息
-        /// </summary>
-        /// <param name="msg"></param>
-        /// <param name="LogCoLor"></param>
         public void Log(string msg, LogCoLor LogCoLor = LogCoLor.None);
-
-        /// <summary>
-        /// 警告
-        /// </summary>
-        /// <param name="msg"></param>
         public void Warn(string msg);
-
-        /// <summary>
-        /// 异常
-        /// </summary>
-        /// <param name="msg"></param>
         public void Error(string msg);
     }
 }
 
 namespace Core
 {
-    /// <summary>
-    /// Unity
-    /// </summary>
     public class UnityDebug : ILogger
     {
         public Action<string> LogAct { get; set; }
@@ -406,15 +389,8 @@ namespace Core
                 msg = ColorUnityLog(msg, LogCoLor);
             LogAct.Invoke(msg);
         }
-        public void Warn(string msg)
-        {
-            WarnAct.Invoke(msg);
-        }
-        public void Error(string msg)
-        {
-            ErrorAct.Invoke(msg);
-        }
-
+        public void Warn(string msg) => WarnAct.Invoke(msg);
+        public void Error(string msg) => ErrorAct.Invoke(msg);
 
         private string ColorUnityLog(string msg, LogCoLor logCoLor = LogCoLor.None)
         {
@@ -433,15 +409,11 @@ namespace Core
         }
     }
 
-    /// <summary>
-    /// 控制台
-    /// </summary>
     public class ConsoleDebug : ILogger
     {
         public Action<string> LogAct { get; set; }
         public Action<string> WarnAct { get; set; }
         public Action<string> ErrorAct { get; set; }
-
 
         public void Log(string msg, LogCoLor LogCoLor = LogCoLor.None)
         {
@@ -449,15 +421,8 @@ namespace Core
             Console.WriteLine(msg);
             Console.ForegroundColor = ConsoleColor.Gray;
         }
-        public void Warn(string msg)
-        {
-            Log(msg, LogCoLor.DarkYellow);
-        }
-        public void Error(string msg)
-        {
-            Log(msg, LogCoLor.DarkRed);
-        }
-
+        public void Warn(string msg) => Log(msg, LogCoLor.DarkYellow);
+        public void Error(string msg) => Log(msg, LogCoLor.DarkRed);
 
         public ConsoleColor WriteConsoleLog(LogCoLor logCoLor = LogCoLor.None)
         {
