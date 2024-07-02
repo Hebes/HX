@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Editor\Core\ToolExpansion_String.cs" />
+     <Compile Include="Assets\Editor\Tool\GenerateConfig\GenerateBinaryFile.cs" />
      <Compile Include="Assets\Editor\Tool\Value\Vlue.cs" />
      <Compile Include="Assets\Editor\Tool\Folder\OpenFolder.cs" />
      <Compile Include="Assets\Editor\Language\LanguageEditor.cs" />
@@ -88,7 +89,6 @@
      <Folder Include="Assets\Editor\Tool\Excels" />
      <Folder Include="Assets\Editor\Tool\Excels\ExcelsChange" />
      <Folder Include="Assets\Editor\Tool\Value" />
-     <Folder Include="Assets\Editor\Tool\GenerateConfig" />
      <Reference Include="UnityEngine">
      <HintPath>D:\Unity\UnityEditor\2022.3.7f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
