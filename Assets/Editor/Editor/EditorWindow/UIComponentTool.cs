@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace ToolEditor
+namespace CustomEditorExpansion
 {
     public class UIComponentTool : EditorWindow
     {

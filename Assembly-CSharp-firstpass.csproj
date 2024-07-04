@@ -45,156 +45,14 @@
     <Analyzer Include="D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\SheetPrRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\ExcelReaderConfiguration.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsWorksheet.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Log\LogManager.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\CompoundFormat\CompoundDocument.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffBOF.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OfficeCrypto\AgileEncryption.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader.DataSet\ExcelDataSetConfiguration.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\CsvFormat\CsvWorkbook.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsInternalString.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\CsvFormat\CsvParser.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\ZipWorker.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\BinaryFormat\BiffWorkbookReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\XmlFormat\XmlSharedStringsReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\CellStyleExtendedFormatRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\CellRange.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\CompoundFormat\CompoundStream.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\CommonWorkbook.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffContinue.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\XlsxWorkbook.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffIntegerCell.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OfficeCrypto\AgileEncryptedPackageStream.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\EncodingHelper.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsShortUnicodeString.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsWorkbook.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffUncalced.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffDefaultRowHeight.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\CellRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffLabelCell.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffColInfo.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\RowHeaderRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffBoundSheet.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OfficeCrypto\EncryptionInfo.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\XmlFormat\XmlStylesReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\BinaryFormat\BiffStylesReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffSimpleValueRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\NumberFormat\Color.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\NumberFormatRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\NumberFormat\Tokenizer.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Misc\LeaveOpenStream.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffFont.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\SheetRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsSSTReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\XmlFormat\XmlWorksheetReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\XmlFormat\XmlNamespaces.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\BinaryFormat\BiffReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\ExcelCsvReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\ExcelOpenXmlReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\XmlFormat\XmlProperNamespaces.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OfficeCrypto\StandardEncryptedPackageStream.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\SheetDataBeginRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OfficeCrypto\CryptoHelpers.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\CompoundFormat\CompoundDirectoryEntry.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OfficeCrypto\StandardEncryption.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffSST.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffCodeName.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffStream.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\MergeCellRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\XmlFormat\XmlWorkbookReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\Record.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\CsvFormat\CsvWorksheet.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffXF.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\ColumnRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsUnicodeString.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffHeaderFooterString.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffNumberCell.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\NumberFormat\DecimalSection.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\NumberFormat\Condition.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\HeaderFooter.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\NumberFormat\ExponentialSection.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\XmlFormat\XmlRecordReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Exceptions\CompoundDocumentException.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\XlsxWorksheet.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffFormulaString.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Misc\DateTimeHelper.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\AssemblyInfo.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\StreamExtensions.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\Helpers.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\ExtendedFormat.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\Cell.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffMSODrawing.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\RecordReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\XlsxSST.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OfficeCrypto\XorEncryption.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffBlankCell.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\NumberFormat\SectionType.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\Enums.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffQuickTip.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\ExtendedFormatRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffFormatString.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\NumberFormat\Section.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\HeaderFooterRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Exceptions\ExcelReaderException.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\ExcelReaderFactory.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffMulBlankCell.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\CellError.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\ExcelDataReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\ExcelBinaryReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OfficeCrypto\RC4Encryption.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\SheetDataEndRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsByteString.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\CellStyle.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\Row.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Errors.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\IXlsString.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OfficeCrypto\XorManaged.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\BinaryFormat\BiffWorksheetReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\NumberFormat\Parser.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Log\ILog.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Exceptions\HeaderException.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\IExcelDataReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader.DataSet\ExcelDataTableConfiguration.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffInterfaceHdr.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\StringHelper.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffWindow1.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\NumberFormat\Token.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OfficeCrypto\Enums.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsShortByteString.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffFilePass.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\IWorksheet.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\CompoundFormat\CompoundHeader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\SheetFormatPrRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\SharedStringRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsSSTStringHeader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader.DataSet\ExcelDataReaderExtensions.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\IWorkbook.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\Column.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\Records\WorkbookPrRecord.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\XmlReaderHelper.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffMergeCells.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffRKCell.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\CsvFormat\CsvAnalyzer.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Log\Logger\NullLogFactory.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OfficeCrypto\RC4Managed.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\NumberFormat\FractionSection.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\XmlFormat\StringHelper.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Exceptions\InvalidPasswordException.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\CompoundFormat\CompoundEnums.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\ReferenceHelper.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffMulRKCell.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffFormulaCell.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BuiltinNumberFormat.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffLabelSSTCell.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffRow.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\NumberFormat\NumberFormatString.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffDimensions.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\BinaryFormat\XlsBiffEOF.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Core\OpenXmlFormat\BinaryFormat\BiffSharedStringsReader.cs" />
-    <Compile Include="Assets\Plugins\Excel\ExcelDataReader\Log\Log.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTweenPro\DOTweenAnimation.cs" />
+    <None Include="Assets\Plugins\Demigiant\DOTween\DOTween43.xml" />
+    <None Include="Assets\Plugins\Demigiant\DOTween\DOTween46.xml" />
+    <None Include="Assets\Plugins\Demigiant\DOTween\DOTween50.xml" />
+    <None Include="Assets\Plugins\Demigiant\readme_DOTweenPro.txt" />
+    <None Include="Assets\Plugins\Demigiant\DemiLib\DemiLib.xml" />
+    <None Include="Assets\Plugins\Demigiant\DOTweenPro\readme.txt" />
+    <None Include="Assets\Plugins\Demigiant\DOTween\readme.txt" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -445,22 +303,46 @@
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
     <Reference Include="Excel">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\Excel.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\Excel.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet">
+      <HintPath>H:\Project\HX\Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="LitJson">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\LitJson.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\LitJson.dll</HintPath>
+    </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DemiLib\DemiLib.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\EPPlus.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween43">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween43.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween46">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween46.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader">
+      <HintPath>H:\Project\HX\Assets\Plugins\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween50">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween50.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -829,178 +711,175 @@
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.IK.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Path.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Path.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Aseprite.Common">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Aseprite.Common.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Aseprite.Common.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
     <Reference Include="PPv2URPConverters">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Aseprite.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="PsdPlugin">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Shared.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualStudio.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.005">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.005.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.005.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InputSystem">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InputSystem.ForUI">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Psdimporter.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Searcher.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.IK.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

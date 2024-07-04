@@ -1,7 +1,5 @@
-﻿using System;
-using Unity.VisualScripting;
+﻿using Unity.VisualScripting;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace CustomEditorExpansion

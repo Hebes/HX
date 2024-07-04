@@ -23,7 +23,7 @@ using Object = UnityEngine.Object; //Object并非C#基础中的Object，而是 U
 
 -----------------------*/
 
-namespace ToolEditor
+namespace CustomEditorExpansion
 {
     /// <summary> 自定义ReferenceCollector类在界面中的显示与功能 </summary>
     [CustomEditor(typeof(UIComponent), true)]
@@ -37,12 +37,7 @@ namespace ToolEditor
         private string SearchKey
         {
             get => _searchKey;
-            set
-            {
-                if (_searchKey == value) return;
-                _searchKey = value;
-                heroPrefab = aCManager.Get(searchKey);
-            }
+            set => _searchKey = value;
         }
 
         /// <summary> 组件列表 </summary>

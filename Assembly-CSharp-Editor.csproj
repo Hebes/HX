@@ -45,35 +45,26 @@
     <Analyzer Include="D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Editor\Core\ToolExpansion_String.cs" />
-    <Compile Include="Assets\Editor\Tool\Value\Vlue.cs" />
-    <Compile Include="Assets\Editor\Tool\Folder\OpenFolder.cs" />
-    <Compile Include="Assets\Editor\Language\LanguageEditor.cs" />
-    <Compile Include="Assets\Editor\Tool\Excels\ExcelsChange\ClassData.cs" />
-    <Compile Include="Assets\Editor\Core\ToolExpansion_FileAndFolder.cs" />
-    <Compile Include="Assets\Editor\Tool\GenerateConfig\ConfigToolUI.cs" />
-    <Compile Include="Assets\Editor\Tool\Log\LogTool.cs" />
-    <Compile Include="Assets\Editor\Tool\Install\UIInstall.cs" />
-    <Compile Include="Assets\Editor\Core\ToolExpansion_AB.cs" />
-    <Compile Include="Assets\Editor\Core\ToolExpansion_Copy.cs" />
-    <Compile Include="Assets\Editor\Core\ToolExpansion_DateSave.cs" />
-    <Compile Include="Assets\Editor\Tool\GenerateConfig\GenerateConfigTool.cs" />
-    <Compile Include="Assets\Editor\Core\ToolExpansion_Find.cs" />
-    <Compile Include="Assets\Editor\UIComponentEditor\UIComponentTool.cs" />
-    <Compile Include="Assets\Editor\Tool\Excels\ExcelWriteUI.cs" />
-    <Compile Include="Assets\Editor\Tool\Excels\ExcelsChange\ExcelChangeHelper.cs" />
+    <Compile Include="Assets\Editor\Editor\Function\Excels\ExcelsChange\ExcelChange.cs" />
+    <Compile Include="Assets\Editor\Editor\Function\LogTool.cs" />
+    <Compile Include="Assets\Editor\Editor\CustomEditor\LanguageEditor.cs" />
+    <Compile Include="Assets\Editor\Editor\EditorWindow\UIComponentTool.cs" />
+    <Compile Include="Assets\Editor\ToolExpansion.cs" />
+    <Compile Include="Assets\Editor\Editor\Function\Excels\ExcelsChange\BinaryData.cs" />
+    <Compile Include="Assets\Editor\Editor\Function\OpenFolder.cs" />
+    <Compile Include="Assets\Editor\Editor\Function\Excels\ExcelsChange\ClassData.cs" />
+    <Compile Include="Assets\Editor\Editor\Function\Excels\ExcelsChange\ExcelChangeHelper.cs" />
+    <Compile Include="Assets\Editor\Editor\CustomEditor\ImageEditor.cs" />
+    <Compile Include="Assets\Editor\Editor\Function\Excels\ExcelWriteUI.cs" />
     <Compile Include="Assets\Resources\AssetsPackage\Tilemap\Custom Brush Scripts\Coordinate Brush\Editor\CoordinateBrush.cs" />
-    <Compile Include="Assets\Editor\Tool\Scene\ToolScene.cs" />
-    <Compile Include="Assets\Editor\Core\ToolExpansion_AssetDatabase.cs" />
-    <Compile Include="Assets\Editor\Core\ToolExpansion_Script.cs" />
-    <Compile Include="Assets\Editor\Core\ToolExpansion_Type.cs" />
-    <Compile Include="Assets\Editor\UIComponentEditor\UIComponentEditor.cs" />
-    <Compile Include="Assets\Editor\Tool\Excels\ExcelsChange\ExcelChange.cs" />
-    <Compile Include="Assets\Editor\Core\ToolExpansion_UnityComponent.cs" />
-    <Compile Include="Assets\Editor\Tool\Excels\ExcelsChange\BinaryData.cs" />
-    <Compile Include="Assets\Editor\Tool\MenuExpand.cs" />
-    <Compile Include="Assets\Editor\Core\ToolExpansion_Debug.cs" />
-    <Compile Include="Assets\Editor\Core\ToolExpansion_Tag.cs" />
+    <Compile Include="Assets\Editor\Editor\Function\UIInstall.cs" />
+    <Compile Include="Assets\Editor\Editor\CustomEditor\UIComponentEditor.cs" />
+    <Compile Include="Assets\Editor\Editor\CustomEditor\TextEditor.cs" />
+    <Compile Include="Assets\Editor\Editor\Function\GenerateConfig\GenerateConfigTool.cs" />
+    <Compile Include="Assets\Editor\Editor\Function\GenerateConfig\GenerateBinaryFile.cs" />
+    <Compile Include="Assets\Editor\Editor\Function\ToolScene.cs" />
+    <Compile Include="Assets\Editor\Editor\Function\GenerateConfig\ConfigToolUI.cs" />
+    <Compile Include="Assets\Editor\Editor\Function\MenuExpand.cs" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -333,46 +324,79 @@
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
     </Reference>
     <Reference Include="Excel">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\Excel.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\Excel.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet">
+      <HintPath>H:\Project\HX\Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="LitJson">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\LitJson.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\LitJson.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="unityplastic">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DemiLib\DemiLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenProEditor">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTweenPro\Editor\DOTweenProEditor.dll</HintPath>
     </Reference>
     <Reference Include="log4netPlastic">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\EPPlus.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween43">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween43.dll</HintPath>
+    </Reference>
+    <Reference Include="DemiEditor">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DemiLib\Editor\DemiEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween46">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween46.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader">
+      <HintPath>H:\Project\HX\Assets\Plugins\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween50">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween50.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\mscorlib.dll</HintPath>
@@ -750,184 +774,181 @@
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.TestRunner">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.IK.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Path.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Path.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Aseprite.Common">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Aseprite.Common.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Aseprite.Common.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
     <Reference Include="PPv2URPConverters">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Aseprite.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="PsdPlugin">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Shared.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualStudio.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.005">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.005.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.005.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InputSystem">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InputSystem.ForUI">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Psdimporter.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Searcher.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.IK.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -938,6 +959,10 @@
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{acff5383-e45e-b5be-8e30-a6f492c6218d}</Project>
       <Name>Assembly-CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
+      <Project>{b2dbaec6-e26a-63f9-47b1-36f2549b3bb9}</Project>
+      <Name>Assembly-CSharp-Editor-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="Framework.csproj">
       <Project>{17b6570d-966d-dcaa-0d9a-5cc158dbc6f6}</Project>

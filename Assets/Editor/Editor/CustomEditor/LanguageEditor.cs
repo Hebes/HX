@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ToolEditor
+namespace CustomEditorExpansion
 {
     /// <summary>
     /// 多语言工具

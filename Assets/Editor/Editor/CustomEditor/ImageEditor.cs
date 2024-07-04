@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine.UI;
 
-namespace ToolEditor
+namespace CustomEditorExpansion
 {
     /// <summary>
     /// 图片工具

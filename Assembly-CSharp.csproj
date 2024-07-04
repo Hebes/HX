@@ -45,105 +45,108 @@
     <Analyzer Include="D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\ModelTask\TaskGather.cs" />
-    <Compile Include="Assets\Script\ModelConfig\ConfigScenes.cs" />
-    <Compile Include="Assets\Script\ModelBattle\BattleData.cs" />
-    <Compile Include="Assets\Script\ModeSkill\SkillData.cs" />
-    <Compile Include="Assets\Script\ModelRole\Entity\RoleNPC.cs" />
-    <Compile Include="Assets\Script\ModelAI\InterfaceAI.cs" />
-    <Compile Include="Assets\Script\ModeInventory\ManagerInventory.cs" />
-    <Compile Include="Assets\Script\ModelTask\InterfaceTask.cs" />
-    <Compile Include="Assets\Script\ModeAnimator\ManagerAnimator.cs" />
-    <Compile Include="Assets\Script\Test.cs" />
-    <Compile Include="Assets\Script\ModelUI\UIBattle\UIBattle.cs" />
-    <Compile Include="Assets\Script\ModelRole\暂时用不到的\NPC.cs" />
-    <Compile Include="Assets\Script\ModelUI\UISkill\UISkill.cs" />
-    <Compile Include="Assets\Script\MdoelAttributes\SkillAttributes.cs" />
-    <Compile Include="Assets\Script\Data.cs" />
-    <Compile Include="Assets\Script\ModelGameSetting\GameSetting.cs" />
-    <Compile Include="Assets\Script\MdoelAttributes\ManagerAttributes.cs" />
-    <Compile Include="Assets\Script\MdoelTeam\EnumTeam.cs" />
-    <Compile Include="Assets\Script\ModelStory\EnumStory.cs" />
-    <Compile Include="Assets\Script\ModelAchievement\ManagerAchievement.cs" />
-    <Compile Include="Assets\Script\ModeSkill\ManagerSkill.cs" />
-    <Compile Include="Assets\Script\ModelCareer\EnemCareer.cs" />
-    <Compile Include="Assets\Script\ModeStart\InterfaceStart.cs" />
-    <Compile Include="Assets\Script\ModelBattle\ManagerRPGBattle.cs" />
-    <Compile Include="Assets\Script\ModelRole\RoleAI\RoleStatePlayerRun.cs" />
-    <Compile Include="Assets\Script\ModelConfig\ConfigEvent.cs" />
-    <Compile Include="Assets\Script\ModelRole\暂时用不到的\ItemPickUp.cs" />
+    <Compile Include="Assets\Script\Model\ModelItem\Item.cs" />
+    <Compile Include="Assets\Script\Model\ModelGameSetting\GameSetting.cs" />
+    <Compile Include="Assets\Script\Model\ModeAnimator\AnimatorShader.cs" />
+    <Compile Include="Assets\Script\Model\ModelUI\UISkill\UISkill.cs" />
+    <Compile Include="Assets\Script\Model\ModelTime\InterfaceTime.cs" />
+    <Compile Include="Assets\Script\Model\ModeSkill\SkillData.cs" />
+    <Compile Include="Assets\Script\Model\ModelBattle\ManagerRPGBattle.cs" />
+    <Compile Include="Assets\Script\Model\ModelAI\InterfaceAI.cs" />
+    <Compile Include="Assets\Script\Model\ModelRole\暂时用不到的\ItemPickUp.cs" />
+    <Compile Include="Assets\Script\Model\ModelStory\EnumStory.cs" />
+    <Compile Include="Assets\Script\GameProcess\GameEnter.cs" />
+    <Compile Include="Assets\Script\Model\MdoelEffect\EnumEffect.cs" />
+    <Compile Include="Assets\Script\Model\MdoelAttributes\InterfaceAttributes.cs" />
+    <Compile Include="Assets\Script\Model\ModelRole\暂时用不到的\Player.cs" />
+    <Compile Include="Assets\Script\Model\ModelItem\EnumItem.cs" />
+    <Compile Include="Assets\Script\Model\MdoelTeam\ManagerTeam.cs" />
+    <Compile Include="Assets\Script\Model\ModelRole\InterfaceRole.cs" />
+    <Compile Include="Assets\Script\Model\ModelBuff\ManagerBuff.cs" />
+    <Compile Include="Assets\Script\Model\ModeInventory\ManagerInventory.cs" />
+    <Compile Include="Assets\Script\Model\ModelRole\Entity\RoleNPC.cs" />
+    <Compile Include="Assets\Script\Model\ModelRole\Entity\RoleData.cs" />
+    <Compile Include="Assets\Script\Model\ModelScene\ManagerScene.cs" />
+    <Compile Include="Assets\Script\Model\ModelTask\TaskGather.cs" />
+    <Compile Include="Assets\Script\Model\MdoelSave\ManagerSave.cs" />
+    <Compile Include="Assets\Script\Model\ModelCamp\EnumsCamp.cs" />
+    <Compile Include="Assets\Script\Model\ModelBuff\HelperBuff.cs" />
+    <Compile Include="Assets\Script\Model\ModelTime\EnumTime.cs" />
+    <Compile Include="Assets\Script\Interface\IDescribe.cs" />
     <Compile Include="Assets\Test\Newlifecycle.cs" />
-    <Compile Include="Assets\Script\MdoelTeam\ManagerTeam.cs" />
-    <Compile Include="Assets\Script\ModelRole\RoleAI\RoleStateBattle.cs" />
-    <Compile Include="Assets\Script\MdoelEffect\ManagerEffect.cs" />
-    <Compile Include="Assets\Script\ModelItem\EnumItem.cs" />
-    <Compile Include="Assets\Script\MdoelTeam\InterfaceTeam.cs" />
-    <Compile Include="Assets\Script\ModelExcelData\ExcelDataItem.cs" />
-    <Compile Include="Assets\Script\ModelAI\EnumAI.cs" />
-    <Compile Include="Assets\Script\ModeAnimator\FrameAnimatorPlayScript.cs" />
-    <Compile Include="Assets\Script\ModelScene\SceneBattleManager.cs" />
+    <Compile Include="Assets\Script\Model\ModelScene\SceneBattleManager.cs" />
+    <Compile Include="Assets\Script\Attribute\GameProcess.cs" />
+    <Compile Include="Assets\Script\Model\ModelRole\Entity\RoleEnemy.cs" />
     <Compile Include="Assets\Test\Test2.cs" />
-    <Compile Include="Assets\Script\ModeStart\ModelRun.cs" />
-    <Compile Include="Assets\Script\ModelRole\InterfaceRole.cs" />
-    <Compile Include="Assets\Script\ModelCamp\EnumsCamp.cs" />
-    <Compile Include="Assets\Script\ModelRole\Entity\RolePlayer.cs" />
     <Compile Include="Assets\Test\BuffData1.cs" />
-    <Compile Include="Assets\Script\ModelScene\ManagerScene.cs" />
-    <Compile Include="Assets\Script\ModelConfig\ConfigData.cs" />
-    <Compile Include="Assets\Script\ModeSkill\实际技能\SkillNormalAttack.cs" />
-    <Compile Include="Assets\Script\ModelCareer\InterfaceCareer.cs" />
-    <Compile Include="Assets\Script\ModelBattle\BattleActionData.cs" />
-    <Compile Include="Assets\Script\ModelTime\EnumTime.cs" />
-    <Compile Include="Assets\Script\MdoelSave\ManagerSave.cs" />
-    <Compile Include="Assets\Script\ModeSkill\EnumSkill.cs" />
-    <Compile Include="Assets\Script\ModelScreen\ManagerScreen.cs" />
-    <Compile Include="Assets\Script\MdoelSave\ISave.cs" />
-    <Compile Include="Assets\Script\ModelTime\ManagerTime.cs" />
-    <Compile Include="Assets\Script\ModelRole\暂时用不到的\Player.cs" />
-    <Compile Include="Assets\Script\ModelTime\SettingTime.cs" />
-    <Compile Include="Assets\Script\MdoelAttributes\AttributesData.cs" />
-    <Compile Include="Assets\Script\ModelItem\ObscuringItemFader.cs" />
-    <Compile Include="Assets\Script\ModelRole\RoleAI\RoleStateRun.cs" />
-    <Compile Include="Assets\Script\ModelUI\UISkill\SkillBtn.cs" />
-    <Compile Include="Assets\Script\ModelConfig\ConfigPrefab.cs" />
-    <Compile Include="Assets\Script\ModeInventory\InventoryItem.cs" />
-    <Compile Include="Assets\Script\ModeAnimator\AnimatorParticleSystem.cs" />
-    <Compile Include="Assets\Script\ModelStory\ManagerStory.cs" />
-    <Compile Include="Assets\Script\ModelTask\EnumTask.cs" />
-    <Compile Include="Assets\Script\ModelConfig\ConfigSortingLayer.cs" />
-    <Compile Include="Assets\Script\ModelBounds\ManagerBounds.cs" />
-    <Compile Include="Assets\Script\MdoelEffect\InterfaceEffect.cs" />
-    <Compile Include="Assets\Script\ModelTask\ManagerTask.cs" />
-    <Compile Include="Assets\Script\ModelBuff\BuffData.cs" />
-    <Compile Include="Assets\Script\ModeAnimator\AnimatorShader.cs" />
-    <Compile Include="Assets\Script\ModelRole\Entity\RoleEnemy.cs" />
-    <Compile Include="Assets\Script\MdoelSave\SaveData.cs" />
-    <Compile Include="Assets\Script\ModeSkill\InterfaceSkill.cs" />
-    <Compile Include="Assets\Script\ModelUI\MianMenu\MainMenuView.cs" />
-    <Compile Include="Assets\Script\ModelData\DataItem.cs" />
-    <Compile Include="Assets\Script\ModelCamp\ICamp.cs" />
-    <Compile Include="Assets\Script\ModelCareer\ManaagerCareer.cs" />
+    <Compile Include="Assets\Script\Model\MdoelSave\SaveData.cs" />
+    <Compile Include="Assets\Script\Model\ModelAI\EnumAI.cs" />
+    <Compile Include="Assets\Script\Model\ModeAnimator\ManagerAnimator.cs" />
+    <Compile Include="Assets\Script\Model\ModelTime\ManagerTime.cs" />
+    <Compile Include="Assets\Script\Model\ModelUI\UIBattle\UIBattle.cs" />
+    <Compile Include="Assets\Script\Model\ModelUI\MianMenu\MainMenuView.cs" />
+    <Compile Include="Assets\Script\Start\ModelRun.cs" />
+    <Compile Include="Assets\Script\Model\ModelCamp\ManagerCamp.cs" />
+    <Compile Include="Assets\Script\Model\ModelUI\UISkill\SkillBtn.cs" />
+    <Compile Include="Assets\Script\Model\ModelStory\InterfaceStory.cs" />
+    <Compile Include="Assets\Script\Model\ModelRole\Entity\RolePlayer.cs" />
+    <Compile Include="Assets\Script\Model\MdoelTeam\InterfaceTeam.cs" />
+    <Compile Include="Assets\Script\Model\ModelAI\ManagerAI.cs" />
+    <Compile Include="Assets\Script\Model\ModelTime\SettingTime.cs" />
+    <Compile Include="Assets\Script\Model\ModeInventory\InventoryItem.cs" />
+    <Compile Include="Assets\Script\Model\ModelStory\ManagerStory.cs" />
+    <Compile Include="Assets\Script\Model\MdoelEffect\ManagerEffect.cs" />
+    <Compile Include="Assets\Script\Model\ModelTask\InterfaceTask.cs" />
+    <Compile Include="Assets\Script\Model\ModelBuff\EnumBuff.cs" />
+    <Compile Include="Assets\Script\Model\ModelRole\RoleAI\RoleStatePlayerRun.cs" />
+    <Compile Include="Assets\Script\Config\ConfigSortingLayer.cs" />
+    <Compile Include="Assets\Script\Model\ModelRole\RoleAI\RoleStateRun.cs" />
+    <Compile Include="Assets\Script\Model\MdoelTeam\EnumTeam.cs" />
+    <Compile Include="Assets\Script\Model\ModelRole\EnumRole.cs" />
+    <Compile Include="Assets\Script\Model\ModelBattle\EnumBattle.cs" />
+    <Compile Include="Assets\Script\Config\ConfigScenes.cs" />
+    <Compile Include="Assets\Script\Model\MdoelSave\ISave.cs" />
+    <Compile Include="Assets\Script\Model\ModeAnimator\FrameAnimatorPlayScript.cs" />
+    <Compile Include="Assets\Script\Model\MdoelAttributes\AttributesData.cs" />
+    <Compile Include="Assets\Script\Model\ModelExcelData\ExcelDataItem.cs" />
+    <Compile Include="Assets\Script\Model\ModelItem\ObscuringItemFader.cs" />
+    <Compile Include="Assets\Script\Model\ModelItem\TriggerObscuringItemFader.cs" />
+    <Compile Include="Assets\Script\Start\GameLunch.cs" />
+    <Compile Include="Assets\Script\Model\ModelData\ManagerData.cs" />
+    <Compile Include="Assets\Script\Config\ConfigPrefab.cs" />
+    <Compile Include="Assets\Script\Attribute\ModelCreat.cs" />
+    <Compile Include="Assets\Script\Model\ModelCamp\ICamp.cs" />
+    <Compile Include="Assets\Script\Model\ModeAnimator\AnimatorParticleSystem.cs" />
+    <Compile Include="Assets\Script\Model\MdoelAttributes\SkillAttributes.cs" />
+    <Compile Include="Assets\Script\Model\ModelItem\InterfaceItem.cs" />
+    <Compile Include="Assets\Script\Model\ModelData\DataItem.cs" />
+    <Compile Include="Assets\Script\Model\ModelTask\EnumTask.cs" />
     <Compile Include="Assets\Test\Test1.cs" />
-    <Compile Include="Assets\Script\ModelItem\InterfaceItem.cs" />
-    <Compile Include="Assets\Script\ModelBuff\HelperBuff.cs" />
-    <Compile Include="Assets\Script\ModelItem\TriggerObscuringItemFader.cs" />
-    <Compile Include="Assets\Script\MdoelAttributes\InterfaceAttributes.cs" />
-    <Compile Include="Assets\Script\ModelTime\InterfaceTime.cs" />
-    <Compile Include="Assets\Script\ModelAI\ManagerAI.cs" />
-    <Compile Include="Assets\Script\ModelItem\Item.cs" />
-    <Compile Include="Assets\Script\ModelBattle\EnumBattle.cs" />
-    <Compile Include="Assets\Script\ModelCamp\ManagerCamp.cs" />
-    <Compile Include="Assets\Script\MdoelPet\EnumPat.cs" />
-    <Compile Include="Assets\Script\ModelRole\EnumRole.cs" />
-    <Compile Include="Assets\Script\MdoelEffect\EnumEffect.cs" />
-    <Compile Include="Assets\Script\MdoelAttributes\RoleAttributes.cs" />
-    <Compile Include="Assets\Script\ModelStory\InterfaceStory.cs" />
-    <Compile Include="Assets\Script\ModeStart\Root.cs" />
-    <Compile Include="Assets\Script\ModelBuff\EnumBuff.cs" />
-    <Compile Include="Assets\Script\ModelRole\Entity\RoleData.cs" />
-    <Compile Include="Assets\Script\ModelData\ManagerData.cs" />
-    <Compile Include="Assets\Script\MdoelTeam\TeamData.cs" />
-    <Compile Include="Assets\Script\ModelBuff\ManagerBuff.cs" />
+    <Compile Include="Assets\Script\Model\ModelScreen\ManagerScreen.cs" />
+    <Compile Include="Assets\Script\Model\ModelRole\RoleAI\RoleStateBattle.cs" />
+    <Compile Include="Assets\Script\Model\ModelCareer\EnemCareer.cs" />
+    <Compile Include="Assets\Script\Interface\IName.cs" />
+    <Compile Include="Assets\Script\Model\ModelBounds\ManagerBounds.cs" />
+    <Compile Include="Assets\Script\Model\MdoelAttributes\ManagerAttributes.cs" />
+    <Compile Include="Assets\Script\Config\ConfigEvent.cs" />
+    <Compile Include="Assets\Script\Model\MdoelAttributes\RoleAttributes.cs" />
+    <Compile Include="Assets\Script\Model\ModeSkill\EnumSkill.cs" />
+    <Compile Include="Assets\Script\Model\ModelCareer\InterfaceCareer.cs" />
+    <Compile Include="Assets\Script\Model\ModelAchievement\ManagerAchievement.cs" />
+    <Compile Include="Assets\Script\Interface\IModel.cs" />
+    <Compile Include="Assets\Script\Model\ModelCareer\ManaagerCareer.cs" />
+    <Compile Include="Assets\Script\Model\ModeSkill\ManagerSkill.cs" />
+    <Compile Include="Assets\Script\Model\ModelBuff\BuffData.cs" />
+    <Compile Include="Assets\Script\Model\ModelTask\ManagerTask.cs" />
+    <Compile Include="Assets\Script\Model\ModeSkill\实际技能\SkillNormalAttack.cs" />
+    <Compile Include="Assets\Script\Model\MdoelTeam\TeamData.cs" />
+    <Compile Include="Assets\Script\Model\ModelBattle\BattleData.cs" />
+    <Compile Include="Assets\Script\Model\ModelRole\暂时用不到的\NPC.cs" />
+    <Compile Include="Assets\Script\Model\MdoelPet\EnumPat.cs" />
+    <Compile Include="Assets\Script\Model\ModeSkill\InterfaceSkill.cs" />
+    <Compile Include="Assets\Script\Model\ModelBattle\BattleActionData.cs" />
+    <Compile Include="Assets\Script\Config\ConfigData.cs" />
+    <Compile Include="Assets\Script\Model\MdoelEffect\InterfaceEffect.cs" />
     <None Include="Assets\Resources\AssetsPackage\Font\vonwaon-bitmap.ttf\license.txt" />
     <None Include="Assets\Resources\AssetsPackage\Font\vonwaon-bitmap.ttf\3500汉字+符号+英文字符集.txt" />
     <Reference Include="UnityEngine">
@@ -396,22 +399,46 @@
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
     <Reference Include="Excel">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\Excel.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\Excel.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet">
+      <HintPath>H:\Project\HX\Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="LitJson">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\LitJson.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\LitJson.dll</HintPath>
+    </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DemiLib\DemiLib.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\EPPlus.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween43">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween43.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween46">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween46.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader">
+      <HintPath>H:\Project\HX\Assets\Plugins\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween50">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween50.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -780,178 +807,175 @@
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.IK.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Path.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Path.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Aseprite.Common">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Aseprite.Common.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Aseprite.Common.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
     <Reference Include="PPv2URPConverters">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Aseprite.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="PsdPlugin">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Shared.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualStudio.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.005">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.005.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.005.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InputSystem">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InputSystem.ForUI">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Psdimporter.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Searcher.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.IK.Editor">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

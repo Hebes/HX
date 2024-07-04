@@ -30,7 +30,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169,0649</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
@@ -45,115 +45,118 @@
     <Analyzer Include="D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Framework\Core\Core\Event\CoreEvent.Common.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Data\Data\CoreData.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Data\Data\IData.cs" />
     <Compile Include="Assets\Framework\Expansion\StringTools.cs" />
-    <Compile Include="Assets\Framework\Core\06UI\UI\Other\AutomaticAdaptationCanvasScaler.cs" />
-    <Compile Include="Assets\Framework\Core\03Behaviour\InterfaceBehaviour.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Scene\Realize\UnityLoadScene.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Input\InputNewInputPC.cs" />
     <Compile Include="Assets\Framework\Expansion\ETHelper\EnumHelper.cs" />
-    <Compile Include="Assets\Framework\Core\01Debug\CoreDebug.cs" />
-    <Compile Include="Assets\Framework\Core\10Scene\Realize\UnityLoadScene.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Input\接口\IInput.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Input\Android\InputAndroid.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Image\CoreImage.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionToggle.cs" />
-    <Compile Include="Assets\Framework\Core\03Behaviour\BehaviourController.cs" />
-    <Compile Include="Assets\Framework\Core\04Resource\System\YooAssetResLoad.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Resource\IResLoad.cs" />
+    <Compile Include="Assets\Framework\Core\Core\UI\Component\UIComponent.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Debug\CoreDebug.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Input\InputMouse.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Language\CoreLanguage.cs" />
+    <Compile Include="Assets\Framework\Core\Core\SaveData\CoreSaveLoadData.cs" />
+    <Compile Include="Assets\Framework\Core\Interface\IID.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Resource\System\UnityResLoad.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionSpriteRenderer.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionSystem\ExpansionInt.cs" />
     <Compile Include="Assets\Framework\Expansion\ETHelper\ByteHelper.cs" />
-    <Compile Include="Assets\Framework\Core\06UI\CoreUI.cs" />
-    <Compile Include="Assets\Framework\Core\Timer\Timer.cs" />
-    <Compile Include="Assets\Framework\Core\13SystemOrder\UISystemOrder.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Language\LanguageComponent.cs" />
+    <Compile Include="Assets\Framework\Core\Core\SystemOrder\EnumOrder.cs" />
+    <Compile Include="Assets\Framework\Core\Core\DataOperation\IDataHandle.cs" />
     <Compile Include="Assets\Framework\Expansion\ETHelper\FileHelper.cs" />
     <Compile Include="Assets\Framework\Expansion\Utility\BitMask64.cs" />
-    <Compile Include="Assets\Framework\Core\12DataOperation\IDataHandle.cs" />
-    <Compile Include="Assets\Framework\Core\04Resource\IResLoad.cs" />
-    <Compile Include="Assets\Framework\Core\13SystemOrder\CoreSystemOrder.cs" />
-    <Compile Include="Assets\Framework\Core\06UI\EnumUI.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Debug\UIDeBug\UIDebugger1.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Behaviour\BehaviourController.cs" />
+    <Compile Include="Assets\Framework\Core\Test\CoreTest.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Assemby\CoreAssemby.cs" />
+    <Compile Include="Assets\Framework\Core\Config\GameSetting.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Input\NewInput\Operation.cs" />
     <Compile Include="Assets\Framework\Core\CoreRun.cs" />
-    <Compile Include="Assets\Framework\Core\04Resource\CoreResource.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionSystem\ExpansionAssembly.cs" />
-    <Compile Include="Assets\Framework\Core\06UI\UI\Other\BackgroundAdaptation.cs" />
-    <Compile Include="Assets\Framework\Core\06UI\Realize\UIMaskMgr.cs" />
     <Compile Include="Assets\Framework\Expansion\Utility\BitMask32.cs" />
-    <Compile Include="Assets\Framework\Core\11Input\InputPC.cs" />
-    <Compile Include="Assets\Framework\Core\07Data\Data\IData.cs" />
-    <Compile Include="Assets\Framework\Core\11Input\InputNewInputPC.cs" />
-    <Compile Include="Assets\Framework\Core\06UI\Realize\PanelPopIn.cs" />
-    <Compile Include="Assets\Framework\Core\02Event\EventCommonData.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Scene\Realize\YooAssetLoadScene.cs" />
+    <Compile Include="Assets\Framework\Core\Core\UI\Tween\PanelPopIn.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Image\ImageComponent.cs" />
+    <Compile Include="Assets\Framework\Core\Core\DataOperation\Json\JsonOperation.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Input\Android\JpyStickPanelView.cs" />
     <Compile Include="Assets\Framework\Expansion\ETHelper\StringHelper.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionImage.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Resource\System\YooAssetResLoad.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionSystem\ExpansionEnum.cs" />
-    <Compile Include="Assets\Framework\Core\11Input\接口\IInputPCKeyCode.cs" />
-    <Compile Include="Assets\Framework\Core\Language\CoreLanguage.cs" />
-    <Compile Include="Assets\Framework\Core\12DataOperation\XML\XMLOperation.cs" />
+    <Compile Include="Assets\Framework\Core\Core\SystemOrder\ISystemOder.cs" />
+    <Compile Include="Assets\Framework\Expansion\Reflection\Data.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Audio\CoreAduio.cs" />
+    <Compile Include="Assets\Framework\Core\Core\UI\EventAndMessage\EventTriggerListener.cs" />
     <Compile Include="Assets\Framework\Expansion\YooAsset\OperationHandleBaseExtensions.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionSystem\ExpansionList.cs" />
-    <Compile Include="Assets\Framework\Core\Core.cs" />
-    <Compile Include="Assets\Framework\Core\01Debug\UIDeBug\UIDebugger.cs" />
-    <Compile Include="Assets\Framework\Core\13SystemOrder\SystemOderUI.cs" />
-    <Compile Include="Assets\Framework\Core\10Scene\Realize\YooAssetLoadScene.cs" />
-    <Compile Include="Assets\Framework\Core\12DataOperation\XML\SerizlizerDictionary.cs" />
-    <Compile Include="Assets\Framework\Core\12DataOperation\CoreDataSystem.cs" />
-    <Compile Include="Assets\Framework\Core\06UI\UI\EventAndMessage\EventTriggerListener.cs" />
-    <Compile Include="Assets\Framework\Core\01Debug\CDebug.cs" />
+    <Compile Include="Assets\Framework\Core\Attribute\UITypeAttribute.cs" />
+    <Compile Include="Assets\Framework\Core\Enum\EEvent.cs" />
+    <Compile Include="Assets\Framework\Core\Core\SystemOrder\UISystemOrder.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Timer\Timer.cs" />
+    <Compile Include="Assets\Framework\Core\Core\SystemOrder\SystemOderUI.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionEventTrigger.cs" />
     <Compile Include="Assets\Framework\Expansion\ID\HelperID.cs" />
-    <Compile Include="Assets\Framework\Core\04Resource\System\UnityResLoad.cs" />
-    <Compile Include="Assets\Framework\Core\06UI\Data\UIComponent.cs" />
-    <Compile Include="Assets\Framework\Core\05Audio\CoreAduio.cs" />
+    <Compile Include="Assets\Framework\Expansion\Reflection\Test.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Input\CoreInput.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Data\Data\BinaryAnalysis.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionSlider.cs" />
-    <Compile Include="Assets\Framework\Core\11Input\InputMouse.cs" />
-    <Compile Include="Assets\Framework\Core\12DataOperation\Binary\BinaryOperation.cs" />
+    <Compile Include="Assets\Framework\Core\Core\SystemOrder\SystemOrderData.cs" />
     <Compile Include="Assets\Framework\Core\CoreSinglet.cs" />
     <Compile Include="Assets\Framework\Expansion\Utility\StringFormat.cs" />
-    <Compile Include="Assets\Framework\Core\13SystemOrder\SystemOrderData.cs" />
+    <Compile Include="Assets\Framework\Core\Core\UI\EventAndMessage\MessageCenter.cs" />
     <Compile Include="Assets\Framework\Expansion\ETHelper\StringHashHelper.cs" />
-    <Compile Include="Assets\Framework\Core\09Pool\CorePool.cs" />
-    <Compile Include="Assets\Framework\Core\11Input\NewInput\Operation.cs" />
+    <Compile Include="Assets\Framework\Expansion\Reflection\Utility.Reflection.cs" />
     <Compile Include="Assets\Framework\Expansion\UI\ShowUIObj.cs" />
-    <Compile Include="Assets\Framework\Core\03Behaviour\CoreBehaviour.cs" />
-    <Compile Include="Assets\Framework\Core\Timer\System\TickTimer.cs" />
+    <Compile Include="Assets\Framework\Core\Core\FSM\FsmSystem.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionChild.cs" />
-    <Compile Include="Assets\Framework\Core\07Data\Data\CoreData.cs" />
-    <Compile Include="Assets\Framework\Core\08FSM\StateMachineSystem.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Input\InputData.cs" />
+    <Compile Include="Assets\Framework\Core\Core\DataOperation\CoreDataSystem.cs" />
     <Compile Include="Assets\Framework\Expansion\YooAsset\AsyncOperationBaseExtensions.cs" />
-    <Compile Include="Assets\Framework\Core\13SystemOrder\EnumOrder.cs" />
-    <Compile Include="Assets\Framework\Core\11Input\InputTouchscreen.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionSystem\ExpansionInterface.cs" />
-    <Compile Include="Assets\Framework\Core\02Event\CoreEvent.Common.cs" />
-    <Compile Include="Assets\Framework\Core\10Scene\CoreScene.cs" />
-    <Compile Include="Assets\Framework\Core\11Input\InputData.cs" />
-    <Compile Include="Assets\Framework\Core\15Image\CoreImage.cs" />
-    <Compile Include="Assets\Framework\Core\08FSM\IStateNode.cs" />
-    <Compile Include="Assets\Framework\Core\12DataOperation\Json\JsonOperation.cs" />
-    <Compile Include="Assets\Framework\Core\11Input\Android\JpyStickPanelView.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Behaviour\InterfaceBehaviour.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Scene\ISceneLoad.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionGameObject.cs" />
     <Compile Include="Assets\Framework\Expansion\Utility\StringConvert.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionSystem\ExpansionDic.cs" />
-    <Compile Include="Assets\Framework\Core\11Input\CoreInput.cs" />
+    <Compile Include="Assets\Framework\Core\Core\DataOperation\Binary\BinaryOperation.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionTextMeshPro.cs" />
-    <Compile Include="Assets\Framework\Core\10Scene\ISceneLoad.cs" />
-    <Compile Include="Assets\Framework\Core\11Input\接口\IInput.cs" />
-    <Compile Include="Assets\Framework\Core\07Data\Data\BinaryAnalysis.cs" />
-    <Compile Include="Assets\Framework\Core\06UI\UI\EventAndMessage\MessageCenter.cs" />
+    <Compile Include="Assets\Framework\Core\Attribute\CreateCore.cs" />
+    <Compile Include="Assets\Framework\Core\Core\SystemOrder\CoreSystemOrder.cs" />
     <Compile Include="Assets\Framework\Expansion\Debug\CallStack.cs" />
-    <Compile Include="Assets\Framework\Core\02Event\CoreEvent.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionInputField.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Input\InputIOS.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Event\EventCommonData.cs" />
     <Compile Include="Assets\Framework\Expansion\ETHelper\RandomGenerator.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionText.cs" />
-    <Compile Include="Assets\Framework\Core\06UI\InterfaceUI.cs" />
-    <Compile Include="Assets\Framework\Core\11Input\InputIOS.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Resource\CoreResource.cs" />
+    <Compile Include="Assets\Framework\Core\Core\DataOperation\XML\XMLOperation.cs" />
+    <Compile Include="Assets\Framework\Core\Core\DataOperation\XML\SerizlizerDictionary.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Input\InputTouchscreen.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Pool\CorePool.cs" />
     <Compile Include="Assets\Framework\Expansion\YooAsset\Error.cs" />
-    <Compile Include="Assets\Framework\Core\06UI\UI\Other\BorderAdaptation.cs" />
-    <Compile Include="Assets\Framework\Core\12DataOperation\PlayerPrefs\PlayerPrefsOperation.cs" />
-    <Compile Include="Assets\Framework\Core\01Debug\UIDeBug\UIDebugger1.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Behaviour\CoreBehaviour.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Debug\UIDeBug\UIDebugger.cs" />
+    <Compile Include="Assets\Framework\Core\Interface\ICore.cs" />
     <Compile Include="Assets\Framework\Expansion\ETHelper\MD5Helper.cs" />
-    <Compile Include="Assets\Framework\Core\06UI\Data\UIBase.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Setting\CoreSetting.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Timer\System\TickTimer.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Input\接口\IInputPCKeyCode.cs" />
     <Compile Include="Assets\Framework\Expansion\Name\HelperName.cs" />
-    <Compile Include="Assets\Framework\Core\14Assemby\CoreAssemby.cs" />
-    <Compile Include="Assets\Framework\Core\Language\LanguageComponent.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Scene\CoreScene.cs" />
     <Compile Include="Assets\Framework\Expansion\Utility\UniTimer.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionButton.cs" />
-    <Compile Include="Assets\Framework\Core\11Input\Android\InputAndroid.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Event\CoreEvent.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Input\InputPC.cs" />
+    <Compile Include="Assets\Framework\Core\Core\Debug\DBug.cs" />
     <Compile Include="Assets\Framework\Expansion\ExpansionUnity\ExpansionProfiler.cs" />
-    <Compile Include="Assets\Framework\Core\13SystemOrder\ISystemOder.cs" />
+    <Compile Include="Assets\Framework\Core\Core\DataOperation\PlayerPrefs\PlayerPrefsOperation.cs" />
     <None Include="Assets\Framework\Framework.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
@@ -411,43 +414,76 @@
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.YamlDotNet">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
     </Reference>
     <Reference Include="Excel">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\Excel.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\Excel.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet">
+      <HintPath>H:\Project\HX\Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="LitJson">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\LitJson.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\LitJson.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="unityplastic">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DemiLib\DemiLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenProEditor">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTweenPro\Editor\DOTweenProEditor.dll</HintPath>
     </Reference>
     <Reference Include="log4netPlastic">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.collab-proxy@2.2.0\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.IonicZip">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\EPPlus.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween43">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween43.dll</HintPath>
+    </Reference>
+    <Reference Include="DemiEditor">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DemiLib\Editor\DemiEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween46">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween46.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.TextureAssets">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader">
+      <HintPath>H:\Project\HX\Assets\Plugins\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween50">
+      <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween50.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -816,16 +852,16 @@
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InputSystem">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:\Users\16073\Desktop\Project\HX\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+      <HintPath>H:\Project\HX\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
