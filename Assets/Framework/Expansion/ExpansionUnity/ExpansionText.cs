@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Core
+namespace ExpansionUnity
 {
     public static class ExpansionText
     {
@@ -9,6 +9,7 @@ namespace Core
         {
             return gameObject.GetComponent<Text>();
         }
+
         public static Text GetText(this Transform transform)
         {
             return transform.GetComponent<Text>();

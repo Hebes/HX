@@ -1,14 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-/*--------脚本描述-----------
-
-描述:
-	Image拓展
-
------------------------*/
-
-namespace Core
+namespace ExpansionUnity
 {
     public static class ExpansionImage
     {
@@ -21,7 +14,8 @@ namespace Core
         {
             return transform.GetComponent<Image>();
         }
-        public static Image GetImageChild(this Transform transform,string path)
+
+        public static Image GetImageChild(this Transform transform, string path)
         {
             return transform.GetChild(path).GetImage();
         }

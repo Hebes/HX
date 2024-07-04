@@ -2,16 +2,16 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Core
+namespace ExpansionUnity
 {
     public static class ExpansionToggle
     {
-        public static void AddToggleListener(this Transform tf, UnityAction<bool> listenedAction, ToggleGroup group = null)
+        public static void AddToggleListener(this Transform tf, UnityAction<bool> listenedAction,
+            ToggleGroup group = null)
         {
             //添加或获取组件
-            Toggle trigger = null;
-            trigger = tf.GetComponent<Toggle>();
-            trigger = trigger == null ? tf.gameObject.AddComponent<Toggle>() : trigger;
+            var trigger = tf.GetComponent<Toggle>();
+            trigger = trigger ? trigger : tf.gameObject.AddComponent<Toggle>();
             trigger.onValueChanged.AddListener(listenedAction);
             trigger.group = group;
         }

@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
+using ExpansionUnity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Debug = Core.ExtensionDebug;

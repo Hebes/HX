@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Core
+namespace ExpansionUnity
 {
     public static  class ExpansionTextMeshPro
     {
@@ -9,6 +9,7 @@ namespace Core
         {
             return gameObject.GetComponent<TextMeshProUGUI>();
         }
+        
         public static TextMeshProUGUI GetTextMeshPro(this Transform transform)
         {
             return transform.GetComponent<TextMeshProUGUI>();

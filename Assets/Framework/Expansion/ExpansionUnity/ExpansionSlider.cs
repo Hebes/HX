@@ -1,20 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-/*--------脚本描述-----------
-
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
-描述:
-	Core拓展
-
------------------------*/
-
-namespace Core
+namespace ExpansionUnity
 {
-    public static  class ExpansionSlider
+    public static class ExpansionSlider
     {
         public static Slider GetSlider(this GameObject gameObject)
         {

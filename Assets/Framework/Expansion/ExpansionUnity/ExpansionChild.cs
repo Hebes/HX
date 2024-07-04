@@ -1,16 +1,6 @@
 ﻿using UnityEngine;
 
-/*--------脚本描述-----------
-				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
-描述:
-    获取子物体
------------------------*/
-
-namespace Core
+namespace ExpansionUnity
 {
     public static class ExpansionChild
     {
@@ -30,6 +20,7 @@ namespace Core
                 if (childTF != null)
                     return childTF;
             }
+
             return null;
         }
 
@@ -51,27 +42,30 @@ namespace Core
         /// <param name="gameObject"></param>
         /// <param name="childName"></param>
         /// <returns></returns>
-        public static T GetChild<T>(this GameObject gameObject, string childName)where T : Component
+        public static T GetChild<T>(this GameObject gameObject, string childName) where T : Component
         {
             return GetChild(gameObject.transform, childName).GetComponent<T>();
         }
+
         public static T GetChildComponent<T>(this Transform transform, string childName) where T : UnityEngine.Object
         {
             return GetChild(transform, childName)?.GetComponent<T>();
         }
-        public static T GetChildComponent<T>(this Component  component, string childName) where T : UnityEngine.Object
+
+        public static T GetChildComponent<T>(this Component component, string childName) where T : UnityEngine.Object
         {
             return GetChild(component.transform, childName)?.GetComponent<T>();
         }
+
         public static T GetChildComponent<T>(this GameObject gameObject, string childName) where T : UnityEngine.Object
         {
             return GetChild(gameObject.transform, childName)?.GetComponent<T>();
         }
+
         public static T GetChildComponent<T>(this GameObject gameObject, int i)
         {
-           return gameObject.transform.GetChild(i).GetComponent<T>();
+            return gameObject.transform.GetChild(i).GetComponent<T>();
         }
-
 
 
         /// <summary>
@@ -96,9 +90,7 @@ namespace Core
 
         public static void ClreatChildToPool()
         {
-
         }
-
 
 
         //通过全路径获取组件
@@ -106,11 +98,11 @@ namespace Core
         {
             return transform.Find(childPath)?.GetComponent<T>();
         }
+
         public static T GetChildAllPath<T>(this GameObject gameObject, string childPath) where T : UnityEngine.Object
         {
             return gameObject.transform.Find(childPath)?.GetComponent<T>();
         }
-
 
 
         //给子节点添加父对象

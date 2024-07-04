@@ -1,7 +1,10 @@
 ﻿using UnityEngine.Profiling;
 
-namespace Core
+namespace ExpansionUnity
 {
+    /// <summary>
+    /// 性能断点使用
+    /// </summary>
     public class ExpansionProfiler
     {
         /// <summary>

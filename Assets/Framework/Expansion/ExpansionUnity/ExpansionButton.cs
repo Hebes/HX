@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Core
+namespace ExpansionUnity
 {
     public static class ExpansionButton
     {
@@ -13,6 +13,7 @@ namespace Core
         {
             return gameObject.GetComponent<Button>();
         }
+
         public static Button GetButton(this Transform transform)
         {
             return transform.GetComponent<Button>();
