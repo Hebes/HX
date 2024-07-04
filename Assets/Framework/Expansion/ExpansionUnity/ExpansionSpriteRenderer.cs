@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core
+namespace Framework.Core
 {
     public static  class ExpansionSpriteRenderer
     {

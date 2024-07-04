@@ -8,13 +8,13 @@ using UnityEditor.PackageManager.Requests;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
-namespace ACEditor
+namespace ToolEditor
 {
     public class UIInstall : EditorWindow
     {
         public AddRequest request { get; private set; }
 
-        [MenuItem("Tool/安装packageManager")]
+        [MenuItem("Tools/安装packageManager")]
         public static void ShowConfigToolUI()
         {
             if (!EditorWindow.HasOpenInstances<UIInstall>())

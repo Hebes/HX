@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core
+namespace Framework.Core
 {
     /// <summary>
     /// 生成唯一ID

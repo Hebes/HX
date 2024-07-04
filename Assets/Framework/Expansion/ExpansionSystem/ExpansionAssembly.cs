@@ -3,17 +3,13 @@ using System.Reflection;
 using UnityEngine;
 
 /*--------脚本描述-----------
-				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
+
 描述:
     程序集拓展类
 
 -----------------------*/
 
-namespace Core
+namespace Framework.Core
 {
     public static class ExpansionAssembly
     {

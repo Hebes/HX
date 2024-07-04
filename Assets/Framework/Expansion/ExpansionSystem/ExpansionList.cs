@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Core
+namespace Framework.Core
 {
     public static class ExpansionList
     {

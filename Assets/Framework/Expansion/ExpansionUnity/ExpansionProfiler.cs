@@ -1,6 +1,6 @@
 ﻿using UnityEngine.Profiling;
 
-namespace Core
+namespace Framework.Core
 {
     public class ExpansionProfiler
     {

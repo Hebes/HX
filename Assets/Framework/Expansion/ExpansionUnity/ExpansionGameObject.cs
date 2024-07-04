@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Core
+namespace Framework.Core
 {
     public static  class ExpansionGameObject
     {

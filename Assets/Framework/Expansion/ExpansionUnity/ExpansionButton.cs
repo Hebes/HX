@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Core
+namespace Framework.Core
 {
     public static class ExpansionButton
     {

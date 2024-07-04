@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-namespace Core
+namespace Framework.Core
 {
     [Serializable]
     public class CallStack
@@ -45,7 +45,7 @@ namespace Core
         //用法介绍
         //public void Add()
         //{
-        //下面的代码才是真的
+        //    //下面的代码才是真的
         //    List<CallStack> callStacks = new List<CallStack>();
         //    callStacks.Add(new CallStack("测试"));
         //}

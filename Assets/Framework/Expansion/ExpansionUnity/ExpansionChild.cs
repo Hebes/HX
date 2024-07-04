@@ -10,7 +10,7 @@
     获取子物体
 -----------------------*/
 
-namespace Core
+namespace Framework.Core
 {
     public static class ExpansionChild
     {

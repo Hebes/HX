@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using UnityEditor;
 using UnityEngine;
 
 /*--------脚本描述-----------
-				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
+
 描述:
     二进制文件生成
 
 -----------------------*/
 
-namespace ACEditor
+namespace ToolEditor
 {
     public static class BinaryData
     {
@@ -35,30 +32,29 @@ namespace ACEditor
             //创建文件
             Debug.Log($"当前路径是{filePath}");
             string className = new FileInfo(filePath).Name.Split('.')[0];
-            binaryDataSavePath.GenerateDirectory();
-            string path = $"{binaryDataSavePath}/{className}.bytes";
+            
+            if (!Directory.Exists(binaryDataSavePath))
+                Directory.CreateDirectory(binaryDataSavePath);
+            AssetDatabase.Refresh();
+            var path = $"{binaryDataSavePath}/{className}.bytes";
             //写入文件
-            using (FileStream fileStream = new FileStream(path, FileMode.Create))
+            using var fileStream = new FileStream(path, FileMode.Create);
+            //创建类型
+            List<Type> types = GetTypeByFieldType(data);
+            //去Byte文件写入数据
+            using var binaryWriter = new BinaryWriter(fileStream);
+            for (var i = (int)RowType.BEGIN_INDEX; i < data.Length; ++i) //开始读取真实数据
             {
-                //创建类型
-                List<Type> types = GetTypeByFieldType(data);
-                //去Byte文件写入数据
-                using (BinaryWriter binaryWriter = new BinaryWriter(fileStream))
+                for (var j = 0; j < types.Count; ++j)
                 {
-                    for (int i = (int)RowType.BEGIN_INDEX; i < data.Length; ++i)//开始读取真实数据
-                    {
-                        for (int j = 0; j < types.Count; ++j)
-                        {
-                            //获取数据的bytes
-                            Type typeTemp = types[j];
-                            string dataTemp = data[i][j];
-                            if (string.IsNullOrEmpty(dataTemp))//跳过空的数据
-                                continue;
-                            byte[] bytes = GetBasicField(typeTemp, dataTemp);
-                            //写入数据
-                            binaryWriter.Write(bytes);
-                        }
-                    }
+                    //获取数据的bytes
+                    var typeTemp = types[j];
+                    var dataTemp = data[i][j];
+                    if (string.IsNullOrEmpty(dataTemp)) //跳过空的数据
+                        continue;
+                    var bytes = GetBasicField(typeTemp, dataTemp);
+                    //写入数据
+                    binaryWriter.Write(bytes);
                 }
             }
         }
@@ -80,11 +76,11 @@ namespace ACEditor
             else if (type == typeof(bool))
                 bytes = BitConverter.GetBytes(bool.Parse(data));
             else if (type == typeof(string) ||
-                type == typeof(List<string>) ||
-                type == typeof(List<int>) ||
-                type == typeof(List<float>)
-                //TODO自己定义的类型
-                )
+                     type == typeof(List<string>) ||
+                     type == typeof(List<int>) ||
+                     type == typeof(List<float>)
+                     //TODO自己定义的类型
+                    )
             {
                 byte[] dataBytes = Encoding.Default.GetBytes(data);
                 List<byte> lengthBytes = BitConverter.GetBytes(dataBytes.Length).ToList();
@@ -126,17 +122,18 @@ namespace ACEditor
         private static List<Type> GetTypeByFieldType(string[][] data)
         {
             List<Type> types = new List<Type>();
-            string[] temp = data[(int)RowType.FIELD_TYPE];//获取类型
-            for (int i = 0; i < temp.Length; ++i)
-            {
-                if (temp[i] == "int") types.Add(typeof(int));
-                else if (temp[i] == "bool") types.Add(typeof(bool));
-                else if (temp[i] == "float") types.Add(typeof(float));
-                else if (temp[i] == "string") types.Add(typeof(string));
-                else if (temp[i] == "List<int>") types.Add(typeof(List<int>));
-                else if (temp[i] == "List<string>") types.Add(typeof(List<string>));
-                else if (temp[i] == "List<float>") types.Add(typeof(List<float>));
-            }
+            // string[] temp = data[(int)RowType.FIELD_TYPE]; //获取类型
+            // foreach (var t in temp)
+            // {
+            //     if (t == "int") types.Add(typeof(int));
+            //     else if (t == "bool") types.Add(typeof(bool));
+            //     else if (t == "float") types.Add(typeof(float));
+            //     else if (t == "string") types.Add(typeof(string));
+            //     else if (t == "List<int>") types.Add(typeof(List<int>));
+            //     else if (t == "List<string>") types.Add(typeof(List<string>));
+            //     else if (t == "List<float>") types.Add(typeof(List<float>));
+            // }
+
             return types;
         }
     }
