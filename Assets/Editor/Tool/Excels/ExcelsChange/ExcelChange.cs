@@ -8,17 +8,13 @@ using UnityEngine;
 
 /*--------脚本描述-----------
 				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
 描述:
     Excel转换工具
 
 -----------------------*/
 
 
-namespace ACEditor
+namespace ToolEditor
 {
     /// <summary>
     /// 每行类型
@@ -32,11 +28,6 @@ namespace ACEditor
 
     public class ExcelChange : EditorWindow
     {
-        /// <summary>
-        /// excel文件存放的路径
-        /// </summary>
-        public static string EXCEL_PATH = Application.dataPath + "/Editor/Tool/Excels/Excels";
-
         //[MenuItem("Tool/字节测试")]
         //public static void TestByte()
         //{
@@ -61,10 +52,9 @@ namespace ACEditor
         //    Debug.Log(sb.ToString());
         //}
 
-        [MenuItem("Tool/Excel转换")]//#E
-        public static void GenerateExcelInfo()
+        public static void GenerateExcelInfo(string path)
         {
-            IEnumerable<string> paths = Directory.EnumerateFiles(EXCEL_PATH, "*.xlsx");
+            IEnumerable<string> paths = Directory.EnumerateFiles(path, "*.xlsx");
             foreach (string filePath in paths)
             {
                 //读取Excel数据

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core
+namespace Framework.Core
 {
     /// <summary>
     /// 字符串工具类

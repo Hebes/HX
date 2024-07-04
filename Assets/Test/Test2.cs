@@ -1,4 +1,4 @@
-﻿using Core;
+﻿using Framework.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +27,18 @@ public class Test2 : MonoBehaviour, IUpdata
     //    CoreBehaviour.Remove(this);
     //}
 
+    private void Awake()
+    {
+        new CoreResource().Init();
+        var pool = new CorePool();
+        pool.Init();
+
+        CorePool.Instance.GetClass<Test1>();
+    }
+
     public void CoreBehaviourUpdata()
     {
         UnityEngine.Debug.Log($"{gameObject.name}   Updata");
+
     }
 }

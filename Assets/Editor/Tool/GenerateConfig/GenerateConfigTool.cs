@@ -10,17 +10,13 @@ using Debug = UnityEngine.Debug;
 
 /*--------脚本描述-----------
 				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
 描述:
     生成配置文件
     请遵守命名规范
 
 -----------------------*/
 
-namespace ACEditor
+namespace ToolEditor
 {
     public enum DataReadType
     {

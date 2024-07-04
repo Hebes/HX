@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Core
+namespace Framework.Core
 {
     public class ShowUIObj : MonoBehaviour
     {

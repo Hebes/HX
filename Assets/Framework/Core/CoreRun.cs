@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Reflection;
+using Framework.Core;
 using UnityEngine;
 
 /*--------脚本描述-----------
@@ -8,36 +12,42 @@ using UnityEngine;
 
 -----------------------*/
 
-
-namespace Core
+namespace Framework.Core
 {
     public class CoreRun
     {
-        public IEnumerator CoreInit()
-        {
-            //限制帧数
-            Application.targetFrameRate = 60;
+        private List<CreateCore> InstanceList { get; set; }
 
-            //可以首先加载的
-            yield return Init<CoreDebug>();          //日志
-            yield return Init<CoreLanguage>();       //多语言
-            yield return Init<CoreEvent>();          //事件
-            yield return Init<CoreBehaviour>();      //生命周期
-            yield return Init<CoreResource>();       //资源加载
-            yield return Init<CoreAduio>();          //音乐
-            yield return Init<CoreUI>();             //UI
-            //yield return Init<CoreData>();           //数据
-            yield return Init<CoreScene>();          //场景
-            yield return Init<CoreInput>();          //输入
-            yield return Init<CoreDataSystem>();     //数据
-            //yield return Init<CoreSystemOrder>();    //指令
-        }
-
-        public IEnumerator Init<T>() where T : ICore, new()
+        public IEnumerator CoreIEnumeratorInit()
         {
-            T t = new();
-            t.Init();
-            yield return t.AsyncInit();
+            InstanceList = new List<CreateCore>();
+            var assembly = Assembly.GetExecutingAssembly();
+            var types = assembly.GetTypes();
+            // 遍历所有类型
+            foreach (var type in types)
+            {
+                if (!Attribute.IsDefined(type, typeof(CreateCore))) continue;
+                var attribute = Attribute.GetCustomAttribute(type, typeof(CreateCore));
+                InstanceList.Add((CreateCore)attribute);
+            }
+
+            //排序
+            InstanceList.Sort();
+            //执行
+            foreach (var instanceValue in InstanceList)
+            {
+                if (!typeof(ICore).IsAssignableFrom(instanceValue.Type))
+                    throw new Exception($"{instanceValue.Type.Name}请继承ICore接口");
+                var instance = Activator.CreateInstance(instanceValue.Type);
+                Debug.Log($"{instanceValue.Type.Name}初始化,序列号为{instanceValue.NumberValue}");
+                var type = instance.GetType();
+                //普通方法
+                var init = type.GetMethod("Init");
+                init?.Invoke(instance, new object[] { });
+                //协程方法
+                var asyncInit = type.GetMethod("AsyncInit");
+                yield return asyncInit?.Invoke(instance, new object[] { });
+            }
         }
     }
 }

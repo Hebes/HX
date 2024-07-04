@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core
+namespace Framework.Core
 {
     public static class EnumHelper
     {

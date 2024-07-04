@@ -1,8 +1,7 @@
 ﻿using UnityEditor;
-using UnityEngine;
 using UnityEngine.UI;
 
-namespace ACEditor
+namespace CustomEditorExpansion
 {
     [CustomEditor(typeof(LanguageComponent), true)]
     public class LanguageEditor : Editor
@@ -12,8 +11,8 @@ namespace ACEditor
         private void OnEnable()
         {
             _languageText = (LanguageComponent)target;
-            Text _text = _languageText.GetComponent<Text>();
-            _languageText.key = _text.text;
+            var text = _languageText.GetComponent<Text>();
+            _languageText.key = text.text;
         }
 
         //public override void OnInspectorGUI()
