@@ -45,39 +45,28 @@
     <Analyzer Include="D:\Unity\UnityEditor\2022.3.7f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Editor\Core\ToolExpansion_String.cs" />
-     <Compile Include="Assets\Editor\Tool\GenerateConfig\GenerateBinaryFile.cs" />
      <Compile Include="Assets\Editor\Tool\Value\Vlue.cs" />
      <Compile Include="Assets\Editor\Tool\Folder\OpenFolder.cs" />
      <Compile Include="Assets\Editor\Language\LanguageEditor.cs" />
      <Compile Include="Assets\Editor\Tool\Excels\ExcelsChange\ClassData.cs" />
-     <Compile Include="Assets\Editor\Core\ToolExpansion_FileAndFolder.cs" />
      <Compile Include="Assets\Editor\Tool\GenerateConfig\ConfigToolUI.cs" />
      <Compile Include="Assets\Editor\Tool\Log\LogTool.cs" />
+     <Compile Include="Assets\Editor\ToolExpansion.cs" />
      <Compile Include="Assets\Editor\Tool\Install\UIInstall.cs" />
-     <Compile Include="Assets\Editor\Core\ToolExpansion_AB.cs" />
-     <Compile Include="Assets\Editor\Core\ToolExpansion_Copy.cs" />
-     <Compile Include="Assets\Editor\Core\ToolExpansion_DateSave.cs" />
      <Compile Include="Assets\Editor\Tool\GenerateConfig\GenerateConfigTool.cs" />
-     <Compile Include="Assets\Editor\Core\ToolExpansion_Find.cs" />
+     <Compile Include="Assets\Editor\Tool\GenerateConfig\GenerateBinaryFile.cs" />
      <Compile Include="Assets\Editor\UIComponentEditor\UIComponentTool.cs" />
      <Compile Include="Assets\Editor\Tool\Excels\ExcelWriteUI.cs" />
      <Compile Include="Assets\Editor\Tool\Excels\ExcelsChange\ExcelChangeHelper.cs" />
      <Compile Include="Assets\Resources\AssetsPackage\Tilemap\Custom Brush Scripts\Coordinate Brush\Editor\CoordinateBrush.cs" />
      <Compile Include="Assets\Editor\Tool\Scene\ToolScene.cs" />
-     <Compile Include="Assets\Editor\Core\ToolExpansion_AssetDatabase.cs" />
-     <Compile Include="Assets\Editor\Core\ToolExpansion_Script.cs" />
-     <Compile Include="Assets\Editor\Core\ToolExpansion_Type.cs" />
      <Compile Include="Assets\Editor\UIComponentEditor\UIComponentEditor.cs" />
      <Compile Include="Assets\Editor\Tool\Excels\ExcelsChange\ExcelChange.cs" />
-     <Compile Include="Assets\Editor\Core\ToolExpansion_UnityComponent.cs" />
+     <Compile Include="Assets\Editor\Language\TextEditor.cs" />
      <Compile Include="Assets\Editor\Tool\Excels\ExcelsChange\BinaryData.cs" />
      <Compile Include="Assets\Editor\Tool\MenuExpand.cs" />
-     <Compile Include="Assets\Editor\Core\ToolExpansion_Debug.cs" />
-     <Compile Include="Assets\Editor\Core\ToolExpansion_Tag.cs" />
      <Folder Include="Assets\Resources\AssetsPackage\Tilemap\Custom Brush Scripts\Coordinate Brush\Editor" />
      <Folder Include="Assets\Editor\Tool\Scene" />
-     <Folder Include="Assets\Editor\Core" />
      <Folder Include="Assets\Editor" />
      <Folder Include="Assets\Editor\Tool" />
      <Folder Include="Assets\Editor\Tool\Install" />
@@ -89,6 +78,7 @@
      <Folder Include="Assets\Editor\Tool\Excels" />
      <Folder Include="Assets\Editor\Tool\Excels\ExcelsChange" />
      <Folder Include="Assets\Editor\Tool\Value" />
+     <Folder Include="Assets\Editor\Tool\GenerateConfig" />
      <Reference Include="UnityEngine">
      <HintPath>D:\Unity\UnityEditor\2022.3.7f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

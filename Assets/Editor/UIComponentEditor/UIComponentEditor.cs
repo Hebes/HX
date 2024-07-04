@@ -9,11 +9,7 @@ using UnityEngine.UI;
 using Object = UnityEngine.Object;//Object并非C#基础中的Object，而是 UnityEngine.Object
 
 /*--------脚本描述-----------
-				
-电子邮箱：
-	1607388033@qq.com
-作者:
-	暗沉
+
 描述:
     修改UIComponent样式
 
@@ -39,17 +35,12 @@ namespace Core
         /// <summary> 输入在textfield中的字符串 </summary>
         private string searchKey
         {
-            get
-            {
-                return _searchKey;
-            }
+            get => _searchKey;
             set
             {
-                if (_searchKey != value)
-                {
-                    _searchKey = value;
-                    heroPrefab = aCManager.Get<Object>(searchKey);
-                }
+                if (_searchKey == value) return;
+                _searchKey = value;
+                heroPrefab = aCManager.Get(searchKey);
             }
         }
         private UIComponent aCManager { get; set; }
@@ -57,11 +48,11 @@ namespace Core
         /// <summary> 组件列表 </summary>
         public List<string> components = new List<string>()
         {
-             typeof(Button).Name,
-             typeof(Text).Name,
-             typeof(Image).Name,
-             typeof(GameObject).Name,
-             typeof(InputField).Name,
+             nameof(Button),
+             nameof(Text),
+             nameof(Image),
+             nameof(GameObject),
+             nameof(InputField),
         };
 
 
@@ -280,7 +271,7 @@ namespace Core
         /// <param name="content"></param>
         private void Copy(string content)
         {
-            TextEditor te = new TextEditor();
+            UnityEngine.TextEditor te = new UnityEngine.TextEditor();
             te.text = content.ToString();
             te.SelectAll();
             te.Copy();
