@@ -14,8 +14,8 @@ public class UISkill : UIBase, IUIAwake
     {
         InitUIBase(EUIType.Fixed, EUIMode.HideOther, EUILucenyType.ImPenetrable);
         UIComponent UIComponent = GetComponent<UIComponent>();
-        GameObject T_Content = UIComponent.Get<GameObject>("T_Content");
-        GameObject T_SkillBtn = UIComponent.Get<GameObject>("T_SkillBtn");
+        GameObject T_Content = UIComponent.Get("T_Content");
+        GameObject T_SkillBtn = UIComponent.Get("T_SkillBtn");
         skillBtn = T_SkillBtn;
         content = T_Content.transform;
     }

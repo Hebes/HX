@@ -18,33 +18,24 @@ namespace ToolEditor
 
         private void OnGUI()
         {
-            EditorGUILayout.Space(5f); EditorGUILayout.LabelField("Hierarchy前缀工具", EditorStyles.boldLabel);
-            EditorGUILayout.Space(5f); EditorGUILayout.LabelField("请输入组件查找前缀:", EditorStyles.largeLabel);
+            EditorGUILayout.Space(5f);
+            EditorGUILayout.LabelField("Hierarchy前缀工具", EditorStyles.boldLabel);
+            EditorGUILayout.Space(5f);
+            EditorGUILayout.LabelField("请输入组件查找前缀:", EditorStyles.largeLabel);
 
 
             EditorGUILayout.BeginHorizontal();
-            {
-                _prefix1 = EditorGUILayout.TextField("请输入组件查找前缀", _prefix1);
-                if (GUILayout.Button("复制", EditorStyles.miniButtonMid))
-                    _prefix1.ACCopyWord();
-                if (GUILayout.Button("保存修改", EditorStyles.miniButtonMid))
-                    ToolExpansion_Find.ACGetObjs().ACSaveModification();
-                if (GUILayout.Button("清除", EditorStyles.miniButtonMid))
-                    _prefix1 = string.Empty;
-            }
+            _prefix1 = EditorGUILayout.TextField("请输入组件查找前缀", _prefix1);
+            if (GUILayout.Button("复制", EditorStyles.miniButtonMid)) _prefix1.Copy();
+            if (GUILayout.Button("保存修改", EditorStyles.miniButtonMid)) Selection.objects.SaveModification();
+            if (GUILayout.Button("清除", EditorStyles.miniButtonMid)) _prefix1 = string.Empty;
             EditorGUILayout.EndHorizontal();
 
 
-
             EditorGUILayout.BeginHorizontal();
-            {
-                if (GUILayout.Button("获取前缀", EditorStyles.miniButtonMid))
-                    _prefix1 = ToolExpansion_Find.ACGetObj().ACGetPrefix();
-                if (GUILayout.Button("前缀添加", EditorStyles.miniButtonMid))
-                    ToolExpansion_Find.ACGetObjs().ACChangePrefixLoop(_prefix1);
-                if (GUILayout.Button("去除前缀", EditorStyles.miniButtonMid))
-                    ToolExpansion_Find.ACGetObjs().ACChangePrefixLoop(_prefix1, false);
-            }
+            if (GUILayout.Button("获取前缀", EditorStyles.miniButtonMid)) _prefix1 = Selection.activeObject.ACGetPrefix();
+            if (GUILayout.Button("前缀添加", EditorStyles.miniButtonMid)) Selection.objects.ACChangePrefixLoop(_prefix1);
+            if (GUILayout.Button("去除前缀", EditorStyles.miniButtonMid)) Selection.objects.ACChangePrefixLoop(_prefix1, false);
             EditorGUILayout.EndHorizontal();
         }
     }

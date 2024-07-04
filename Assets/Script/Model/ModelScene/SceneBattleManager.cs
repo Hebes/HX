@@ -21,14 +21,14 @@ public class SceneBattleManager : MonoBehaviour
         Instance = this;
         _roleBattlePointDic = new Dictionary<ETeamPoint, Dictionary<ERoleBattlePoint, Transform>>();
         component = GetComponent<UIComponent>();
-        GameObject T_RoleTemplate = Component.Get<GameObject>("T_RoleTemplate");
-        GameObject T_Left1 = Component.Get<GameObject>("T_Left1");
-        GameObject T_Left2 = Component.Get<GameObject>("T_Left2");
-        GameObject T_Left3 = Component.Get<GameObject>("T_Left3");
-        GameObject T_Left4 = Component.Get<GameObject>("T_Left4");
-        GameObject T_Right1 = Component.Get<GameObject>("T_Right1");
-        GameObject T_Right2 = Component.Get<GameObject>("T_Right2");
-        GameObject T_Right3 = Component.Get<GameObject>("T_Right3");
+        GameObject T_RoleTemplate = Component.Get("T_RoleTemplate");
+        GameObject T_Left1 = Component.Get("T_Left1");
+        GameObject T_Left2 = Component.Get("T_Left2");
+        GameObject T_Left3 = Component.Get("T_Left3");
+        GameObject T_Left4 = Component.Get("T_Left4");
+        GameObject T_Right1 = Component.Get("T_Right1");
+        GameObject T_Right2 = Component.Get("T_Right2");
+        GameObject T_Right3 = Component.Get("T_Right3");
 
         roleTemplate = T_RoleTemplate;
         T_RoleTemplate.SetActive(false);

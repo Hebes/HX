@@ -9,7 +9,7 @@ using UnityEditorInternal;
 using Debug = UnityEngine.Debug;
 
 /*--------脚本描述-----------
-	
+				
 描述:
     生成配置文件
     请遵守命名规范

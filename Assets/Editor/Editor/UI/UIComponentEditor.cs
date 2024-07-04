@@ -41,11 +41,19 @@ namespace ToolEditor
             {
                 if (_searchKey == value) return;
                 _searchKey = value;
-                _heroPrefab = UI.Get<Object>(SearchKey);
+                heroPrefab = aCManager.Get(searchKey);
             }
         }
 
-        private void OnEnable() => UI = (UIComponent)target;
+        /// <summary> 组件列表 </summary>
+        public List<string> components = new List<string>()
+        {
+             nameof(Button),
+             nameof(Text),
+             nameof(Image),
+             nameof(GameObject),
+             nameof(InputField),
+        };
 
         public override void OnInspectorGUI()
         {
@@ -265,8 +273,8 @@ namespace ToolEditor
         /// <param name="content"></param>
         private void Copy(string content)
         {
-            TextEditor te = new();
-            te.text = content;
+            UnityEngine.TextEditor te = new UnityEngine.TextEditor();
+            te.text = content.ToString();
             te.SelectAll();
             te.Copy();
         }

@@ -17,11 +17,11 @@ public class MainMenuView : UIBase, IUIAwake
 
         UIComponent UIComponent = gameObject.GetComponent<UIComponent>();
 
-        GameObject T_StartGame = UIComponent.Get<GameObject>("T_StartGame");
-        GameObject T_Load = UIComponent.Get<GameObject>("T_Load");
-        GameObject T_Setting = UIComponent.Get<GameObject>("T_Setting");
-        GameObject T_Exit = UIComponent.Get<GameObject>("T_Exit");
-        GameObject T_Battle = UIComponent.Get<GameObject>("T_Battle");
+        GameObject T_StartGame = UIComponent.Get("T_StartGame");
+        GameObject T_Load = UIComponent.Get("T_Load");
+        GameObject T_Setting = UIComponent.Get("T_Setting");
+        GameObject T_Exit = UIComponent.Get("T_Exit");
+        GameObject T_Battle = UIComponent.Get("T_Battle");
 
         T_StartGame.GetButton().onClick.AddListener(StartGame);
         T_Load.GetButton().onClick.AddListener(Load);
