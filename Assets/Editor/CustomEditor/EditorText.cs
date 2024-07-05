@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace CustomEditorExpansion
 {
     [CustomEditor(typeof(Text), true)]
-    public class TextEditor : Editor
+    public class EditorText : Editor
     {
         private void Awake()
         {

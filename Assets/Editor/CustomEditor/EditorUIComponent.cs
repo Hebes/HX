@@ -27,18 +27,11 @@ namespace CustomEditorExpansion
 {
     /// <summary> 自定义ReferenceCollector类在界面中的显示与功能 </summary>
     [CustomEditor(typeof(UIComponent), true)]
-    public class UIComponentEditor : Editor
+    public class EditorUIComponent : Editor
     {
         private readonly string _prefix = "T_";
-        private string _searchKey = string.Empty;
-        private Object _heroPrefab;
+        
         private UIComponent UI { get; set; }
-
-        private string SearchKey
-        {
-            get => _searchKey;
-            set => _searchKey = value;
-        }
 
         /// <summary> 组件列表 </summary>
         public List<string> components = new List<string>()
@@ -52,13 +45,11 @@ namespace CustomEditorExpansion
 
         public override void OnInspectorGUI()
         {
+            EditorGUILayout.Space(100);
             EditorGUILayout.LabelField("改前缀", EditorStyles.boldLabel);
-            if (GUILayout.Button($"改前缀"))
-                UIComponentTool.ShowUIComponentTool();
-            EditorGUILayout.LabelField("按钮", EditorStyles.boldLabel);
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button($"获取{_prefix}物体"))
-                OoGetKeyGos();
+            if (GUILayout.Button($"改前缀")) UIComponentTool.ShowUIComponentTool();
+            EditorGUILayout.LabelField("按钮", EditorStyles.boldLabel); EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button($"获取{_prefix}物体")) OoGetKeyGos();
             if (GUILayout.Button("保存"))
             {
                 foreach (var item in UI.dataList)
@@ -68,43 +59,27 @@ namespace CustomEditorExpansion
                 }
             }
 
-            if (GUILayout.Button("去除空格"))
-                OnDelTrim();
-            if (GUILayout.Button("删除全部"))
-                UI.dataList.Clear();
+            if (GUILayout.Button("去除空格")) OnDelTrim();
+            if (GUILayout.Button("删除全部")) UI.dataList.Clear();
             EditorGUILayout.EndHorizontal();
 
 
             EditorGUILayout.LabelField("获取代码", EditorStyles.boldLabel);
-            if (GUILayout.Button("获取脚本必要代码"))
-                OnGetEssentialCode();
+            if (GUILayout.Button("获取脚本必要代码")) OnGetEssentialCode();
 
 
             EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("变量获取"))
-                GetValue();
-            if (GUILayout.Button("组件获取"))
-                GetCode();
+            if (GUILayout.Button("变量获取")) GetValue();
+            if (GUILayout.Button("组件获取")) GetCode();
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("添加图片组件"))
-                AddComponent<Image, ImageComponent>();
-            if (GUILayout.Button("添加文字组件"))
-                AddComponent<Text, LanguageComponent>();
+            if (GUILayout.Button("添加图片组件")) AddComponent<Image, ImageComponent>();
+            if (GUILayout.Button("添加文字组件")) AddComponent<Text, LanguageComponent>();
             EditorGUILayout.EndHorizontal();
-
-            EditorGUILayout.LabelField("内容", EditorStyles.boldLabel);
-            EditorGUILayout.BeginHorizontal();
-            SearchKey = EditorGUILayout.TextField(SearchKey);
-            _heroPrefab = EditorGUILayout.ObjectField(_heroPrefab, typeof(Object), false);
-            if (GUILayout.Button("删除"))
-                _heroPrefab = null;
-            EditorGUILayout.Space();
-            EditorGUILayout.EndHorizontal();
-
 
             EditorGUILayout.Space(10);
+            EditorGUILayout.LabelField("内容", EditorStyles.boldLabel);
             EditorGUILayout.BeginVertical();
             for (int i = 0; i < UI.dataList?.Count; i++)
             {

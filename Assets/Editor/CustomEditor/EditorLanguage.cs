@@ -8,7 +8,7 @@ namespace CustomEditorExpansion
     /// 多语言工具
     /// </summary>
     [CustomEditor(typeof(LanguageComponent), true)]
-    public class LanguageEditor : Editor
+    public class EditorLanguage : Editor
     {
         private LanguageComponent _languageText;
 

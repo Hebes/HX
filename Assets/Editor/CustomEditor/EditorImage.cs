@@ -7,7 +7,7 @@ namespace CustomEditorExpansion
     /// 图片工具
     /// </summary>
     [CustomEditor(typeof(ImageComponent), true)]
-    public class ImageEditor : Editor
+    public class EditorImage : Editor
     {
         private void OnEnable()
         {
