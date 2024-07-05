@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using CustomEditorExpansion;
 using Framework.Core;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +11,10 @@ using Object = UnityEngine.Object; //Object并非C#基础中的Object，而是 U
 
 /*--------脚本描述-----------
 
+电子邮箱：
+    1607388033@qq.com
+作者:
+    暗沉
 描述:
     修改UIComponent样式
 
@@ -20,233 +24,247 @@ using Object = UnityEngine.Object; //Object并非C#基础中的Object，而是 U
     https://docs.unity.cn/cn/2021.1/ScriptReference/EditorGUILayout.html
     SerializedObject     以完全通用的方式编辑 Unity 对象上的可序列化字段。
     https://docs.unity.cn/cn/2021.1/ScriptReference/SerializedObject.html
+    https://blog.csdn.net/qq_14812585/article/details/107921039 菜单选项
 
 -----------------------*/
 
-namespace CustomEditorExpansion
+/// <summary> 自定义ReferenceCollector类在界面中的显示与功能 </summary>
+[CustomEditor(typeof(UIComponent), true)]
+public class UIComponentEditor : UnityEditor.Editor
 {
-    /// <summary> 自定义ReferenceCollector类在界面中的显示与功能 </summary>
-    [CustomEditor(typeof(UIComponent), true)]
-    public class EditorUIComponent : Editor
+    private UIComponent _uiComponent;
+    private const string Prefix = "T_";
+
+    private Type selectComponentType;
+
+    private List<Type> componentList = new List<Type>()
     {
-        private readonly string _prefix = "T_";
-        
-        private UIComponent UI { get; set; }
+        typeof(Button),
+        typeof(Text),
+        typeof(Image),
+        typeof(GameObject),
+        typeof(InputField),
+        typeof(LanguageComponent),
+    };
 
-        /// <summary> 组件列表 </summary>
-        public List<string> components = new List<string>()
-        {
-             nameof(Button),
-             nameof(Text),
-             nameof(Image),
-             nameof(GameObject),
-             nameof(InputField),
-        };
+    private void OnEnable() => _uiComponent = (UIComponent)target;
 
-        public override void OnInspectorGUI()
+    public override void OnInspectorGUI()
+    {
+        EditorGUILayout.LabelField("改前缀", EditorStyles.boldLabel);
+        if (GUILayout.Button($"改前缀")) UIComponentTool.ShowUIComponentTool();
+
+        EditorGUILayout.LabelField("按钮", EditorStyles.boldLabel);
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button($"获取{Prefix}物体")) OoGetKeyGos();
+        if (GUILayout.Button("保存")) Save();
+        if (GUILayout.Button("去除空格")) OnDelTrim();
+        if (GUILayout.Button("删除全部")) _uiComponent.dataList.Clear();
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.LabelField("获取代码", EditorStyles.boldLabel);
+        if (GUILayout.Button("获取脚本必要代码")) OnGetEssentialCode();
+
+        EditorGUILayout.BeginHorizontal();
+
+        if (GUILayout.Button("变量获取")) GetValue();
+        if (GUILayout.Button("组件获取")) GetCode();
+        EditorGUILayout.EndHorizontal();
+
+
+        EditorGUILayout.Space(10);
+        EditorGUILayout.LabelField("内容", EditorStyles.boldLabel);
+        EditorGUILayout.BeginVertical();
+        for (int i = 0; i < _uiComponent.dataList?.Count; i++)
         {
-            EditorGUILayout.Space(100);
-            EditorGUILayout.LabelField("改前缀", EditorStyles.boldLabel);
-            if (GUILayout.Button($"改前缀")) UIComponentTool.ShowUIComponentTool();
-            EditorGUILayout.LabelField("按钮", EditorStyles.boldLabel); EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button($"获取{_prefix}物体")) OoGetKeyGos();
-            if (GUILayout.Button("保存"))
+            EditorGUILayout.BeginHorizontal();
+            UIData tempData = _uiComponent.dataList[i];
+            tempData.key = EditorGUILayout.TextField(tempData.key, GUILayout.Width(200));
+            tempData.@object = EditorGUILayout.ObjectField(tempData.@object, typeof(Object), true);
+            if (GUILayout.Button("删除")) _uiComponent.dataList.Remove(tempData);
+            EditorGUILayout.EndHorizontal();
+        }
+
+        EditorGUILayout.EndVertical();
+
+
+        EditorGUILayout.Space(10);
+        EventType eventType = Event.current.type;
+        //在Inspector 窗口上创建区域，向区域拖拽资源对象，获取到拖拽到区域的对象
+        if (eventType == EventType.DragUpdated || eventType == EventType.DragPerform)
+        {
+            DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+
+            if (eventType == EventType.DragPerform)
             {
-                foreach (var item in UI.dataList)
+                DragAndDrop.AcceptDrag(); //接受拖动操作。
+                foreach (var o in DragAndDrop.objectReferences)
+                    _uiComponent.dataList.Add(new UIData(o.name, o));
+            }
+
+            Event.current.Use();
+        }
+    }
+
+
+    #region 面板方法调用
+
+    /// <summary>
+    /// 获取关键字开头的物体
+    /// </summary>
+    private void OoGetKeyGos()
+    {
+        //获取物体
+        _uiComponent.dataList.Clear();
+        var gameObjects = new List<GameObject>();
+        GetKeyGoList(_uiComponent.gameObject.transform, Prefix, ref gameObjects);
+        foreach (var go in gameObjects)
+            _uiComponent.dataList.Add(new UIData(go.name, go));
+    }
+
+    /// <summary>
+    /// 保存
+    /// </summary>
+    private void Save()
+    {
+        foreach (var item in _uiComponent.dataList)
+        {
+            Undo.RecordObject(item.@object, item.key);
+            EditorUtility.SetDirty(item.@object);
+        }
+    }
+
+    /// <summary>
+    /// 去除空白
+    /// </summary>
+    private void OnDelTrim()
+    {
+        foreach (var uiData in _uiComponent.dataList)
+            uiData.key = uiData.@object.name = uiData.@object.name.Trim().Replace(" ", "");
+    }
+
+    /// <summary>
+    /// 获取脚本必要代码
+    /// </summary>
+    private void OnGetEssentialCode()
+    {
+        var sb = new StringBuilder();
+        sb.AppendLine($"UIComponent uiComponent = GetComponent<UIComponent>();");
+        Copy(sb.ToString());
+    }
+
+    /// <summary>
+    /// 获取变量
+    /// </summary>
+    private void GetValue()
+    {
+        var menu = new GenericMenu();
+        foreach (var strValue in componentList)
+            menu.AddItem(new GUIContent(strValue.Name), selectComponentType == strValue, OnComponentSelected, strValue);
+        menu.ShowAsContext();
+        return;
+
+        void OnComponentSelected(object value)
+        {
+            selectComponentType = (Type)value;
+            var sb = new StringBuilder();
+            foreach (var item in _uiComponent.dataList)
+            {
+                Object obj;
+                if (selectComponentType.IsSubclassOf(typeof(Component)))
+                    obj = ((GameObject)item.@object).GetComponent(selectComponentType);
+                else
+                    obj = ((GameObject)item.@object);
+                var key = value.ToString().Replace("UnityEngine", string.Empty).Replace("UI", string.Empty)
+                    .Replace(".", string.Empty);
+                if (obj == default) continue;
+                sb.AppendLine($"public {key} {item.key}{key};");
+            }
+
+            if (string.IsNullOrEmpty(sb.ToString())) return;
+            Debug.LogError(sb.ToString());
+            Copy(sb.ToString());
+        }
+    }
+
+    /// <summary>
+    /// 获取脚本
+    /// </summary>
+    private void GetCode()
+    {
+        var menu = new GenericMenu();
+        foreach (var strValue in componentList)
+            menu.AddItem(new GUIContent(strValue.Name), selectComponentType == strValue, OnComponentSelected, strValue);
+        menu.ShowAsContext();
+        return;
+
+        void OnComponentSelected(object value)
+        {
+            selectComponentType = (Type)value;
+            var sb = new StringBuilder();
+            foreach (var item in _uiComponent.dataList)
+            {
+                var goName = item.@object.name;
+                var key = value.ToString().Replace("UnityEngine", string.Empty).Replace("UI", string.Empty).Replace(".", string.Empty);
+                if (selectComponentType.IsSubclassOf(typeof(Component)))
                 {
-                    Undo.RecordObject(item.gameObject, item.key);
-                    EditorUtility.SetDirty(item.gameObject);
+                    Object obj = ((GameObject)item.@object).GetComponent(selectComponentType);
+                    if (!obj) continue;
+                    sb.AppendLine($"{goName}{key} = uiComponent.GetComponent<{key}>(\"{goName}\");");
+                }
+                else
+                {
+                    sb.AppendLine($"{goName}{key} = uiComponent.Get(\"{goName}\");");
                 }
             }
 
-            if (GUILayout.Button("去除空格")) OnDelTrim();
-            if (GUILayout.Button("删除全部")) UI.dataList.Clear();
-            EditorGUILayout.EndHorizontal();
-
-
-            EditorGUILayout.LabelField("获取代码", EditorStyles.boldLabel);
-            if (GUILayout.Button("获取脚本必要代码")) OnGetEssentialCode();
-
-
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("变量获取")) GetValue();
-            if (GUILayout.Button("组件获取")) GetCode();
-            EditorGUILayout.EndHorizontal();
-
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("添加图片组件")) AddComponent<Image, ImageComponent>();
-            if (GUILayout.Button("添加文字组件")) AddComponent<Text, LanguageComponent>();
-            EditorGUILayout.EndHorizontal();
-
-            EditorGUILayout.Space(10);
-            EditorGUILayout.LabelField("内容", EditorStyles.boldLabel);
-            EditorGUILayout.BeginVertical();
-            for (int i = 0; i < UI.dataList?.Count; i++)
-            {
-                EditorGUILayout.BeginHorizontal();
-                UIData tempData = UI.dataList[i];
-                tempData.key = EditorGUILayout.TextField(tempData.key, GUILayout.Width(200));
-                tempData.gameObject = EditorGUILayout.ObjectField(tempData.gameObject, typeof(Object), true);
-                if (GUILayout.Button("删除"))
-                    UI.dataList.Remove(tempData);
-                EditorGUILayout.EndHorizontal();
-            }
-
-            EditorGUILayout.EndVertical();
-
-
-            EditorGUILayout.Space(10);
-            EventType eventType = Event.current.type;
-            //在Inspector 窗口上创建区域，向区域拖拽资源对象，获取到拖拽到区域的对象
-            if (eventType == EventType.DragUpdated || eventType == EventType.DragPerform)
-            {
-                DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
-
-                if (eventType == EventType.DragPerform)
-                {
-                    DragAndDrop.AcceptDrag(); //接受拖动操作。
-                    foreach (var o in DragAndDrop.objectReferences)
-                    {
-                        var uIData = new UIData
-                        {
-                            key = o.name,
-                            gameObject = o
-                        };
-                        UI.dataList?.Add(uIData);
-                    }
-                }
-
-                Event.current.Use();
-            }
-        }
-        
-        /// <summary>
-        /// 去除空白
-        /// </summary>
-        private void OnDelTrim()
-        {
-            foreach (var uiData in UI.dataList)
-                uiData.key = uiData.gameObject.name = uiData.gameObject.name.Trim().Replace(" ", "");
-        }
-
-        /// <summary>
-        /// 获取关键字开头的物体
-        /// </summary>
-        private void OoGetKeyGos()
-        {
-            //获取物体
-            UI.dataList.Clear();
-            List<GameObject> gameObjects = new List<GameObject>();
-            GetKeywordGo(UI.gameObject.transform, _prefix, ref gameObjects);
-
-            for (var i = 0; i < gameObjects?.Count; i++)
-            {
-                var uIData = new UIData
-                {
-                    key = gameObjects[i].name,
-                    gameObject = gameObjects[i]
-                };
-                UI.dataList.Add(uIData);
-            }
-        }
-
-        /// <summary>
-        /// 查找物体(PS：包含隐藏版、关键词开头,Hierarchy面板)
-        /// </summary>
-        /// <param name="transform"></param>
-        /// <param name="keyValue"></param>
-        /// <param name="goList"></param>
-        private void GetKeywordGo(Transform transform, string keyValue, ref List<GameObject> goList)
-        {
-            if (transform.name.StartsWith(keyValue))
-                goList.Add(transform.gameObject);
-            for (var i = 0; i < transform?.childCount; i++)
-                GetKeywordGo(transform.GetChild(i), keyValue, ref goList);
-        }
-
-        private void GetKeywordGo<T>(Transform transform, ref List<T> tList) where T : Component
-        {
-            var t = transform.GetComponent<T>();
-            if (t) tList.Add(t);
-            for (var i = 0; i < transform.childCount; i++)
-                GetKeywordGo<T>(transform.GetChild(i), ref tList);
-        }
-
-        /// <summary>
-        /// 获取脚本必要代码
-        /// </summary>
-        private void OnGetEssentialCode()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"UIComponent UIComponent = GetComponent<UIComponent>();");
+            if (string.IsNullOrEmpty(sb.ToString())) return;
+            Debug.LogError(sb.ToString());
             Copy(sb.ToString());
         }
+    }
 
-        /// <summary>
-        /// 获取变量
-        /// </summary>
-        private void GetValue()
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (var item in UI.dataList)
-                sb.AppendLine($"public {item.gameObject.GetType().Name} {item.key};"); // {{get;set;}}
-            UnityEngine.Debug.Log(sb.ToString());
-            Copy(sb.ToString());
-        }
+    #endregion
 
-        /// <summary>
-        /// 添加图片组件
-        /// </summary>
-        private void AddComponent<T, TK>() where T : Component where TK : Component
-        {
-            var tList = new List<T>();
-            GetKeywordGo(UI.transform, ref tList);
-            foreach (var t in tList)
-                DestroyImmediate(t.GetComponent<TK>());
-            foreach (var t in tList)
-                t.AddComponent<TK>();
-        }
 
-        /// <summary>
-        /// 获取脚本
-        /// </summary>
-        private void GetCode()
-        {
-            StringBuilder sb = new StringBuilder();
+    /// <summary>
+    /// 查找物体(PS：包含隐藏、关键词开头,Hierarchy面板)
+    /// </summary>
+    /// <param name="transform">物体</param>
+    /// <param name="keyValue">寻找的关键字</param>
+    /// <param name="goList">返回的列表</param>
+    private void GetKeyGoList(Transform transform, string keyValue, ref List<GameObject> goList)
+    {
+        if (transform.name.StartsWith(keyValue))
+            goList.Add(transform.gameObject);
+        for (var i = 0; i < transform?.childCount; i++)
+            GetKeyGoList(transform.GetChild(i), keyValue, ref goList);
+    }
 
-            foreach (UIData item in UI.dataList)
-            {
-                item.gameObject.name = item.gameObject.name.Trim().Replace("-", "_").Replace(" ", "").Replace("\"", "");
-                sb.AppendLine($"{item.gameObject.name} = UIComponent.Get<{item.gameObject.GetType().Name}>(\"{item.gameObject.name}\");");
-            }
 
-            UnityEngine.Debug.Log(sb.ToString());
-            Copy(sb.ToString());
-        }
+    //其他
+    /// <summary>
+    /// 反射命名空间
+    /// </summary>
+    /// <param name="className"></param>
+    /// <param name="namespaceName"></param>
+    /// <returns></returns>
+    private Type ReflectClass(string className, string namespaceName = "UnityEngine.UI")
+    {
+        var assem = Assembly.Load(namespaceName);
+        var type = assem.GetType($"{namespaceName}.{className}");
+        return type;
+    }
 
-        /// <summary>
-        /// 反射命名空间
-        /// </summary>
-        /// <param name="className"></param>
-        /// <param name="namespaceName"></param>
-        /// <returns></returns>
-        private Type ReflectClass(string className, string namespaceName = "UnityEngine.UI")
-        {
-            Assembly assem = Assembly.Load(namespaceName);
-            Type type = assem.GetType($"{namespaceName}.{className}");
-            return type;
-        }
-
-        /// <summary>
-        /// /复制
-        /// </summary>
-        /// <param name="content"></param>
-        private void Copy(string content)
-        {
-            UnityEngine.TextEditor te = new UnityEngine.TextEditor();
-            te.text = content.ToString();
-            te.SelectAll();
-            te.Copy();
-        }
+    /// <summary>
+    /// /复制
+    /// </summary>
+    /// <param name="content"></param>
+    private void Copy(string content)
+    {
+        var te = new TextEditor();
+        te.text = content;
+        te.SelectAll();
+        te.Copy();
     }
 }

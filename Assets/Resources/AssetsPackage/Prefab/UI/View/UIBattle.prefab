@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7773985924210577293}
   - component: {fileID: 5609866691732690365}
-  - component: {fileID: 5745593716334463670}
+  - component: {fileID: 5164081981037010127}
+  - component: {fileID: 4948269009866997020}
   m_Layer: 5
   m_Name: UIBattle
   m_TagString: Untagged
@@ -45,7 +46,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2405555195039815846}
   m_CullTransparentMesh: 1
---- !u!114 &5745593716334463670
+--- !u!225 &5164081981037010127
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2405555195039815846}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &4948269009866997020
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,12 +70,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e417494ec6fec8a468e3d199658b3c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataList:
-  - key: T_StartGame
-    gameObject: {fileID: 0}
-  - key: T_Load
-    gameObject: {fileID: 0}
-  - key: T_Setting
-    gameObject: {fileID: 0}
-  - key: T_Exit
-    gameObject: {fileID: 0}
+  dataList: []

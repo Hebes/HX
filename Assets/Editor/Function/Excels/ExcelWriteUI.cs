@@ -7,6 +7,7 @@ using System.Reflection;
 using OfficeOpenXml;
 using UnityEditor;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace ToolEditor
 {
@@ -29,14 +30,6 @@ namespace ToolEditor
 
         private float _deleteButSice = 40f;
         private bool _excelTitleLoading;
-
-        
-        
-        private readonly string _save0Key = "Excel文件夹路径";
-        private readonly string _save1Key = "二进制路径";
-        private readonly string _save2Key = "C#路径";
-        private readonly string _save3Key = "Excel文件路径";
-
         private string _save1Path = string.Empty;
         private string _save2Path = string.Empty;
         private string _save3Path = string.Empty;
@@ -47,67 +40,66 @@ namespace ToolEditor
 
         private void Save()
         {
-            PlayerPrefs.SetString(_save0Key, $"{_openFolderPath}");
-            PlayerPrefs.SetString(_save1Key, $"{_save1Path}");
-            PlayerPrefs.SetString(_save2Key, $"{_save2Path}");
-            PlayerPrefs.SetString(_save3Key, $"{_save3Path}");
+            if (!EditorWindow.HasOpenInstances<ExcelWriteUI>()) return;
+            Type type = GetType();
+            var fieldsValue = type.GetFields(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+            foreach (var data in fieldsValue)
+            {
+                if (data.FieldType == typeof(string))
+                    PlayerPrefs.SetString($"{Application.productName}{data.Name}Save", (string)data.GetValue(this));
+                if (data.FieldType == typeof(int))
+                    PlayerPrefs.SetInt($"{Application.productName}{data.Name}Save", (int)data.GetValue(this));
+            }
+
+            Debug.LogError("保存成功");
         }
 
         private void Load()
         {
-            _openFolderPath = PlayerPrefs.GetString(_save0Key);
-            _save1Path = PlayerPrefs.GetString(_save1Key);
-            _save2Path = PlayerPrefs.GetString(_save2Key);
-            _save3Path = PlayerPrefs.GetString(_save3Key);
-            _isOpen = false;
+            Type type = GetType();
+            var fieldsValue = type.GetFields(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+            foreach (var data in fieldsValue)
+            {
+                if (data.FieldType == typeof(string))
+                    data.SetValue(this, PlayerPrefs.GetString($"{Application.productName}{data.Name}Save"));
+                if (data.FieldType == typeof(int))
+                    data.SetValue(this, PlayerPrefs.GetInt($"{Application.productName}{data.Name}Save"));
+            }
         }
 
         [MenuItem("Tools/编辑Excel#E #E")]
         public static void BuildPackageVersions()
         {
             if (!EditorWindow.HasOpenInstances<ExcelWriteUI>())
-            {
-                _excelWriteUI = GetWindow<ExcelWriteUI>();
-                _excelWriteUI.titleContent = new GUIContent("Excel数据读取");
-                _excelWriteUI.Show();
-                _excelWriteUI.Load();
-            }
+                GetWindow(typeof(ExcelWriteUI), false, "Excel数据读取").Show();
             else
-            {
                 GetWindow(typeof(ExcelWriteUI)).Close();
-            }
         }
 
-        private void OnDestroy()
-        {
-            _excelWriteUI.Save();
-        }
+        private void OnEnable() => Load();
 
-        
+        private void OnDisable() => Save();
 
         private void LeftUI()
         {
             if (string.IsNullOrEmpty(_openFolderPath)) return;
-            if (!Directory.Exists(_openFolderPath))
-                _openFolderPath = string.Empty;
+            if (!Directory.Exists(_openFolderPath)) _openFolderPath = string.Empty;
             //GUI.backgroundColor = Color.white;
             EditorGUILayout.BeginVertical(GUILayout.Width(150));
+            _scroll1 = GUILayout.BeginScrollView(_scroll1, GUILayout.Height(Screen.height), GUILayout.Width(200));
+            foreach (var path in Directory.GetFiles(_openFolderPath))
             {
-                _scroll1 = GUILayout.BeginScrollView(_scroll1, GUILayout.Height(Screen.height), GUILayout.Width(200));
-                foreach (var path in Directory.GetFiles(_openFolderPath))
+                if (path.EndsWith("meta")) continue;
+                var fileName = path.Split('\\')[^1];
+                if (GUILayout.Button(fileName))
                 {
-                    if (path.EndsWith("meta")) continue;
-                    var fileName = path.Split('\\')[^1];
-                    if (GUILayout.Button(fileName))
-                    {
-                        _loadExcelPath = path;
-                        _data = _loadExcelPath.LoadExcel();
-                        _isOpen = true;
-                    }
+                    _loadExcelPath = path;
+                    _data = _loadExcelPath.LoadExcel();
+                    _isOpen = true;
                 }
-
-                GUILayout.EndScrollView();
             }
+
+            GUILayout.EndScrollView();
             EditorGUILayout.EndVertical();
         }
 
@@ -117,14 +109,10 @@ namespace ToolEditor
             EditorGUILayout.BeginVertical();
             {
                 EditorGUILayout.BeginHorizontal();
-                if (GUILayout.Button("清空Unity日志", GUILayout.Width(100f)))
-                    ClearConsole();
-                if (GUILayout.Button("保存路径", GUILayout.Width(100f)))
-                    Save();
-                if (GUILayout.Button("选择文件夹路径...", GUILayout.Width(100f)))
-                    _openFolderPath = EditorUtility.OpenFolderPanel("选择文件夹", default, default); //打开文件夹
-                if (GUILayout.Button("打开文件夹", GUILayout.Width(100f)))
-                    Process.Start(_openFolderPath);
+                if (GUILayout.Button("清空Unity日志", GUILayout.Width(100f))) ClearConsole();
+                if (GUILayout.Button("保存路径", GUILayout.Width(100f))) Save();
+                if (GUILayout.Button("选择文件夹路径...", GUILayout.Width(100f))) _openFolderPath = EditorUtility.OpenFolderPanel("选择文件夹", default, default); //打开文件夹
+                if (GUILayout.Button("打开文件夹", GUILayout.Width(100f))) Process.Start(_openFolderPath);
                 EditorGUILayout.LabelField("文件夹路径:", EditorStyles.label, GUILayout.Width(80));
                 EditorGUILayout.TextField(_openFolderPath);
                 EditorGUILayout.EndHorizontal();
@@ -138,37 +126,29 @@ namespace ToolEditor
                 {
                     //二进制文件路径
                     EditorGUILayout.BeginHorizontal();
-                    if (GUILayout.Button("选择路径", GUILayout.Width(100f)))
-                        _save1Path = EditorUtility.OpenFolderPanel("选择文件夹", default, default);
-                    if (GUILayout.Button("打开二进制文件路径", GUILayout.Width(120f)))
-                        Process.Start(_save1Path);
+                    if (GUILayout.Button("选择路径", GUILayout.Width(100f))) _save1Path = EditorUtility.OpenFolderPanel("选择文件夹", default, default);
+                    if (GUILayout.Button("打开二进制文件路径", GUILayout.Width(120f))) Process.Start(_save1Path);
                     _save1Path = EditorGUILayout.TextField(_save1Path);
                     EditorGUILayout.EndHorizontal();
 
                     //C#文件路径
                     EditorGUILayout.BeginHorizontal();
-                    if (GUILayout.Button("选择路径", GUILayout.Width(100f)))
-                        _save2Path = EditorUtility.OpenFolderPanel("选择文件夹", default, default);
-                    if (GUILayout.Button("打开C#文件路径", GUILayout.Width(120f)))
-                        Process.Start(_save2Path);
+                    if (GUILayout.Button("选择路径", GUILayout.Width(100f))) _save2Path = EditorUtility.OpenFolderPanel("选择文件夹", default, default);
+                    if (GUILayout.Button("打开C#文件路径", GUILayout.Width(120f))) Process.Start(_save2Path);
                     _save2Path = EditorGUILayout.TextField(_save2Path);
                     EditorGUILayout.EndHorizontal();
 
                     //Excel文件夹读取路径
                     EditorGUILayout.BeginHorizontal();
-                    if (GUILayout.Button("选择路径", GUILayout.Width(100f)))
-                        _save3Path = EditorUtility.OpenFolderPanel("选择文件夹", default, default);
-                    if (GUILayout.Button("打开Excel文件路径", GUILayout.Width(120f)))
-                        Process.Start(_save3Path);
+                    if (GUILayout.Button("选择路径", GUILayout.Width(100f))) _save3Path = EditorUtility.OpenFolderPanel("选择文件夹", default, default);
+                    if (GUILayout.Button("打开Excel文件路径", GUILayout.Width(120f))) Process.Start(_save3Path);
                     _save3Path = EditorGUILayout.TextField(_save3Path);
                     EditorGUILayout.EndHorizontal();
 
-                    if (_isOpen)
-                        RefreshExcelTitleData();
+                    if (_isOpen) RefreshExcelTitleData();
                 }
                 EditorGUILayout.EndVertical();
-                if (_isOpen)
-                    RefreshExcelData();
+                if (_isOpen) RefreshExcelData();
             }
             EditorGUILayout.EndVertical();
         }
@@ -229,6 +209,7 @@ namespace ToolEditor
 
                 package.Save(); //储存
             }
+
             if (GUILayout.Button("Excel转换", GUILayout.Width(80f)))
                 ExcelChange.GenerateExcelInfo(_loadExcelPath);
             if (GUILayout.Button("打开Excel", GUILayout.Width(80f)))
