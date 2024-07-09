@@ -65,6 +65,7 @@
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Tween\GameGuide\Trigger\GuideTrigger.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Debug\UIDeBug\UIDebugger1.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\UIFX2\BilinTrailRenderer.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Assemby\CoreAssemby.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\Tools\Tools.cs" />
     <Compile Include="Assets\Script\Framework\Core\Enum\EEvent.cs" />
@@ -75,11 +76,13 @@
     <Compile Include="Assets\Script\Framework\Core\CoreSinglet.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Input\Android\JpyStickPanelView.cs" />
     <Compile Include="Assets\Script\Framework\Core\Interface\IID.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Editor\AnimationUICustomMenu.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionUnity\ExpansionSpriteRenderer.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Tween\Tween.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Debug\CoreDebug.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\UIFX2\EffectScripts\Zrh_UvLr.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Timer\System\TickTimer.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Editor\SerializedPropertyExtension.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\Reflection\Data.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\YooAsset\Error.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Pool\CorePool.cs" />
@@ -96,6 +99,7 @@
     <Compile Include="Assets\Script\Framework\Expansion\Tools\Tools.FileUtil.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\UIFX2\ParticleDelay.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionSystem\ExpansionEnum.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Scripts\AudioObserver.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionUnity\ExpansionInputField.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\List\UIListBase.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionUnity\ExpansionImage.cs" />
@@ -115,8 +119,10 @@
     <Compile Include="Assets\Script\Framework\Expansion\ETHelper\EnumHelper.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Input\InputTouchscreen.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\SystemOrder\CoreSystemOrder.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Scripts\Struct\ScaleBlock.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\SaveData\CoreSaveLoadData.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\EventAndMessage\MessageCenter.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Script\Sequence.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\DataOperation\IDataHandle.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\Layout\Layout.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Language\CoreLanguage.cs" />
@@ -137,6 +143,7 @@
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\UIFX2\Pin.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionUnity\ExpansionTextMeshPro.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionUnity\ExpansionButton.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Script\Customizable.cs" />
     <Compile Include="Assets\Script\Framework\Core\Attribute\UITypeAttribute.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Input\InputIOS.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Tween\GraphicBuildEvent.cs" />
@@ -149,6 +156,7 @@
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\UIFX2\UiScaleEffect.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\UICell.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\DataOperation\Json\JsonOperation.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Script\Ease.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionSystem\ExpansionInterface.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\Tools\Event.cs" />
     <Compile Include="Assets\Script\Framework\Core\Config\GameSetting.cs" />
@@ -156,6 +164,7 @@
     <Compile Include="Assets\Script\Framework\Core\Core\SystemOrder\SystemOderUI.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\List\UIListBaseByAutoLauout.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Scene\Realize\UnityLoadScene.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Editor\AnimationUIInspector.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Input\CoreInput.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Data\Data\CoreData.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Debug\UIDeBug\UIDebugger.cs" />
@@ -163,8 +172,10 @@
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\Empty4Raycast.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionUnity\ExpansionSlider.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\List\UIListHorizontalByAutoLayout.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Scripts\ButtonUI.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Debug\DBug.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Tween\UIFxGetFightStar.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Script\AnimationUI.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionUnity\ExpansionText.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\List\UIFlowLayoutList.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\ScrollPanelUpDown.cs" />
@@ -181,6 +192,7 @@
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\UIFX\UIFxWaveMovement.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\Zrh_Scrollbar.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\FSM\FsmSystem.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Scripts\Main.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\SystemOrder\EnumOrder.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Setting\CoreSetting.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\YooAsset\AsyncOperationBaseExtensions.cs" />
@@ -209,12 +221,14 @@
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Tween\Helper\ButtonTweenScaleFollower.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Behaviour\CoreBehaviour.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\ZMUIFrameWork\Scripts\Runtime\Core\UIModule.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Editor\SequenceDrawer.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\UIFX\UIFxScaleMyself.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\List\UIRecycleListDisplayHelper.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Input\NewInput\Operation.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionSystem\ExpansionAssembly.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Behaviour\BehaviourController.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionSystem\ExpansionDic.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Scripts\GameManager.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionUnity\ExpansionEventTrigger.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UITabBase.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ETHelper\ByteHelper.cs" />
@@ -223,6 +237,7 @@
     <Compile Include="Assets\Script\Framework\Core\Core\DataOperation\CoreDataSystem.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\UIFX\UIFxLoopScale.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\UIFX\UIFxLoopUpDown.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Scripts\Singleton.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\StringTools.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Tween\SliceBarTween.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Tween\UIScaleEffect.cs" />
