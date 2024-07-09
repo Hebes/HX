@@ -54,7 +54,7 @@ namespace Framework.Core
         public static void Add<T>(T t) where T : IBehaviour
         {
             //https://www.cnblogs.com/radray/p/4529482.html
-            if (typeof(IUpdata).IsAssignableFrom(typeof(T)))
+            if (typeof(IUpdate).IsAssignableFrom(typeof(T)))
                 BehaviourController.Instance.Add(t);
             if (typeof(IFixedUpdate).IsAssignableFrom(typeof(T)))
                 BehaviourController.Instance.Add(t, EMonoType.FixedUpdate);
@@ -62,7 +62,7 @@ namespace Framework.Core
         public static void Remove<T>(T t) where T : IBehaviour
         {
             //https://www.cnblogs.com/radray/p/4529482.html
-            if (typeof(IUpdata).IsAssignableFrom(typeof(T)))
+            if (typeof(IUpdate).IsAssignableFrom(typeof(T)))
                 BehaviourController.Instance.Remove(t);
             if (typeof(IFixedUpdate).IsAssignableFrom(typeof(T)))
                 BehaviourController.Instance.Remove(t, EMonoType.FixedUpdate);
@@ -81,7 +81,7 @@ namespace Framework.Core
         {
            return BehaviourController.Instance.StartCoroutine(coroutine);
         }
-        public static void RemoveCoroutine(int coroutineKey)
+        public static void StopCoroutine(int coroutineKey)
         {
             if (Instance.CoroutineDic.TryGetValue(coroutineKey, out Coroutine coroutine))
             {
@@ -91,6 +91,12 @@ namespace Framework.Core
             }
             EDebug.Error("停止失败请，协程不存在");
         }
+
+        public static void StopCoroutine(Coroutine coroutine)
+        {
+            BehaviourController.Instance.StopCoroutine(coroutine);
+        }
+        
         public static void StopAllCoroutines()
         {
             BehaviourController.Instance.StopAllCoroutines();

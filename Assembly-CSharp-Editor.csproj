@@ -52,6 +52,7 @@
     <Compile Include="Assets\Editor\Function\GenerateConfig\ConfigToolUI.cs" />
     <Compile Include="Assets\Editor\Function\Excels\ExcelWriteUI.cs" />
     <Compile Include="Assets\Editor\Function\Excels\ExcelsChange\BinaryData.cs" />
+    <Compile Include="Assets\Editor\Function\SwithchScene\SwitchScene.cs" />
     <Compile Include="Assets\Editor\Function\UIComponentTool.cs" />
     <Compile Include="Assets\Editor\Function\AnimationTextureImporter.cs" />
     <Compile Include="Assets\Editor\Function\ToolScene.cs" />

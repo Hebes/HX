@@ -7,20 +7,11 @@ namespace Framework.Core
 
     }
 
-    /// <summary>
-    /// 生命周期接口
-    /// </summary>
-    public interface IUpdata : IBehaviour
+    public interface IUpdate : IBehaviour
     {
-        /// <summary>
-        /// Updata接口
-        /// </summary>
-        void CoreBehaviourUpdata();
+        void CoreUpdate();
     }
-
-    /// <summary>
-    /// 固定帧更新
-    /// </summary>
+    
     public interface IFixedUpdate : IBehaviour
     {
         public void OnFixedUpdate();

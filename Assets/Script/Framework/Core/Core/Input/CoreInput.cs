@@ -8,14 +8,13 @@ namespace Framework.Core
     /// <summary>
     /// 按键事件
     /// </summary>
-    public enum IInputType
+    public enum EInputKeyBoardType
     {
-        w,
-        s,
-        a,
-        d,
-        /// <summary> 指令 </summary>
-        Oder,
+        Attack,
+        MoveUp,
+        MoveDown,
+        MoveLeft,
+        MoveRight,
     }
 
     [CreateCore(typeof(CoreInput), 9)]

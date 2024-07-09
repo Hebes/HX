@@ -58,7 +58,6 @@
     <Compile Include="Assets\Script\Framework\Expansion\Extension\Extension.Excel.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\UIFX2\WentRotate.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\Grid\UIGridByAutoLayout.cs" />
-    <Compile Include="Assets\Script\Framework\Core\Core\Input\InputData.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Resource\IResLoad.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionUnity\ExpansionGameObject.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\ZMUIFrameWork\Event\UIEventEnum.cs" />
@@ -72,6 +71,7 @@
     <Compile Include="Assets\Script\Framework\Core\Core\DataOperation\Binary\BinaryOperation.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Input\InputPC.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\Button\ButtonRepeat.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\Pool\Pool2.cs" />
     <Compile Include="Assets\Script\Framework\Core\CoreSinglet.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Input\Android\JpyStickPanelView.cs" />
     <Compile Include="Assets\Script\Framework\Core\Interface\IID.cs" />
@@ -148,7 +148,6 @@
     <Compile Include="Assets\Script\Framework\Expansion\Extension\Extension.Mono.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\UIFX2\UiScaleEffect.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\UICell.cs" />
-    <Compile Include="Assets\Script\Framework\Core\Core\Input\接口\IInputPCKeyCode.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\DataOperation\Json\JsonOperation.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionSystem\ExpansionInterface.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\Tools\Event.cs" />
@@ -172,18 +171,16 @@
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\List\UIListVertical.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionSystem\ExpansionInt.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\Extension\Extension.cs" />
-    <Compile Include="Assets\Script\Framework\Core\Core\Event\EventCommonData.cs" />
     <Compile Include="Assets\Script\Framework\Core\Interface\ICore.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Data\Data\IData.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\Button\ButtonDown.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\Button\ScreenSlideTrigger.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Resource\CoreResource.cs" />
-    <Compile Include="Assets\Script\Framework\Core\Core\Event\CoreEvent.Common.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\Tools\Tools.PrefabUtil.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\Button\PointerPressingButton.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\UIFX\UIFxWaveMovement.cs" />
-    <Compile Include="Assets\Script\Framework\Core\Core\FSM\FsmSystem.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\Zrh_Scrollbar.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\FSM\FsmSystem.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\SystemOrder\EnumOrder.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Setting\CoreSetting.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\YooAsset\AsyncOperationBaseExtensions.cs" />
@@ -203,6 +200,7 @@
     <Compile Include="Assets\Script\Framework\Expansion\Utility\BitMask64.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\Tools\Tools.TimeUtil.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\Tools\Tools.StringUtil.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\Timer\CoreTimer.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Scene\CoreScene.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\Grid\UIGrid.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\Button\LongPressButton.cs" />
@@ -212,8 +210,8 @@
     <Compile Include="Assets\Script\Framework\Core\Core\Behaviour\CoreBehaviour.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\ZMUIFrameWork\Scripts\Runtime\Core\UIModule.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\UIFX\UIFxScaleMyself.cs" />
-    <Compile Include="Assets\Script\Framework\Core\Core\Input\NewInput\Operation.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\List\UIRecycleListDisplayHelper.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\Input\NewInput\Operation.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionSystem\ExpansionAssembly.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Behaviour\BehaviourController.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionSystem\ExpansionDic.cs" />

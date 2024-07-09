@@ -20,19 +20,19 @@ namespace Framework.Core
     public class BehaviourController : MonoBehaviour
     {
         public static BehaviourController Instance;
-        private List<IUpdata> updatasList;
+        private List<IUpdate> updatasList;
         private List<IFixedUpdate> fixedUpdatesList;
 
         private void Awake()
         {
             Instance = this;
-            updatasList = new List<IUpdata>();
+            updatasList = new List<IUpdate>();
             fixedUpdatesList = new List<IFixedUpdate>();
         }
         private void Update()
         {
             for (int i = 0; i < updatasList.Count; i++)
-                updatasList[i].CoreBehaviourUpdata();
+                updatasList[i].CoreUpdate();
         }
         private void FixedUpdate()
         {
@@ -46,7 +46,7 @@ namespace Framework.Core
             switch (monoType)
             {
                 case EMonoType.Updata:
-                    updatasList.Remove(t as IUpdata);
+                    updatasList.Remove(t as IUpdate);
                     break;
                 case EMonoType.FixedUpdate:
                     fixedUpdatesList.Remove(t as IFixedUpdate);
@@ -59,7 +59,7 @@ namespace Framework.Core
             switch (monoType)
             {
                 case EMonoType.Updata:
-                    updatasList.Add(t as IUpdata);
+                    updatasList.Add(t as IUpdate);
                     break;
                 case EMonoType.FixedUpdate:
                     fixedUpdatesList.Add(t as IFixedUpdate);

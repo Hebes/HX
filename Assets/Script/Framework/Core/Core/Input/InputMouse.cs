@@ -9,7 +9,7 @@
 
 namespace Framework.Core
 {
-    public class InputMouse : IInput, IUpdata
+    public class InputMouse : IInput, IUpdate
     {
         public void Init()
         {
@@ -53,7 +53,7 @@ namespace Framework.Core
             CoreBehaviour.Add(this);
         }
 
-        public void CoreBehaviourUpdata()
+        public void CoreUpdate()
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {

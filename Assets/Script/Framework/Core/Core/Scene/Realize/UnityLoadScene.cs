@@ -49,7 +49,7 @@ namespace Framework.Core
                 {
                     ++disableProgress;
                     //UnityEngine.Debug.Log($"{sceneName}加载进度是:{disableProgress}");
-                    CoreEvent.EventTrigger(EEvent.LoadSceneEvent.ToInt(), disableProgress);
+                    CoreEvent.I.Trigger(EEvent.LoadSceneEvent, disableProgress);
                     //_progress.value = disableProgress / 100.0f;//0.01开始
                     //yield return new WaitForEndOfFrame();
                     yield return null;
@@ -62,7 +62,7 @@ namespace Framework.Core
             {
                 ++disableProgress;
                 //UnityEngine.Debug.Log($"{sceneName}加载进度是:{disableProgress}");
-                CoreEvent.EventTrigger(EEvent.LoadSceneEvent.ToInt(), disableProgress);
+                CoreEvent.I.Trigger(EEvent.LoadSceneEvent, disableProgress);
                 //_progress.value = disableProgress / 100.0f;
                 //yield return new WaitForEndOfFrame();
                 yield return null;

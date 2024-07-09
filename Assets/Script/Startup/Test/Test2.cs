@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-public class Test2 : MonoBehaviour, IUpdata
+public class Test2 : MonoBehaviour, IUpdate
 {
     //public const string pth = "11";
 
@@ -36,7 +36,7 @@ public class Test2 : MonoBehaviour, IUpdata
         CorePool.Instance.GetClass<Test1>();
     }
 
-    public void CoreBehaviourUpdata()
+    public void CoreUpdate()
     {
         UnityEngine.Debug.Log($"{gameObject.name}   Updata");
 
