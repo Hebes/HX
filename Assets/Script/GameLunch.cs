@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections;
-using Framework;
+﻿using System.Collections;
+using Framework.Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,10 +11,21 @@ using UnityEngine.SceneManagement;
 public class GameLunch : MonoBehaviour
 {
     private int percent; //加载界面的进度
+    public static GameLunch Instance;
+    private ProcessFsmSystem _fsmSystem;
 
     private void Awake()
     {
-        Initialize();
+        //加载流程
+        Instance = this;
+        _fsmSystem = new ProcessFsmSystem(this);
+        var gameProcessList = Utility.Reflection.GetAttribute<GameProcess>();
+        gameProcessList.Sort();
+        foreach (var gameProcess in gameProcessList)
+            _fsmSystem.AddNode(gameProcess.Type);
+        _fsmSystem.Run(gameProcessList[0].Type.FullName);
+        
+        
     }
 
     private void Start()
@@ -24,17 +34,9 @@ public class GameLunch : MonoBehaviour
         StartCoroutine(GameStart());
     }
 
-    private void Initialize()
-    {
-        gameObject.AddComponent<ShowFPS>();
-        //TODO 加载进度界面
-    }
-
     private IEnumerator GameStart()
     {
         //TODO 闪屏
-
-
         yield return Setting(); // 初始化设置 如帧率 程序是否后台运行
         yield return DoHotUpdate(); //热更
         yield return ResourceUpdating(); //加载配置文件

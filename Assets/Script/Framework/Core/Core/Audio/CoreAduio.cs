@@ -36,7 +36,12 @@ namespace Framework.Core
         public Dictionary<string, AudioData> audioClipDic;         //音效列表
         public Dictionary<string, AudioSource> sudioSourceDic;     //音乐组件列表
 
-        public IEnumerator AsyncInit()
+        public IEnumerator AsyncEnter()
+        {
+            yield break;
+        }
+
+        public IEnumerator Exit()
         {
             yield break;
         }

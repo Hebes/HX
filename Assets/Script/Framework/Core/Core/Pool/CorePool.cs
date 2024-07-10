@@ -34,9 +34,14 @@ namespace Framework.Core
             GameObject.DontDestroyOnLoad(_poolObj);
         }
 
-        public IEnumerator AsyncInit()
+        public IEnumerator AsyncEnter()
         {
             yield return null;
+        }
+
+        public IEnumerator Exit()
+        {
+            yield break;
         }
 
         public T Get<T>() where T : new()

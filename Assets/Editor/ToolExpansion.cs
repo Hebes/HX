@@ -476,7 +476,7 @@ namespace Tool
             Directory.Delete(folderPath, recursive);
         }
 
-        public static string[] ACFolderGetFiles(this string folderPath)
+        public static string[] GetFiles(this string folderPath)
         {
             return Directory.GetFiles(folderPath);
         }
@@ -811,7 +811,7 @@ namespace Tool
         /// </summary>
         /// <param name="gameObject">物体</param>
         /// <param name="prefix">前缀</param>
-        private static void ACAddPrefixOne(this GameObject gameObject, string prefix)
+        private static void AddPrefix(this GameObject gameObject, string prefix)
         {
             gameObject.name = gameObject.name.StartsWith(prefix) ? gameObject.name : $"{prefix}{gameObject.name}";
         }
@@ -821,7 +821,7 @@ namespace Tool
         /// </summary>
         /// <param name="gameObject">物体</param>
         /// <param name="prefix">前缀</param>
-        private static void ACRemovePrefixOne(this GameObject gameObject, string prefix)
+        private static void RemovePrefix(this GameObject gameObject, string prefix)
         {
             gameObject.name = gameObject.name.StartsWith(prefix) ? gameObject.name.Replace(prefix, "") : gameObject.name;
         }
@@ -832,15 +832,15 @@ namespace Tool
         /// </summary>
         /// <param name="objs">通常是Selection.objects</param>
         /// <param name="prefix">前缀</param>
-        public static void ACChangePrefixLoop(this UnityEngine.Object[] objs, string prefix, bool isAdd = true)
+        public static void ChangePrefixLoop(this UnityEngine.Object[] objs, string prefix, bool isAdd = true)
         {
             if (objs.Length == 0) { Debug.Log("没有物体"); return; }
             Array.ForEach(objs, (obj) =>
             {
                 if (isAdd)
-                    ACAddPrefixOne(obj as GameObject, prefix);
+                    AddPrefix(obj as GameObject, prefix);
                 else
-                    ACRemovePrefixOne(obj as GameObject, prefix);
+                    RemovePrefix(obj as GameObject, prefix);
             });
         }
 

@@ -30,9 +30,14 @@ namespace Framework.Core
             _inputList = new List<IInput>();
         }
 
-        public IEnumerator AsyncInit()
+        public IEnumerator AsyncEnter()
         {
             yield return null;
+        }
+
+        public IEnumerator Exit()
+        {
+            yield break;
         }
 
 

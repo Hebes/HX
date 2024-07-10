@@ -72,8 +72,8 @@
     <Compile Include="Assets\Script\Framework\Core\Core\DataOperation\Binary\BinaryOperation.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Input\InputPC.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\Button\ButtonRepeat.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Start\CoreRun.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Pool\Pool2.cs" />
-    <Compile Include="Assets\Script\Framework\Core\CoreSinglet.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Input\Android\JpyStickPanelView.cs" />
     <Compile Include="Assets\Script\Framework\Core\Interface\IID.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Editor\AnimationUICustomMenu.cs" />
@@ -188,6 +188,7 @@
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\Button\ScreenSlideTrigger.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Resource\CoreResource.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\Tools\Tools.PrefabUtil.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Start\CoreSinglet.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\Button\PointerPressingButton.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\UIFX\UIFxWaveMovement.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\Zrh_Scrollbar.cs" />
@@ -245,7 +246,6 @@
     <Compile Include="Assets\Script\Framework\Core\Core\Input\InputNewInputPC.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Scene\Realize\YooAssetLoadScene.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\ExpansionUnity\ExpansionToggle.cs" />
-    <Compile Include="Assets\Script\Framework\Core\CoreRun.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Behaviour\InterfaceBehaviour.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\DataOperation\PlayerPrefs\PlayerPrefsOperation.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\Tools\Tools.LayerUtils.cs" />

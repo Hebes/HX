@@ -34,7 +34,12 @@ namespace Framework.Core
             SwitchModel();
         }
 
-        public IEnumerator AsyncInit()
+        public IEnumerator AsyncEnter()
+        {
+            yield break;
+        }
+
+        public IEnumerator Exit()
         {
             yield break;
         }

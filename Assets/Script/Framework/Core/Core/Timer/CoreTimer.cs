@@ -12,9 +12,14 @@ namespace Framework.Core
         {
         }
 
-        public IEnumerator AsyncInit()
+        public IEnumerator AsyncEnter()
         {
             yield return null;
+        }
+
+        public IEnumerator Exit()
+        {
+            yield break;
         }
 
         private List<TimerData> _taskList = new List<TimerData>();

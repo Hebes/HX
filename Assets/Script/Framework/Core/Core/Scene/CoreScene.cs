@@ -25,9 +25,14 @@ namespace Framework.Core
             sceneLoad.CoreSceneInit();
         }
 
-        public IEnumerator AsyncInit()
+        public IEnumerator AsyncEnter()
         {
             yield return null;
+        }
+
+        public IEnumerator Exit()
+        {
+            yield break;
         }
 
 

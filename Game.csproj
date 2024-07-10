@@ -55,7 +55,6 @@
     <Compile Include="Assets\Script\Game\Model\ModelRole\暂时用不到的\ItemPickUp.cs" />
     <Compile Include="Assets\Script\Game\Model\ModeSkill\EnumSkill.cs" />
     <Compile Include="Assets\Script\Game\Model\ModelItem\Item.cs" />
-    <Compile Include="Assets\Script\Game\Attribute\GameProcess.cs" />
     <Compile Include="Assets\Script\Game\Config\ConfigData.cs" />
     <Compile Include="Assets\Script\Game\Model\ModelTask\ManagerTask.cs" />
     <Compile Include="Assets\Script\Game\Model\ModelUI\UISkill\SkillBtn.cs" />
@@ -134,7 +133,6 @@
     <Compile Include="Assets\Script\Game\Attribute\ModelCreat.cs" />
     <Compile Include="Assets\Script\Game\Model\MdoelTeam\InterfaceTeam.cs" />
     <Compile Include="Assets\Script\Game\Model\ModelCareer\EnemCareer.cs" />
-    <Compile Include="Assets\Script\Game\GameProcess\GameEnter.cs" />
     <Compile Include="Assets\Script\Game\Config\ConfigSortingLayer.cs" />
     <Compile Include="Assets\Script\Game\Model\ModelAI\EnumAI.cs" />
     <Compile Include="Assets\Script\Game\Model\MdoelEffect\InterfaceEffect.cs" />
@@ -142,7 +140,6 @@
     <Compile Include="Assets\Script\Game\Model\ModeInventory\ManagerInventory.cs" />
     <Compile Include="Assets\Script\Game\Model\MdoelAttributes\AttributesData.cs" />
     <Compile Include="Assets\Script\Game\Model\ModelRole\Entity\RoleNPC.cs" />
-    <Compile Include="Assets\Script\Game\Interface\IModel.cs" />
     <None Include="Assets\Script\Game\Game.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Unity\UnityEditor\2022.3.13f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

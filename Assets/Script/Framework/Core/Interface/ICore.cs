@@ -14,6 +14,11 @@ namespace Framework.Core
         /// 异步初始化
         /// </summary>
         /// <returns></returns>
-        public IEnumerator AsyncInit();
+        public IEnumerator AsyncEnter();
+
+        /// <summary>
+        /// 退出
+        /// </summary>
+        public IEnumerator Exit();
     }
 }

@@ -40,10 +40,15 @@ public class CoreLanguage : ICore
         LanguageComponentList = new List<LanguageComponent>();
     }
 
-    public IEnumerator AsyncInit()
+    public IEnumerator AsyncEnter()
     {
         this.Log("协程多语言初始化");
-        yield return null;
+        yield break;
+    }
+
+    public IEnumerator Exit()
+    {
+        yield break;
     }
 
 

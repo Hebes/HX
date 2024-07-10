@@ -34,8 +34,8 @@ namespace CustomEditorExpansion
 
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("获取前缀", EditorStyles.miniButtonMid)) _prefix1 = Selection.activeObject.ACGetPrefix();
-            if (GUILayout.Button("前缀添加", EditorStyles.miniButtonMid)) Selection.objects.ACChangePrefixLoop(_prefix1);
-            if (GUILayout.Button("去除前缀", EditorStyles.miniButtonMid)) Selection.objects.ACChangePrefixLoop(_prefix1, false);
+            if (GUILayout.Button("前缀添加", EditorStyles.miniButtonMid)) Selection.objects.ChangePrefixLoop(_prefix1);
+            if (GUILayout.Button("去除前缀", EditorStyles.miniButtonMid)) Selection.objects.ChangePrefixLoop(_prefix1, false);
             EditorGUILayout.EndHorizontal();
         }
     }

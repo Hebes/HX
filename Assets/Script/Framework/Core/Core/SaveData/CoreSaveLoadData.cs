@@ -19,9 +19,14 @@ namespace Framework.Core
     [CreateCore(typeof(CoreSaveLoadData), 2)]
     public class CoreSaveLoadData : ICore
     {
-        public IEnumerator AsyncInit()
+        public IEnumerator AsyncEnter()
         {
             yield return null;
+        }
+
+        public IEnumerator Exit()
+        {
+            yield break;
         }
 
         public void Init()

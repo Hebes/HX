@@ -37,7 +37,12 @@ namespace Framework.Core
             UnityEngine.Debug.Log("初始化Mono完毕!");
         }
 
-        public IEnumerator AsyncInit()
+        public IEnumerator AsyncEnter()
+        {
+            yield break;
+        }
+
+        public IEnumerator Exit()
         {
             yield break;
         }

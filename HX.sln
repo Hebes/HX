@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Framework.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{b4872066-7974-3efd-dbd9-9c3695c2fb09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{dd7c2b38-973b-e1a2-9450-14c5d58e180d}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{acff5383-e45e-b5be-8e30-a6f492c6218d}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{dd7c2b38-973b-e1a2-9450-14c5d58e180d}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor-firstpass", "Assembly-CSharp-Editor-firstpass.csproj", "{b2dbaec6-e26a-63f9-47b1-36f2549b3bb9}"
 EndProject
@@ -24,10 +24,10 @@ Global
 		{17b6570d-966d-dcaa-0d9a-5cc158dbc6f6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{b4872066-7974-3efd-dbd9-9c3695c2fb09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{b4872066-7974-3efd-dbd9-9c3695c2fb09}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{dd7c2b38-973b-e1a2-9450-14c5d58e180d}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{dd7c2b38-973b-e1a2-9450-14c5d58e180d}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{acff5383-e45e-b5be-8e30-a6f492c6218d}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{acff5383-e45e-b5be-8e30-a6f492c6218d}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{dd7c2b38-973b-e1a2-9450-14c5d58e180d}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{dd7c2b38-973b-e1a2-9450-14c5d58e180d}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{b2dbaec6-e26a-63f9-47b1-36f2549b3bb9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{b2dbaec6-e26a-63f9-47b1-36f2549b3bb9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection

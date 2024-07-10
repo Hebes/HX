@@ -33,9 +33,14 @@ namespace Framework.Core
             Instance = this;
         }
 
-        public IEnumerator AsyncInit()
+        public IEnumerator AsyncEnter()
         {
             yield return null;
+        }
+
+        public IEnumerator Exit()
+        {
+            yield break;
         }
 
         public void Save(object obj, string fileName, EDataType dataType)

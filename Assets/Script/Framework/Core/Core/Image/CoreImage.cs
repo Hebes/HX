@@ -22,9 +22,14 @@ namespace Framework.Core
             SpriteDic = new Dictionary<string, Sprite>();
         }
 
-        public IEnumerator AsyncInit()
+        public IEnumerator AsyncEnter()
         {
             yield return null;
+        }
+
+        public IEnumerator Exit()
+        {
+            yield break;
         }
 
         public static void Add(ImageComponent imageComponent)

@@ -19,7 +19,12 @@ namespace Framework.Core
     [CreateCore(typeof(CoreDebug),1)]
     public class CoreDebug : ICore
     {
-        public IEnumerator AsyncInit()
+        public IEnumerator AsyncEnter()
+        {
+            yield break;
+        }
+
+        public IEnumerator Exit()
         {
             yield break;
         }

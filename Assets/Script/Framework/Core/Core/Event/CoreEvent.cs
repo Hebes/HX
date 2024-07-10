@@ -21,9 +21,14 @@ namespace Framework.Core
             _eventDic = new Dictionary<Enum, IEventData>();
         }
 
-        public IEnumerator AsyncInit()
+        public IEnumerator AsyncEnter()
         {
             yield return null;
+        }
+
+        public IEnumerator Exit()
+        {
+            yield break;
         }
 
         public static CoreEvent I;

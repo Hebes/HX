@@ -10,9 +10,14 @@ namespace Framework.Core
     [CreateCore(typeof(CoreSetting), 2)]
     public class CoreSetting : ICore
     {
-        public IEnumerator AsyncInit()
+        public IEnumerator AsyncEnter()
         {
             yield return null;
+        }
+
+        public IEnumerator Exit()
+        {
+            yield break;
         }
 
         public void Init()

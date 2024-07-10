@@ -45,10 +45,15 @@
     <Analyzer Include="D:\Unity\UnityEditor\2022.3.13f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Startup\GameProcess\GameSetting.cs" />
+    <Compile Include="Assets\Script\Startup\GameProcess\ProcessFSM\FsmSystem.cs" />
+    <Compile Include="Assets\Script\Startup\GameProcess\ProcessFSM\IProcessStateNode.cs" />
     <Compile Include="Assets\Script\Startup\Test\Test1.cs" />
     <Compile Include="Assets\Script\Startup\Test\Newlifecycle.cs" />
+    <Compile Include="Assets\Script\Startup\GameProcess\GameEnter.cs" />
     <Compile Include="Assets\Script\GameLunch.cs" />
     <Compile Include="Assets\Script\Startup\Utils\SceneLoadingCanvasMgr.cs" />
+    <Compile Include="Assets\Script\Startup\GameProcess\ProcessFSM\GameProcess.cs" />
     <Compile Include="Assets\Script\Startup\Utils\ShowFPS.cs" />
     <Compile Include="Assets\Script\Startup\UI\SceneLoadingWindow.cs" />
     <Compile Include="Assets\Script\Startup\Test\Test2.cs" />
