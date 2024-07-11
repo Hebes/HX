@@ -50,13 +50,13 @@
     <Compile Include="Assets\Script\Startup\GameProcess\ProcessFSM\IProcessStateNode.cs" />
     <Compile Include="Assets\Script\Startup\Test\Test1.cs" />
     <Compile Include="Assets\Script\Startup\Test\Newlifecycle.cs" />
-    <Compile Include="Assets\Script\Startup\GameProcess\GameEnter.cs" />
     <Compile Include="Assets\Script\GameLunch.cs" />
     <Compile Include="Assets\Script\Startup\Utils\SceneLoadingCanvasMgr.cs" />
     <Compile Include="Assets\Script\Startup\GameProcess\ProcessFSM\GameProcess.cs" />
     <Compile Include="Assets\Script\Startup\Utils\ShowFPS.cs" />
     <Compile Include="Assets\Script\Startup\UI\SceneLoadingWindow.cs" />
     <Compile Include="Assets\Script\Startup\Test\Test2.cs" />
+    <Compile Include="Assets\Script\Startup\GameProcess\GameProcessEnter.cs" />
     <Compile Include="Assets\Script\Startup\Config\WorldConfig.cs" />
     <Compile Include="Assets\Script\Startup\Test\BuffData1.cs" />
     <None Include="Assets\Resources\AssetsPackage\Font\vonwaon-bitmap.ttf\license.txt" />

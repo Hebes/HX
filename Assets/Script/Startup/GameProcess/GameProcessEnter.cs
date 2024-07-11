@@ -2,10 +2,10 @@
 using Framework.Core;
 
 /// <summary>
-/// 游戏进入
+/// 流程进入
 /// </summary>
-[GameProcess(typeof(GameEnter),1)]
-public class GameEnter : IProcessStateNode
+[GameProcess(typeof(GameProcessEnter),1)]
+public class GameProcessEnter : IProcessStateNode
 {
     private ProcessFsmSystem _processFsmSystem;
     

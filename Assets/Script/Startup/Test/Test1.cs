@@ -10,7 +10,7 @@ public class Test1 : IPool// MonoBehaviour,
 {
     public float DesMilliseconds => 1000;
 
-    public void Get()
+    public void Get(object valueTuple)
     {
         Debug.Log("获取");
     }

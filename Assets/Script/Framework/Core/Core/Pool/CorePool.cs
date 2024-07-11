@@ -18,20 +18,21 @@ namespace Framework.Core
     public class CorePool : ICore
     {
         public static CorePool Instance;
-        private Dictionary<string, List<PoolData>> poolDic;
-        private GameObject _poolObj;
-        private Dictionary<string, string> PathDic;
+        public Dictionary<string, List<PoolData>> PoolDic; //对象回收池字典
+        private Dictionary<IPool, PoolData> UseDic; //对象使用池字典
+        private Dictionary<string, string> PathDic; //加载物体的路径字典
+        private GameObject _poolObj; //父物体
 
         public void Init()
         {
             Instance = this;
-            poolDic = new Dictionary<string, List<PoolData>>();
+            PoolDic = new Dictionary<string, List<PoolData>>();
             PathDic = new Dictionary<string, string>()
             {
                 { "Test1", "AssetsPackage/Prefab/Test1" }
             };
             _poolObj = new GameObject("PoolManager");
-            GameObject.DontDestroyOnLoad(_poolObj);
+            Object.DontDestroyOnLoad(_poolObj);
         }
 
         public IEnumerator AsyncEnter()
@@ -44,24 +45,23 @@ namespace Framework.Core
             yield break;
         }
 
-        public T Get<T>() where T : new()
+        public T Get<T>(float desMilliseconds = -1) where T : IPool, new()
         {
             var tNameValue = nameof(T);
-            if (!typeof(T).IsSubclassOf(typeof(IPool)))
-                throw new Exception($"{typeof(T).FullName}请继承IPool");
-            if (!poolDic.ContainsKey(tNameValue))
-                poolDic.Add(tNameValue, new List<PoolData>());
+            if (!PoolDic.ContainsKey(tNameValue))
+                PoolDic.Add(tNameValue, new List<PoolData>());
 
-
+            PoolData poolData;
             //Mono组件
             if (typeof(T).IsSubclassOf(typeof(Component)))
             {
-                if (poolDic[tNameValue].Count > 0)
+                if (PoolDic[tNameValue].Count > 0)
                 {
-                    var poolData = poolDic[tNameValue][0].Pool;
-                    poolDic[tNameValue].RemoveAt(0);
-                    RunGet(poolData);
-                    return (T)poolData;
+                    poolData = PoolDic[tNameValue][0];
+                    PoolDic[tNameValue].Remove(poolData);
+                    poolData.SetData(tNameValue, DateTime.Now, poolData.Pool, desMilliseconds);
+                    UseDic.Add(poolData.Pool, poolData);
+                    return (T)poolData.Pool;
                 }
 
                 //加载物体
@@ -71,41 +71,40 @@ namespace Framework.Core
                 var tComponentTemp = gameObjectTemp.GetComponent<T>();
                 if (tComponentTemp == null && typeof(Component).IsAssignableFrom(typeof(T)))
                     gameObjectTemp.AddComponent(typeof(T));
-                RunGet(tComponentTemp);
-                return gameObjectTemp.GetComponent<T>();
+                var component = gameObjectTemp.GetComponent<T>();
+                poolData = new PoolData(this);
+                poolData.SetData(tNameValue, DateTime.Now, component, desMilliseconds);
+                UseDic.Add(component, poolData);
+                return component;
             }
 
             //class
-            if (poolDic[tNameValue].Count > 0)
+            if (PoolDic[tNameValue].Count > 0)
             {
-                var poolData = poolDic[tNameValue][0].Pool;
-                poolDic[tNameValue].RemoveAt(0);
-                RunGet(poolData);
-                return (T)poolData;
+                poolData = PoolDic[tNameValue][0];
+                PoolDic[tNameValue].Remove(poolData);
+                poolData = new PoolData(this);
+                poolData.SetData(tNameValue, DateTime.Now, poolData.Pool, desMilliseconds);
+                UseDic.Add(poolData.Pool, poolData);
+                return (T)poolData.Pool;
             }
-
             var t = new T();
-            RunGet(t);
+            poolData = new PoolData(this);
+            poolData.SetData(tNameValue, DateTime.Now,t , desMilliseconds);
+            UseDic.Add(poolData.Pool, poolData);
             return t;
-
-            void RunGet<TK>(TK k)
-            {
-                if (k is IPool pool1)
-                    pool1.Get();
-            }
         }
 
         public T GetMono<T>() where T : Component, IPool
         {
             //如果缓存池中有的话
-            if (poolDic.TryGetValue(nameof(T), out var data))
+            if (PoolDic.TryGetValue(nameof(T), out var data))
             {
                 if (data.Count > 0)
                 {
-                    IPool poolData = data[0].Pool;
-                    poolData.Get();
-                    poolDic[nameof(T)].RemoveAt(0);
-                    return poolData as T;
+                    var poolData = data[0];
+                    poolData.Pool.Get(null);
+                    return poolData.Pool as T;
                 }
             }
 
@@ -116,67 +115,54 @@ namespace Framework.Core
             GameObject gameObjectTemp = Object.Instantiate(gameObject);
             T t = gameObjectTemp.GetComponent<T>();
             if (t == null) t = gameObjectTemp.AddComponent<T>();
-            t.Get();
+            t.Get(null);
             return t;
         }
 
         public T GetMono<T>(GameObject gameObject) where T : Component, IPool
         {
             //如果缓存池中有的话
-            if (poolDic.TryGetValue(nameof(T), out var data))
+            if (PoolDic.TryGetValue(nameof(T), out var data))
             {
                 if (data.Count > 0)
                 {
-                    var poolData = data[0].Pool;
-                    poolData.Get();
-                    poolDic[nameof(T)].RemoveAt(0);
-                    return poolData as T;
+                    var poolData = data[0];
+                    poolData.Pool.Get(null);
+                    return poolData.Pool as T;
                 }
             }
 
             var gameObjectTemp = Object.Instantiate(gameObject);
             var t = gameObjectTemp.GetComponent<T>();
             if (t == null) t = gameObjectTemp.AddComponent<T>();
-            t.Get();
+            t.Get(null);
             return t;
         }
 
         public T GetClass<T>() where T : class, IPool, new()
         {
-            T t = default;
-            if (poolDic.TryGetValue(nameof(T), out var data))
+            T t;
+            if (PoolDic.TryGetValue(nameof(T), out var data))
             {
                 if (data.Count > 0) //说明有
-                {
-                    t = data[0].Pool as T;
-                    data.RemoveAt(0);
-                    return t;
-                }
+                    return data[0].Pool as T;
             }
 
             t = new T();
-            t.Get();
+            t.Get(null);
             return t;
         }
 
         public void Push<T>(T t) where T : IPool
         {
-            if (!poolDic.ContainsKey(nameof(T)))
-                poolDic.Add(nameof(T), new List<PoolData>());
-
-            var poolData = new PoolData { Pool = t, PushTime = DateTime.Now };
-            poolDic[nameof(T)].Add(poolData);
+            var tName = nameof(T);
+            PoolDic[tName].Add(UseDic[t]);
+            UseDic.Remove(t);
             t.Push();
-            //清理超时的
-            var poolDataList = poolDic[nameof(T)];
+            //检查到期的对象移除
+            var poolDataList = PoolDic[tName];
             for (var i = poolDataList.Count - 1; i >= 0; i--)
-            {
-                var poolDataTemp = poolDataList[i];
-                var elapsedTime = poolDataTemp.PushTime - DateTime.Now;
-                if (elapsedTime.Milliseconds > poolDataTemp.Pool.DesMilliseconds)
-                    poolDataList.RemoveAt(i);
-                   
-            }
+                poolDataList[i].RemoveOverTime();
         }
 
         /// <summary>
@@ -196,33 +182,64 @@ namespace Framework.Core
         }
     }
 
-    public struct PoolData
+    public class PoolData : IID
     {
+        public PoolData(CorePool value)
+        {
+            CorePool = value;
+            ID = IdWorker.Singleton.nextId();
+        }
+
+        public CorePool CorePool;
+
+        /// <summary>
+        /// 归属字典的Key
+        /// </summary>
+        public string DicKey;
+
+        /// <summary>
+        /// 推入时间
+        /// </summary>
         public DateTime PushTime;
 
-        public IPool Pool;
-    }
-
-    /// <summary>
-    /// 对象池接口
-    /// </summary>
-    public interface IPool
-    {
         /// <summary>
         /// 对象销毁时间
         /// -1:表示不销毁 0:立即销毁 1000:1秒后销毁 以此类推
         /// 毫秒计算 1000毫秒等于1秒
         /// </summary>
-        public float DesMilliseconds { get; }
+        public float DesMilliseconds;
 
         /// <summary>
-        /// 从对象池出来之后需要做的事
+        /// 对象
         /// </summary>
-        public void Get();
+        public IPool Pool;
 
         /// <summary>
-        /// 进对象池之前需要做的事
+        /// 清理超时的
         /// </summary>
-        public void Push();
+        public void RemoveOverTime()
+        {
+            var elapsedTime = PushTime - DateTime.Now;
+            if (elapsedTime.Milliseconds > DesMilliseconds)
+                CorePool.PoolDic[DicKey].Remove(this);
+        }
+
+        public long ID { get; set; }
+
+        /// <summary>
+        /// 取出后重新设置数据
+        /// </summary>
+        /// <param name="dicKey"></param>
+        /// <param name="pushTime"></param>
+        /// <param name="pool"></param>
+        /// <param name="desMilliseconds"></param>
+        public void SetData(string dicKey, DateTime pushTime, IPool pool, float desMilliseconds = -1)
+        {
+            DicKey = dicKey;
+            PushTime = pushTime;
+            Pool = pool;
+            DesMilliseconds = desMilliseconds;
+            Pool.Get(this);
+        }
     }
 }

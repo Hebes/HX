@@ -161,6 +161,7 @@
     <Compile Include="Assets\Script\Framework\Expansion\Tools\Event.cs" />
     <Compile Include="Assets\Script\Framework\Core\Config\GameSetting.cs" />
     <Compile Include="Assets\Script\Framework\Expansion\UI\ShowUIObj.cs" />
+    <Compile Include="Assets\Script\Framework\Core\Core\Pool\IPool.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\SystemOrder\SystemOderUI.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\List\UIListBaseByAutoLauout.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Scene\Realize\UnityLoadScene.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Core\UIBaseExt\List\UIListHorizontal.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\ZMUIFrameWork\Scripts\Runtime\Agent\UGUIAgent.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\UI\Tween\Helper\ButtonTweenScaleFollower.cs" />
+    <Compile Include="Assets\Script\Framework\Expansion\ID\IdWorker.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\Behaviour\CoreBehaviour.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\ZMUIFrameWork\Scripts\Runtime\Core\UIModule.cs" />
     <Compile Include="Assets\Script\Framework\Core\Core\UI\AnimationUI\Editor\SequenceDrawer.cs" />
