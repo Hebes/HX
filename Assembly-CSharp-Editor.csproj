@@ -45,7 +45,6 @@
     <Analyzer Include="D:\Unity\UnityEditor\2022.3.13f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Editor\Function\GenerateConfig\GenerateBinaryFile.cs" />
     <Compile Include="Assets\Editor\Function\Excels\ExcelsChange\ClassData.cs" />
     <Compile Include="Assets\Editor\ToolExpansion.cs" />
     <Compile Include="Assets\Editor\CustomEditor\EditorLanguage.cs" />
@@ -59,7 +58,6 @@
     <Compile Include="Assets\Resources\AssetsPackage\Tilemap\Custom Brush Scripts\Coordinate Brush\Editor\CoordinateBrush.cs" />
     <Compile Include="Assets\Editor\Function\LogTool.cs" />
     <Compile Include="Assets\Editor\CustomEditor\EditorImage.cs" />
-    <Compile Include="Assets\Editor\Function\GenerateConfig\GenerateConfigTool.cs" />
     <Compile Include="Assets\Editor\Function\UIInstall.cs" />
     <Compile Include="Assets\Editor\CustomEditor\EditorText.cs" />
     <Compile Include="Assets\Editor\Function\Excels\ExcelsChange\ExcelChange.cs" />

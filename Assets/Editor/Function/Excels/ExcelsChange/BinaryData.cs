@@ -29,8 +29,6 @@ namespace ToolEditor
         /// </summary>
         public static void CreateByte(string filePath, string[][] data)
         {
-            //创建文件
-            Debug.Log($"当前路径是{filePath}");
             string className = new FileInfo(filePath).Name.Split('.')[0];
             
             if (!Directory.Exists(binaryDataSavePath))
@@ -87,34 +85,6 @@ namespace ToolEditor
                 lengthBytes.AddRange(dataBytes);
                 bytes = lengthBytes.ToArray();
             }
-
-            //try
-            //{
-            //    if (type == typeof(int))
-            //        bytes = BitConverter.GetBytes(int.Parse(data));
-            //    else if (type == typeof(float))
-            //        bytes = BitConverter.GetBytes(float.Parse(data));
-            //    else if (type == typeof(bool))
-            //        bytes = BitConverter.GetBytes(bool.Parse(data));
-            //    else if (type == typeof(string) ||
-            //        type == typeof(List<string>) ||
-            //        type == typeof(List<int>) ||
-            //        type == typeof(List<float>)
-            //        //TODO自己定义的类型
-            //        )
-            //    {
-            //        byte[] dataBytes = Encoding.Default.GetBytes(data);
-            //        List<byte> lengthBytes = BitConverter.GetBytes(dataBytes.Length).ToList();
-            //        lengthBytes.AddRange(dataBytes);
-            //        bytes = lengthBytes.ToArray();
-            //    }
-            //}
-            //finally
-            //{
-            //    Debug.LogError($"当前类型是：{type.Name}.{data}数据转换错误,请检查类型");
-            //}
-
-
             if (bytes == null) throw new Exception($"{nameof(UnityEngine.Object.name)}.GetBasicField: 其类型未配置或不是基础类型 Type:{type} Data:{data}");
             return bytes;
         }

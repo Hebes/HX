@@ -410,6 +410,8 @@ namespace Tool
         /// <param name="folderPath"></param>
         public static void OpenFolder(string folderPath)
         {
+            if (!Directory.Exists(folderPath))
+                throw new Exception("当前文件夹路径错误");
             System.Diagnostics.Process.Start(folderPath);
         }
 

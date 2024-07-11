@@ -55,19 +55,13 @@ namespace ToolEditor
         public static void GenerateExcelInfo(string path)
         {
             IEnumerable<string> paths = Directory.EnumerateFiles(path, "*.xlsx");
-            foreach (string filePath in paths)
+            foreach (var filePath in paths)
             {
-                //读取Excel数据
-                string[][] data = filePath.LoadExcel();
-                //生成C#文件
-                ClassData.CreateScript(filePath, data);
-                Debug.Log("C#文件生成完毕");
-                //生成二进制文件
-                BinaryData.CreateByte(filePath, data);
-                Debug.Log("二进制文件生成完毕");
+                var data = filePath.LoadExcel();//读取Excel数据
+                ClassData.CreateScript(filePath, data); //生成C#文件
+                BinaryData.CreateByte(filePath, data);//生成二进制文件
             }
-            //刷新Project窗口
-            AssetDatabase.Refresh();
+            AssetDatabase.Refresh();//刷新Project窗口
         }
 
 

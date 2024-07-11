@@ -18,6 +18,16 @@ namespace ToolEditor
     /// </summary>
     public class ExcelWriteUI : EditorWindow
     {
+        [MenuItem("Tools/编辑Excel#E #E")]
+        public static void BuildPackageVersions()
+        {
+            if (!EditorWindow.HasOpenInstances<ExcelWriteUI>())
+                GetWindow(typeof(ExcelWriteUI), false, "Excel数据读取").Show();
+            else
+                GetWindow(typeof(ExcelWriteUI)).Close();
+        }
+        
+        
         private static string _newLoadExcelPath = string.Empty; //新路径
         private Vector2 _scroll1, _scroll2 = Vector2.zero; //滑动
         private string[][] _data; //数据
@@ -38,6 +48,10 @@ namespace ToolEditor
 
         private bool _isOpen;
 
+        #region 存读
+        private void OnEnable() => Load();
+        private void OnDisable() => Save();
+        [MenuItem("Tools/保存数据 #S")]
         private void Save()
         {
             if (!EditorWindow.HasOpenInstances<ExcelWriteUI>()) return;
@@ -53,7 +67,6 @@ namespace ToolEditor
 
             Debug.LogError("保存成功");
         }
-
         private void Load()
         {
             Type type = GetType();
@@ -66,19 +79,8 @@ namespace ToolEditor
                     data.SetValue(this, PlayerPrefs.GetInt($"{Application.productName}{data.Name}Save"));
             }
         }
-
-        [MenuItem("Tools/编辑Excel#E #E")]
-        public static void BuildPackageVersions()
-        {
-            if (!EditorWindow.HasOpenInstances<ExcelWriteUI>())
-                GetWindow(typeof(ExcelWriteUI), false, "Excel数据读取").Show();
-            else
-                GetWindow(typeof(ExcelWriteUI)).Close();
-        }
-
-        private void OnEnable() => Load();
-
-        private void OnDisable() => Save();
+        #endregion
+        
 
         private void LeftUI()
         {
