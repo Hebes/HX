@@ -14,12 +14,11 @@ public class ProcessFsmSystem
     public void AddNode(Type type)
     {
         var stateNode = Activator.CreateInstance(type);
-        var nodeName = nameof(type);
-        if (string.IsNullOrEmpty(nodeName)) throw new Exception("添加的节点为空");
-        if (_nodes.ContainsKey(nodeName)) throw new Exception($"状态节点已存在 : {nodeName}");
-        if (stateNode is not IProcessStateNode processStateNode) throw new Exception($"{nodeName}没有继承接口");
+        if (string.IsNullOrEmpty(type.FullName)) throw new Exception("添加的节点为空");
+        if (_nodes.ContainsKey(type.FullName)) throw new Exception($"状态节点已存在 : {type.FullName}");
+        if (stateNode is not IProcessStateNode processStateNode) throw new Exception($"{type.FullName}没有继承接口");
         processStateNode.OnCreate(this);
-        _nodes.Add(nodeName, processStateNode);
+        _nodes.Add(type.FullName, processStateNode);
     }
 
     public void ChangeState(string nodeName, object obj = null)
