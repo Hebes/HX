@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Framework.Core;
 using UnityEngine;
 
 public class ProcessFsmSystem
@@ -26,7 +27,7 @@ public class ProcessFsmSystem
         var node = TryGetNode(nodeName);
         if (node == null)
             throw new Exception($"没有找到状态节点 : {nodeName}");
-        Debug.Log($"{_curNode.GetType().FullName} --> {node.GetType().FullName}");
+        IProcessStateNode.Log($"{_curNode.GetType().FullName} --> {node.GetType().FullName}");
         _preNode = _curNode;
         _curNode.OnExit();
         _curNode = node;
@@ -36,6 +37,7 @@ public class ProcessFsmSystem
     public void Run(string entryNode, object obj = null)
     {
         _curNode = TryGetNode(entryNode);
+        IProcessStateNode.Log($"Run -->{entryNode}");
         _preNode = _curNode;
         if (_curNode == null)
             throw new Exception($"未找到进入的节点: {entryNode}");

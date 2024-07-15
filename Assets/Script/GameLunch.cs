@@ -24,8 +24,6 @@ public class GameLunch : MonoBehaviour
         foreach (var gameProcess in gameProcessList)
             _fsmSystem.AddNode(gameProcess.Type);
         _fsmSystem.Run(gameProcessList[0].Type.FullName);
-        
-        
     }
 
     private void Start()
