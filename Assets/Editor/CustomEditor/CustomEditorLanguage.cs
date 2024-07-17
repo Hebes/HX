@@ -15,7 +15,7 @@ namespace CustomEditorExpansion
         private void OnEnable()
         {
             _languageText = (LanguageComponent)target;
-            _languageText.text = _languageText.gameObject.GetComponent<Text>();
+            _languageText.text = _languageText.GetComponent<Text>();
             _languageText.key = _languageText.GetComponent<Text>().text;
         }
 
@@ -24,7 +24,7 @@ namespace CustomEditorExpansion
             base.DrawDefaultInspector();
             if (Application.isPlaying) return;
             GUILayout.Label("Key", EditorStyles.boldLabel);
-            _languageText.key = EditorGUILayout.TextArea(_languageText.text.text, GUILayout.Height(40));
+            _languageText.key = EditorGUILayout.TextArea(string.IsNullOrEmpty(_languageText.text.text) ? string.Empty : _languageText.text.text, GUILayout.Height(40));
         }
     }
 }

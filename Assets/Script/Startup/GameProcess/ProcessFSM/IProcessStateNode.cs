@@ -8,7 +8,7 @@ public interface IProcessStateNode
     /// </summary>
     /// <param name="obj"></param>
     void OnCreate(ProcessFsmSystem obj);
-    
+
     /// <summary>
     /// 状态切换的时候会执行
     /// </summary>
@@ -23,4 +23,9 @@ public interface IProcessStateNode
     /// 退出
     /// </summary>
     void OnExit();
+
+    static void Log(string str)
+    {
+        UnityEngine.Debug.Log(str);
+    }
 }
