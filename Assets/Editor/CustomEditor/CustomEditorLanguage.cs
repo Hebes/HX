@@ -8,13 +8,14 @@ namespace CustomEditorExpansion
     /// 多语言工具
     /// </summary>
     [CustomEditor(typeof(LanguageComponent), true)]
-    public class EditorLanguage : Editor
+    public class CustomEditorLanguage : Editor
     {
         private LanguageComponent _languageText;
 
         private void OnEnable()
         {
             _languageText = (LanguageComponent)target;
+            _languageText.text = _languageText.gameObject.GetComponent<Text>();
             _languageText.key = _languageText.GetComponent<Text>().text;
         }
 

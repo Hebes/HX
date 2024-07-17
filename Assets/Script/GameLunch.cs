@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Framework.Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,13 +8,45 @@ using UnityEngine.SceneManagement;
 /// 游戏启动器
 /// Framework ---->  框架 进入热更?或者进入(暂时进入)
 /// Game      ---->  必定进入热更
+///
+/// 代码规范
+/// 驼峰命名法
+/// 抽象类 :命名使用 Abstract或Base结尾
+/// 异常类:使用Exception结尾
+/// 设计模式:体现在名字中,如public class SysuserController，public class OrderFactory
+/// 待办事宜 :TODO
+/// 
+/// 类(class)    :        单词首字母大写
+/// 枚举(enum)   :        首字符E开头
+/// 属性(property):       单词首字母大写
+/// 变量(field):          公有(单词首字母大写), 单词结尾(如Dictionary变量以Dic结尾,List变量以List结尾)
+/// 标签(Attribute):      以Attribute结尾
+/// 结构(struct):         同class
+/// 接口(interface):  首字符I开头
+/// 常量(const):全体单词大写,单词与单词之间用_隔开,比如: NAME_GAME_OBJECT
+/// 布尔类型成员:一般用Is, Has, Can开头
+/// 回调函数名:首单词On开头,后面单词首字母大写,比如: OnUpdate, OnTimerCallback
+/// 函数名:单词首字母大写,比如: Update, OnGUI
+/// 委托(delegate)和事件(event):
+///                         静态私有,首字符s_开头,后面单词首字母大写,比如: s_OnDownloadComplete
+///                         私有, 保护,首字符m_开头,后面单词首字母大写,比如: m_OnDownloadComplete
+///                         其他,首单词on开头,后面单词首字母大写,比如: onDownloadComplete
+///
+/// 各层命名规约:
+///         1.获取单个对象的方法用 Get 做前缀。
+///         2.获取多个对象的方法用List做后缀，如：GetOrdersList。
+///         3.获取统计值的方法用 Count 做后缀。
+///         4.添加或更新的方法用 Save或Add。
+///         5.删除的方法用 Remove/Delete。
+///         6.修改的方法用 Update。
+/// 
 /// </summary>
 public class GameLunch : MonoBehaviour
 {
     private int percent; //加载界面的进度
     public static GameLunch Instance;
     private ProcessFsmSystem _fsmSystem;
-
+    
     private void Awake()
     {
         //加载流程
@@ -24,24 +57,30 @@ public class GameLunch : MonoBehaviour
         foreach (var gameProcess in gameProcessList)
             _fsmSystem.AddNode(gameProcess.Type);
         _fsmSystem.Run(gameProcessList[0].Type.FullName);
-        
-        
+
+
+        BehaviourController.Instance.StartCoroutine(StartOn());
+        //初始化日志系统
     }
 
-    private void Start()
+    private IEnumerator StartOn()
     {
         Debug.Log(" Start: 初始化开始!");
-        StartCoroutine(GameStart());
+
+        //StartCoroutine(GameStart());
+        var i = 1;
+        i = 0;
+        yield break;
     }
 
-    private IEnumerator GameStart()
-    {
-        //TODO 闪屏
-        yield return Setting(); // 初始化设置 如帧率 程序是否后台运行
-        yield return DoHotUpdate(); //热更
-        yield return ResourceUpdating(); //加载配置文件
-        yield return EnterHuatuoHotUpdate(); //加载dll后 用热更 启动代码
-    }
+    // private IEnumerator GameStart()
+    // {
+    //     //TODO 闪屏
+    //     yield return Setting(); // 初始化设置 如帧率 程序是否后台运行
+    //     yield return DoHotUpdate(); //热更
+    //     yield return ResourceUpdating(); //加载配置文件
+    //     yield return EnterHuatuoHotUpdate(); //加载dll后 用热更 启动代码
+    // }
 
     private IEnumerator Setting()
     {
@@ -64,7 +103,8 @@ public class GameLunch : MonoBehaviour
 
         //SystemInfo访问系统和硬件信息    图形设备 != null   图形设备开始与"Mali-4"  检查是否是低端机?
         if (SystemInfo.graphicsDeviceName != null && SystemInfo.graphicsDeviceName.StartsWith("Mali-4"))
-            Debug.LogError("低端GPU|" + SystemInfo.graphicsDeviceName + "|不走GPUSkinning|" + SystemInfo.operatingSystem + "|" + SystemInfo.deviceModel);
+            Debug.LogError("低端GPU|" + SystemInfo.graphicsDeviceName + "|不走GPUSkinning|" + SystemInfo.operatingSystem +
+                           "|" + SystemInfo.deviceModel);
         //标示是否低端机，在加载完配置表之后 TODO
         //设置一个 变量 如果为低端机 替换低模 低分辨率 降低特效之类的操作 
         //end
@@ -169,7 +209,6 @@ public class GameLunch : MonoBehaviour
 
     private void EnterGameApp(bool isHotupdate)
     {
-        
         return;
         // if (isHotupdate)
         // {

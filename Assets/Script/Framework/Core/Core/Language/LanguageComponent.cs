@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 -----------------------*/
 
+[DisallowMultipleComponent]
 [RequireComponent(typeof(Text))]
 public class LanguageComponent : MonoBehaviour
 {

@@ -7,7 +7,7 @@ namespace CustomEditorExpansion
     [CustomEditor(typeof(Text), true)]
     public class EditorText : Editor
     {
-        private void Awake()
+        private void OnEnable()
         {
             var value = target.GetComponent<LanguageComponent>();
             if (value) return;
