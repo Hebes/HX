@@ -45,24 +45,29 @@
     <Analyzer Include="D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Editor\CustomEditor\CustomEditorUIComponent.cs" />
     <Compile Include="Assets\Editor\Function\Excels\ExcelsChange\ClassData.cs" />
     <Compile Include="Assets\Editor\ToolExpansion.cs" />
-    <Compile Include="Assets\Editor\CustomEditor\CustomEditorLanguage.cs" />
-    <Compile Include="Assets\Editor\Function\GenerateConfig\ConfigToolUI.cs" />
+    <Compile Include="Assets\Editor\Function\GenerateConfig\GenerateConfig.cs" />
     <Compile Include="Assets\Editor\Function\Excels\ExcelWriteUI.cs" />
     <Compile Include="Assets\Editor\Function\Excels\ExcelsChange\BinaryData.cs" />
     <Compile Include="Assets\Editor\Function\SwithchScene\SwitchScene.cs" />
+    <Compile Include="Assets\Editor\Editor\AnimationTextureImporter.cs" />
     <Compile Include="Assets\Editor\Function\UIComponentTool.cs" />
-    <Compile Include="Assets\Editor\Function\AnimationTextureImporter.cs" />
+    <Compile Include="Assets\Editor\AnimationTextureImporter.cs" />
+    <Compile Include="Assets\Editor\Editor\BuildAnimation.cs" />
     <Compile Include="Assets\Editor\Function\ToolScene.cs" />
+    <Compile Include="Assets\Editor\CustomEditor\CustomEditorText.cs" />
     <Compile Include="Assets\Resources\AssetsPackage\Tilemap\Custom Brush Scripts\Coordinate Brush\Editor\CoordinateBrush.cs" />
     <Compile Include="Assets\Editor\Function\LogTool.cs" />
-    <Compile Include="Assets\Editor\CustomEditor\CustomEditorImage.cs" />
+    <Compile Include="Assets\Editor\Editor\BuildSpriteAtlas.cs" />
+    <Compile Include="Assets\Editor\CustomEditor\CustomEditorLanguage.cs" />
     <Compile Include="Assets\Editor\Function\UIInstall.cs" />
-    <Compile Include="Assets\Editor\CustomEditor\EditorText.cs" />
+    <Compile Include="Assets\Editor\Editor\BuildAssetBundle.cs" />
     <Compile Include="Assets\Editor\Function\Excels\ExcelsChange\ExcelChange.cs" />
+    <Compile Include="Assets\Editor\Editor\AnimationTool.cs" />
     <Compile Include="Assets\Editor\Function\MenuExpand.cs" />
-    <Compile Include="Assets\Editor\CustomEditor\EditorUIComponent.cs" />
+    <Compile Include="Assets\Editor\CustomEditor\CustomEditorImage.cs" />
     <Compile Include="Assets\Editor\Function\OpenFolder.cs" />
     <Compile Include="Assets\Editor\Function\Excels\ExcelsChange\ExcelChangeHelper.cs" />
     <Reference Include="UnityEngine">
@@ -323,14 +328,20 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>D:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>H:\Project\HX\Assets\Editor\Editor\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.YamlDotNet">
       <HintPath>H:\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
     </Reference>
     <Reference Include="Excel">
-      <HintPath>H:\Project\HX\Assets\Plugins\Excel.dll</HintPath>
+      <HintPath>H:\Project\HX\Assets\Editor\Editor\Excel.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>H:\Project\HX\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>H:\Project\HX\Assets\Plugins\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="ExcelDataReader.DataSet">
       <HintPath>H:\Project\HX\Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
@@ -362,9 +373,6 @@
     <Reference Include="Unity.VisualScripting.IonicZip">
       <HintPath>H:\Project\HX\Library\PackageCache\com.unity.visualscripting@1.9.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
     </Reference>
-    <Reference Include="EPPlus">
-      <HintPath>H:\Project\HX\Assets\Plugins\EPPlus.dll</HintPath>
-    </Reference>
     <Reference Include="DOTween43">
       <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween43.dll</HintPath>
     </Reference>
@@ -391,9 +399,6 @@
     </Reference>
     <Reference Include="DOTween50">
       <HintPath>H:\Project\HX\Assets\Plugins\Demigiant\DOTween\DOTween50.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>H:\Project\HX\Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>H:\Project\HX\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
@@ -963,6 +968,10 @@
     <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
       <Project>{b2dbaec6-e26a-63f9-47b1-36f2549b3bb9}</Project>
       <Name>Assembly-CSharp-Editor-firstpass</Name>
+    </ProjectReference>
+    <ProjectReference Include="Game.csproj">
+      <Project>{74f7177d-fbcb-dd7f-010b-ea6cba395379}</Project>
+      <Name>Game</Name>
     </ProjectReference>
     <ProjectReference Include="Framework.csproj">
       <Project>{17b6570d-966d-dcaa-0d9a-5cc158dbc6f6}</Project>

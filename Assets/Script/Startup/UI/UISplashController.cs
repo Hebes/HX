@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using DG.Tweening;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,19 +14,20 @@ public class UISplashController : MonoBehaviour
         Instance = this;
     }
 
-    [SerializeField] private Text[] _widgets;
+    [SerializeField] private CanvasGroup[] _canvasGroupArray;
 
     [SerializeField] private float _fade = 1f;
 
     [SerializeField] private float _duration = 1.5f;
 
-
     public void Run()
     {
+        GameObject.Destroy(gameObject);
+        return;
         StartCoroutine(Sequence0());
     }
 
-    public IEnumerator Sequence0()
+    private IEnumerator Sequence0()
     {
         //if (UILanguage.IsSimplifiedChinese)
         //{
@@ -36,27 +38,25 @@ public class UISplashController : MonoBehaviour
         yield return DOTween.To(delegate(float a) { SetColor(0, a); }, 1f, 0f, this._fade).WaitForCompletion();
         yield return new WaitForSeconds(this._fade);
         //}
-        for (var i = 1; i < this._widgets.Length; i++)
+        for (var i = 1; i < this._canvasGroupArray.Length; i++)
         {
             var iCopy = i;
             yield return DOTween.To(delegate(float a) { SetColor(iCopy, a); }, 0f, 1f, this._fade).WaitForCompletion();
             yield return new WaitForSeconds((i == 0) ? 5f : this._duration);
             yield return DOTween.To(delegate(float a) { SetColor(iCopy, a); }, 1f, 0f, this._fade).WaitForCompletion();
-            if (iCopy != this._widgets.Length - 1)
+            if (iCopy != this._canvasGroupArray.Length - 1)
             {
                 yield return new WaitForSeconds(this._fade);
             }
         }
 
         //this._asyncOperation.allowSceneActivation = true;
-
+        GameObject.Destroy(gameObject);
         yield break;
 
         void SetColor(int i, float a)
         {
-            var color = _widgets[i].color;
-            color.a = a;
-            this._widgets[i].color = color;
+            _canvasGroupArray[i].alpha = a;
         }
     }
 }

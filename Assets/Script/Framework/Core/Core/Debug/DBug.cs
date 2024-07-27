@@ -176,7 +176,7 @@ namespace Framework.Core
         {
             lock (LOGLock)
             {
-                if (_cfg.EnableLog == false)return;
+                if (_cfg.EnableLog == false) return;
                 msg = DecorateLog(string.Format(msg, args), true);
                 _logger.Error(msg);
                 if (_cfg.EnableSave)
@@ -201,10 +201,10 @@ namespace Framework.Core
             {
                 _sb.Append(_cfg.LogPrefix);
                 //StringBuilder sb = new StringBuilder(cfg.LogPrefix, 100);
-                if (_cfg.EnableTime) //启用时间
-                    _sb.AppendFormat($"时间:{DateTime.Now:hh:mm:ss--fff}");
+                // if (_cfg.EnableTime) //启用时间
+                //     _sb.AppendFormat($"时间:{DateTime.Now:hh:mm:ss--fff}");
                 if (_cfg.EnableMillisecond)
-                    _sb.AppendFormat($"调用时间(精确到毫秒级){DateTime.Now.TimeOfDay}");
+                    _sb.AppendFormat($"时间{DateTime.Now.TimeOfDay}");
                 if (_cfg.EnableThreadID) //启用线程
                     _sb.AppendFormat($"{GetThreadID()}");
                 _sb.AppendFormat($" {_cfg.LogSeparate} {msg}"); //日志分离
@@ -271,10 +271,8 @@ namespace Framework.Core
 
         #endregion
     }
-}
 
-namespace Framework.Core
-{
+
     /// <summary> 日志配置 </summary>
     public class LogConfig
     {
@@ -392,10 +390,7 @@ namespace Framework.Core
         public void Warn(string msg);
         public void Error(string msg);
     }
-}
 
-namespace Framework.Core
-{
     public class UnityDebug : ILogger
     {
         public Action<string> LogAct { get; set; }
@@ -478,17 +473,17 @@ namespace Framework.Core
             }
         }
     }
-}
 
-namespace Framework.Core
-{
+
     public static class EDebug
     {
-        public static void Log(this string msg, LogCoLor logCoLor = LogCoLor.None, params object[] args) => DBug.Instance.Log(msg, logCoLor, args);
+        public static void Log(this string msg, LogCoLor logCoLor = LogCoLor.None, params object[] args) =>
+            DBug.Instance.Log(msg, logCoLor, args);
+
         public static void Log(this object obj) => DBug.Instance.Log(obj);
         public static void Log(this object obj, string str) => DBug.Instance.Log(str);
-        public static void Warn(this string msg, params object[] args) => DBug.Instance.Warn(msg, args);
-        public static void Error(this string msg, params object[] args) => DBug.Instance.Error(msg, args);
-        public static void Error(this object obj, string msg, params object[] args) => Error(msg, args);
+        public static void LogWarning(this string msg, params object[] args) => DBug.Instance.Warn(msg, args);
+        public static void LogError(this string msg, params object[] args) => DBug.Instance.Error(msg, args);
+        public static void LogError(this object obj, string msg, params object[] args) => LogError(msg, args);
     }
 }

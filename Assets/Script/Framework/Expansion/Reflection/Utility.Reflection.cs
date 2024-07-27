@@ -235,12 +235,15 @@ namespace Framework.Core
 
             public static Func<T1, T2, TReslut> MethodWrapperFunc<T1, T2, TReslut>(object target, MethodInfo methodInfo)
             {
-                return (Func<T1, T2, TReslut>)Delegate.CreateDelegate(typeof(Func<T1, T2, TReslut>), target, methodInfo);
+                return (Func<T1, T2, TReslut>)Delegate.CreateDelegate(typeof(Func<T1, T2, TReslut>), target,
+                    methodInfo);
             }
 
-            public static Func<T1, T2, T3, Reslut> MethodWrapperFunc<T1, T2, T3, Reslut>(object target, MethodInfo methodInfo)
+            public static Func<T1, T2, T3, Reslut> MethodWrapperFunc<T1, T2, T3, Reslut>(object target,
+                MethodInfo methodInfo)
             {
-                return (Func<T1, T2, T3, Reslut>)Delegate.CreateDelegate(typeof(Func<T1, T2, T3, Reslut>), target, methodInfo);
+                return (Func<T1, T2, T3, Reslut>)Delegate.CreateDelegate(typeof(Func<T1, T2, T3, Reslut>), target,
+                    methodInfo);
             }
 
             #endregion
@@ -336,7 +339,8 @@ namespace Framework.Core
         public static List<FieldInfo> GetFields(this Type type, Func<FieldInfo, bool> filter)
         {
             List<FieldInfo> fields = new List<FieldInfo>();
-            FieldInfo[] infos = type.GetFields(BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
+            FieldInfo[] infos = type.GetFields(BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic |
+                                               BindingFlags.Public);
             for (int i = 0; i < infos.Length; i++)
             {
                 if (filter(infos[i]))
@@ -381,7 +385,8 @@ namespace Framework.Core
         public static List<MethodInfo> GetMethods(this Type type, Func<MethodInfo, bool> filter)
         {
             List<MethodInfo> methods = new List<MethodInfo>();
-            MethodInfo[] infos = type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
+            MethodInfo[] infos = type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic |
+                                                 BindingFlags.Public);
             for (int i = 0; i < infos.Length; i++)
             {
                 if (filter(infos[i]))

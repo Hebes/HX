@@ -52,12 +52,13 @@ namespace Framework.Core
             audioClipDic = new Dictionary<string, AudioData>();
             sudioSourceDic = new Dictionary<string, AudioSource>();
 
-            GameObject AudioManagerGo = new GameObject("音乐");
-            GameObject.DontDestroyOnLoad(AudioManagerGo);
+            var audioManagerGo = new GameObject("音乐");
+            audioManagerGo.AddComponent<AudioListener>();
+            Object.DontDestroyOnLoad(audioManagerGo);
+            
 
-            sudioSourceDic.Add(EAudioSourceType.BGM.ToString(), AudioManagerGo.AddComponent<AudioSource>());
-            sudioSourceDic.Add(EAudioSourceType.SFX.ToString(), AudioManagerGo.AddComponent<AudioSource>());
-            UnityEngine.Debug.Log("音频模块初始化成功!");
+            sudioSourceDic.Add(EAudioSourceType.BGM.ToString(), audioManagerGo.AddComponent<AudioSource>());
+            sudioSourceDic.Add(EAudioSourceType.SFX.ToString(), audioManagerGo.AddComponent<AudioSource>());
         }
     }
 }

@@ -12,30 +12,31 @@ using System.Collections.Generic;
 namespace Framework.Core
 {
     public delegate void OnEventAction(object udata);
-    
+
     [CreateCore(typeof(CoreEvent), 3)]
     public class CoreEvent : ICore
     {
+        public static CoreEvent I;
+
         public void Init()
         {
             I = this;
-            _eventDic = new Dictionary<Enum, EventData>();
         }
 
         public IEnumerator AsyncEnter()
         {
             yield return null;
         }
+
         public IEnumerator Exit()
         {
             yield break;
         }
 
-        public static CoreEvent I;
-        private Dictionary<Enum, EventData> _eventDic;
+        private readonly Dictionary<Enum, EventData> _eventDic = new Dictionary<Enum, EventData>();
 
 
-        public void Add(Enum enumValue, OnEventAction action)
+        public void Register(Enum enumValue, OnEventAction action)
         {
             if (!_eventDic.ContainsKey(@enumValue))
                 _eventDic.Add(@enumValue, new EventData());
@@ -51,7 +52,7 @@ namespace Framework.Core
             actionList.Trigger(data);
         }
 
-        public void UnAdd(Enum enumValue, OnEventAction action)
+        public void UnRegister(Enum enumValue, OnEventAction action)
         {
             if (!_eventDic.ContainsKey(@enumValue))
                 throw new Exception($"没有{nameof(Enum)}");
@@ -59,11 +60,11 @@ namespace Framework.Core
             actionList.UnAdd(action);
         }
     }
-    
+
     /// <summary>
     /// 事件数据
     /// </summary>
-    public class EventData 
+    public class EventData
     {
         private List<OnEventAction> _actionList;
 
@@ -83,6 +84,27 @@ namespace Framework.Core
         {
             foreach (var action in _actionList)
                 action(data);
+        }
+    }
+
+    public static class EventExpand
+    {
+        /// <summary>
+        /// 注册事件
+        /// </summary>
+        /// <param name="enumValue"></param>
+        /// <param name="action"></param>
+        public static void Register(this Enum enumValue, OnEventAction action) =>
+            CoreEvent.I.Register(enumValue, action);
+
+        /// <summary>
+        /// 触发注册的事件
+        /// </summary>
+        /// <param name="enumValue"></param>
+        /// <param name="data"></param>
+        public static void Trigger(this Enum enumValue, object data)
+        {
+            CoreEvent.I.Trigger(enumValue, data);
         }
     }
 }

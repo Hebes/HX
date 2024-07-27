@@ -1,67 +1,95 @@
-﻿using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
 
-public class WindowBase : WindowBehaviour
+public class WindowBase : MonoBehaviour
 {
-    private List<Button> mAllButtonList = new List<Button>();//所有Button列表
-    private List<Toggle> mToggleList = new List<Toggle>();//所有的Toggle列表
-    private List<InputField> mInputList = new List<InputField>();//所有的输入框列表
+    public GameObject gameObject { get; set; } //当前窗口物体
+    public Transform transform { get; set; } //代表自己
+    public Canvas Canvas { get; set; }
+    public string Name { get; set; }
+    public bool Visible { get; set; }
+    public bool PopStack { get; set; } //是否是通过堆栈系统弹出的弹窗
+
+    /// <summary>
+    /// 全屏窗口标志(在窗口Awake接口中进行设置,智能显隐开启后当全屏弹窗弹出时，被遮挡的窗口都会通过伪隐藏隐藏掉，从而提升性能)
+    /// </summary>
+    public bool FullScreenWindow { get; set; }
+
+    public Action<WindowBase> PopStackListener { get; set; }
+
 
     private CanvasGroup mUIMaskCanvasGroup;
     private CanvasGroup mCanvasGroup;
     protected Transform mUIContent;
-    protected bool mDisableAnim = false;//禁用动画
+    protected bool mDisableAnim = false; //禁用动画
+
     /// <summary>
-    /// 初始化基类组件
+    /// 与Mono Awake调用时机和次数保持一致
     /// </summary>
-    private void InitializeBaseComponent()
+    public virtual void OnAwake()
     {
         mCanvasGroup = transform.GetComponent<CanvasGroup>();
         mUIMaskCanvasGroup = transform.Find("UIMask").GetComponent<CanvasGroup>();
         mUIContent = transform.Find("UIContent").transform;
     }
-    #region 生命周期
-    public override void OnAwake()
-    {
-        base.OnAwake();
-        InitializeBaseComponent();
 
-    }
-    public override void OnShow()
+    /// <summary>
+    /// 与MonoOnEnable一致
+    /// </summary>
+    public virtual void OnShow()
     {
-        base.OnShow();
-        ShowAnimation();
     }
 
-    public override void OnUpdate()
+    protected virtual void OnUpdate()
     {
-        base.OnUpdate();
-
     }
 
-    public override void OnHide()
+    /// <summary>
+    /// 与Mono OnDisable 一致
+    /// </summary>
+    public virtual void OnHide()
     {
-        base.OnHide();
-
     }
 
-    public override void OnDestroy()
+    /// <summary>
+    /// 在当前界面被销毁时调用一次
+    /// </summary>
+    public virtual void OnDestroy()
     {
-        base.OnDestroy();
-        RemoveAllButtonListener();
-        RemoveAllToggleListener();
-        RemoveAllInputListener();
-        mAllButtonList.Clear();
-        mToggleList.Clear();
-        mInputList.Clear();
     }
-    #endregion
+
+    /// <summary>
+    /// 设置物体的可见性
+    /// </summary>
+    /// <param name="isVisble"></param>
+    public virtual void SetVisible(bool isVisble)
+    {
+        if (mCanvasGroup == null)
+        {
+            Debug.LogError("CanvasGroup is Null!" + Name);
+            return;
+        }
+
+        Visible = mCanvasGroup.interactable = mCanvasGroup.blocksRaycasts = isVisble;
+        mCanvasGroup.alpha = isVisble ? 1 : 0;
+        if (isVisble && PopStack)
+        {
+            gameObject.SetActive(false);
+            gameObject.SetActive(true);
+        }
+    }
+
+    public virtual void PseudoHidden(int value)
+    {
+        mUIMaskCanvasGroup.alpha = mCanvasGroup.alpha = value;
+        mUIMaskCanvasGroup.interactable = mCanvasGroup.interactable = value == 1 ? true : false;
+        mUIMaskCanvasGroup.blocksRaycasts = mCanvasGroup.blocksRaycasts = value == 1 ? true : false;
+    }
+
 
     #region 动画管理
+
     public void ShowAnimation()
     {
         //基础弹窗不需要动画
@@ -75,46 +103,28 @@ public class WindowBase : WindowBehaviour
             mUIContent.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack);
         }
     }
+
     public void HideAnimation()
     {
         if (Canvas.sortingOrder > 90 && mDisableAnim == false)
         {
             mUIContent.DOScale(Vector3.one * 1.1f, 0.2f).SetEase(Ease.OutBack).OnComplete(() =>
             {
-                UIModule.Instance.HideWindow(Name);
+                CoreUI.Instance.HideWindow(Name);
             });
         }
         else
         {
-            UIModule.Instance.HideWindow(Name);
+            CoreUI.Instance.HideWindow(Name);
         }
     }
+
     #endregion
-    public void HideWindow()
-    {
-        HideAnimation();
-        //UIModule.Instance.HideWindow(Name);
-    }
-    public override void SetVisible(bool isVisble)
-    {
-        if (mCanvasGroup == null)
-        {
-            Debug.LogError("CanvasGroup is Null!" + Name);
-            return;
-        }
- 
-        Visible = mCanvasGroup.interactable = mCanvasGroup.blocksRaycasts = isVisble;
-        mCanvasGroup.alpha = isVisble ? 1 : 0;
-        if (isVisble && PopStack)
-        {
-            gameObject.SetActive(false);
-            gameObject.SetActive(true);
-        }
-    }
- 
+
+
     public void SetMaskVisible(bool isVisible)
     {
-        if (!  UIModule.Instance.SINGMASK_SYSTEM) return;
+        if (!CoreUI.Instance.SINGMASK_SYSTEM) return;
         mUIMaskCanvasGroup.alpha = isVisible ? 1 : 0;
         mUIMaskCanvasGroup.blocksRaycasts = isVisible;
         //特殊情况下进行窗口同层级重绘渲染
@@ -125,85 +135,19 @@ public class WindowBase : WindowBehaviour
         }
     }
 
-    public virtual void PseudoHidden(int value)
+    protected void HideWindow()
     {
-        mUIMaskCanvasGroup.alpha = mCanvasGroup.alpha = value;
-        mUIMaskCanvasGroup.interactable = mCanvasGroup.interactable = value == 1 ? true : false;
-        mUIMaskCanvasGroup.blocksRaycasts = mCanvasGroup.blocksRaycasts = value == 1 ? true : false;
-
-    }
-    public void PopUpWindow<T>() where T:WindowBase,new ()
-    {
-        UIModule.Instance.PopUpWindow<T>();
-    }
-    #region 事件管理
-    public void AddButtonClickListener(Button btn, UnityAction action)
-    {
-        if (btn != null)
-        {
-            if (!mAllButtonList.Contains(btn))
-            {
-                mAllButtonList.Add(btn);
-            }
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(action);
-
-        }
-    }
-    public void AddToggleClickListener(Toggle toggle, UnityAction<bool, Toggle> action)
-    {
-        if (toggle != null)
-        {
-            if (!mToggleList.Contains(toggle))
-            {
-                mToggleList.Add(toggle);
-            }
-            toggle.onValueChanged.RemoveAllListeners();
-            toggle.onValueChanged.AddListener((isOn) =>
-            {
-                action?.Invoke(isOn, toggle);
-            });
-
-        }
-    }
-    public void AddInputFieldListener(InputField input, UnityAction<string> onChangeAction, UnityAction<string> endAction)
-    {
-        if (input != null)
-        {
-            if (!mInputList.Contains(input))
-            {
-                mInputList.Add(input);
-            }
-            input.onValueChanged.RemoveAllListeners();
-            input.onEndEdit.RemoveAllListeners();
-            input.onValueChanged.AddListener(onChangeAction);
-            input.onEndEdit.AddListener(endAction);
-        }
-    }
-    public void RemoveAllButtonListener()
-    {
-        foreach (var item in mAllButtonList)
-        {
-            item.onClick.RemoveAllListeners();
-        }
+        //HideAnimation();
+        CoreUI.Instance.HideWindow(Name);
     }
 
-    public void RemoveAllToggleListener()
+    protected T PopUpWindow<T>() where T : WindowBase
     {
-        foreach (var item in mToggleList)
-        {
-            item.onValueChanged.RemoveAllListeners();
-        }
+        return CoreUI.Instance.PopUpWindow<T>();
     }
 
-    public void RemoveAllInputListener()
+    protected T GetWindow<T>() where T : WindowBase
     {
-        foreach (var item in mInputList)
-        {
-            item.onValueChanged.RemoveAllListeners();
-            item.onEndEdit.RemoveAllListeners();
-        }
-
+        return CoreUI.Instance.GetWindow<T>();
     }
-    #endregion
 }

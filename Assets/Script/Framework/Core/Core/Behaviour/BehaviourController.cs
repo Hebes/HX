@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /*--------脚本描述-----------
@@ -17,23 +18,23 @@ namespace Framework.Core
         FixedUpdate,
     }
 
-    public class BehaviourController : MonoBehaviour
+    public class BehaviourController : SingletonNewMono<BehaviourController>
     {
-        public static BehaviourController Instance;
         private List<IUpdate> updatasList;
         private List<IFixedUpdate> fixedUpdatesList;
 
         private void Awake()
         {
-            Instance = this;
             updatasList = new List<IUpdate>();
             fixedUpdatesList = new List<IFixedUpdate>();
         }
+
         private void Update()
         {
             for (int i = 0; i < updatasList.Count; i++)
                 updatasList[i].CoreUpdate();
         }
+
         private void FixedUpdate()
         {
             for (int i = 0; i < fixedUpdatesList.Count; i++)
@@ -54,6 +55,7 @@ namespace Framework.Core
                 default: break;
             }
         }
+
         internal void Add<T>(T t, EMonoType monoType = EMonoType.Updata) where T : IBehaviour
         {
             switch (monoType)
@@ -67,6 +69,14 @@ namespace Framework.Core
                 default:
                     break;
             }
+        }
+    }
+
+    public static class ExpandBehaviour
+    {
+        public static Coroutine StartCoroutine(this IEnumerator routine)
+        {
+            return BehaviourController.Instance.StartCoroutine(routine);
         }
     }
 }

@@ -14,7 +14,12 @@ public class LanguageComponent : MonoBehaviour
 {
     public Text text; //组件
     public string key; //关键字
+    public bool IsAddManager = true;
 
-    private void Awake() => CoreLanguage.AddLanguageComponent(this);
+    private void Awake()
+    {
+        if (!IsAddManager)return;
+        CoreLanguage.AddLanguageComponent(this);
+    }
     public void Change() => text.text = CoreLanguage.Get(key);
 }

@@ -23,6 +23,6 @@
         /// <summary>
         /// UI的加载目录
         /// </summary>
-        public const string UICanvasPath = "AssetsPackage/Prefab/UI/Canvas";
+        public const string UICanvasPath = "AssetsPackage/Prefab/UI/MainCanvas";
     }
 }

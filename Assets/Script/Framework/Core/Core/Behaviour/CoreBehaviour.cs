@@ -14,7 +14,7 @@ using Time = UnityEngine.Time;
 
 namespace Framework.Core
 {
-    [CreateCore(typeof(CoreBehaviour),4)]
+    [CreateCore(typeof(CoreBehaviour), 4)]
     public class CoreBehaviour : ICore
     {
         public static CoreBehaviour Instance;
@@ -31,10 +31,7 @@ namespace Framework.Core
         {
             Instance = this;
             CoroutineDic = new Dictionary<int, Coroutine>();
-            GameObject gameObject = new GameObject("生命周期");
-            behaviourController = gameObject.AddComponent<BehaviourController>();//BehaviourController.Instance;
-            GameObject.DontDestroyOnLoad(gameObject);
-            UnityEngine.Debug.Log("初始化Mono完毕!");
+            behaviourController = BehaviourController.Instance;
         }
 
         public IEnumerator AsyncEnter()
@@ -64,6 +61,7 @@ namespace Framework.Core
             if (typeof(IFixedUpdate).IsAssignableFrom(typeof(T)))
                 BehaviourController.Instance.Add(t, EMonoType.FixedUpdate);
         }
+
         public static void Remove<T>(T t) where T : IBehaviour
         {
             //https://www.cnblogs.com/radray/p/4529482.html
@@ -77,15 +75,13 @@ namespace Framework.Core
         {
             if (Instance.CoroutineDic.ContainsKey(coroutineKey))
             {
-                EDebug.Error($"协程已经存在{coroutineKey}");
+                $"协程已经存在{coroutineKey}".LogError();
                 return;
             }
+
             Instance.CoroutineDic.Add(coroutineKey, BehaviourController.Instance.StartCoroutine(coroutine));
         }
-        public static Coroutine AddCoroutine(IEnumerator coroutine)
-        {
-           return BehaviourController.Instance.StartCoroutine(coroutine);
-        }
+
         public static void StopCoroutine(int coroutineKey)
         {
             if (Instance.CoroutineDic.TryGetValue(coroutineKey, out Coroutine coroutine))
@@ -94,14 +90,20 @@ namespace Framework.Core
                 Instance.CoroutineDic.Remove(coroutineKey);
                 return;
             }
-            EDebug.Error("停止失败请，协程不存在");
+
+            "停止失败请，协程不存在".LogError();
+        }
+
+        public static Coroutine AddCoroutine(IEnumerator coroutine)
+        {
+            return BehaviourController.Instance.StartCoroutine(coroutine);
         }
 
         public static void StopCoroutine(Coroutine coroutine)
         {
             BehaviourController.Instance.StopCoroutine(coroutine);
         }
-        
+
         public static void StopAllCoroutines()
         {
             BehaviourController.Instance.StopAllCoroutines();

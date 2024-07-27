@@ -7,7 +7,7 @@ namespace CustomEditorExpansion
     /// 图片工具
     /// </summary>
     [CustomEditor(typeof(ImageComponent), true)]
-    public class CustomEditorImage : Editor
+    public class CustomEditorImage : UnityEditor.Editor
     {
         private void OnEnable()
         {

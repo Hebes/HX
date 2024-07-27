@@ -42,23 +42,23 @@ namespace ExpansionUnity
         /// </summary>
         /// <param name="tf"></param>
         /// <param name="eventType"></param>
-        /// <param name="listenedAction"></param>
-        public static void AddEventTriggerListener(this Transform tf, EventTriggerType eventType,
-            Action<PointerEventData> listenedAction) =>
-            tf.gameObject.AddEventTriggerListener(eventType, listenedAction);
+        /// <param name="action"></param>
+        public static void AddEventTrigger(this Transform tf, EventTriggerType eventType,
+            Action<PointerEventData> action) =>
+            tf.gameObject.AddEventTrigger(eventType, action);
 
         /// <summary>
         /// 添加EventTrigger组件
         /// </summary>
         /// <param name="goValue"></param>
         /// <param name="eventType"></param>
-        /// <param name="listenedAction"></param>
-        public static void AddEventTriggerListener(this GameObject goValue, EventTriggerType eventType,
-            Action<PointerEventData> listenedAction)
+        /// <param name="action"></param>
+        public static void AddEventTrigger(this GameObject goValue, EventTriggerType eventType,
+            Action<PointerEventData> action)
         {
             var eventTrigger = goValue.GetComponent<EventTrigger>();
             eventTrigger = eventTrigger ? eventTrigger : goValue.AddComponent<EventTrigger>();
-            eventTrigger.AddEventTrigger(eventType, listenedAction);
+            eventTrigger.AddEventTrigger(eventType, action);
         }
     }
 }

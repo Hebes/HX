@@ -35,13 +35,13 @@ namespace Framework.Core
         public static void Add(ImageComponent imageComponent)
         {
             if (!Instance.ImageDic.TryAdd(imageComponent.name, imageComponent))
-                throw new Exception("当前组件已有重复名称");
+                throw new Exception($"当前组件已有重复名称{imageComponent.name}");
         }
 
         public static void Add(Sprite sprite)
         {
             if (!Instance.SpriteDic.TryAdd(sprite.name, sprite))
-                throw new Exception("当前已有重复组件");
+                throw new Exception($"当前组件已有重复名称{sprite.name}");
         }
 
         public static Sprite GetSprite(string name)

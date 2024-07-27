@@ -26,6 +26,7 @@
     /// 要不要显示羁绊、品质按钮
     /// </summary>
     public const bool EnableJipanAndZizhiButton = true;
+    
     #region  ↓↓↓↓ 版署版号+抵制不良游戏 ↓↓↓↓
     /// <summary>
     /// 版号说明

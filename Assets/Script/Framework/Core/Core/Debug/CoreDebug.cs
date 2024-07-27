@@ -51,8 +51,6 @@ namespace Framework.Core
             //GameObject debugGo = new GameObject("UIDebug");
             //debugGo.AddComponent<UIDebugger>();
             //GameObject.DontDestroyOnLoad(debugGo);
-            UnityEngine.Debug.Log("日志模块初始化完毕!");
-
             Application.logMessageReceived += Handler;
         }
 
