@@ -66,7 +66,7 @@ namespace Framework.Core
 
                 //加载物体
                 var loadPath = PathDic[tNameValue];
-                var gameObject = CoreResource.Load<GameObject>(loadPath);
+                var gameObject = loadPath.Load<GameObject>();
                 var gameObjectTemp = Object.Instantiate(gameObject);
                 var tComponentTemp = gameObjectTemp.GetComponent<T>();
                 if (tComponentTemp == null && typeof(Component).IsAssignableFrom(typeof(T)))
@@ -88,9 +88,10 @@ namespace Framework.Core
                 UseDic.Add(poolData.Pool, poolData);
                 return (T)poolData.Pool;
             }
+
             var t = new T();
             poolData = new PoolData(this);
-            poolData.SetData(tNameValue, DateTime.Now,t , desMilliseconds);
+            poolData.SetData(tNameValue, DateTime.Now, t, desMilliseconds);
             UseDic.Add(poolData.Pool, poolData);
             return t;
         }
@@ -111,7 +112,7 @@ namespace Framework.Core
 
             //加载物体
             var loadPath = PathDic[nameof(T)];
-            GameObject gameObject = CoreResource.Load<GameObject>(loadPath);
+            GameObject gameObject = loadPath.Load<GameObject>();
             GameObject gameObjectTemp = Object.Instantiate(gameObject);
             T t = gameObjectTemp.GetComponent<T>();
             if (t == null) t = gameObjectTemp.AddComponent<T>();

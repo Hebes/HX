@@ -1,5 +1,4 @@
-﻿
-/*--------脚本描述-----------
+﻿/*--------脚本描述-----------
 
 描述:
     资源加载
@@ -17,6 +16,7 @@ namespace Framework.Core
     {
         /// <summary> 原生加载 </summary>
         Resources,
+
         /// <summary> Yooasset加载 </summary>
         YooAsset,
     }
@@ -65,12 +65,9 @@ namespace Framework.Core
         /// 同步加载资源对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="ResName"></param>
+        /// <param name="resNameValue">资源</param>
         /// <returns></returns>
-        public static T Load<T>(string ResName) where T : UnityEngine.Object
-        {
-            return Instance.iload.Load<T>(ResName);
-        }
+        public T Load<T>(string resNameValue) where T : UnityEngine.Object => iload.Load<T>(resNameValue);
 
         /// <summary>
         /// 异步加载资源对象
@@ -123,5 +120,21 @@ namespace Framework.Core
         //{
         //    Instance.iload.UnloadAssets();
         //}
+    }
+
+    /// <summary>
+    /// 资源加载拓展
+    /// </summary>
+    public static class ResExpand
+    {
+        public static T Load<T>(this string resNameValue) where T : UnityEngine.Object
+        {
+            return CoreResource.Instance.Load<T>(resNameValue);
+        }
+        
+        public static T Load<T>(this string resNameValue,string path) where T : UnityEngine.Object
+        {
+            return CoreResource.Instance.Load<T>(System.IO.Path.Combine(path,resNameValue));
+        }
     }
 }

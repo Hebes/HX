@@ -224,10 +224,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6971700858949314353}
-  - component: {fileID: 761842354984412754}
   m_Layer: 0
   m_Name: MainCanvas
-  m_TagString: Untagged
+  m_TagString: UI Root
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -250,23 +249,6 @@ Transform:
   - {fileID: 3623979814768002924}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &761842354984412754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6971700858949314352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e417494ec6fec8a468e3d199658b3c71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dataList:
-  - key: T_MainCamera
-    object: {fileID: 7981690319183494235}
-  - key: T_UICamera
-    object: {fileID: 5207490711517358252}
 --- !u!1 &7981690319183494235
 GameObject:
   m_ObjectHideFlags: 0

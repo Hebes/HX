@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Framework.Core;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -15,7 +14,7 @@ namespace Framework.Core
         public void Init()
         {
             Instance = this;
-            GameObject gameObjectMemory = CoreResource.Load<GameObject>(GameSetting.UICanvasPath);
+            GameObject gameObjectMemory = GameSetting.UICanvasPath.Load<GameObject>();
             GameObject gameObjectTemp = Object.Instantiate(gameObjectMemory);
             gameObjectTemp.name = gameObjectMemory.name;
             UIComponent uiComponent = gameObjectTemp.GetComponent<UIComponent>();

@@ -94,17 +94,20 @@ namespace Framework.Core
         /// </summary>
         /// <param name="enumValue"></param>
         /// <param name="action"></param>
-        public static void Register(this Enum enumValue, OnEventAction action) =>
-            CoreEvent.I.Register(enumValue, action);
+        public static void Register(this Enum enumValue, OnEventAction action) => CoreEvent.I.Register(enumValue, action);
+
+        /// <summary>
+        /// 取消事件注册
+        /// </summary>
+        /// <param name="enumValue"></param>
+        /// <param name="action"></param>
+        public static void UnRegister(this Enum enumValue, OnEventAction action) => CoreEvent.I.UnRegister(enumValue, action);
 
         /// <summary>
         /// 触发注册的事件
         /// </summary>
         /// <param name="enumValue"></param>
         /// <param name="data"></param>
-        public static void Trigger(this Enum enumValue, object data)
-        {
-            CoreEvent.I.Trigger(enumValue, data);
-        }
+        public static void Trigger(this Enum enumValue, object data) => CoreEvent.I.Trigger(enumValue, data);
     }
 }

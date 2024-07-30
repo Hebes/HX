@@ -69,6 +69,9 @@ namespace Framework.Core
             ApplicationIsQuitting = true;
         }
 
+        /// <summary>
+        /// 应用退出
+        /// </summary>
         public static bool ApplicationIsQuitting = false;
     }
 }

@@ -4,8 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - _TagCanvas
-  - Button
+  - Enemy
+  - EnemyHurtBox
+  - FXCamera
+  - Drag and Drop Root
+  - UI Root
+  - Windy
+  - Temp
+  - EnemyBullet
+  - World
+  - Core
+  - BattleZone
   layers:
   - Default
   - TransparentFX
