@@ -19,7 +19,7 @@ namespace Framework.Core
         {
             T t = Resources.Load<T>(AssetName);
             if (t == null)
-                EDebug.LogError($"资源为空{AssetName}");
+                EDebug.Error($"资源为空{AssetName}");
             return t;
         }
 
@@ -29,7 +29,7 @@ namespace Framework.Core
             while (!resourceRequest.isDone)
                 yield return null;
             if (resourceRequest.isDone == false)
-                EDebug.LogError($"资源为空{AssetName}");
+                EDebug.Error($"资源为空{AssetName}");
             action.Invoke(resourceRequest.asset as T);
         }
 

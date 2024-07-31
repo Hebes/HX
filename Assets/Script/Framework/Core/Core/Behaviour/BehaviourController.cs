@@ -78,5 +78,15 @@ namespace Framework.Core
         {
             return BehaviourController.Instance.StartCoroutine(routine);
         }
+
+        public static void StopCoroutine(this IEnumerator routine)
+        {
+            BehaviourController.Instance.StopCoroutine(routine);
+        }
+        
+        public static void StopCoroutine(this string methodName)
+        {
+            BehaviourController.Instance.StopCoroutine(methodName);
+        }
     }
 }

@@ -137,7 +137,7 @@ namespace Framework.Core
         {
             var wnd = GetWindow(wndName);
             if (!wnd)
-                ($"请先PreLoadWindow窗口{wndName}").LogError();
+                ($"请先PreLoadWindow窗口{wndName}").Error();
             return wnd ? ShowWindow(wndName) as T : InitializeWindow(wnd, wndName) as T;
         }
 
@@ -150,7 +150,7 @@ namespace Framework.Core
                 return;
             }
 
-            ($"请先PreLoadWindow窗口{wndName}").LogError();
+            ($"请先PreLoadWindow窗口{wndName}").Error();
             InitializeWindow(wnd, wndName);
         }
 

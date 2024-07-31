@@ -482,8 +482,8 @@ namespace Framework.Core
 
         public static void Log(this object obj) => DBug.Instance.Log(obj);
         public static void Log(this object obj, string str) => DBug.Instance.Log(str);
-        public static void LogWarning(this string msg, params object[] args) => DBug.Instance.Warn(msg, args);
-        public static void LogError(this string msg, params object[] args) => DBug.Instance.Error(msg, args);
-        public static void LogError(this object obj, string msg, params object[] args) => LogError(msg, args);
+        public static void Warning(this string msg, params object[] args) => DBug.Instance.Warn(msg, args);
+        public static void Error(this string msg, params object[] args) => DBug.Instance.Error(msg, args);
+        public static void Error(this object obj, string msg, params object[] args) => Error(msg, args);
     }
 }

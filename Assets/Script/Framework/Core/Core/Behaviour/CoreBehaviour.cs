@@ -75,7 +75,7 @@ namespace Framework.Core
         {
             if (Instance.CoroutineDic.ContainsKey(coroutineKey))
             {
-                $"协程已经存在{coroutineKey}".LogError();
+                $"协程已经存在{coroutineKey}".Error();
                 return;
             }
 
@@ -91,7 +91,7 @@ namespace Framework.Core
                 return;
             }
 
-            "停止失败请，协程不存在".LogError();
+            "停止失败请，协程不存在".Error();
         }
 
         public static Coroutine AddCoroutine(IEnumerator coroutine)
