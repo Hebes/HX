@@ -8,7 +8,6 @@ HybridCLRData
 Release-Win64
 obj
 Bundles
-Game
 *.dwlt
 
 Hotdll
